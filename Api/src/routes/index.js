@@ -3,7 +3,7 @@
 const { Router } = require("express");
 
 //Index Routes
-const categoriesRoutes = require("./routes-catgories");
+const categoriesRoutes = require("./routes-categories");
 const clientsRoutes = require("./routes-clients");
 const optionsRoutes = require("./routes-options.js")
 const productsRoutes = require("./routes-product.js")
