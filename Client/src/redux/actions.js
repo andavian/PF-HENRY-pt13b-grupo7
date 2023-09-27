@@ -6,8 +6,10 @@ import {
   getProdyId,
   getProdByName,
   orderPrice,
-  filteredCategory 
+  filteredCategory,
+  addCategory 
 } from "./productSlice";
+
 // GET PRODUCTS
 export const addProduct = () => {
   return async function (dispatch){
@@ -63,5 +65,16 @@ export const orderByPrice=(payload)=>{
 export const filteredByCategory = (category)=>{
   return(dispatch)=>{
     dispatch(filteredCategory(category));
+  }
+}
+//GET CATEGORIES
+export const getCategories =()=>{
+  return async function (dispatch){
+    try {
+      const response = await axios("http://localhost:3001/categories")
+      dispatch(addCategory(response.data))
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
