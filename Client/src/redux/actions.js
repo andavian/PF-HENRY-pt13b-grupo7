@@ -7,7 +7,9 @@ import {
   getProdByName,
   orderPrice,
   filteredCategory,
-  addCategory 
+  addCategory,
+  setPage,
+  setSearch 
 } from "./productSlice";
 
 // GET PRODUCTS
@@ -76,5 +78,17 @@ export const getCategories =()=>{
     } catch (error) {
       console.log(error.message);
     }
+  }
+}
+//CURRENT PAGE
+export const setCurrentPageGlobal= (num)=>{
+return(dispatch)=>{
+  dispatch(setPage(num));
+}
+}
+//SET SEARCH
+export const setSearchGlobal = (payload)=>{
+  return(dispatch)=>{
+    dispatch(setSearch(payload));
   }
 }

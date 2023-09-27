@@ -1,22 +1,30 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addProducts,getProductByName,filteredByCategory,orderByPrice } from "../../redux/actions";
+import {
+  addProducts,
+  getProductByName,
+  filteredByCategory,
+  orderByPrice,
+  setCurrentPageGlobal,
+} from "../../redux/actions";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
 import styles from "./shop.module.css";
 import Paginado from "../../components/Paginado/Paginado";
-import Navbar from "../../components/Navbar/Navbar";
-import Cardcategory from "../../components/Card-Category/Cardcategory"
+import Cardcategory from "../../components/Card-Category/Cardcategory";
+
 
 export default function Shop() {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.catalog);
-  const categories = useSelector((state)=> state.categories);
-  const [search, setSearch] = useState("");
+  const categories = useSelector((state) => state.categories);
+  const currentPage = useSelector((state) => state.currentPage);
+  const search = useSelector((state) => state.search);
   const [orden, setOrden] = useState("");
-  const [order, setOrder] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage] = useState(6);
 
   // Cálculo de índices para paginación
@@ -25,52 +33,48 @@ export default function Shop() {
 
   // Función para cambiar de página
   const paginado = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(setCurrentPageGlobal(pageNumber));
   };
-//cargar recetas según la búsqueda
-useEffect(() => {
-  if (search) {
-    dispatch(getProductByName(search));
-  } else {
-    dispatch(addProducts());
-  }
-}, [dispatch, search]);
+  //cargar recetas según la búsqueda
+  useEffect(() => {
+    if (search) {
+      dispatch(getProductByName(search));
+    } else {
+      dispatch(addProducts());
+    }
+  }, [dispatch, search]);
 
-// Función para manejar el envío del formulario de búsqueda
-const handleSubmit = (e) => {
-  e.preventDefault();
-  dispatch(getProductByName(search));
-  // No restablecemos currentPage aquí
-};
-// Función para manejar cambios en el campo de búsqueda
-const handleInputName = (e) => {
-  setSearch(e.target.value);
-};
- // Restablecer currentPage a 1 cuando se cambia el filtro de ordenación
- const handleFilterCategory = (event) => {
-  setCurrentPage(1);
-  dispatch(filteredByCategory(event.target.value));
-};
-const handleSortByprice = (e) => {
-  setCurrentPage(1);
-  dispatch(orderByPrice(e.target.value));
-  setOrden(`Ordenado ${e.target.value}`);
-};
-const handleRefreshRecipes = (e) => {
-  e.preventDefault();
-  dispatch(addProducts());
-};
+  // Función para manejar el envío del formulario de búsqueda
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(getProductByName(search));
+    // No restablecemos currentPage aquí
+  };
+  // Restablecer currentPage a 1 cuando se cambia el filtro de ordenación
+  const handleFilterCategory = (event) => {
+    dispatch(setCurrentPageGlobal(1));
+    dispatch(filteredByCategory(event.target.value));
+  };
+  const handleSortByprice = (e) => {
+    dispatch(setCurrentPageGlobal(1));
+    dispatch(orderByPrice(e.target.value));
+    setOrden(`Ordenado ${e.target.value}`);
+  };
+  const handleRefreshRecipes = (e) => {
+    e.preventDefault();
+    dispatch(addProducts());
+  };
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6, // Ajusta la cantidad de tarjetas mostradas
+    slidesToScroll: 1,
+  };
 
   return (
     <main>
       <h1>Catálogo</h1>
-      <Navbar
-        setSearch={setSearch}
-        handleSubmitSearch={handleSubmit}
-        handleFilterCategory={handleFilterCategory}
-        handleSortByprice={handleSortByprice}      
-      />
-
       <Carousel showThumbs={false}>
         <div>
           <img src="ruta-de-tu-imagen-1.jpg" alt="Imagen 1" />
@@ -78,22 +82,30 @@ const handleRefreshRecipes = (e) => {
         <div>
           <img src="ruta-de-tu-imagen-2.jpg" alt="Imagen 2" />
         </div>
-         {   /* Agrega más imágenes aquí */}
+        {/* Agrega más imágenes aquí */}
       </Carousel>
       <h3>Productos</h3>
-      <section className={styles.container}>
-        {catalog.map((prod) => (
-          <Card key={prod.id} product={prod} />
-        ))}
-      </section>
-
-      <Paginado
-          productPerPage={productPerPage}
-          catalog={catalog ? catalog.length : 0}
-          paginado={paginado}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage} 
-      />
+      <Slider {...settings}>
+      {catalog && catalog.length > 0 ? (
+          catalog
+            .map((e) => (
+              <Link to={`/Shop/${e.id}`} key={e.id}>
+                <Card prod={e} />
+              </Link>
+            ))
+        ) : (
+          <h2 className={styles.erro}>
+            El estado de recetas está vacío. Añade recetas o realiza una
+            búsqueda.
+          </h2>
+        )}
+      </Slider>
+      
+       {/* <Paginado
+        productPerPage={productPerPage}
+        catalog={catalog ? catalog.length : 0}
+        paginado={paginado}
+      />  */}
       <div>
         <img src="ruta-de-tu-imagen-1.jpg" alt="Imagen 1" />
       </div>
@@ -103,7 +115,6 @@ const handleRefreshRecipes = (e) => {
           <Cardcategory key={category.id} product={category} />
         ))}
       </section>
-     
     </main>
   );
 }

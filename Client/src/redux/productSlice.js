@@ -16,7 +16,9 @@ export const productSlice = createSlice({
     cart: [],
     details: {},
     favorites: [],
-    categories:[]
+    categories:[],
+    currentPage:1,
+    search:"",
   },
   reducers: {
     addProd: (state, action) => {
@@ -98,6 +100,18 @@ export const productSlice = createSlice({
         ...state,
         categories: action.payload
       }
+    },
+    setPage:(state,action)=>{
+      return{
+        ...state,
+        currentPage: action.payload
+      }
+    },
+    setSearch:(state,action)=>{
+      return{
+        ...state,
+        search: action.payload
+      }
     }
   },
 });
@@ -111,6 +125,8 @@ export const {
   orderPrice,
   filteredCategory,
   addCategory,
+  setPage,
+  setSearch
 } = productSlice.actions;
 
 export default productSlice.reducer;
