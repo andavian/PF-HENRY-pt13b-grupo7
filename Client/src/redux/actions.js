@@ -5,7 +5,7 @@ import {
   removeProdFromCart,
   getProdyId,
   getProdByName,
-  orderName,
+  orderPrice,
   filteredCategory 
 } from "./productSlice";
 // GET PRODUCTS
@@ -54,9 +54,9 @@ export const getProductByName = (name) =>{
   }
 }
 // ORDER PRODUCTS BY NAME
-export const orderByName=(payload)=>{
+export const orderByPrice=(payload)=>{
   return(dispatch)=>{
-    dispatch(orderName(payload));
+    dispatch(orderPrice(payload));
   }
 }
 //FILTERED PRODUCTS BY CATEGORY

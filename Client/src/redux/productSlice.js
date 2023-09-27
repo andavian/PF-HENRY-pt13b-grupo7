@@ -1,4 +1,4 @@
-import { createAction,createReducer, createSlice } from "@reduxjs/toolkit";
+import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -10,102 +10,90 @@ import { createAction,createReducer, createSlice } from "@reduxjs/toolkit";
 
 export const productSlice = createSlice({
   name: "reducerProducts",
-  initialState:{
-    totalproducts:[],
+  initialState: {
+    totalproducts: [],
     catalog: [],
     cart: [],
-    details:{}
+    details: {},
+    favorites: [],
   },
-  reducers:{
-    addProd:(state,action)=>{
+  reducers: {
+    addProd: (state, action) => {
       return {
         ...state,
         totalproducts: action.payload,
-        catalog: action.payload
-      }
+        catalog: action.payload,
+      };
     },
-    addProdToCart:(state,action)=>{
+    addProdToCart: (state, action) => {
       const id = action.payload;
       const product = state.catalog.find((prod) => prod.id === id);
 
       return {
         ...state,
-        cart: [...state.cart, product]
-      }
+        cart: [...state.cart, product],
+      };
     },
-    removeProdFromCart:(state,action)=>{
+    removeProdFromCart: (state, action) => {
       const id = action.payload;
       console.log(state.cart);
 
       return {
         ...state,
-        cart: state.cart.filter(prod => prod.id !== id)
-      }
+        cart: state.cart.filter((prod) => prod.id !== id),
+      };
     },
-    getProdById:(state,action)=>{
+    getProdById: (state, action) => {
       return {
         ...state,
         details: action.payload,
       };
     },
-    getProdByName:(state,action)=>{
-      if(typeof action.payload === "string"){
-        return{
-          ...state ,
-          errors: action.payload
-        }
-      }else{
+    getProdByName: (state, action) => {
+      if (typeof action.payload === "string") {
+        return {
+          ...state,
+          errors: action.payload,
+        };
+      } else {
         return {
           ...state,
           catalog: action.payload,
         };
       }
     },
-    orderName:(state,action)=>{
+    orderPrice: (state, action) => {
       let order =
         action.payload === "asc"
-          ? state.catalog.sort(function (a, b) {
-              if (a.title.toLowerCase() > b.title.toLowerCase()) {
-                return 1;
-              }
-              if (b.title.toLowerCase() > a.title.toLowerCase()) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.catalog.sort(function (a, b) {
-              if (a.title.toLowerCase() > b.title.toLowerCase()) {
-                return -1;
-              }
-              if (b.title.toLowerCase() > a.title.toLowerCase()) {
-                return 1;
-              }
-              return 0;
-            });
+          ? state.catalog.sort((a, b) => a.price - b.price)
+          : state.catalog.sort((a, b) => b.price - a.price);
+
       return {
         ...state,
         catalog: order,
       };
     },
-    filteredCategory:(state,action)=>{
+
+    filteredCategory: (state, action) => {
       const allProducts = state.totalproducts;
       const selectedCategory = action.payload;
-      if (selectedCategory === "All"){
+      if (selectedCategory === "All") {
         return {
           ...state,
-          catalog: allProducts
-        }
-      }else{
+          catalog: allProducts,
+        };
+      } else {
         const filteredProducts = allProducts.filter(
-          (product)=> product.category === selectedCategory);
-          return {
-            ...state,
-            catalog: filteredProducts
-          }
+          (product) => product.category === selectedCategory
+        );
+        return {
+          ...state,
+          catalog: filteredProducts,
+        };
       }
-    }
-  }
-})
+    },
+  },
+});
 
 export const {
   addProd,
@@ -113,9 +101,8 @@ export const {
   removeProdFromCart,
   getProdById,
   getProdByName,
-  orderName,
-  filteredCategory 
-}=productSlice.actions
+  orderPrice,
+  filteredCategory,
+} = productSlice.actions;
 
-export default productSlice.reducer
-
+export default productSlice.reducer;
