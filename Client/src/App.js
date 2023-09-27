@@ -10,9 +10,9 @@ function App() {
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Shop />} />
-        <Route path="/detail" element={<Detail />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/Home" element={<Shop />} />
+        <Route path="/Detail" element={<Detail />} />
+        <Route path="/Cart" element={<Cart />} />
       </Routes>
     </div>
   );
