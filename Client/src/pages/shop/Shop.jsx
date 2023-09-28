@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addProducts,
+  addProduct,
   getProductByName,
   filteredByCategory,
   orderByPrice,
@@ -40,29 +40,13 @@ export default function Shop() {
     if (search) {
       dispatch(getProductByName(search));
     } else {
-      dispatch(addProducts());
+      dispatch(addProduct());
     }
   }, [dispatch, search]);
 
-  // Función para manejar el envío del formulario de búsqueda
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getProductByName(search));
-    // No restablecemos currentPage aquí
-  };
-  // Restablecer currentPage a 1 cuando se cambia el filtro de ordenación
-  const handleFilterCategory = (event) => {
-    dispatch(setCurrentPageGlobal(1));
-    dispatch(filteredByCategory(event.target.value));
-  };
-  const handleSortByprice = (e) => {
-    dispatch(setCurrentPageGlobal(1));
-    dispatch(orderByPrice(e.target.value));
-    setOrden(`Ordenado ${e.target.value}`);
-  };
   const handleRefreshRecipes = (e) => {
     e.preventDefault();
-    dispatch(addProducts());
+    dispatch(addProduct());
   };
   const settings = {
     dots: false,
@@ -73,48 +57,60 @@ export default function Shop() {
   };
 
   return (
-    <main>
-      <h1>Catálogo</h1>
-      <Carousel showThumbs={false}>
-        <div>
-          <img src="ruta-de-tu-imagen-1.jpg" alt="Imagen 1" />
+    <main className={styles.container}>
+      <div className={styles.carouselBannerContainer}>
+        <h2>CELEBRA EL DÍA 253</h2>
+        <Carousel />
+        <button>Ver Coleccion</button>
+      </div>
+      <div className={styles.nuevasContainer}>
+        <div className={styles.tituloCardsNuevas}>
+          <h3>Nuevos Agregados</h3>
+          <p>Lorem ipsum dolor sit amet consectetur</p>
         </div>
-        <div>
-          <img src="ruta-de-tu-imagen-2.jpg" alt="Imagen 2" />
+        <div className={styles.cardsNuevasContainer}>
+          {/* aca van las card recien agregadas*/}
+          <button>Ver mas</button>
         </div>
-        {/* Agrega más imágenes aquí */}
-      </Carousel>
-      <h3>Productos</h3>
-      <Slider {...settings}>
-      {catalog && catalog.length > 0 ? (
-          catalog
-            .map((e) => (
+      </div>
+      <div className={styles.bannerOfertasContainer}>
+        <img src="" alt="" />
+        <p>Ofertas fuera de orbita</p>
+      </div>
+      <div className={styles.cardsOfertasContainer}>
+        {/* aca van las card con descuento*/}
+        <button>Ver mas</button>
+      </div>
+      <div className={styles.categoriasContainer}>
+        <div className={styles.titulosCategoria}>
+          <h3>Categorias</h3>
+          <p>Lorem ipsum dolor sit amet consectetur ad</p>
+        </div>
+        <div className={styles.cardsCategoriasContainer}>
+          <section>
+            {categories.map((category) => (
+              <Cardcategory key={category.id} product={category} />
+            ))}
+          </section>
+        </div>
+      </div>
+      <div className={styles.bannerBuscadosContainer}>
+        <h3>Los mas buscados</h3>
+        <img src="" alt="" />
+      </div>
+      <div className={styles.cardsProductContainer}>
+        <Slider {...settings}>
+          {catalog && catalog.length > 0 ? (
+            catalog.map((e) => (
               <Link to={`/Shop/${e.id}`} key={e.id}>
                 <Card prod={e} />
               </Link>
             ))
-        ) : (
-          <h2 className={styles.erro}>
-            El estado de recetas está vacío. Añade recetas o realiza una
-            búsqueda.
-          </h2>
-        )}
-      </Slider>
-      
-       {/* <Paginado
-        productPerPage={productPerPage}
-        catalog={catalog ? catalog.length : 0}
-        paginado={paginado}
-      />  */}
-      <div>
-        <img src="ruta-de-tu-imagen-1.jpg" alt="Imagen 1" />
+          ) : (
+            <h2>no hay cards</h2>
+          )}
+        </Slider>
       </div>
-      <h3>Categorias</h3>
-      <section className={styles.container}>
-        {categories.map((category) => (
-          <Cardcategory key={category.id} product={category} />
-        ))}
-      </section>
     </main>
   );
 }

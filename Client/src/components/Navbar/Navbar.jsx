@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoshop from "../../../images";
+import logoshop from "../../images/logoshop.svg";
 import { useDispatch } from "react-redux";
 import {
   setSearchGlobal,
@@ -8,7 +8,7 @@ import {
   orderByPrice,
 } from "../../redux/actions";
 import React from "react";
-import { Link } from "react-router-dom"; // Importa Link desde react-router-dom
+
 
 export default function Navbar() {
   const dispatch = useDispatch();
