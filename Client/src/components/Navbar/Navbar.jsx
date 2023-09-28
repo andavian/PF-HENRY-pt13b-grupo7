@@ -10,6 +10,9 @@ export default function Navbar() {
         <li>
           <Link to="/cart">Carrito</Link>
         </li>
+        <li>
+          <Link to="/admin">Form</Link>
+        </li>
       </ul>
     </nav>
   );
