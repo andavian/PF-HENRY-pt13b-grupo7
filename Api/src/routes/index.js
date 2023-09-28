@@ -11,10 +11,10 @@ const salesRoutes = require("./routes-sales")
 
 const router = Router();
 
-router.use("/categories", categoriesRoutes);
-router.use("/clients", clientsRoutes);
-router.use("/options", optionsRoutes);
+//router.use("/categories", categoriesRoutes);
+//router.use("/clients", clientsRoutes);
+//router.use("/options", optionsRoutes);
 router.use("/products", productsRoutes);
-router.use("/sales", salesRoutes);
+//router.use("/sales", salesRoutes);
 
 module.exports = router;
