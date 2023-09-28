@@ -19,6 +19,7 @@ export const productSlice = createSlice({
     categories:[],
     currentPage:1,
     search:"",
+    users:[]
   },
   reducers: {
     addProd: (state, action) => {
@@ -128,6 +129,12 @@ export const productSlice = createSlice({
       return{
         ...state,
         search: action.payload
+      }
+    },
+    addUsers:(state,action)=>{
+      return{
+        ...state,
+        users: action.payload
       }
     }
   },
