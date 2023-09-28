@@ -4,15 +4,17 @@ import Shop from "./pages/shop/Shop";
 import Cart from "./pages/cart/Cart";
 import Detail from "./pages/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
+import Admin from "./pages/admin/Admin";
 
 function App() {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/Home" element={<Shop />} />
-        <Route path="/Detail" element={<Detail />} />
-        <Route path="/Cart" element={<Cart />} />
+        <Route path="/home" element={<Shop />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin" element={<Cart />} />
       </Routes>
     </div>
   );
