@@ -1,0 +1,250 @@
+:root {
+  --border-radius-size: 14px;
+  --primary-100: #ff0000;
+  --primary-200: #ff5a36;
+  --primary-300: #ffc993;
+  --accent-100: #ffffff;
+  --accent-200: hsl(0, 0%, 61%);
+  --text-100: #ffffff;
+  --text-200: #e0e0e0;
+  --bg-100: #000000;
+  --bg-200: #161616;
+  --bg-300: #2c2c2c;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.supraContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.container {
+  display: flex;
+  width: 1000px;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--text-100);
+  border: 2px solid var(--primary-100);
+  border-radius: var(--border-radius-size);
+  margin: 0 4rem;
+}
+
+.containerUp {
+  display: flex;
+  width: 1000px;
+  justify-content: space-evenly;
+  align-items: center;
+  color: var(--text-100);
+  border: 2px solid var(--primary-100);
+  border-radius: var(--border-radius-size);
+  margin: 0 4rem;
+  background-color: var(--bg-300);
+}
+
+.containerDel {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.containerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 70px), 1fr));
+  gap: 20px;
+  max-width: 200px;
+
+  margin: 1rem;
+}
+
+.checkboxLabelDel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.checkboxLabel {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  min-height: 30px;
+  min-width: 125px;
+  padding: 1rem;
+
+  color: var(--text-100);
+  font-size: 15px;
+  border: 1px solid var(--primary-100);
+  border-radius: 6px;
+  background-color: var(--bg-200);
+}
+
+.smallInput {
+  max-width: max-content;
+  width: 80px;
+  min-height: 30px;
+  min-width: 20px;
+  padding: 1rem;
+  font-size: 12px;
+  color: var(--text-100);
+  border: 1px solid var(--primary-100);
+  border-radius: 6px;
+  background-color: var(--bg-200);
+}
+
+.input:focus,
+.input:focus-visible {
+  border-color: var(--primary-200);
+  outline: none;
+}
+
+.smallInput:focus,
+.smallInput:focus-visible {
+  border-color: var(--primary-200);
+  outline: none;
+}
+
+.inputLabel {
+  grid-column: span 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.typeLabel {
+  width: 322px;
+  height: 322px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--primary-100);
+  border-radius: var(--border-radius-size);
+  margin-top: 2rem;
+  background-color: var(--bg-200);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 34px;
+}
+
+.inputCheck {
+  display: none;
+}
+
+.inputCheckDel {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-300);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.inputCheck:checked + .slider {
+  background-color: var(--primary-200);
+}
+
+.inputCheckDel:checked + .slider {
+  background-color: var(--primary-200);
+}
+
+.inputCheck:focus + .slider {
+  box-shadow: 0 0 1px var(--primary-300);
+}
+
+.inputCheckDel:focus + .slider {
+  box-shadow: 0 0 1px var(--primary-300);
+}
+
+.inputCheck:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(85px);
+}
+
+.inputCheckDel:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(85px);
+}
+
+.slider:after {
+  content: "CREATE";
+  color: white;
+  display: block;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  font-size: 10px;
+  font-family: Verdana, sans-serif;
+}
+
+.inputCheck:checked + .slider:after {
+  content: "UPDATE";
+}
+
+.inputCheckDel:checked + .slider:after {
+  content: "DELETE";
+}
+
+.btn {
+  font-family: arial;
+  color: var(--text-100) !important;
+  font-size: 14px;
+  text-shadow: 1px 1px 0px var(--bg-100);
+  box-shadow: 1px 1px 1px var(--accent-100);
+  padding: 10px 25px;
+  border-radius: 10px;
+  border: 3px outset var(--accent-200);
+  background: var(--primary-200);
+  background: linear-gradient(to top, var(--primary-200), var(--primary-100));
+  cursor: pointer;
+}
+.btn:hover {
+  color: var(--accent-200) !important;
+  background: var(--bg-300);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    width: fit-content;
+  }
+
+  .containerUp {
+    flex-direction: column;
+    width: fit-content;
+  }
+}

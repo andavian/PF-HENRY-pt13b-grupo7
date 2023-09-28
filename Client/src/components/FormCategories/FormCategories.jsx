@@ -4,11 +4,7 @@ import axios from "axios";
 import validateForm from "./validation.js";
 import styles from "./form.module.css";
 
-import {
-  createCategory,
-  deleteCategoryAction,
-  updateCategory,
-} from "../../redux/actions.js";
+import { createCategory } from "../../redux/actions.js";
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -53,50 +49,53 @@ const Form = () => {
     }
   };
 
-  //Modificar una categoria
-  const update = async (categoryData) => {
-    try {
-      const URL = `henryFan/${categoryData.name}`;
-      await axios.put(URL, categoryData);
-      dispatch(updateCategory);
-      alert("Category successfully updated");
-    } catch (error) {
-      console.error(error);
-      alert(error.response.data.message);
-    }
-  };
+  //?Modificar una categoria
+  // const update = async (categoryData) => {
+  //   try {
+  //     const URL = `henryFan/${categoryData.name}`;
+  //     await axios.put(URL, categoryData);
+  //     dispatch(updateCategory);
+  //     alert("Category successfully updated");
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert(error.response.data.message);
+  //   }
+  // };
 
-  //borrar una categoría
-  const deleteCategory = async (categoryData) => {
-    try {
-      const URL = `henryFan/delete?name=${pokemonData.name}`;
-      await axios.delete(URL);
-      dispatch(deleteCategoryAction);
-      alert("Category successfully deleted");
-    } catch (error) {
-      console.error(error);
-      alert(error.response.data.message);
-    }
-  };
+  //?borrar una categoría
+  // const deleteCategory = async (categoryData) => {
+  //   try {
+  //     const URL = `henryFan/delete?name=${pokemonData.name}`;
+  //     await axios.delete(URL);
+  //     dispatch(deleteCategoryAction);
+  //     alert("Category successfully deleted");
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert(error.response.data.message);
+  //   }
+  // };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    !check ? await create(categoryData) : await update(categoryData);
+    //!check ?
+    await create(categoryData);
+    //: await update(categoryData);
     setCategoryData({
       name: "",
       thumbnail: "",
     });
   };
 
-  const handleSubmitDel = async (event) => {
-    event.preventDefault();
-    await deleteCategory(categoryData);
-  };
+  // const handleSubmitDel = async (event) => {
+  //   event.preventDefault();
+  //   await deleteCategory(categoryData);
+  // };
 
   return (
     <div className={styles.supraContainer}>
-      <div className={styles.checkboxLabelDel}>
+      <h1>Añade una Categoría</h1>
+      {/* <div className={styles.checkboxLabelDel}>
         <label className={styles.switch}>
           <input
             className={styles.inputCheckDel}
@@ -105,7 +104,7 @@ const Form = () => {
           />
           <span className={styles.slider}></span>
         </label>
-      </div>
+      </div> */}
       <div>
         {deleted ? (
           <form onSubmit={handleSubmitDel} className={styles.containerDel}>
@@ -132,7 +131,7 @@ const Form = () => {
             className={!check ? styles.container : styles.containerUp}
           >
             <div className={styles.containerGrid}>
-              <div className={styles.checkboxLabel}>
+              {/* <div className={styles.checkboxLabel}>
                 <label className={styles.switch}>
                   <input
                     className={styles.inputCheck}
@@ -141,7 +140,7 @@ const Form = () => {
                   />
                   <span className={styles.slider}></span>
                 </label>
-              </div>
+              </div> */}
               <div className={styles.inputLabel}>
                 <input
                   name="name"
