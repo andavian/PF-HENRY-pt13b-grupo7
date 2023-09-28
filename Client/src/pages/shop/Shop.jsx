@@ -16,6 +16,7 @@ import Card from "../../components/Card/Card";
 import styles from "./shop.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
+import Carousel from "../../components/Carrousel/Carrousel";
 
 
 export default function Shop() {
@@ -44,12 +45,6 @@ export default function Shop() {
     }
   }, [dispatch, search]);
 
-  // Función para manejar el envío del formulario de búsqueda
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getProductByName(search));
-    // No restablecemos currentPage aquí
-  };
   // Restablecer currentPage a 1 cuando se cambia el filtro de ordenación
   const handleFilterCategory = (event) => {
     dispatch(setCurrentPageGlobal(1));
@@ -75,15 +70,7 @@ export default function Shop() {
   return (
     <main>
       <h1>Catálogo</h1>
-      <Carousel showThumbs={false}>
-        <div>
-          <img src="ruta-de-tu-imagen-1.jpg" alt="Imagen 1" />
-        </div>
-        <div>
-          <img src="ruta-de-tu-imagen-2.jpg" alt="Imagen 2" />
-        </div>
-        {/* Agrega más imágenes aquí */}
-      </Carousel>
+     <Carousel/>
       <h3>Productos</h3>
       <Slider {...settings}>
       {catalog && catalog.length > 0 ? (

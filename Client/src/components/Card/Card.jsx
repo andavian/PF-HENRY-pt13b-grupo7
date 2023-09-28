@@ -23,11 +23,11 @@ export default function Card({ product }) {
       <p className={styles.heading}>{product.title}</p>
 
       <p className={styles.para}>$ {product.price}</p>
-      <Link to="/detail">
+      <Link to="/Detail">
         <div className={styles.overlay}></div>
       </Link>
       <button className={styles.cardBtn} onClick={handleClick}>
-        {pathname === "/" ? " Agregar al carrito" : "Quitar del carrito"}
+        {pathname === "/Home" ? " Agregar al carrito" : "Quitar del carrito"}
       </button>
     </article>
   );
