@@ -11,7 +11,7 @@ export default function validateForm(categoryData) {
   }
 
   // Validación de imagen
-  if (!categoryData.image) {
+  if (!categoryData.thumbnail) {
     errors.thumbnail = "thumbnail is required.";
   } else if (
     !/^(https?:\/\/)?(www\.)?[\w-]+(\.[a-z]+)+([/?].*)?\.(jpg|jpeg|png|gif|svg)$/i.test(

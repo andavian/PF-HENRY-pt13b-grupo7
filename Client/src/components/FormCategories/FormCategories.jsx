@@ -28,13 +28,13 @@ const Form = () => {
     );
   };
 
-  const handleCheck = () => {
-    setCheck(!check);
-  };
+  // const handleCheck = () => {
+  //   setCheck(!check);
+  // };
 
-  const handleDelete = () => {
-    setDeleted(!deleted);
-  };
+  // const handleDelete = () => {
+  //   setDeleted(!deleted);
+  // };
 
   //Crear una categoria
   const create = async (categoryData) => {
