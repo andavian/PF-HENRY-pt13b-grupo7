@@ -19,10 +19,10 @@ const getProductByName = async (name) => {
     },
   });
   if (product.length === 0) {
-    return res.status(400).send("No existe pokemon con ese nombre");
+    return res.status(400).send("No existe producto con ese nombre");
   }
 
   return product;
 };
 
-module.export = getProductByName;
+module.exports = getProductByName;
