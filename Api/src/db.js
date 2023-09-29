@@ -31,22 +31,21 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { categorie, client,option,Produc,sale} = sequelize.models;
+const {Category, Client,Option,Product,Sale} = sequelize.models;
 
 // Aca vendrian las relaciones
-categorie.hasMany(client,{foreignKey:'idCategorie'});
-client.belongsTo(categorie,{foreignKey:'idCategorie'})
-categorie.hasMany(Produc,{foreignKey:'idCategoria'});
-Produc.belongsTo(categorie,{foreignKey:'idCategoria'})
-client.hasOne(sale,{foreignKey:'idClient'});
-sale.belongsTo(client,{foreignKey:'idClient'})
-sale.hasMany(option,{foreignKey:'idSale'});
-option.belongsTo(sale,{foreignKey:'idSale'})
+Option.belongsToMany(Product, { through: "Produc_Color" });
+Product.belongsToMany(Option, { through: "Produc_Color" });
+Sale.belongsToMany(Product, {through: "Sale_Product"});
+Product.belongsToMany(Sale, {through: "Sale_Product"});
 
-// Product.hasMany(Reviews);
-//Country.belongsToMany(Activity, { through: "activityCountry" });
-//Activity.belongsToMany(Country, { through: "activityCountry" });
+
+
+Category.hasMany(Product);
+Product.belongsTo(Category);
+
+Sale.hasMany(Client);
+Client.belongsTo(Sale);
 
 
 
