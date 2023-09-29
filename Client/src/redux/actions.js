@@ -24,11 +24,14 @@ export const addProduct = () => {
   };
 };
 //ADD PRODUCT TO CART
-export const addProductToCart = (id) => {
+
+export const addProductToCart = (id, quantity) => {
   return (dispatch) => {
-    dispatch(addProdToCart(id));
+    dispatch(addProdToCart({ id, quantity }));
+
   };
 };
+
 //DELETE PRODUCT FROM CART
 export const removeProductFromCart = (id) => {
   return (dispatch) => {
@@ -40,7 +43,9 @@ export const getProductById = (id) => {
   return async function (dispatch) {
     try {
       const product = await axios(`http://localhost:3001/shop/${id}`);
-      return dispatch(getProdById(product.data));
+
+     return dispatch(getProdById(product.data))
+
     } catch (error) {
       console.log(error.message);
     }
@@ -55,11 +60,13 @@ export const getProductByName = (name) => {
     } catch (error) {
       console.log(error.message);
     }
-  };
-};
-// ORDER PRODUCTS BY NAME
-export const orderByPrice = (payload) => {
-  return (dispatch) => {
+
+  }
+}
+// ORDER PRODUCTS BY PRICE
+export const orderByPrice=(payload)=>{
+  return(dispatch)=>{
+
     dispatch(orderPrice(payload));
   };
 };
