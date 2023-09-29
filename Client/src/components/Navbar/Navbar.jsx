@@ -9,7 +9,6 @@ import {
 } from "../../redux/actions";
 import React from "react";
 
-
 export default function Navbar() {
   const dispatch = useDispatch();
 
@@ -26,6 +25,7 @@ export default function Navbar() {
     dispatch(orderByPrice(e.target.value));
   };
 
+ 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
