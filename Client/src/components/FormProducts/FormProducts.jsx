@@ -22,7 +22,7 @@ const FormProducts = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setproductData((prevData) => ({ ...prevData, [name]: value }));
+    setProductData((prevData) => ({ ...prevData, [name]: value }));
     setErrors(
       validateForm({
         ...productData,
@@ -30,7 +30,6 @@ const FormProducts = () => {
       })
     );
   };
-
   // const handleCheck = () => {
   //   setCheck(!check);
   // };
@@ -153,7 +152,7 @@ const FormProducts = () => {
                   type="text"
                   placeholder="Title"
                   className={styles.input}
-                  value={productData.name}
+                  value={productData.title}
                   onChange={handleChange}
                 />
 
