@@ -28,6 +28,7 @@ categoriesRoutes.get("/:id", async (req, res) => {
 categoriesRoutes.post("/", async (req, res) => {
   try {
     const response = req.body;
+    console.log(response);
     const categoryPost = await postCategories(response);
     res.status(201).json(categoryPost);
   } catch (error) {
