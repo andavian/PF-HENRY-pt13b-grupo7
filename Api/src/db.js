@@ -31,13 +31,21 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
-// Para relacionarlos hacemos un destructuring
-const { categorie, client,option,Produc,sale} = sequelize.models;
+const {Category, Client,Option,Product,Sale} = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-//Country.belongsToMany(Activity, { through: "activityCountry" });
-//Activity.belongsToMany(Country, { through: "activityCountry" });
+Option.belongsToMany(Product, { through: "Produc_Color" });
+Product.belongsToMany(Option, { through: "Produc_Color" });
+Sale.belongsToMany(Product, {through: "Sale_Product"});
+Product.belongsToMany(Sale, {through: "Sale_Product"});
+
+
+
+Category.hasMany(Product);
+Product.belongsTo(Category);
+
+Sale.hasMany(Client);
+Client.belongsTo(Sale);
 
 
 

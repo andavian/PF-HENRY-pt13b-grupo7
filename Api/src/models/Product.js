@@ -49,5 +49,5 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     }
 
-  },{timestamps:false});
+  },{freezeTableName: true,timestamps:false});
 };
