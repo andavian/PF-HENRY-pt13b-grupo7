@@ -17,6 +17,8 @@ import styles from "./shop.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 
+// Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -57,49 +59,21 @@ export default function Shop() {
   };
 
   return (
-    <main className={styles.container}>
-      <div className={styles.carouselBannerContainer}>
+    <main className={`container ${styles.container}`}>
+      <div className={`carouselBannerContainer ${styles.carouselBannerContainer}`}>
         <h2>CELEBRA EL DÍA 253</h2>
         <Carousel />
-        <button>Ver Coleccion</button>
+        <button className="btn btn-primary">Ver Coleccion</button>
       </div>
-      <div className={styles.nuevasContainer}>
-        <div className={styles.tituloCardsNuevas}>
-          <h3>Nuevos Agregados</h3>
-          <p>Lorem ipsum dolor sit amet consectetur</p>
-        </div>
-        <div className={styles.cardsNuevasContainer}>
-          {/* aca van las card recien agregadas*/}
-          <button>Ver mas</button>
-        </div>
-      </div>
-      <div className={styles.bannerOfertasContainer}>
-        <img src="" alt="" />
-        <p>Ofertas fuera de orbita</p>
-      </div>
-      <div className={styles.cardsOfertasContainer}>
-        {/* aca van las card con descuento*/}
-        <button>Ver mas</button>
-      </div>
-      <div className={styles.categoriasContainer}>
-        <div className={styles.titulosCategoria}>
-          <h3>Categorias</h3>
-          <p>Lorem ipsum dolor sit amet consectetur ad</p>
-        </div>
 
-        <div className={styles.cardsCategoriasContainer}>
-          <section>
-            {categories.map((category) => (
-              <Cardcategory key={category.id} product={category} />
-            ))}
-          </section>
-        </div>
-      </div>
-      <div className={styles.bannerBuscadosContainer}>
+      {/* ... other sections ... */}
+
+      <div className={`bannerBuscadosContainer ${styles.bannerBuscadosContainer}`}>
         <h3>Los mas buscados</h3>
         <img src="" alt="" />
       </div>
-      <div className={styles.cardsProductContainer}>
+
+      <div className={`cardsProductContainer ${styles.cardsProductContainer}`}>
         <Slider {...settings}>
           {catalog && catalog.length > 0 ? (
             catalog.map((e) => (
@@ -111,7 +85,6 @@ export default function Shop() {
             <h2>no hay cards</h2>
           )}
         </Slider>
-
       </div>
     </main>
   );
