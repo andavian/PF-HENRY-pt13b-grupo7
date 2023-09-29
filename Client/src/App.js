@@ -5,6 +5,8 @@ import Cart from "./pages/cart/Cart";
 import Detail from "./pages/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
+import Footer from "./components/Footer/Footer";
+import Footer2 from "./components/Footer2/Footer2";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/admin" element={<Admin />} />
 
       </Routes>
+      <Footer/>
+      <Footer2/>
     </div>
   );
 }
