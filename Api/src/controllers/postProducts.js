@@ -1,5 +1,5 @@
 //Post Products
-const { Products, Categories } = require("../db");
+const { Product, Category } = require("../db");
 
 const postProducts = async ({
     title,
@@ -19,14 +19,14 @@ const postProducts = async ({
 
 if (!title || !price || !summary || !description || !primaryimage) throw Error("Faltan datos");
 
-const checkExistProduct = await Products.findAll({
+const checkExistProduct = await Product.findAll({
     where: {
         title: title.toUpperCase(),
     },
 });
 if (checkExistProduct.length>0) throw Error("Ya existe el producto");
 
-const newProducts = await Products.create({
+const newProducts = await Product.create({
     title,
     price,
     summary,
@@ -40,7 +40,7 @@ const newProducts = await Products.create({
     stock,
     rating,
 });
-//if (categoryId) await newProducts.addCategories(categoryId);
+//if (categoryId) await newProducts.addCategory(categoryId);
 return newProducts;
 
 };
