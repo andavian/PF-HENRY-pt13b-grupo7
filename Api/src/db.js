@@ -39,8 +39,7 @@ Product.belongsToMany(Option, { through: "Produc_Color" });
 Sale.belongsToMany(Product, {through: "Sale_Product"});
 Product.belongsToMany(Sale, {through: "Sale_Product"});
 
-Sale.belongsToMany(Product, {through: "Sale_Product"});
-Product.belongsToMany(Sale, {through: "Sale_Product"});
+
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
