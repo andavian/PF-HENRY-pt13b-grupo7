@@ -22,4 +22,4 @@ module.exports = (sequelize) => {
     order_status:{
         type : DataTypes.ENUM("pending","delivered","canceled"),
     },
-  },{timestamps:false})}
+  },{freezeTableName: true,timestamps:false})}

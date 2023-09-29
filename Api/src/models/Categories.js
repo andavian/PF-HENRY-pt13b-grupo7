@@ -14,4 +14,5 @@ module.exports = (sequelize) => {
     thumbnail:{
         type : DataTypes.TEXT,
     }
-  },{timestamps:false})}
+  },{freezeTableName: true,
+    timestamps:false})}

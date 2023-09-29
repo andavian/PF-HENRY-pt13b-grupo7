@@ -27,4 +27,4 @@ module.exports = (sequelize) => {
     mobilenumber:{
         type : DataTypes.INTEGER,
     }
-  },{timestamps:false})}
+  },{freezeTableName: true,timestamps:false})}
