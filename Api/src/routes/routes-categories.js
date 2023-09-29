@@ -2,9 +2,9 @@
 const { Router } = require("express");
 const categoriesRoutes = Router();
 
-const getCategories = require("../controllers/getProducts");
-const getCategoriesById = require("../controllers/getProductsById");
-const postCategories = require("../controllers/postProducts");
+const getCategories = require("../controllers/getCategories");
+const getCategoriesById = require("../controllers/getCategoriesById");
+const postCategories = require("../controllers/postCategories");
 
 categoriesRoutes.get("/", async (req, res) => {
   try {

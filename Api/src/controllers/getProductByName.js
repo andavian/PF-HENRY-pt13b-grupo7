@@ -1,9 +1,9 @@
 //Get Products By Name
 const { Op } = require("sequelize");
-const { Products, Categories } = require("../db");
+const { Product, Category } = require("../db");
 
 const getProductByName = async (name) => {
-  const product = await Products.findAll({
+  const product = await Product.findAll({
     where: {
       //name: name,
       name: {
@@ -11,7 +11,7 @@ const getProductByName = async (name) => {
       },
     },
     include: {
-      model: Categories,
+      model: Category,
       attributes: ["name"],
       through: {
         attributes: [],
