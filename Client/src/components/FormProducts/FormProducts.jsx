@@ -4,14 +4,17 @@ import axios from "axios";
 import validateForm from "./validation.js";
 import styles from "./form.module.css";
 
-import { createCategory } from "../../redux/actions.js";
+//import { createProduct } from "../../redux/actions.js";
 
-const FormCategories = () => {
+const FormProducts = () => {
   const dispatch = useDispatch();
 
-  const [categoryData, setCategoryData] = useState({
-    name: "",
-    thumbnail: "",
+  const [productData, setProductData] = useState({
+    title: "",
+    image: "",
+    price: "",
+    description: "",
+    category: "",
   });
   const [errors, setErrors] = useState({});
   const [deleted, setDeleted] = useState(false);
@@ -19,10 +22,10 @@ const FormCategories = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setCategoryData((prevData) => ({ ...prevData, [name]: value }));
+    setproductData((prevData) => ({ ...prevData, [name]: value }));
     setErrors(
       validateForm({
-        ...categoryData,
+        ...productData,
         [name]: value,
       })
     );
@@ -37,23 +40,23 @@ const FormCategories = () => {
   // };
 
   //Crear una categoria
-  const create = async (categoryData) => {
+  const create = async (productData) => {
     try {
-      const URL = "/categories";
-      await axios.post(URL, categoryData);
-      dispatch(createCategory(categoryData));
-      alert("Category successfully created");
+      const URL = "/products";
+      await axios.post(URL, productData);
+      dispatch(createCategory(productData));
+      alert("Product successfully created");
     } catch (error) {
       console.error(error);
       alert(error.response.data.message);
     }
   };
 
-  //?Modificar una categoria
-  // const update = async (categoryData) => {
+  //?Modificar un Producto
+  // const update = async (productData) => {
   //   try {
-  //     const URL = `henryFan/${categoryData.name}`;
-  //     await axios.put(URL, categoryData);
+  //     const URL = `henryFan/${productData.name}`;
+  //     await axios.put(URL, productData);
   //     dispatch(updateCategory);
   //     alert("Category successfully updated");
   //   } catch (error) {
@@ -63,9 +66,9 @@ const FormCategories = () => {
   // };
 
   //?borrar una categoría
-  // const deleteCategory = async (categoryData) => {
+  // const deleteCategory = async (productData) => {
   //   try {
-  //     const URL = `henryFan/delete?name=${categoryData.name}`;
+  //     const URL = `henryFan/delete?name=${productData.name}`;
   //     await axios.delete(URL);
   //     dispatch(deleteCategoryAction);
   //     alert("Category successfully deleted");
@@ -79,22 +82,25 @@ const FormCategories = () => {
     event.preventDefault();
 
     //!check ?
-    await create(categoryData);
-    //: await update(categoryData);
-    setCategoryData({
-      name: "",
-      thumbnail: "",
+    await create(productData);
+    //: await update(productData);
+    setProductData({
+      title: "",
+      image: "",
+      price: "",
+      description: "",
+      category: "",
     });
   };
 
   // const handleSubmitDel = async (event) => {
   //   event.preventDefault();
-  //   await deleteCategory(categoryData);
+  //   await deleteCategory(productData);
   // };
 
   return (
     <div className={styles.supraContainer}>
-      <h1>Añade una Categoría</h1>
+      <h1>Añade un Producto</h1>
       {/* <div className={styles.checkboxLabelDel}>
         <label className={styles.switch}>
           <input
@@ -110,16 +116,16 @@ const FormCategories = () => {
           <form onSubmit={handleSubmitDel} className={styles.containerDel}>
             <div className={styles.inputLabel}>
               <input
-                name="name"
+                name="title"
                 type="text"
-                placeholder="Name"
+                placeholder="Title"
                 className={styles.input}
-                value={categoryData.name}
+                value={productData.title}
                 onChange={handleChange}
               />
               <span>{errors.name}</span>
             </div>
-            {categoryData.name ? (
+            {productData.title ? (
               <button className={styles.btn}>Delete</button>
             ) : (
               <div></div>
@@ -143,11 +149,11 @@ const FormCategories = () => {
               </div> */}
               <div className={styles.inputLabel}>
                 <input
-                  name="name"
+                  name="title"
                   type="text"
-                  placeholder="Name"
+                  placeholder="Title"
                   className={styles.input}
-                  value={categoryData.name}
+                  value={productData.name}
                   onChange={handleChange}
                 />
 
@@ -155,17 +161,41 @@ const FormCategories = () => {
               </div>
               <div className={styles.inputLabel}>
                 <input
-                  name="thumbnail"
+                  name="image"
                   type="text"
-                  placeholder="Thumbnail"
+                  placeholder="URL Image"
                   className={styles.input}
-                  value={categoryData.thumbnail}
+                  value={productData.image}
                   onChange={handleChange}
                 />
-                <span>{errors.thumbnail}</span>
+
+                <span>{errors.image}</span>
+              </div>
+              <div className={styles.inputLabel}>
+                <input
+                  name="price"
+                  type="text"
+                  placeholder="Price"
+                  className={styles.input}
+                  value={productData.price}
+                  onChange={handleChange}
+                />
+                <span>{errors.price}</span>
+              </div>
+              <div className={styles.inputLabel}>
+                <textarea
+                  name="description"
+                  row="5"
+                  cols="50"
+                  placeholder="Description"
+                  className={styles.input}
+                  value={productData.description}
+                  onChange={handleChange}
+                ></textarea>
+                <span>{errors.description}</span>
               </div>
             </div>
-            {Object.keys(errors).length === 0 && categoryData.name ? (
+            {Object.keys(errors).length === 0 && productData.name ? (
               <button className={styles.btn}>Submit</button>
             ) : (
               <div></div>
@@ -177,4 +207,4 @@ const FormCategories = () => {
   );
 };
 
-export default FormCategories;
+export default FormProducts;
