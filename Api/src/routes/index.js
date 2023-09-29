@@ -11,7 +11,7 @@ const salesRoutes = require("./routes-sales")
 
 const router = Router();
 
-//router.use("/categories", categoriesRoutes);
+router.use("/categories", categoriesRoutes);
 //router.use("/clients", clientsRoutes);
 //router.use("/options", optionsRoutes);
 router.use("/products", productsRoutes);

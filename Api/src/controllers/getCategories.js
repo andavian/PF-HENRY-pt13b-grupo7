@@ -1,8 +1,8 @@
 //Get All Products 
-const { Categories } = require("../db");
+const { Category } = require("../db");
 
 const getCategories = async () => {
-    const allCategories = await Categories.findAll();
+    const allCategories = await Category.findAll();
     return allCategories;
 };
 
