@@ -19,6 +19,7 @@ export const productSlice = createSlice({
     categories:[],
     currentPage:1,
     search:"",
+    users:[]
   },
   reducers: {
     addProd: (state, action) => {
@@ -29,14 +30,31 @@ export const productSlice = createSlice({
       };
     },
     addProdToCart: (state, action) => {
-      const id = action.payload;
+      const { id, quantity } = action.payload;
       const product = state.catalog.find((prod) => prod.id === id);
-
-      return {
-        ...state,
-        cart: [...state.cart, product],
-      };
+    
+      // Verifica si el producto ya está en el carrito
+      const existingProductIndex = state.cart.findIndex((prod) => prod.id === id);
+    
+      if (existingProductIndex !== -1) {
+        // Si el producto ya está en el carrito, actualiza la cantidad
+        const updatedCart = [...state.cart];
+        updatedCart[existingProductIndex].quantity += quantity;
+    
+        return {
+          ...state,
+          cart: updatedCart,
+        };
+      } else {
+        // Si el producto no está en el carrito, agrégalo con la cantidad
+        product.quantity = quantity;
+        return {
+          ...state,
+          cart: [...state.cart, product],
+        };
+      }
     },
+    
     removeProdFromCart: (state, action) => {
       const id = action.payload;
       console.log(state.cart);
@@ -111,6 +129,12 @@ export const productSlice = createSlice({
       return{
         ...state,
         search: action.payload
+      }
+    },
+    addUsers:(state,action)=>{
+      return{
+        ...state,
+        users: action.payload
       }
     }
   },
