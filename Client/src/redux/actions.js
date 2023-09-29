@@ -16,7 +16,7 @@ import {
 export const addProduct = () => {
   return async function (dispatch){
 try {
-  const response = await axios("http://localhost:3001/shop");
+  const response = await axios("http://localhost:3001/products");
   dispatch(addProd(response.data));
 } catch (error) {
   console.log(error.message);
