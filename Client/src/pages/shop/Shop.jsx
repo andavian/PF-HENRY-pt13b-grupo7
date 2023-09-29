@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addProducts,
+  addProduct,
   getProductByName,
   filteredByCategory,
   orderByPrice,
@@ -16,7 +16,6 @@ import Card from "../../components/Card/Card";
 import styles from "./shop.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
-
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -86,13 +85,12 @@ export default function Shop() {
       </Carousel>
       <h3>Productos</h3>
       <Slider {...settings}>
-      {catalog && catalog.length > 0 ? (
-          catalog
-            .map((e) => (
-              <Link to={`/Shop/${e.id}`} key={e.id}>
-                <Card prod={e} />
-              </Link>
-            ))
+        {catalog && catalog.length > 0 ? (
+          catalog.map((e) => (
+            <Link to={`/Shop/${e.id}`} key={e.id}>
+              <Card prod={e} />
+            </Link>
+          ))
         ) : (
           <h2 className={styles.erro}>
             El estado de recetas está vacío. Añade recetas o realiza una
@@ -100,8 +98,8 @@ export default function Shop() {
           </h2>
         )}
       </Slider>
-      
-       {/* <Paginado
+
+      {/* <Paginado
         productPerPage={productPerPage}
         catalog={catalog ? catalog.length : 0}
         paginado={paginado}
