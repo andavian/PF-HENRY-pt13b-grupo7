@@ -17,18 +17,8 @@ export default function Card({ product }) {
   };
 
   return (
-    <article className={styles.card}>
-      <img src={product.image} alt={product.title} className={styles.image} />
-
-      <p className={styles.heading}>{product.title}</p>
-
-      <p className={styles.para}>$ {product.price}</p>
-      <Link to="/Detail">
-        <div className={styles.overlay}></div>
-      </Link>
-      <button className={styles.cardBtn} onClick={handleClick}>
-        {pathname === "/Home" ? " Agregar al carrito" : "Quitar del carrito"}
-      </button>
-    </article>
+    <div>
+      <p>{product.title}</p>
+    </div>
   );
 }

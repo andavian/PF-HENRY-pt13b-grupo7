@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getCategories,
   addProduct,
   getProductByName,
   filteredByCategory,
   orderByPrice,
   setCurrentPageGlobal,
 } from "../../redux/actions";
-import { Carousel } from "react-responsive-carousel";
+import Carousel  from "../../components/Carrousel/Carrousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -20,7 +21,7 @@ import Cardcategory from "../../components/Card-Category/Cardcategory";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.catalog);
+  const catalog = useSelector((state) => state.totalproducts);
   const categories = useSelector((state) => state.categories);
   const currentPage = useSelector((state) => state.currentPage);
   const search = useSelector((state) => state.search);
@@ -39,6 +40,7 @@ export default function Shop() {
   useEffect(() => {
     if (search) {
       dispatch(getProductByName(search));
+      dispatch(getCategories())
     } else {
       dispatch(addProduct());
     }
@@ -59,9 +61,9 @@ export default function Shop() {
   return (
     <main className={styles.container}>
       <div className={styles.carouselBannerContainer}>
-        <h2>CELEBRA EL DÍA 253</h2>
         <Carousel />
-        <button>Ver Coleccion</button>
+        <p>Henry Fans</p>
+        <button className={styles.botonInicio}>Ver Coleccion</button>
       </div>
       <div className={styles.nuevasContainer}>
         <div className={styles.tituloCardsNuevas}>
@@ -74,7 +76,7 @@ export default function Shop() {
         </div>
       </div>
       <div className={styles.bannerOfertasContainer}>
-        <img src="" alt="" />
+        <img src="https://s3-alpha-sig.figma.com/img/83cc/5166/20ea1d562a5624a02b00cf9cd66ef9be?Expires=1696809600&Signature=X7h6KzprpJSiSgazogHXmkluLaHKe96wsc1VOBY5fyhQYK2rBIxBiv9SBZ3FYm5DxyoDxFEJtskIWp-Kroy0wYBbP5c7GAJHmNwnDbFqisvkRjLm1Z62dN9y91va8Bw1z3xs5kaU6N59HIX3k8hUU6QH0xPTcvWwUx8AEW1U5-H5opCvWToRH3SsO8TjrV5r9E9uIKWCirzGewOvFbUBdt1fR2mBqqPGIU2wOmrNDpx5rtVA9flJ7kGtUglRYYLSP2NpsiH5g5T6USOUxn1dzczO0e3qXQBLYh2yO-S9beIHekhWaCLWr2QtLyM2x0t-PdPCkN4Vfsu11qtKULlxWg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="slide" />
         <p>Ofertas fuera de orbita</p>
       </div>
       <div className={styles.cardsOfertasContainer}>
@@ -87,32 +89,37 @@ export default function Shop() {
           <p>Lorem ipsum dolor sit amet consectetur ad</p>
         </div>
 
-        <div className={styles.cardsCategoriasContainer}>
-          <section>
-            {categories.map((category) => (
-              <Cardcategory key={category.id} product={category} />
-            ))}
-          </section>
-        </div>
-      </div>
+        <div className={styles.cardscategories}>
+     {categories && categories.length > 0 ? (
+      categories.map((e) => (
+        <Link to={`/Shop/${e.id}`} key={e.id}>
+          <h3>{e.title}</h3>
+        </Link>
+      ))
+    ) : (
+      <h2>No hay categorias disponibles.</h2>
+    )}
+  
+    </div>
+    </div>
       <div className={styles.bannerBuscadosContainer}>
-        <h3>Los mas buscados</h3>
-        <img src="" alt="" />
+        <p>Los mas buscados</p>
+        <img src="https://s3-alpha-sig.figma.com/img/83cc/5166/20ea1d562a5624a02b00cf9cd66ef9be?Expires=1696809600&Signature=X7h6KzprpJSiSgazogHXmkluLaHKe96wsc1VOBY5fyhQYK2rBIxBiv9SBZ3FYm5DxyoDxFEJtskIWp-Kroy0wYBbP5c7GAJHmNwnDbFqisvkRjLm1Z62dN9y91va8Bw1z3xs5kaU6N59HIX3k8hUU6QH0xPTcvWwUx8AEW1U5-H5opCvWToRH3SsO8TjrV5r9E9uIKWCirzGewOvFbUBdt1fR2mBqqPGIU2wOmrNDpx5rtVA9flJ7kGtUglRYYLSP2NpsiH5g5T6USOUxn1dzczO0e3qXQBLYh2yO-S9beIHekhWaCLWr2QtLyM2x0t-PdPCkN4Vfsu11qtKULlxWg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" alt="slide" />
       </div>
       <div className={styles.cardsProductContainer}>
-        <Slider {...settings}>
-          {catalog && catalog.length > 0 ? (
-            catalog.map((e) => (
-              <Link to={`/Shop/${e.id}`} key={e.id}>
-                <Card prod={e} />
-              </Link>
-            ))
-          ) : (
-            <h2>no hay cards</h2>
-          )}
-        </Slider>
-
-      </div>
+    {catalog && catalog.length > 0 ? (
+      catalog.map((e) => (
+        <Link to={`/Shop/${e.id}`} key={e.id}>
+          <h3>{e.title}</h3>
+        </Link>
+      ))
+    ) : (
+      <h2>No hay productos disponibles.</h2>
+    )}
+  
+</div>
     </main>
   );
 }
+
+

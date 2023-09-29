@@ -16,7 +16,8 @@ import {
 export const addProduct = () => {
   return async function (dispatch){
 try {
-  const response = await axios("http://localhost:3001/products");
+  const response = await axios('https://fakestoreapi.com/products');
+  console.log(response.data);
   dispatch(addProd(response.data));
 } catch (error) {
   console.log(error.message);
@@ -80,7 +81,8 @@ export const filteredByCategory = (category) => {
 export const getCategories = () => {
   return async function (dispatch) {
     try {
-      const response = await axios("http://localhost:3001/categories");
+      const response = await axios("https://fakestoreapi.com/products/categories");
+      console.log(response.data);
       dispatch(addCategory(response.data));
     } catch (error) {
       console.log(error.message);
