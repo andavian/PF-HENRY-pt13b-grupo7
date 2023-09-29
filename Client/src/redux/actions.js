@@ -14,14 +14,14 @@ import {
 
 // GET PRODUCTS
 export const addProduct = () => {
-  return async function (dispatch) {
-    try {
-      const response = await axios("http://localhost:3001/shop");
-      dispatch(addProd(response.data));
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  return async function (dispatch){
+try {
+  const response = await axios("http://localhost:3001/products");
+  dispatch(addProd(response.data));
+} catch (error) {
+  console.log(error.message);
+}
+  }
 };
 //ADD PRODUCT TO CART
 

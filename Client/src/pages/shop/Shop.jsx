@@ -16,7 +16,7 @@ import Card from "../../components/Card/Card";
 import styles from "./shop.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
-import Carousel from "../../components/Carrousel/Carrousel";
+
 
 export default function Shop() {
   const dispatch = useDispatch();
