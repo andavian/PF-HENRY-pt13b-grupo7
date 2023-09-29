@@ -1,9 +1,290 @@
+/* shop.module.css */
+
+/* shop.module.css */
+
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-  gap: 1rem;
-  list-style: none;
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  padding-right: 50px;
+  position: relative;
 }
+
+.carouselBannerContainer {
+  width: 100%;
+  text-align: center;
+  padding: 2rem; /* Ajusta el padding para dispositivos más pequeños */
+  background-color: #f2f2f2;
+  position: relative;
+}
+
+.carouselBannerContainer p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 10rem; /* Ajusta el tamaño del texto */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: absolute;
+  top: 33%; /* Ajusta la posición vertical */
+  left: 33%; /* Ajusta la posición horizontal */
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.botonInicio {
+  display: inline-flex;
+  height: 3rem; /* Ajusta la altura del botón */
+  padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 20px;
+  background: #FF0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 40%;
+  left: 20%;
+}
+
+.carouselBannerContainer button {
+  background-color:  #FF0;
+  color: #000000;
+  border: none;
+  padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.carouselBannerContainer button:hover {
+  background-color: #0056b3;
+}
+
+.nuevasContainer {
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem 0; /* Ajusta el padding para dispositivos más pequeños */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tituloCardsNuevas h3 {
+  color: var(--font-color, #333);
+  font-family: Montserrat;
+  font-size: 3rem; /* Ajusta el tamaño del texto */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 1rem; /* Añade un margen inferior */
+}
+
+.tituloCardsNuevas p {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  color: #777;
+  margin-bottom: 2rem; /* Añade un margen inferior */
+}
+
+.cardsNuevasContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardsNuevasContainer button {
+  display: inline-flex;
+  height: 3rem; /* Ajusta la altura del botón */
+  padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 20px;
+  background: #FF0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cardsNuevasContainer button:hover {
+  background-color: #0056b3;
+}
+
+.bannerOfertasContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.bannerOfertasContainer img {
+  width: 100%;
+  height: auto;
+}
+.bannerOfertasContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo negro semitransparente */
+  z-index: 1; /* Coloca el pseudo-elemento encima de la imagen */
+}
+
+.bannerOfertasContainer p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 10rem; /* Ajusta el tamaño del texto */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: absolute;
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  left: 20px; /* Ajusta la distancia desde la izquierda */
+  margin: 0;
+  z-index: 1;
+}
+
+.cardsOfertasContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; /* Ajusta el margen superior */
+}
+
+.cardsOfertasContainer button {
+  display: inline-flex;
+  height: 3rem; /* Ajusta la altura del botón */
+  padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 20px;
+  background: #FF0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cardsOfertasContainer button:hover {
+  background-color: #0056b3;
+}
+
+.categoriasContainer {
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem 0; /* Ajusta el padding para dispositivos más pequeños */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulosCategoria h3 {
+  color: var(--font-color, #333);
+  font-family: Montserrat;
+  font-size: 3rem; /* Ajusta el tamaño del texto */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 1rem; /* Añade un margen inferior */
+}
+
+.titulosCategoria p {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  color: #777;
+  margin-bottom: 2rem; /* Añade un margen inferior */
+}
+
+.cardscategories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardscategories h2 {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  color: #777;
+  margin-top: 2rem; /* Añade un margen superior */
+}
+
+.bannerBuscadosContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.bannerBuscadosContainer img {
+  width: 100%;
+  height: auto;
+}
+.bannerBuscadosContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo negro semitransparente */
+  z-index: 1; /* Coloca el pseudo-elemento encima de la imagen */
+}
+
+.bannerBuscadosContainer p {
+  color: #ffffff;
+  font-family: Montserrat;
+  font-size: 10rem; /* Ajusta el tamaño del texto */
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: absolute;
+  top: 20px; /* Ajusta la distancia desde la parte superior */
+  left: 20px; /* Ajusta la distancia desde la izquierda */
+  margin: 0;
+  z-index: 1;
+}
+
+.slick-slider {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.slick-slide {
+  padding: 0 10px;
+}
+
+.slick-prev,
+.slick-next {
+  color: #007bff;
+  font-size: 2rem; /* Ajusta el tamaño de las flechas */
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  color: #0056b3;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+}
+
+.card h4 {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  color: #333;
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 1rem; /* Ajusta el tamaño del texto */
+  color: #777;
+}
+
+/* Añade estilos adicionales según sea necesario */
