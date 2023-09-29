@@ -35,6 +35,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { categorie, client,option,Produc,sale} = sequelize.models;
 
 // Aca vendrian las relaciones
+categorie.hasMany(client,{foreignKey:'idCategorie'});
+client.belongsTo(categorie,{foreignKey:'idCategorie'})
+categorie.hasMany(Produc,{foreignKey:'idCategoria'});
+Produc.belongsTo(categorie,{foreignKey:'idCategoria'})
+client.hasOne(sale,{foreignKey:'idClient'});
+sale.belongsTo(client,{foreignKey:'idClient'})
+sale.hasMany(option,{foreignKey:'idSale'});
+option.belongsTo(sale,{foreignKey:'idSale'})
+
 // Product.hasMany(Reviews);
 //Country.belongsToMany(Activity, { through: "activityCountry" });
 //Activity.belongsToMany(Country, { through: "activityCountry" });
