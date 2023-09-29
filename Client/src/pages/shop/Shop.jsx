@@ -18,7 +18,6 @@ import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 import Carousel from "../../components/Carrousel/Carrousel";
 
-
 export default function Shop() {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.catalog);
@@ -87,6 +86,7 @@ export default function Shop() {
           <h3>Categorias</h3>
           <p>Lorem ipsum dolor sit amet consectetur ad</p>
         </div>
+
         <div className={styles.cardsCategoriasContainer}>
           <section>
             {categories.map((category) => (
@@ -111,6 +111,7 @@ export default function Shop() {
             <h2>no hay cards</h2>
           )}
         </Slider>
+
       </div>
     </main>
   );

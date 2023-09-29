@@ -9,87 +9,99 @@ import {
   filteredCategory,
   addCategory,
   setPage,
-  setSearch 
+  setSearch,
 } from "./productSlice";
 
 // GET PRODUCTS
 export const addProduct = () => {
-  return async function (dispatch){
-try {
-  const response = await axios("http://localhost:3001/shop");
-  dispatch(addProd(response.data));
-} catch (error) {
-  console.log(error.message);
-}
-  }
+  return async function (dispatch) {
+    try {
+      const response = await axios("http://localhost:3001/shop");
+      dispatch(addProd(response.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 };
 //ADD PRODUCT TO CART
+
 export const addProductToCart = (id, quantity) => {
   return (dispatch) => {
     dispatch(addProdToCart({ id, quantity }));
+
   };
 };
 
 //DELETE PRODUCT FROM CART
 export const removeProductFromCart = (id) => {
-  return (dispatch)=>{
+  return (dispatch) => {
     dispatch(removeProdFromCart(id));
-    };
+  };
 };
 // GET PRODUCT BY ID
-export const getProductById =(id)=>{
-  return async function (dispatch){
+export const getProductById = (id) => {
+  return async function (dispatch) {
     try {
       const product = await axios(`http://localhost:3001/shop/${id}`);
+
      return dispatch(getProdById(product.data))
-    } catch (error) {
-      console.log(error.message);
-    }      
-  }
-}
-//GET PRODUCT BY NAME 
-export const getProductByName = (name) =>{
-  return async function (dispatch){
-    try {
-      const response = await axios(`http://localhost:3001/?name=${name}`);
-    dispatch(getProdByName(response.data));
+
     } catch (error) {
       console.log(error.message);
     }
+  };
+};
+//GET PRODUCT BY NAME
+export const getProductByName = (name) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios(`http://localhost:3001/?name=${name}`);
+      dispatch(getProdByName(response.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+
   }
 }
 // ORDER PRODUCTS BY PRICE
 export const orderByPrice=(payload)=>{
   return(dispatch)=>{
+
     dispatch(orderPrice(payload));
-  }
-}
+  };
+};
 //FILTERED PRODUCTS BY CATEGORY
-export const filteredByCategory = (category)=>{
-  return(dispatch)=>{
+export const filteredByCategory = (category) => {
+  return (dispatch) => {
     dispatch(filteredCategory(category));
-  }
-}
+  };
+};
 //GET CATEGORIES
-export const getCategories =()=>{
-  return async function (dispatch){
+export const getCategories = () => {
+  return async function (dispatch) {
     try {
-      const response = await axios("http://localhost:3001/categories")
-      dispatch(addCategory(response.data))
+      const response = await axios("http://localhost:3001/categories");
+      dispatch(addCategory(response.data));
     } catch (error) {
       console.log(error.message);
     }
-  }
-}
+  };
+};
 //CURRENT PAGE
-export const setCurrentPageGlobal= (num)=>{
-return(dispatch)=>{
-  dispatch(setPage(num));
-}
-}
+export const setCurrentPageGlobal = (num) => {
+  return (dispatch) => {
+    dispatch(setPage(num));
+  };
+};
 //SET SEARCH
-export const setSearchGlobal = (payload)=>{
-  return(dispatch)=>{
+export const setSearchGlobal = (payload) => {
+  return (dispatch) => {
     dispatch(setSearch(payload));
-  }
-}
+  };
+};
+
+export const createCategory = (payload) => {
+  return (dispatch) => {
+    dispatch(addCategory(payload));
+  };
+};
