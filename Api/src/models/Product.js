@@ -25,9 +25,6 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      categoryID: {
-        type: DataTypes.INTEGER,
-      },
     },
     { freezeTableName: true, timestamps: false }
   );
