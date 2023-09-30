@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './ProductCarousel.module.css'; // Importa los estilos CSS Modules aquí
 import Card from '../Card/Card'; // Asegúrate de importar tu componente Card
+import Detail from '../../pages/Detail/Detail';
 
 const ProductCarousel = ({ products }) => {
   const [startIndex, setStartIndex] = useState(0);
@@ -13,6 +14,18 @@ const ProductCarousel = ({ products }) => {
     setStartIndex((prevStartIndex) =>
       prevStartIndex === 0 ? products.length - 1 : prevStartIndex - 1
     );
+  };
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedProduct(null);
+    setModalOpen(false);
   };
 
   // Calcula las tarjetas visibles en el carrusel
@@ -29,8 +42,11 @@ const ProductCarousel = ({ products }) => {
       </button>
       <div className={styles['card-container']}>
         {visibleCards.map((product, index) => (
-          <div key={index} className={styles['card']}>
-            {/* Agregar una verificación antes de renderizar el componente Card */}
+          <div
+            key={index}
+            className={styles['card']}
+            onClick={() => openModal(product)}
+          >
             {product && product.title ? (
               <Card product={product} />
             ) : (
@@ -42,6 +58,12 @@ const ProductCarousel = ({ products }) => {
       <button onClick={nextProduct} className={styles['arrow-button']}>
         &#9654;
       </button>
+
+      {modalOpen && selectedProduct && (
+        <div className={styles['modal-overlay']}>
+          <Detail product={selectedProduct} onClose={closeModal} />
+        </div>
+      )}
     </div>
   );
 };

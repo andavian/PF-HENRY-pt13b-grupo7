@@ -1,24 +1,25 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { getProductById, addProductToCart } from "../../redux/actions";
-import styles from "./detail.module.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getProductById, addProductToCart } from '../../redux/actions';
+import Carousel from '../../components/Carrousel/Carrousel';
+import styles from './detail.module.css';
 
-export default function Detail() {
+export default function Detail({ product, onClose }) {
   const detailState = useSelector((state) => state.reducer.details);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { id } = useParams();
+  
+
   useEffect(() => {
-    dispatch(getProductById(id));
+    dispatch(getProductById(product.id));
   }, [dispatch, id]);
 
-  // Función para aumentar la cantidad de items
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };
 
-  // Función para disminuir la cantidad (no permitimos valores menores a 1)
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
@@ -28,15 +29,21 @@ export default function Detail() {
   return (
     <div>
       {detailState ? (
-        <div className={styles.productContainer}>
+        <div className={styles['modal']}>
+          
           <div className={styles.productImage}>
-            <img src={detailState.image} alt={detailState.title} />
+            <Carousel images={detailState.image}/>
           </div>
           <div className={styles.detailsContainer}>
+          <div>
+            <button onClick={onClose}>Cerrar</button>
+          </div>
+            <div className={styles.detailsContainer1}>
             <h2>{detailState.title}</h2>
             <p className={styles.productPrice}>${detailState.price}</p>
-            <p>{detailState.description}</p>
-            {detailState.stock > 0 ? (
+            </div>
+            <p className={styles.productDescription}>{detailState.description}</p>
+            {quantity > 0 ? (
               <div className={styles.quantityContainer}>
                 <button onClick={decreaseQuantity}>-</button>
                 <span>{quantity}</span>
@@ -94,3 +101,4 @@ export default function Detail() {
     </div>
   );
 }
+
