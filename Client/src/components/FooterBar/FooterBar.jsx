@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./Footer2.module.css"; // Importa los estilos CSS Module
+import styles from ".//FooterBar.module.css"; // Importa los estilos CSS Module
 
 export default function Footer2() {
   return (
