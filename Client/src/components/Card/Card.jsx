@@ -26,7 +26,7 @@ export default function Card({ product }) {
       <p className={styles.heading}>{truncatedTitle}</p>
 
       <p className={styles.para}>$ {product.price}</p>
-      <Link to="/Detail">
+      <Link to={`/detail/${product.id}`}>
         <div className={styles.overlay}></div>
       </Link>
       <button className={styles.cardBtn} onClick={handleClick}>

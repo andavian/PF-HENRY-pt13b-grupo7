@@ -2,9 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getProductById, addProductToCart } from "../../redux/actions";
 import styles from "./detail.module.css";
+import { useEffect, useState } from "react";
 
 export default function Detail() {
-  const detailState = useSelector((state) => state.details);
+  const detailState = useSelector((state) => state.reducer.details);
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { id } = useParams();

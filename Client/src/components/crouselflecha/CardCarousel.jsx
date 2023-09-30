@@ -30,7 +30,12 @@ const ProductCarousel = ({ products }) => {
       <div className={styles['card-container']}>
         {visibleCards.map((product, index) => (
           <div key={index} className={styles['card']}>
-            <Card product={product} />
+            {/* Agregar una verificación antes de renderizar el componente Card */}
+            {product && product.title ? (
+              <Card product={product} />
+            ) : (
+              <p>Producto sin título</p>
+            )}
           </div>
         ))}
       </div>
@@ -42,5 +47,3 @@ const ProductCarousel = ({ products }) => {
 };
 
 export default ProductCarousel;
-
-
