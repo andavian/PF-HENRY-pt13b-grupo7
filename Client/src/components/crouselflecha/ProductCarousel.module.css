@@ -1,0 +1,21 @@
+/* ProductCarousel.module.css */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+    overflow: hidden; /* Oculta el contenido que se desborda */
+  }
+  
+  .card-container {
+    display: flex; /* Muestra las tarjetas en una fila */
+    transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+  }
+  
+  .card {
+    flex: 0 0 auto; /* Evita que las tarjetas cambien de tamaño */
+    margin-right: 20px; /* Espacio entre las tarjetas */
+    text-align: center;
+    /* Otros estilos para tus tarjetas */
+  }

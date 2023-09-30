@@ -137,6 +137,7 @@ const Footer = () => {
         <div className={styles["footer-column"]}>
           <h3>Conoce SoyHenry</h3>
           <ul>
+
             <li>
               <Link className={styles.links}>Nosotros</Link>
             </li>
@@ -155,6 +156,7 @@ const Footer = () => {
             <li>
               <Link className={styles.links}>Trabaja en Henry</Link>
             </li>
+
           </ul>
         </div>
       </div>

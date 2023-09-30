@@ -3,36 +3,43 @@
   width: 260px;
   height: 375px;
   padding: 20px;
-  background: #121fcf;
-  background: linear-gradient(to top left, #121fcf 31%, #cf1512 100%);
-
+  background: #F4F5F7;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .image {
-  width: 225px;
-  height: auto;
+  width: 100%; /* Cambiamos el ancho a 100% para ocupar el 100% del contenedor */
+  height: 66%; /* Establecemos la altura al 66% */
+  object-fit: cover; /* Ajustamos la imagen para cubrir el espacio disponible */
+}
+
+.details {
+  background-color: #f4f5f7; /* Color de fondo para la sección de detalles */
+  height: 33%; /* Establecemos la altura al 33% */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Añadimos un poco de espacio interior */
 }
 
 .heading {
-  font-size: 24px;
+  font-size: 16px; /* Reducimos el tamaño de la fuente para el título */
   font-weight: 700;
-  color: #ffffff;
+  color: #000000; /* Cambiamos el color del título */
+  text-align: center; /* Centramos el texto del título */
 }
 
 .para {
   text-align: center;
-  color: #ffffff;
+  color: #000000; /* Cambiamos el color del texto */
   opacity: 0.7;
   line-height: 1.4;
 }
-
 .overlay {
   position: absolute;
   top: 0;
@@ -93,10 +100,12 @@
   transform: translate(-50%, -50%) scale(0);
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(-45deg, #f89b2980 0%, #ff0f7b80 100%);
+  background-image: linear-gradient(-45deg, #e0d6526b 0%, rgba(255, 255, 0, 0.445) 100%);
   transition: transform 0.5s ease;
 }
 
 .card:hover .overlay::after {
   transform: translate(-50%, -50%) scale(2);
 }
+/* Resto de tus estilos... */
+

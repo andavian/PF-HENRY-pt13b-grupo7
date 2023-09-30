@@ -1,4 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
+import { addProduct } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -22,13 +23,7 @@ export const productSlice = createSlice({
     users:[]
   },
   reducers: {
-    addProd: (state, action) => {
-      return {
-        ...state,
-        totalproducts: action.payload,
-        catalog: action.payload,
-      };
-    },
+    
     addProdToCart: (state, action) => {
       const { id, quantity } = action.payload;
       const product = state.catalog.find((prod) => prod.id === id);
@@ -138,10 +133,17 @@ export const productSlice = createSlice({
       }
     }
   },
+  extraReducers:(builder)=>{
+    builder.addCase(addProduct.fulfilled,(state,{ payload }) =>{
+      state.totalproducts = payload
+    })
+  }
+  
 });
+//createasyncthunk redux toolkit
 
 export const {
-  addProd,
+  
   addProdToCart,
   removeProdFromCart,
   getProdById,
