@@ -22,7 +22,7 @@ const FormProducts = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setproductData((prevData) => ({ ...prevData, [name]: value }));
+    setProductData((prevData) => ({ ...prevData, [name]: value }));
     setErrors(
       validateForm({
         ...productData,
@@ -30,7 +30,6 @@ const FormProducts = () => {
       })
     );
   };
-
   // const handleCheck = () => {
   //   setCheck(!check);
   // };
@@ -81,16 +80,19 @@ const FormProducts = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    //!check ?
-    await create(productData);
-    //: await update(productData);
-    setProductData({
-      title: "",
-      image: "",
-      price: "",
-      description: "",
-      category: "",
-    });
+    // Checka erores antes de enviar
+    if (Object.keys(errors).length === 0) {
+      await create(productData);
+      setProductData({
+        title: "",
+        image: "",
+        price: "",
+        description: "",
+        category: "",
+      });
+    } else {
+      alert("Please fill in all the fields correctly");
+    }
   };
 
   // const handleSubmitDel = async (event) => {
@@ -153,7 +155,7 @@ const FormProducts = () => {
                   type="text"
                   placeholder="Title"
                   className={styles.input}
-                  value={productData.name}
+                  value={productData.title}
                   onChange={handleChange}
                 />
 
@@ -194,12 +196,13 @@ const FormProducts = () => {
                 ></textarea>
                 <span>{errors.description}</span>
               </div>
-            </div>
-            {Object.keys(errors).length === 0 && productData.name ? (
+              {Object.keys(errors).length === 0 && productData.name ? (
               <button className={styles.btn}>Submit</button>
             ) : (
               <div></div>
             )}
+            </div>
+         
           </form>
         )}
       </div>
