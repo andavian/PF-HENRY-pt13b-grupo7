@@ -51,7 +51,7 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/link">
+              <Link className="nav-link" to="/store">
                 Tienda
               </Link>
             </li>

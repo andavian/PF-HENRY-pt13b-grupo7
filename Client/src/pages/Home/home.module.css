@@ -1,7 +1,3 @@
-/* shop.module.css */
-
-/* shop.module.css */
-
 .container {
   display: flex;
   flex-direction: column;
@@ -9,18 +5,27 @@
   position: relative;
 }
 
+
+h2{
+  text-align: left;
+  font-size: 70px;
+
+
+}
+
 .carouselBannerContainer {
   width: 100%;
   text-align: center;
-  padding: 2rem; /* Ajusta el padding para dispositivos más pequeños */
   background-color: #f2f2f2;
   position: relative;
 }
 
 .carouselBannerContainer p {
   color: #ffffff;
+  text-align: left;
+  align-items: normal;
   font-family: Montserrat;
-  font-size: 10rem; /* Ajusta el tamaño del texto */
+  font-size: 60px; /* Ajusta el tamaño del texto */
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -31,23 +36,8 @@
   z-index: 1;
 }
 
-.botonInicio {
-  display: inline-flex;
-  height: 3rem; /* Ajusta la altura del botón */
-  padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  border-radius: 20px;
-  background: #FF0;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  top: 40%;
-  left: 20%;
-}
-
 .carouselBannerContainer button {
-  background-color:  #FF0;
+  background-color: #ff0;
   color: #000000;
   border: none;
   padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
@@ -60,12 +50,11 @@
   background-color: #0056b3;
 }
 
-.nuevasContainer {
+.ContainerCenter {
   width: 100%;
   background-color: #fff;
   padding: 2rem 0; /* Ajusta el padding para dispositivos más pequeños */
   text-align: center;
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -92,20 +81,40 @@
   justify-content: center;
 }
 
-.cardsNuevasContainer button {
+.button {
   display: inline-flex;
   height: 3rem; /* Ajusta la altura del botón */
   padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  border: none;
   border-radius: 20px;
-  background: #FF0;
+  background: #ff0;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.cardsNuevasContainer button:hover {
-  background-color: #0056b3;
+.button:hover {
+  background-color: #9f9d9d87;
+}
+
+.boton {
+  display: inline-flex;
+  height: 3rem; /* Ajusta la altura del botón */
+  justify-content: center;
+  padding-top: 4px;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 20px;
+  background: #ff0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 50%;
+  left: 20%;
+}
+
+.boton:hover {
+  background-color: #9f9d9d87;
 }
 
 .bannerOfertasContainer {
@@ -125,7 +134,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo negro semitransparente */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Color de fondo negro semitransparente */
   z-index: 1; /* Coloca el pseudo-elemento encima de la imagen */
 }
 
@@ -153,13 +167,16 @@
 .cardsOfertasContainer button {
   display: inline-flex;
   height: 3rem; /* Ajusta la altura del botón */
-  padding: 0.7rem 1.5rem; /* Ajusta el padding del botón */
   justify-content: center;
+  padding-top: 4px;
   align-items: center;
   gap: 0.5rem;
   border-radius: 20px;
-  background: #FF0;
+  background: #ff0;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  position: absolute;
+  top: 50%;
+  left: 20%;
 }
 
 .cardsOfertasContainer button:hover {
@@ -221,7 +238,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Color de fondo negro semitransparente */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Color de fondo negro semitransparente */
   z-index: 1; /* Coloca el pseudo-elemento encima de la imagen */
 }
 
@@ -287,4 +309,39 @@
   color: #777;
 }
 
-/* Añade estilos adicionales según sea necesario */
+
+
+.Banner {
+  position: relative;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/Currcula-Henry.png'); /* Reemplaza con la ruta de tu imagen */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 5%; /* Agregamos un poco de espacio alrededor del contenido */
+}
+
+/* background-image: url('../../images/Banner.jpg'); Reemplaza con la ruta de tu imagen */
+
+.Banner h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.Banner p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.ContainerBanner {
+  width: 100%;
+  background-color: #fff;
+  text-align: center;
+  flex-direction: column;
+  align-items: first baseline;
+
+}
