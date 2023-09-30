@@ -46,8 +46,8 @@ const { Category, Client, Option, Product, Sale } = sequelize.models;
 // Sale.belongsToMany(Product, {through: "Sale_Product"});
 // Product.belongsToMany(Sale, {through: "Sale_Product"});
 
-Category.hasMany(Product, { foreignKey: "IdProduct" });
-Product.belongsTo(Category, { foreignKey: "IdProduct" });
+Category.hasMany(Product, { foreignKey: "categoryId" });
+Product.belongsTo(Category, { foreignKey: "categoryId" });
 
 // Sale.hasMany(Client);
 // Client.belongsTo(Sale);
