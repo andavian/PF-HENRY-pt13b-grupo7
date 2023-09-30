@@ -42,7 +42,7 @@ const Footer = () => {
           <h4>Conoce SoyHenry</h4>
           <ul>
            <li>
-            <Link className={styles.links}>Nosotros</Link>
+            <Link to="https://www.soyhenry.com/about-us" className={styles.links}>Nosotros</Link>
           </li>
           <li>
             <Link className={styles.links}>Prensa</Link>

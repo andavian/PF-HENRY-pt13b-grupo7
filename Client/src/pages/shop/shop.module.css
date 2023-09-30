@@ -10,7 +10,7 @@
 }
 
 .carouselBannerContainer {
-  width: 100%;
+  width: 95%;
   text-align: center;
   padding: 2rem; /* Ajusta el padding para dispositivos más pequeños */
   background-color: #f2f2f2;
@@ -61,7 +61,7 @@
 }
 
 .nuevasContainer {
-  width: 100%;
+  width: 95%;
   background-color: #fff;
   padding: 2rem 0; /* Ajusta el padding para dispositivos más pequeños */
   text-align: center;
@@ -109,7 +109,7 @@
 }
 
 .bannerOfertasContainer {
-  width: 100%;
+  width: 95%;
   position: relative;
   overflow: hidden;
 }
@@ -117,6 +117,7 @@
 .bannerOfertasContainer img {
   width: 100%;
   height: auto;
+  align-items: center;
 }
 .bannerOfertasContainer::before {
   content: "";
@@ -205,7 +206,7 @@
 }
 
 .bannerBuscadosContainer {
-  width: 100%;
+  width: 95%;
   position: relative;
   overflow: hidden;
 }
@@ -239,52 +240,5 @@
   z-index: 1;
 }
 
-.slick-slider {
-  width: 80%;
-  margin: 0 auto;
-}
 
-.slick-slide {
-  padding: 0 10px;
-}
 
-.slick-prev,
-.slick-next {
-  color: #007bff;
-  font-size: 2rem; /* Ajusta el tamaño de las flechas */
-}
-
-.slick-prev:hover,
-.slick-next:hover {
-  color: #0056b3;
-}
-
-.card {
-  background-color: #fff;
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  transition: transform 0.2s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  max-width: 100%;
-  height: auto;
-}
-
-.card h4 {
-  font-size: 1rem; /* Ajusta el tamaño del texto */
-  color: #333;
-  margin: 10px 0;
-}
-
-.card p {
-  font-size: 1rem; /* Ajusta el tamaño del texto */
-  color: #777;
-}
-
-/* Añade estilos adicionales según sea necesario */
