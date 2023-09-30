@@ -6,7 +6,7 @@ import Detail from "./pages/Detail/Detail";
 import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
-import Footer2 from "./components/Footer2/Footer2";
+import Footerbar from "./components/FooterBar/FooterBar";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
 
       </Routes>
       <Footer/>
-      <Footer2/>
+      <Footerbar/>
     </div>
   );
 }
