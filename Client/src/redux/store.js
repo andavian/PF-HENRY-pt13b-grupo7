@@ -1,8 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { productSlice } from "./productSlice";
+import thunk from 'redux-thunk';
+// const reducers =combineReducers({productSlice})
 
 export default configureStore({
-  reducer: {
-    products: productSlice.reducer, // Deberías acceder al reducer a través de ".reducer"
-  },
-});
+  reducer: productSlice,
+  middleware: [thunk]
+},
+
+);

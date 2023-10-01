@@ -11,19 +11,19 @@ import {
   setPage,
   setSearch,
 } from "./productSlice";
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 // GET PRODUCTS
-export const addProduct = () => {
-  return async function (dispatch){
-try {
-  const response = await axios('https://fakestoreapi.com/products');
-  console.log(response.data);
-  dispatch(addProd(response.data));
-} catch (error) {
-  console.log(error.message);
-}
+export const addProduct = createAsyncThunk("reducerProducts/addProduct",async()=>{
+  try {
+    const response = await axios('https://fakestoreapi.com/products');
+    console.log("ejecutando",response.data);
+   return  response.data;
+  } catch (error) {
+  return []
   }
-};
+
+})
 //ADD PRODUCT TO CART
 
 export const addProductToCart = (id, quantity) => {
@@ -40,18 +40,16 @@ export const removeProductFromCart = (id) => {
   };
 };
 // GET PRODUCT BY ID
-export const getProductById = (id) => {
-  return async function (dispatch) {
-    try {
-      const product = await axios(`http://localhost:3001/shop/${id}`);
+export const getProductById = createAsyncThunk("reducerProducts/getProductById", async (id) => {
+  try {
+    const response = await axios(`https://fakestoreapi.com/products/${id}`);
+    console.log("ejecutando", response.data);
+    return response.data;
+  } catch (error) {
+    return [];
+  }
+});
 
-     return dispatch(getProdById(product.data))
-
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-};
 //GET PRODUCT BY NAME
 export const getProductByName = (name) => {
   return async function (dispatch) {

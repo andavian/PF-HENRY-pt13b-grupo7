@@ -1,4 +1,4 @@
-//Post Categorias
+//Post Categorias, No permite repetir nombre de categorias, indistintamente se escriban Mayus. y Minus.
 const { Category } = require("../db");
 
 const postCategories = async ({
@@ -8,15 +8,19 @@ const postCategories = async ({
 
 if (!name || !thumbnail) throw Error("Faltan datos");
 
+function nameUpperCase(name) {
+   return name = name.toUpperCase();
+} 
+
 const checkExistCategory = await Category.findAll({
     where: {
         name: name.toUpperCase(),
     },
 });
-if (checkExistCategory>0) throw Error("Ya existe la categoria");
+if (checkExistCategory.length > 0) throw Error("Ya existe la categoria");
 
 const newCategory = await Category.create({
-    name,
+    name: nameUpperCase(name),
     thumbnail
 });
 return newCategory;
