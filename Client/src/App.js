@@ -7,6 +7,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
 import Footerbar from "./components/FooterBar/FooterBar";
+import FormProducts from "./components/FormProducts/FormProducts";
+import FormCloudinary from "./components/FormProducts/FormCloudinary";
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<Admin />} />
-
+        <Route path="/cloudinary" element={<FormCloudinary />} />
       </Routes>
       <Footer/>
       <Footerbar/>
