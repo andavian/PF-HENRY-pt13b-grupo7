@@ -3,8 +3,19 @@ const { Router } = require("express");
 const categoriesRoutes = Router();
 
 const getCategories = require("../controllers/getCategories");
-const getCategoriesById = require("../controllers/getCategoriesById");
+//const getCategoriesById = require("../controllers/getCategoriesById");
 const postCategories = require("../controllers/postCategories");
+const getProductByCategoryId = require("../controllers/getProductByCategoryId");
+
+categoriesRoutes.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const categoryById = await getProductByCategoryId(id);
+    res.status(200).json(categoryById);
+  } catch (error) {
+    res.status(400).json({ error: `No existe categoria con el id: ${id}` });
+  }
+});
 
 categoriesRoutes.get("/", async (req, res) => {
   try {
@@ -12,16 +23,6 @@ categoriesRoutes.get("/", async (req, res) => {
     return res.status(200).json(allCategories);
   } catch (error) {
     res.status(400).json({ message: "No hay categorias para mostrar" });
-  }
-});
-
-categoriesRoutes.get("/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const categoryById = await getCategoriesById(id);
-    res.status(200).json(categoryById);
-  } catch (error) {
-    res.status(400).json({ error: `No existe categoria con el id: ${id}` });
   }
 });
 

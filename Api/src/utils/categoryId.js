@@ -2,9 +2,10 @@ const { Category } = require("../db");
 
 const categoryId = async (categoryName) => {
   try {
+    const categoryNameLowerCase = categoryName.toLowerCase();
     const category = await Category.findOne({
       where: {
-        name: categoryName,
+        name: categoryNameLowerCase,
       },
     });
 
