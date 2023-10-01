@@ -2,10 +2,16 @@
 const { Product, Category } = require("../db");
 
 const getProductsById = async (id) => {
-    const productIdBD = await Product.findOne({
-      where: { id },
-    });
-    return productIdBD;
+  const productIdBD = await Product.findOne({
+    where: { id },
+    include: [
+      {
+        model: Category,
+        attributes: ["name"],
+      },
+    ],
+  });
+  return productIdBD;
 };
 
 module.exports = getProductsById;
