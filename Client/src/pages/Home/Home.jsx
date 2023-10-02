@@ -8,7 +8,8 @@ import {
   orderByPrice,
   setCurrentPageGlobal,
 } from "../../redux/actions";
-import Carousel from "../../components/Carrousel/Carrousel";
+import Carrousel from "../../components/Carrousel/Carrousel";
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -17,10 +18,11 @@ import Card from "../../components/Card/Card";
 import styles from "./home.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
+import CardCarousel from "../../components/crouselflecha/CardCarousel";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.totalproducts);
+  const catalog = useSelector((state) => state.reducer.totalproducts);
   const categories = useSelector((state) => state.categories);
   const currentPage = useSelector((state) => state.currentPage);
   const search = useSelector((state) => state.search);
@@ -36,19 +38,18 @@ export default function Shop() {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
   //cargar recetas según la búsqueda
-  useEffect(() => {
-    if (search) {
-      dispatch(getProductByName(search));
-      dispatch(getCategories());
-    } else {
-      dispatch(addProduct());
-    }
-  }, [dispatch, search]);
+  // useEffect(() => {
+  //   if (search) {
+  //     dispatch(getProductByName(search));
 
-  const handleRefreshRecipes = (e) => {
-    e.preventDefault();
+  //   } else {
+  //     dispatch(addProduct());
+  //   }
+  // }, [dispatch]);
+  useEffect(() => {
     dispatch(addProduct());
-  };
+  }, [dispatch]);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -59,102 +60,61 @@ export default function Shop() {
 
   return (
     <main className={styles.container}>
-      {/* BANNER */}
       <div className={styles.carouselBannerContainer}>
-        <Carousel />
-        <p>
-          CELEBRA <br></br>
-          EL DÍA 253
-        </p>
-        <button className={styles.boton}>Ver Coleccion</button>
+        <Carrousel />
+        <p>Henry Fans</p>
+        <button className={styles.botonInicio}>Ver Coleccion</button>
       </div>
-
-      {/* Nuevos Agregados */}
-      <div className={styles.ContainerCenter}>
+      <div className={styles.nuevasContainer}>
         <div className={styles.tituloCardsNuevas}>
-          <h4>Nuevos Agregados</h4>
+          <h3>Nuevos Agregados</h3>
           <p>Lorem ipsum dolor sit amet consectetur</p>
+          <CardCarousel products={catalog} />
         </div>
-        <div>
-          {/* aca van las card recien agregadas*/}
-          <button className={styles.button}>Ver mas</button>
+        <div className={styles.cardsNuevasContainer}>
+          <button>Ver mas</button>
         </div>
       </div>
-
-      {/* OFERTAS */}
-      <div className={styles.ContainerBanner}>
-        {/* Titulo */}
-        <div className={styles.Banner}>
-          <h2>
-            Ofertas fuera <br></br>de orbita
-          </h2>
-        </div>
-
-        {/* Prductos descuento */}
-        <div className={styles.ContainerCenter}>
-          {/* aca van las card con descuento*/}
-
-          <button className={styles.button}>Ver más</button>
-        </div>
-
-      
-
+      <div className={styles.bannerOfertasContainer}>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/83cc/5166/20ea1d562a5624a02b00cf9cd66ef9be?Expires=1696809600&Signature=X7h6KzprpJSiSgazogHXmkluLaHKe96wsc1VOBY5fyhQYK2rBIxBiv9SBZ3FYm5DxyoDxFEJtskIWp-Kroy0wYBbP5c7GAJHmNwnDbFqisvkRjLm1Z62dN9y91va8Bw1z3xs5kaU6N59HIX3k8hUU6QH0xPTcvWwUx8AEW1U5-H5opCvWToRH3SsO8TjrV5r9E9uIKWCirzGewOvFbUBdt1fR2mBqqPGIU2wOmrNDpx5rtVA9flJ7kGtUglRYYLSP2NpsiH5g5T6USOUxn1dzczO0e3qXQBLYh2yO-S9beIHekhWaCLWr2QtLyM2x0t-PdPCkN4Vfsu11qtKULlxWg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+          alt="slide"
+        />
+        <p>Ofertas fuera de orbita</p>
       </div>
-
-      {/*Categorias */}
-      <div className={styles.ContainerCenter}>
-          <h4>Categorias</h4>
+      <div className={styles.cardsOfertasContainer}>
+        {/* aca van las card con descuento*/}
+        <button>Ver mas</button>
+      </div>
+      <div className={styles.categoriasContainer}>
+        <div className={styles.titulosCategoria}>
+          <h3>Categorias</h3>
           <p>Lorem ipsum dolor sit amet consectetur ad</p>
-
-            {/* Cards */}
-          <div className={styles.cardscategories}>
-            {categories && categories.length > 0 ? (
-              categories.map((e) => (
-                <Link to={`/Shop/${e.id}`} key={e.id}>
-                  <h4>{e.title}</h4>
-                </Link>
-              ))
-            ) : (
-              <h2>No hay categorias disponibles.</h2>
-            )}
-          </div>
-
-          <button className={styles.button}>Ver más</button>
-      </div>
-
-
-      {/*Los mas buscados */}
-      <div className={styles.ContainerBanner}>
-        {/* Titulo */}
-        <div className={styles.Banner}>
-          <h2>
-            Lo más buscado <br></br>de la galaxia
-          </h2>
         </div>
 
-
-        <div className={styles.ContainerCenter}>
-          {/* aca van las card con lo mas buscado*/}
-
-          <button className={styles.button}>Ver más</button>
+        <div className={styles.cardscategories}>
+          {categories && categories.length > 0 ? (
+            categories.map((e) => (
+              <Link to={`/Shop/${e.id}`} key={e.id}>
+                <h3>{e.title}</h3>
+              </Link>
+            ))
+          ) : (
+            <h2>No hay categorias disponibles.</h2>
+          )}
         </div>
-
-      
-
       </div>
-
-      <div className={styles.ContainerCenter}>
-        {catalog && catalog.length > 0 ? (
-          catalog.map((e) => (
-            <Link to={`/Shop/${e.id}`} key={e.id}>
-              <h3>{e.title}</h3>
-            </Link>
-          ))
-        ) : (
-          <h6>No hay productos disponibles.</h6>
-        )}
+      <div className={styles.bannerBuscadosContainer}>
+        <p>Los mas buscados</p>
+        <img
+          src="https://s3-alpha-sig.figma.com/img/83cc/5166/20ea1d562a5624a02b00cf9cd66ef9be?Expires=1696809600&Signature=X7h6KzprpJSiSgazogHXmkluLaHKe96wsc1VOBY5fyhQYK2rBIxBiv9SBZ3FYm5DxyoDxFEJtskIWp-Kroy0wYBbP5c7GAJHmNwnDbFqisvkRjLm1Z62dN9y91va8Bw1z3xs5kaU6N59HIX3k8hUU6QH0xPTcvWwUx8AEW1U5-H5opCvWToRH3SsO8TjrV5r9E9uIKWCirzGewOvFbUBdt1fR2mBqqPGIU2wOmrNDpx5rtVA9flJ7kGtUglRYYLSP2NpsiH5g5T6USOUxn1dzczO0e3qXQBLYh2yO-S9beIHekhWaCLWr2QtLyM2x0t-PdPCkN4Vfsu11qtKULlxWg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
+          alt="slide"
+        />
       </div>
-
+      <div className={styles.cardsProductContainer}>
+        <CardCarousel products={catalog} />
+      </div>
+        
     </main>
   );
 }
