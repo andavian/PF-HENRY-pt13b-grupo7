@@ -17,25 +17,26 @@ export const productSlice = createSlice({
     cart: [],
     details: {},
     favorites: [],
-    categories:[],
-    currentPage:1,
-    search:"",
-    users:[]
+    categories: [],
+    currentPage: 1,
+    search: "",
+    users: [],
   },
   reducers: {
-    
     addProdToCart: (state, action) => {
       const { id, quantity } = action.payload;
       const product = state.catalog.find((prod) => prod.id === id);
-    
+
       // Verifica si el producto ya está en el carrito
-      const existingProductIndex = state.cart.findIndex((prod) => prod.id === id);
-    
+      const existingProductIndex = state.cart.findIndex(
+        (prod) => prod.id === id
+      );
+
       if (existingProductIndex !== -1) {
         // Si el producto ya está en el carrito, actualiza la cantidad
         const updatedCart = [...state.cart];
         updatedCart[existingProductIndex].quantity += quantity;
-    
+
         return {
           ...state,
           cart: updatedCart,
@@ -49,7 +50,7 @@ export const productSlice = createSlice({
         };
       }
     },
-    
+
     removeProdFromCart: (state, action) => {
       const id = action.payload;
       console.log(state.cart);
@@ -59,7 +60,7 @@ export const productSlice = createSlice({
         cart: state.cart.filter((prod) => prod.id !== id),
       };
     },
-    
+
     getProdByName: (state, action) => {
       if (typeof action.payload === "string") {
         return {
@@ -103,30 +104,30 @@ export const productSlice = createSlice({
         };
       }
     },
-    addCategory:(state,action)=>{
-      return{
+    addCategory: (state, action) => {
+      return {
         ...state,
-        categories: action.payload
-      }
+        categories: action.payload,
+      };
     },
-    setPage:(state,action)=>{
-      return{
+    setPage: (state, action) => {
+      return {
         ...state,
-        currentPage: action.payload
-      }
+        currentPage: action.payload,
+      };
     },
-    setSearch:(state,action)=>{
-      return{
+    setSearch: (state, action) => {
+      return {
         ...state,
-        search: action.payload
-      }
+        search: action.payload,
+      };
     },
-    addUsers:(state,action)=>{
-      return{
+    addUsers: (state, action) => {
+      return {
         ...state,
-        users: action.payload
-      }
-    }
+        users: action.payload,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -143,7 +144,6 @@ export const productSlice = createSlice({
 //createasyncthunk redux toolkit
 
 export const {
-  
   addProdToCart,
   removeProdFromCart,
   getProdById,
@@ -152,7 +152,7 @@ export const {
   filteredCategory,
   addCategory,
   setPage,
-  setSearch
+  setSearch,
 } = productSlice.actions;
 
 export default productSlice.reducer;

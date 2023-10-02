@@ -60,7 +60,6 @@ export default function Shop() {
 
   return (
     <main className={styles.container}>
-
       <div className={styles.carouselBannerContainer}>
         <Carrousel />
         <p>
@@ -77,12 +76,12 @@ export default function Shop() {
           <p>Lorem ipsum dolor sit amet consectetur</p>
         </div>
         <div>
-        <CardCarousel products={catalog} />
+          <CardCarousel products={catalog} />
           <button className={styles.button}>Ver mas</button>
         </div>
       </div>
 
-            {/* OFERTAS */}
+      {/* OFERTAS */}
       <div className={styles.ContainerBanner}>
         {/* Titulo */}
         <div className={styles.Banner}>
@@ -97,33 +96,29 @@ export default function Shop() {
 
           <button className={styles.button}>Ver más</button>
         </div>
-
       </div>
-
 
       {/*Categorias */}
       <div className={styles.ContainerCenter}>
-          <h4>Categorias</h4>
-          <p>Lorem ipsum dolor sit amet consectetur ad</p>
+        <h4>Categorias</h4>
+        <p>Lorem ipsum dolor sit amet consectetur ad</p>
 
-            {/* Cards */}
-          <div className={styles.cardscategories}>
-            {categories && categories.length > 0 ? (
-              categories.map((e) => (
-                <Link to={`/Shop/${e.id}`} key={e.id}>
-                  <h4>{e.title}</h4>
-                </Link>
-              ))
-            ) : (
-              <h2>No hay categorias disponibles.</h2>
-            )}
-          </div>
+        {/* Cards */}
+        <div className={styles.cardscategories}>
+          {categories && categories.length > 0 ? (
+            categories.map((e) => (
+              <Link to={`/Shop/${e.id}`} key={e.id}>
+                <h4>{e.title}</h4>
+              </Link>
+            ))
+          ) : (
+            <h2>No hay categorias disponibles.</h2>
+          )}
+        </div>
 
-          <button className={styles.button}>Ver más</button>
+        <button className={styles.button}>Ver más</button>
       </div>
 
-
-    
       {/*Los mas buscados */}
       <div className={styles.ContainerBanner}>
         {/* Titulo */}
@@ -133,14 +128,13 @@ export default function Shop() {
           </h2>
         </div>
 
-
         <div className={styles.ContainerCenter}>
-        <CardCarousel products={catalog}/>
+          <CardCarousel products={catalog} />
 
           <button className={styles.button}>Ver más</button>
         </div>
       </div>
-
+      
     </main>
   );
 }
