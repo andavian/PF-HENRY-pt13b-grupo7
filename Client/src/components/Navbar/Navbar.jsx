@@ -56,7 +56,7 @@ export default function Navbar() {
             </li>
             <li className="nav-item">
               <select className="form-select" onChange={handleProducts}>
-                <option value="Productos">Productos</option>
+                <option value="Producto">Productos</option>
                 <option value="Camisetas">Camisetas</option>
                 <option value="Pantalones">Pantalones</option>
                 <option value="Gorras">Gorras</option>
