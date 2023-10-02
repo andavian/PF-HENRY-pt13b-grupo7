@@ -60,6 +60,7 @@ export default function Shop() {
 
   return (
     <main className={styles.container}>
+      {/* BANNER */}
       <div className={styles.carouselBannerContainer}>
         <Carrousel />
         <p>
