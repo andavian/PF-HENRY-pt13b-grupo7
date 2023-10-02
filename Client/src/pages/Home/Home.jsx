@@ -8,7 +8,8 @@ import {
   orderByPrice,
   setCurrentPageGlobal,
 } from "../../redux/actions";
-import Carousel from "../../components/Carrousel/Carrousel";
+import Carrousel from "../../components/Carrousel/Carrousel";
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -17,10 +18,11 @@ import Card from "../../components/Card/Card";
 import styles from "./home.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
+import CardCarousel from "../../components/crouselflecha/CardCarousel";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.totalproducts);
+  const catalog = useSelector((state) => state.reducer.totalproducts);
   const categories = useSelector((state) => state.categories);
   const currentPage = useSelector((state) => state.currentPage);
   const search = useSelector((state) => state.search);
@@ -36,19 +38,18 @@ export default function Shop() {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
   //cargar recetas según la búsqueda
-  useEffect(() => {
-    if (search) {
-      dispatch(getProductByName(search));
-      dispatch(getCategories());
-    } else {
-      dispatch(addProduct());
-    }
-  }, [dispatch, search]);
+  // useEffect(() => {
+  //   if (search) {
+  //     dispatch(getProductByName(search));
 
-  const handleRefreshRecipes = (e) => {
-    e.preventDefault();
+  //   } else {
+  //     dispatch(addProduct());
+  //   }
+  // }, [dispatch]);
+  useEffect(() => {
     dispatch(addProduct());
-  };
+  }, [dispatch]);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -59,9 +60,9 @@ export default function Shop() {
 
   return (
     <main className={styles.container}>
-      {/* BANNER */}
+
       <div className={styles.carouselBannerContainer}>
-        <Carousel />
+        <Carrousel />
         <p>
           CELEBRA <br></br>
           EL DÍA 253
@@ -76,12 +77,12 @@ export default function Shop() {
           <p>Lorem ipsum dolor sit amet consectetur</p>
         </div>
         <div>
-          {/* aca van las card recien agregadas*/}
+        <CardCarousel products={catalog} />
           <button className={styles.button}>Ver mas</button>
         </div>
       </div>
 
-      {/* OFERTAS */}
+            {/* OFERTAS */}
       <div className={styles.ContainerBanner}>
         {/* Titulo */}
         <div className={styles.Banner}>
@@ -97,9 +98,8 @@ export default function Shop() {
           <button className={styles.button}>Ver más</button>
         </div>
 
-      
-
       </div>
+
 
       {/*Categorias */}
       <div className={styles.ContainerCenter}>
@@ -123,6 +123,7 @@ export default function Shop() {
       </div>
 
 
+    
       {/*Los mas buscados */}
       <div className={styles.ContainerBanner}>
         {/* Titulo */}
@@ -134,25 +135,10 @@ export default function Shop() {
 
 
         <div className={styles.ContainerCenter}>
-          {/* aca van las card con lo mas buscado*/}
+        <CardCarousel products={catalog}/>
 
           <button className={styles.button}>Ver más</button>
         </div>
-
-      
-
-      </div>
-
-      <div className={styles.ContainerCenter}>
-        {catalog && catalog.length > 0 ? (
-          catalog.map((e) => (
-            <Link to={`/Shop/${e.id}`} key={e.id}>
-              <h3>{e.title}</h3>
-            </Link>
-          ))
-        ) : (
-          <h6>No hay productos disponibles.</h6>
-        )}
       </div>
 
     </main>
