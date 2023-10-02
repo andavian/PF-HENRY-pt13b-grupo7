@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styles from './ProductCarousel.module.css'; // Importa los estilos CSS Modules aquí
-import Card from '../Card/Card'; // Asegúrate de importar tu componente Card
-import Detail from '../../pages/Detail/Detail';
+import { useState } from "react";
+import styles from "./ProductCarousel.module.css"; // Importa los estilos CSS Modules aquí
+import Card from "../Card/Card"; // Asegúrate de importar tu componente Card
+import Detail from "../../pages/Detail/Detail";
 
 const ProductCarousel = ({ products }) => {
   const [startIndex, setStartIndex] = useState(0);
@@ -36,15 +36,15 @@ const ProductCarousel = ({ products }) => {
   }
 
   return (
-    <div className={styles['carousel-container']}>
-      <button onClick={prevProduct} className={styles['arrow-button']}>
+    <div className={styles["carousel-container"]}>
+      <button onClick={prevProduct} className={styles["arrow-button"]}>
         &#9664;
       </button>
-      <div className={styles['card-container']}>
+      <div className={styles["card-container"]}>
         {visibleCards.map((product, index) => (
           <div
             key={index}
-            className={styles['card']}
+            className={styles["card"]}
             onClick={() => openModal(product)}
           >
             {product && product.title ? (
@@ -55,12 +55,12 @@ const ProductCarousel = ({ products }) => {
           </div>
         ))}
       </div>
-      <button onClick={nextProduct} className={styles['arrow-button']}>
+      <button onClick={nextProduct} className={styles["arrow-button"]}>
         &#9654;
       </button>
 
       {modalOpen && selectedProduct && (
-        <div className={styles['modal-overlay']}>
+        <div className={styles["modal-overlay"]}>
           <Detail product={selectedProduct} onClose={closeModal} />
         </div>
       )}

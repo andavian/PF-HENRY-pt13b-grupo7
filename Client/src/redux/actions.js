@@ -11,25 +11,26 @@ import {
   setPage,
   setSearch,
 } from "./productSlice";
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 // GET PRODUCTS
-export const addProduct = createAsyncThunk("reducerProducts/addProduct",async()=>{
-  try {
-    const response = await axios('https://fakestoreapi.com/products');
-    console.log("ejecutando",response.data);
-   return  response.data;
-  } catch (error) {
-  return []
+export const addProduct = createAsyncThunk(
+  "reducerProducts/addProduct",
+  async () => {
+    try {
+      const response = await axios("https://fakestoreapi.com/products");
+      console.log("ejecutando", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
   }
-
-})
+);
 //ADD PRODUCT TO CART
 
 export const addProductToCart = (id, quantity) => {
   return (dispatch) => {
     dispatch(addProdToCart({ id, quantity }));
-
   };
 };
 
@@ -40,15 +41,18 @@ export const removeProductFromCart = (id) => {
   };
 };
 // GET PRODUCT BY ID
-export const getProductById = createAsyncThunk("reducerProducts/getProductById", async (id) => {
-  try {
-    const response = await axios(`https://fakestoreapi.com/products/${id}`);
-    console.log("ejecutando", response.data);
-    return response.data;
-  } catch (error) {
-    return [];
+export const getProductById = createAsyncThunk(
+  "reducerProducts/getProductById",
+  async (id) => {
+    try {
+      const response = await axios(`https://fakestoreapi.com/products/${id}`);
+      console.log("ejecutando", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
   }
-});
+);
 
 //GET PRODUCT BY NAME
 export const getProductByName = (name) => {
@@ -59,13 +63,11 @@ export const getProductByName = (name) => {
     } catch (error) {
       console.log(error.message);
     }
-
-  }
-}
+  };
+};
 // ORDER PRODUCTS BY PRICE
-export const orderByPrice=(payload)=>{
-  return(dispatch)=>{
-
+export const orderByPrice = (payload) => {
+  return (dispatch) => {
     dispatch(orderPrice(payload));
   };
 };
@@ -79,7 +81,9 @@ export const filteredByCategory = (category) => {
 export const getCategories = () => {
   return async function (dispatch) {
     try {
-      const response = await axios("https://fakestoreapi.com/products/categories");
+      const response = await axios(
+        "https://fakestoreapi.com/products/categories"
+      );
       console.log(response.data);
       dispatch(addCategory(response.data));
     } catch (error) {
