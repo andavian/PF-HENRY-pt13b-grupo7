@@ -62,21 +62,22 @@ export default function Shop() {
     <main className={styles.container}>
       {/* BANNER */}
       <div className={styles.carouselBannerContainer}>
-        <Carousel />
+        <Carrousel />
         <p>
           CELEBRA <br></br>
           EL DÍA 253
         </p>
         <button className={styles.boton}>Ver Coleccion</button>
       </div>
-      <div className={styles.nuevasContainer}>
+
+      {/* Nuevos Agregados */}
+      <div className={styles.ContainerCenter}>
         <div className={styles.tituloCardsNuevas}>
-          <h3>Nuevos Agregados</h3>
+          <h4>Nuevos Agregados</h4>
           <p>Lorem ipsum dolor sit amet consectetur</p>
-          <CardCarousel products={catalog} />
         </div>
         <div>
-          {/* aca van las card recien agregadas*/}
+          <CardCarousel products={catalog} />
           <button className={styles.button}>Ver mas</button>
         </div>
       </div>
@@ -96,30 +97,28 @@ export default function Shop() {
 
           <button className={styles.button}>Ver más</button>
         </div>
-
-      
-
       </div>
 
       {/*Categorias */}
       <div className={styles.ContainerCenter}>
-          <h4>Categorias</h4>
-          <p>Lorem ipsum dolor sit amet consectetur ad</p>
-        </div>
+        <h4>Categorias</h4>
+        <p>Lorem ipsum dolor sit amet consectetur ad</p>
 
+        {/* Cards */}
         <div className={styles.cardscategories}>
           {categories && categories.length > 0 ? (
             categories.map((e) => (
               <Link to={`/Shop/${e.id}`} key={e.id}>
-                <h3>{e.title}</h3>
+                <h4>{e.title}</h4>
               </Link>
             ))
           ) : (
             <h2>No hay categorias disponibles.</h2>
           )}
         </div>
-      </div>
 
+        <button className={styles.button}>Ver más</button>
+      </div>
 
       {/*Los mas buscados */}
       <div className={styles.ContainerBanner}>
@@ -130,29 +129,13 @@ export default function Shop() {
           </h2>
         </div>
 
-
         <div className={styles.ContainerCenter}>
-          {/* aca van las card con lo mas buscado*/}
+          <CardCarousel products={catalog} />
 
           <button className={styles.button}>Ver más</button>
         </div>
-
+      </div>
       
-
-      </div>
-
-      <div className={styles.ContainerCenter}>
-        {catalog && catalog.length > 0 ? (
-          catalog.map((e) => (
-            <Link to={`/Shop/${e.id}`} key={e.id}>
-              <h3>{e.title}</h3>
-            </Link>
-          ))
-        ) : (
-          <h6>No hay productos disponibles.</h6>
-        )}
-      </div>
-        
     </main>
   );
 }
