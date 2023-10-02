@@ -1,27 +1,23 @@
 //Get Products By Name
 const { Op } = require("sequelize");
-const { Products, Categories } = require("../db");
+const { Product, Category } = require("../db");
 
-const getProductByName = async (name) => {
-  const product = await Products.findAll({
+const getProductByName = async (title) => {
+  const titleLowerCase = title.toLowerCase();
+
+  const product = await Product.findAll({
     where: {
-      //name: name,
-      name: {
-        [Op.iLike]: `%${name}%`,
+      title: {
+        [Op.iLike]: `%${titleLowerCase}%`,
       },
     },
-    include: {
-      model: Categories,
-      attributes: ["name"],
-      through: {
-        attributes: [],
+    include: [
+      {
+        model: Category,
+        attributes: ["name"],
       },
-    },
+    ],
   });
-  if (product.length === 0) {
-    return res.status(400).send("No existe producto con ese nombre");
-  }
-
   return product;
 };
 

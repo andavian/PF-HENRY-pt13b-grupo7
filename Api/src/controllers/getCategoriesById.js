@@ -1,8 +1,8 @@
 //Get Categoria Por ID
-const { Categories } = require("../db");
+const { Category } = require("../db");
 
 const getCategoriesById = async (id) => {
-    const categoryIdBD = await Categories.findOne({
+    const categoryIdBD = await Category.findOne({
         where: { id },
     });
     return categoryIdBD;

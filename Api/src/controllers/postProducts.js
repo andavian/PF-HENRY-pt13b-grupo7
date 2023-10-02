@@ -1,48 +1,37 @@
 //Post Products
-const { Products, Categories } = require("../db");
+const { Product } = require("../db");
+const categoryID = require("../utils/categoryId");
 
 const postProducts = async ({
-    title,
-    price,
-    summary,
-    dimension,
-    description,
-    primaryimage,
-    secondimage,
-    category,
-    size,
-    dateofcreation,
-    stock,
-    rating,
-    //categoryId,
+  title,
+  price,
+  description,
+  primaryimage,
+  categoryName,
 }) => {
+  const titleLowerCase = title.toLowerCase();
+  const descriptionLowerCase = description.toLowerCase();
+  const categoryId = await categoryID(categoryName);
 
-if (!title || !price || !summary || !description || !primaryimage) throw Error("Faltan datos");
+  if (!title || !price || !description || !primaryimage || !categoryName)
+    throw Error("Faltan datos");
 
-const checkExistProduct = await Products.findAll({
+  const checkExistProduct = await Product.findAll({
     where: {
-        title: title.toUpperCase(),
+      title: titleLowerCase,
     },
-});
-if (checkExistProduct.length>0) throw Error("Ya existe el producto");
+  });
+  if (checkExistProduct.length > 0) throw Error("Ya existe el producto");
 
-const newProducts = await Products.create({
-    title,
+  const newProduct = await Product.create({
+    title: titleLowerCase,
     price,
-    summary,
-    dimension,
-    description,
+    description: descriptionLowerCase,
     primaryimage,
-    secondimage,
-    category,
-    size,
-    dateofcreation,
-    stock,
-    rating,
-});
-//if (categoryId) await newProducts.addCategories(categoryId);
-return newProducts;
+    categoryId,
+  });
 
+  return newProduct;
 };
 
 module.exports = postProducts;

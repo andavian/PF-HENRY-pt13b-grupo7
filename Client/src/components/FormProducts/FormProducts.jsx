@@ -1,0 +1,157 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import validateForm from "./validation.js";
+import FormCloudinary from "./FormCloudinary.jsx";
+
+import styles from "./form.module.css";
+
+//import { createProduct } from "../../redux/actions.js";
+
+const FormProducts = () => {
+  const dispatch = useDispatch();
+
+  const [image, setImage] = useState("");
+  const [productData, setProductData] = useState({
+    title: "",
+    image: "",
+    price: "",
+    description: "",
+    category: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setProductData((prevData) => ({ ...prevData, [name]: value }));
+    setErrors(
+      validateForm({
+        ...productData,
+        [name]: value,
+      })
+    );
+  };
+
+  productData.image = image;
+
+  //const categoriesOption = console.log(categories);
+  // categories.length !== 0 ? (
+  //   categories.map((category) => {
+  //     return (
+  //       <option key={category.id} value={category.name}>
+  //         {category.name}
+  //       </option>
+  //     );
+  //   })
+  // ) : (
+  //   <option>Crear categoría</option>
+  // );
+  //Crear un producto
+  const create = async (productData) => {
+    try {
+      const URL = "/products";
+      await axios.post(URL, productData);
+      dispatch(createCategory(productData));
+      alert("Product successfully created");
+    } catch (error) {
+      console.error(error);
+      alert(error.response.data.message);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // Checka erores antes de enviar
+    if (Object.keys(errors).length === 0) {
+      await create(productData);
+      setProductData({
+        title: "",
+        image: "",
+        price: "",
+        description: "",
+        category: "",
+      });
+    } else {
+      alert("Please fill in all the fields correctly");
+    }
+  };
+
+  return (
+    <div className={styles.supraContainer}>
+      <h1>Añade un Producto</h1>
+
+      <div>
+        <form onSubmit={handleSubmit} className={styles.container}>
+          <div className={styles.containerGrid}>
+            <div className={styles.inputLabel}>
+              <select
+                name="category"
+                className={styles.input}
+                onChange={handleChange}
+              >
+                <option>Selecciona una categoría</option>
+              </select>
+
+              <span>{errors.name}</span>
+            </div>
+            <div className={styles.inputLabel}>
+              <input
+                name="title"
+                type="text"
+                placeholder="Titulo"
+                className={styles.input}
+                value={productData.title}
+                onChange={handleChange}
+              />
+
+              <span>{errors.name}</span>
+            </div>
+            <div className={styles.inputLabel}>
+              <input
+                name="image"
+                type="text"
+                placeholder="URL Imagen"
+                className={styles.input}
+                value={productData.image}
+                onChange={handleChange}
+              />
+              <FormCloudinary image={image} setImage={setImage} />
+              <span>{errors.image}</span>
+            </div>
+            <div className={styles.inputLabel}>
+              <input
+                name="price"
+                type="text"
+                placeholder="Precio"
+                className={styles.input}
+                value={productData.price}
+                onChange={handleChange}
+              />
+              <span>{errors.price}</span>
+            </div>
+            <div className={styles.inputLabel}>
+              <textarea
+                name="description"
+                row="5"
+                cols="50"
+                placeholder="Descripción"
+                className={styles.input}
+                value={productData.description}
+                onChange={handleChange}
+              ></textarea>
+              <span>{errors.description}</span>
+            </div>
+            {Object.keys(errors).length === 0 && productData.name ? (
+              <button className={styles.btn}>Submit</button>
+            ) : (
+              <div></div>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default FormProducts;

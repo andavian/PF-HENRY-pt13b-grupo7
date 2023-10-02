@@ -25,9 +25,7 @@ export default function Navbar() {
     dispatch(orderByPrice(e.target.value));
   };
 
- 
   return (
-
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
@@ -47,12 +45,12 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" to="/">
+              <Link className="nav-link active" to="/home">
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/link">
+              <Link className="nav-link" to="/store">
                 Tienda
               </Link>
             </li>
@@ -75,7 +73,7 @@ export default function Navbar() {
                 <option value="des">Menor a Mayor Precio</option>
               </select>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link active" to="/Register">
                 Crear una cuenta
               </Link>
@@ -84,10 +82,15 @@ export default function Navbar() {
               <Link className="nav-link active" to="/Login">
                 Iniciar sesion
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link className="nav-link active" to="/Cart">
                 Carrito
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="/admin">
+                Administrar
               </Link>
             </li>
           </ul>
@@ -105,8 +108,6 @@ export default function Navbar() {
           </form>
         </div>
       </div>
-
     </nav>
   );
 }
-
