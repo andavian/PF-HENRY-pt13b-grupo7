@@ -8,7 +8,7 @@ import Store from "../src/pages/Store/Store";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
 import Footerbar from "./components/FooterBar/FooterBar";
-import Store from "./pages/Store/Store";
+// import Store from "./pages/Store/Store";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/store" element={<Store />} />
+        {/* <Route path="/store" element={<Store />} /> */}
 
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Cart />} />
