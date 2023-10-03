@@ -8,6 +8,7 @@ import Store from "../src/pages/Store/Store";
 import Admin from "./pages/admin/Admin";
 import Footer from "./components/Footer/Footer";
 import Footerbar from "./components/FooterBar/FooterBar";
+import Store from "./pages/Store/Store";
 
 function App() {
   return (

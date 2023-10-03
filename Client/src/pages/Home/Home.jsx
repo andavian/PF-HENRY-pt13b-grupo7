@@ -18,13 +18,14 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
 import styles from "./home.module.css";
 import Paginado from "../../components/Paginado/Paginado";
-import Cardcategory from "../../components/Card-Category/Cardcategory";
 import CardCarousel from "../../components/crouselflecha/CardCarousel";
+import CardCategory from "../../components/Card-Category/Cardcategory"
+
 
 export default function Shop() {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.reducer.totalproducts);
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.reducer.categories);
   const currentPage = useSelector((state) => state.currentPage);
   const search = useSelector((state) => state.search);
   const [orden, setOrden] = useState("");
@@ -41,7 +42,8 @@ export default function Shop() {
 
   //cargar recetas según la búsqueda
   useEffect(() => {
-    dispatch(addProduct());
+    dispatch(addProduct())
+    dispatch(getCategories());
   }, [dispatch]);
 
   const settings = {
@@ -99,18 +101,18 @@ export default function Shop() {
 
         {/* Cards */}
         <div className={styles.cardscategories}>
-          {categories && categories.length > 0 ? (
-            categories.map((e) => (
-              <Link to={`/Shop/${e.id}`} key={e.id}>
-                <h4>{e.title}</h4>
-              </Link>
-            ))
-          ) : (
-            <h2>No hay categorias disponibles.</h2>
-          )}
-        </div>
 
-        <button className={styles.button}>Ver más</button>
+  {categories && categories.length > 0 ? (
+    categories.map((e, index) => (
+      <div key={index} className={styles.cardCategoryWrapper}>
+        <CardCategory product={e} />
+      </div>
+    ))
+  ) : (
+    <h2>No hay categorías disponibles.</h2>
+  )}
+</div>
+
       </div>
 
       {/*Los mas buscados */}
@@ -126,8 +128,7 @@ export default function Shop() {
           <CardCarousel products={catalog} />
           <button className={styles.button}>Ver más</button>
         </div>
-      </div>
-      
+      </div
     </main>
   );
 }
