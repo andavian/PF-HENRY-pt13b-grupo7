@@ -49,7 +49,7 @@ const FormProducts = () => {
   //Crear un producto
   const create = async (productData) => {
     try {
-      const URL = "/products";
+      const URL = "http://localhost:3001/products";
       await axios.post(URL, productData);
       dispatch(createCategory(productData));
       alert("Product successfully created");
@@ -91,6 +91,10 @@ const FormProducts = () => {
                 onChange={handleChange}
               >
                 <option>Selecciona una categoría</option>
+                <option value="electronics">Electronicos</option>
+                <option value="jewelery">Joyería</option>
+                <option value="women's clothing">Ropa de Mujer</option>
+                <option value="men's clothing">Ropa de Hombre</option>
               </select>
 
               <span>{errors.name}</span>
@@ -142,7 +146,7 @@ const FormProducts = () => {
               ></textarea>
               <span>{errors.description}</span>
             </div>
-            {Object.keys(errors).length === 0 && productData.name ? (
+            {Object.keys(errors).length === 0 && productData.title ? (
               <button className={styles.btn}>Submit</button>
             ) : (
               <div></div>
