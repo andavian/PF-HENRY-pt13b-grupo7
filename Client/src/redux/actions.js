@@ -82,7 +82,7 @@ export const getCategories = createAsyncThunk(
   "reducerProducts/getCategories",
   async (id) => {
     try {
-      const response = await axios("https://fakestoreapi.com/products/categories");
+      const response = await axios("http://localhost:3001/categories");
       console.log("categories", response.data);
       return response.data;
     } catch (error) {
