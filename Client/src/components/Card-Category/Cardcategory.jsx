@@ -1,19 +1,22 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./cardcategory.module.css";
+import { Link } from "react-router-dom";
 
 
-export default function Cardcategory (){
-    const category = useSelector((state)=> state.categories);
 
-    return (
-     <article>
-        <div className={styles.imgConatiner}>
-            <img src={category.image} alt={category.name} />
-        </div>
-        <div className={styles.nameContainer}>
-            <h3>{category.name}</h3>
-        </div>
-     </article>
-    );
+
+const CardCategory = ({product}) => {
+  return (
+    <div className="card text-bg-dark">
+        <Link to={`/product/${product.id}`}>
+      <img src={product.thumbnail} className="card-img" alt="slice" />
+      <div className="card-img-overlay">
+        <h5 className="card-title">{product.name}</h5>
+      </div>
+      </Link>
+    </div>
+  );
 }
+
+export default CardCategory;

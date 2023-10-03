@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getProductById } from "./actions";
+import { addProduct, getCategories, getProductById } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -104,12 +104,6 @@ export const productSlice = createSlice({
         };
       }
     },
-    addCategory: (state, action) => {
-      return {
-        ...state,
-        categories: action.payload,
-      };
-    },
     setPage: (state, action) => {
       return {
         ...state,
@@ -138,6 +132,9 @@ export const productSlice = createSlice({
       .addCase(getProductById.fulfilled, (state, { payload }) => {
         // Realiza lo que necesitas hacer con getProductById.fulfilled
         state.details = payload;
+      })
+      .addCase(getCategories.fulfilled,(state, { payload })=> {
+        state.categories = payload;
       });
   },
 });
