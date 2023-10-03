@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"; // Agregué la importación de Link
 import {
   getCategories,
   addProduct,
@@ -11,7 +12,7 @@ import {
 import Carrousel from "../../components/Carrousel/Carrousel";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Slider from "react-slick";
+// import Slider from "react-slick"; // Comenté la importación de Slider
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
@@ -38,15 +39,8 @@ export default function Shop() {
   const paginado = (pageNumber) => {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
-  //cargar recetas según la búsqueda
-  // useEffect(() => {
-  //   if (search) {
-  //     dispatch(getProductByName(search));
 
-  //   } else {
-  //     dispatch(addProduct());
-  //   }
-  // }, [dispatch]);
+  //cargar recetas según la búsqueda
   useEffect(() => {
     dispatch(addProduct())
     dispatch(getCategories());
@@ -62,39 +56,52 @@ export default function Shop() {
 
   return (
     <main className={styles.container}>
+      {/* BANNER */}
       <div className={styles.carouselBannerContainer}>
         <Carrousel />
-        <p>Henry Fans</p>
-        <button className={styles.botonInicio}>Ver Coleccion</button>
+        <p>
+          CELEBRA <br></br>
+          EL DÍA 253
+        </p>
+        <button className={styles.boton}>Ver Coleccion</button>
       </div>
-      <div className={styles.nuevasContainer}>
+
+      {/* Nuevos Agregados */}
+      <div className={styles.ContainerCenter}>
         <div className={styles.tituloCardsNuevas}>
-          <h3>Nuevos Agregados</h3>
+          <h4>Nuevos Agregados</h4>
           <p>Lorem ipsum dolor sit amet consectetur</p>
+        </div>
+        <div>
           <CardCarousel products={catalog} />
-        </div>
-        <div className={styles.cardsNuevasContainer}>
-          <button>Ver mas</button>
+          <button className={styles.button}>Ver mas</button>
         </div>
       </div>
-      <div className={styles.bannerOfertasContainer}>
-        <img
-          src="https://s3-alpha-sig.figma.com/img/83cc/5166/20ea1d562a5624a02b00cf9cd66ef9be?Expires=1696809600&Signature=X7h6KzprpJSiSgazogHXmkluLaHKe96wsc1VOBY5fyhQYK2rBIxBiv9SBZ3FYm5DxyoDxFEJtskIWp-Kroy0wYBbP5c7GAJHmNwnDbFqisvkRjLm1Z62dN9y91va8Bw1z3xs5kaU6N59HIX3k8hUU6QH0xPTcvWwUx8AEW1U5-H5opCvWToRH3SsO8TjrV5r9E9uIKWCirzGewOvFbUBdt1fR2mBqqPGIU2wOmrNDpx5rtVA9flJ7kGtUglRYYLSP2NpsiH5g5T6USOUxn1dzczO0e3qXQBLYh2yO-S9beIHekhWaCLWr2QtLyM2x0t-PdPCkN4Vfsu11qtKULlxWg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
-          alt="slide"
-        />
-        <p>Ofertas fuera de orbita</p>
-      </div>
-      <div className={styles.cardsOfertasContainer}>
-        {/* aca van las card con descuento*/}
-        <button>Ver mas</button>
-      </div>
-      <div className={styles.categoriasContainer}>
-        <div className={styles.titulosCategoria}>
-          <h3>Categorias</h3>
-          <p>Lorem ipsum dolor sit amet consectetur ad</p>
+
+      {/* OFERTAS */}
+      <div className={styles.ContainerBanner}>
+        {/* Titulo */}
+        <div className={styles.Banner}>
+          <h2>
+            Ofertas fuera <br />de orbita
+          </h2>
         </div>
 
+        {/* Prductos descuento */}
+        <div className={styles.ContainerCenter}>
+          {/* aca van las card con descuento*/}
+          <button className={styles.button}>Ver más</button>
+        </div>
+      </div>
+
+      {/*Categorias */}
+      <div className={styles.ContainerCenter}>
+        <h4>Categorias</h4>
+        <p>Lorem ipsum dolor sit amet consectetur ad</p>
+
+        {/* Cards */}
         <div className={styles.cardscategories}>
+
   {categories && categories.length > 0 ? (
     categories.map((e, index) => (
       <div key={index} className={styles.cardCategoryWrapper}>
@@ -105,18 +112,23 @@ export default function Shop() {
     <h2>No hay categorías disponibles.</h2>
   )}
 </div>
+
       </div>
-      <div className={styles.bannerBuscadosContainer}>
-        <p>Los mas buscados</p>
-        <img
-          src="https://s3-alpha-sig.figma.com/img/83cc/5166/20ea1d562a5624a02b00cf9cd66ef9be?Expires=1696809600&Signature=X7h6KzprpJSiSgazogHXmkluLaHKe96wsc1VOBY5fyhQYK2rBIxBiv9SBZ3FYm5DxyoDxFEJtskIWp-Kroy0wYBbP5c7GAJHmNwnDbFqisvkRjLm1Z62dN9y91va8Bw1z3xs5kaU6N59HIX3k8hUU6QH0xPTcvWwUx8AEW1U5-H5opCvWToRH3SsO8TjrV5r9E9uIKWCirzGewOvFbUBdt1fR2mBqqPGIU2wOmrNDpx5rtVA9flJ7kGtUglRYYLSP2NpsiH5g5T6USOUxn1dzczO0e3qXQBLYh2yO-S9beIHekhWaCLWr2QtLyM2x0t-PdPCkN4Vfsu11qtKULlxWg__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
-          alt="slide"
-        />
-      </div>
-      <div className={styles.cardsProductContainer}>
-        <CardCarousel products={catalog} />
-      </div>
-    
+
+      {/*Los mas buscados */}
+      <div className={styles.ContainerBanner}>
+        {/* Titulo */}
+        <div className={styles.Banner}>
+          <h2>
+            Lo más buscado <br />de la galaxia
+          </h2>
+        </div>
+
+        <div className={styles.ContainerCenter}>
+          <CardCarousel products={catalog} />
+          <button className={styles.button}>Ver más</button>
+        </div>
+      </div
     </main>
   );
 }
