@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"; // Agregué la importación de Link
 import {
   getCategories,
   addProduct,
@@ -11,7 +12,7 @@ import {
 import Carrousel from "../../components/Carrousel/Carrousel";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Slider from "react-slick";
+// import Slider from "react-slick"; // Comenté la importación de Slider
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
@@ -37,15 +38,8 @@ export default function Shop() {
   const paginado = (pageNumber) => {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
-  //cargar recetas según la búsqueda
-  // useEffect(() => {
-  //   if (search) {
-  //     dispatch(getProductByName(search));
 
-  //   } else {
-  //     dispatch(addProduct());
-  //   }
-  // }, [dispatch]);
+  //cargar recetas según la búsqueda
   useEffect(() => {
     dispatch(addProduct());
   }, [dispatch]);
@@ -87,14 +81,13 @@ export default function Shop() {
         {/* Titulo */}
         <div className={styles.Banner}>
           <h2>
-            Ofertas fuera <br></br>de orbita
+            Ofertas fuera <br />de orbita
           </h2>
         </div>
 
         {/* Prductos descuento */}
         <div className={styles.ContainerCenter}>
           {/* aca van las card con descuento*/}
-
           <button className={styles.button}>Ver más</button>
         </div>
       </div>
@@ -125,13 +118,12 @@ export default function Shop() {
         {/* Titulo */}
         <div className={styles.Banner}>
           <h2>
-            Lo más buscado <br></br>de la galaxia
+            Lo más buscado <br />de la galaxia
           </h2>
         </div>
 
         <div className={styles.ContainerCenter}>
           <CardCarousel products={catalog} />
-
           <button className={styles.button}>Ver más</button>
         </div>
       </div>

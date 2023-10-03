@@ -322,12 +322,11 @@ h2{
   padding: 5%; /* Agregamos un poco de espacio alrededor del contenido */
 }
 
-/* background-image: url('../../images/Banner.jpg'); Reemplaza con la ruta de tu imagen */
-
-.Banner h1 {
-  font-size: 36px;
+.Banner h2 {
+  font-size: 50px;
   font-weight: bold;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 .Banner p {
