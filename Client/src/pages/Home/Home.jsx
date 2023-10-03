@@ -17,13 +17,14 @@ import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
 import styles from "./home.module.css";
 import Paginado from "../../components/Paginado/Paginado";
-import Cardcategory from "../../components/Card-Category/Cardcategory";
 import CardCarousel from "../../components/crouselflecha/CardCarousel";
+import CardCategory from "../../components/Card-Category/Cardcategory"
+
 
 export default function Shop() {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.reducer.totalproducts);
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.reducer.categories);
   const currentPage = useSelector((state) => state.currentPage);
   const search = useSelector((state) => state.search);
   const [orden, setOrden] = useState("");
@@ -47,7 +48,8 @@ export default function Shop() {
   //   }
   // }, [dispatch]);
   useEffect(() => {
-    dispatch(addProduct());
+    dispatch(addProduct())
+    dispatch(getCategories());
   }, [dispatch]);
 
   const settings = {
@@ -93,16 +95,16 @@ export default function Shop() {
         </div>
 
         <div className={styles.cardscategories}>
-          {categories && categories.length > 0 ? (
-            categories.map((e) => (
-              <Link to={`/Shop/${e.id}`} key={e.id}>
-                <h3>{e.title}</h3>
-              </Link>
-            ))
-          ) : (
-            <h2>No hay categorias disponibles.</h2>
-          )}
-        </div>
+  {categories && categories.length > 0 ? (
+    categories.map((e, index) => (
+      <div key={index} className={styles.cardCategoryWrapper}>
+        <CardCategory product={e} />
+      </div>
+    ))
+  ) : (
+    <h2>No hay categorías disponibles.</h2>
+  )}
+</div>
       </div>
       <div className={styles.bannerBuscadosContainer}>
         <p>Los mas buscados</p>
@@ -114,7 +116,7 @@ export default function Shop() {
       <div className={styles.cardsProductContainer}>
         <CardCarousel products={catalog} />
       </div>
-        
+    
     </main>
   );
 }

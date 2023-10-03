@@ -345,3 +345,14 @@ h2{
   align-items: first baseline;
 
 }
+.cardscategories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+.cardCategoryWrapper {
+  width: 50%; /* Ocupa todo el ancho disponible */
+  margin-bottom: 20px; /* Añade espacio entre las tarjetas */
+}

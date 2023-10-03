@@ -3,17 +3,17 @@ import { useSelector } from "react-redux";
 import styles from "./cardcategory.module.css";
 
 
-export default function Cardcategory (){
-    const category = useSelector((state)=> state.categories);
 
-    return (
-     <article>
-        <div className={styles.imgConatiner}>
-            <img src={category.image} alt={category.name} />
-        </div>
-        <div className={styles.nameContainer}>
-            <h3>{category.name}</h3>
-        </div>
-     </article>
-    );
+
+const CardCategory = ({product}) => {
+  return (
+    <div className="card text-bg-dark">
+      <img src="https://tse4.mm.bing.net/th?id=OIP.aV3_1sg9QEdADlu5byNWbwAAAA&pid=Api&P=0&h=180" className="card-img" alt="slice" />
+      <div className="card-img-overlay">
+        <h5 className="card-title">{product}</h5>
+      </div>
+    </div>
+  );
 }
+
+export default CardCategory;

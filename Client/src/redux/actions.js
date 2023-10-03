@@ -78,19 +78,19 @@ export const filteredByCategory = (category) => {
   };
 };
 //GET CATEGORIES
-export const getCategories = () => {
-  return async function (dispatch) {
+export const getCategories = createAsyncThunk(
+  "reducerProducts/getCategories",
+  async (id) => {
     try {
-      const response = await axios(
-        "https://fakestoreapi.com/products/categories"
-      );
-      console.log(response.data);
-      dispatch(addCategory(response.data));
+      const response = await axios("https://fakestoreapi.com/products/categories");
+      console.log("categories", response.data);
+      return response.data;
     } catch (error) {
-      console.log(error.message);
+      return [];
     }
-  };
-};
+  }
+);
+
 //CURRENT PAGE
 export const setCurrentPageGlobal = (num) => {
   return (dispatch) => {
