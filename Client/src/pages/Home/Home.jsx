@@ -19,8 +19,7 @@ import Card from "../../components/Card/Card";
 import styles from "./home.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import CardCarousel from "../../components/crouselflecha/CardCarousel";
-import CardCategory from "../../components/Card-Category/Cardcategory"
-
+import CardCategory from "../../components/Card-Category/Cardcategory";
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -42,7 +41,7 @@ export default function Shop() {
 
   //cargar recetas según la búsqueda
   useEffect(() => {
-    dispatch(addProduct())
+    dispatch(addProduct());
     dispatch(getCategories());
   }, [dispatch]);
 
@@ -83,7 +82,8 @@ export default function Shop() {
         {/* Titulo */}
         <div className={styles.Banner}>
           <h2>
-            Ofertas fuera <br />de orbita
+            Ofertas fuera <br />
+            de orbita
           </h2>
         </div>
 
@@ -101,16 +101,16 @@ export default function Shop() {
 
         {/* Cards */}
         <div className={styles.cardscategories}>
-  {categories && categories.length > 0 ? (
-    categories.map((e, index) => (
-      <div key={index} className={styles.cardCategoryWrapper}>
-        <CardCategory product={e} />
-      </div>
-    ))
-  ) : (
-    <h2>No hay categorías disponibles.</h2>
-  )}
-</div>
+          {categories && categories.length > 0 ? (
+            categories.map((e, index) => (
+              <div key={index} className={styles.cardCategoryWrapper}>
+                <CardCategory product={e} />
+              </div>
+            ))
+          ) : (
+            <h2>No hay categorías disponibles.</h2>
+          )}
+        </div>
       </div>
 
       {/*Los mas buscados */}
@@ -118,7 +118,8 @@ export default function Shop() {
         {/* Titulo */}
         <div className={styles.Banner}>
           <h2>
-            Lo más buscado <br />de la galaxia
+            Lo más buscado <br />
+            de la galaxia
           </h2>
         </div>
 
@@ -127,10 +128,6 @@ export default function Shop() {
           <button className={styles.button}>Ver más</button>
         </div>
       </div>
-      <div className={styles.cardsProductContainer}>
-        <CardCarousel products={catalog} />
-      </div>
-    
     </main>
   );
 }

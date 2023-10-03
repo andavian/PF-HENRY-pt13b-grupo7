@@ -29,7 +29,7 @@ const FormCategories = () => {
   //Crear una categoria
   const create = async (categoryData) => {
     try {
-      const URL = "/categories";
+      const URL = "http://localhost:3001/categories";
       await axios.post(URL, categoryData);
       dispatch(createCategory(categoryData));
       alert("Category successfully created");
