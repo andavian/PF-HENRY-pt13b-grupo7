@@ -6,6 +6,7 @@ const getCategories = require("../controllers/getCategories");
 //const getCategoriesById = require("../controllers/getCategoriesById");
 const postCategories = require("../controllers/postCategories");
 const getProductByCategoryId = require("../controllers/getProductByCategoryId");
+const deleteCategories = require("../controllers/deleteCategories");
 
 categoriesRoutes.get("/:id", async (req, res) => {
   try {
@@ -36,5 +37,7 @@ categoriesRoutes.post("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+categoriesRoutes.delete("/delete", deleteCategories);
 
 module.exports = categoriesRoutes;
