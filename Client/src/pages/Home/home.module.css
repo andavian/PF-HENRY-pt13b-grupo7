@@ -342,3 +342,20 @@ h2{
   align-items: first baseline;
 
 }
+.cardscategories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Cambia a "flex-start" para que las tarjetas estén ordenadas desde la izquierda */
+  gap: 20px; /* Añade espacio entre las tarjetas */
+}
+
+.cardCategoryWrapper {
+  flex: 1; /* Hace que todas las tarjetas tengan el mismo tamaño */
+  max-width: 20%; /* Establece el ancho máximo de cada tarjeta */
+}
+
+.cardscategories h2 {
+  font-size: 1rem;
+  color: #777;
+  margin-top: 2rem;
+}
