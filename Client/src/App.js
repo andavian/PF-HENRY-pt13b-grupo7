@@ -21,8 +21,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
-      <Footer />
-      <Footerbar />
+       {/* <Footer /> 
+      <Footerbar /> */}
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className={styles["footer-container"]}>
+    <div className={styles["footer-container"]}>
       <div className={styles["footer-columns"]}>
         <div className={styles["logocontainer"]}>
           <div className={styles["footer-images"]}>
@@ -158,7 +158,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
 import logoshop from "../../images/logoshop.svg";
 import { useDispatch } from "react-redux";
 import {
@@ -7,7 +8,8 @@ import {
   filteredByCategory,
   orderByPrice,
 } from "../../redux/actions";
-import React from "react";
+
+import styles from "./Navbar.module.css";// Importa el archivo de estilos CSS
 
 export default function Navbar() {
   const dispatch = useDispatch();
@@ -42,20 +44,24 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+
             <li className="nav-item">
-              <Link className="nav-link active" to="/home">
+            <NavLink className={`nav-link ${styles.active}`} to="/home">
                 Home
-              </Link>
+              </NavLink>
             </li>
+
             <li className="nav-item">
-              <Link className="nav-link" to="/store">
+            <NavLink className={`nav-link ${styles.active}`} to="/store">
                 Tienda
-              </Link>
+              </NavLink>
             </li>
+          
             <li className="nav-item">
-              <select className="form-select" onChange={handleProducts}>
+            <select className={`form-select ${styles.active}`} onChange={handleProducts}>
                 <option value="Producto">Productos</option>
                 <option value="Camisetas">Camisetas</option>
                 <option value="Pantalones">Pantalones</option>
@@ -67,8 +73,9 @@ export default function Navbar() {
                 <option value="Accesorios">Accesorios</option>
               </select>
             </li>
+
             <li className="nav-item">
-              <select className="form-select" onChange={handlePrice}>
+            <select className={`form-select ${styles.active}`} onChange={handlePrice}>
                 <option value="asc">Mayor a Menor Precio</option>
                 <option value="des">Menor a Mayor Precio</option>
               </select>
@@ -84,14 +91,14 @@ export default function Navbar() {
               </Link>
             </li> */}
             <li className="nav-item">
-              <Link className="nav-link active" to="/Cart">
+              <NavLink className={`nav-link ${styles.active}`} to="/Cart" activeClassName="active">
                 Carrito
-              </Link>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="/admin">
+              <NavLink className={`nav-link ${styles.active}`} to="/admin" activeClassName="active">
                 Administrar
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <form className="d-flex">

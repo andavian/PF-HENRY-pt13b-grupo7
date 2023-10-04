@@ -7,11 +7,11 @@
   flex-wrap: wrap; /* Para manejar el ajuste de columnas en pantallas pequeñas */
   justify-content: space-between; /* Espacio entre las imágenes y las columnas */
   align-items: flex-start; /* Alinea las imágenes en la parte superior */
-  z-index: 1;
+  z-index: ;
   padding-bottom: 80px;
   padding-top: 20px;
   padding-left: 20px;
-  padding-r: 20px;
+  padding-right: 20px;
 }
 
 /* Estilos para las imágenes en la columna izquierda */

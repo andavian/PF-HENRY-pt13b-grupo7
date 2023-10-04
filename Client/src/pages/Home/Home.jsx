@@ -21,7 +21,7 @@ import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 import CardCarousel from "../../components/crouselflecha/CardCarousel";
 
-export default function Shop() {
+export default function Home() {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.reducer.totalproducts);
   const categories = useSelector((state) => state.categories);
@@ -54,6 +54,7 @@ export default function Shop() {
 
   return (
     <main className={styles.container}>
+
       {/* BANNER */}
       <div className={styles.carouselBannerContainer}>
         <Carrousel />
@@ -71,6 +72,7 @@ export default function Shop() {
           <p>Lorem ipsum dolor sit amet consectetur</p>
         </div>
         <div>
+      
           <CardCarousel products={catalog} />
           <button className={styles.button}>Ver mas</button>
         </div>

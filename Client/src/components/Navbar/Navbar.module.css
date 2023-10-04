@@ -1,0 +1,7 @@
+/* Navbar.module.css */
+
+.navbar-nav .nav-link.active {
+    font-weight: bold; /* Cambia el peso de la fuente para resaltar la sección activa */
+    color: #007bff; /* Cambia el color de la fuente para resaltar la sección activa */
+  }
+  
