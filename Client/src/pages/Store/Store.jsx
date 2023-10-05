@@ -46,10 +46,14 @@ export default function Shop() {
     }
   }, [dispatch, search]);
 
-  const handleRefreshRecipes = (e) => {
-    e.preventDefault();
-    dispatch(addProduct());
+  const handleOrderChange = (e) => {
+    setOrden(e.target.value);
   };
+
+  const handleApplyOrder = () => {
+    dispatch(orderByPrice(orden));
+  };
+
   const settings = {
     dots: false,
     infinite: true,
@@ -60,7 +64,6 @@ export default function Shop() {
 
   return (
     <div className={style.container}>
-    
       <div className={style.ContainerBanner}>
         <div className={style.Banner}>
           <h2>
@@ -79,12 +82,11 @@ export default function Shop() {
 
           <div className={style.navItem}>
             <label>Ordenar por:</label>
-            <select className={style.navItem}>
-              <option value="ascendenteAlf">A-Z ⬆</option>
-              <option value="descendenteAlf">Z-A ⬇</option>
-              <option value="ascendenteHS">Score ⬆</option>
-              <option value="descendenteHS">Score ⬇</option>
+            <select onChange={handleOrderChange}>
+              <option value="asc">Precio ascendente</option>
+              <option value="desc">Precio descendente</option>
             </select>
+            <button className={style.buttonapply} onClick={handleApplyOrder}>Aplicar</button>
           </div>
 
           <div className={style.navItem}>
@@ -92,7 +94,7 @@ export default function Shop() {
           </div>
 
           <div className={style.navItem}>
-            <label style={{ fontWeight: "bold",  fontSize: "18px"}}>52</label>
+            <label style={{ fontWeight: "bold", fontSize: "18px" }}>52</label>
             <label>resultados encontrados</label>
           </div>
         </div>
@@ -113,8 +115,9 @@ export default function Shop() {
       </aside>
 
       <article className={style.article}>
+      <h2>cards</h2>
         {/* Escribir por debajo de esta liena de codigo  */}
-        
+        <card/>
       </article>
 
       {/* Escribir por debajo de esta liena de codigo  */}

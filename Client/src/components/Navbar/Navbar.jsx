@@ -63,6 +63,7 @@ const NavBar = ({ setCurrentPage }) => {
       </div>
 
       <div className={style.navtool}>
+      
         <div className={style.navItem}>
           <Link to="https://dev-rcyibz4rmsr34pyn.us.auth0.com/u/signup?state=hKFo2SBXSUlYWkJndkQ5RmZ4cG5CazRmMjBlcnNIMzlRUldzV6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIDJBT2lVYjl3WmhXNVU3RFNVNnR4VXBVNXVjajR0ZWpuo2NpZNkgemwxMXBNVnYxSmRyMTdodnM4OVMwSVNSTlRpOHA2c3o">
           <button className={style.button} >
@@ -71,6 +72,7 @@ const NavBar = ({ setCurrentPage }) => {
           </Link>
         </div>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
+
         <div className={style.navItem}>
           <Link
             to="/*"
