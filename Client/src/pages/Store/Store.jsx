@@ -14,8 +14,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
-import styles from "../Store/Store.module.css";
+import style from "../Store/Store.module.css";
 import Paginado from "../../components/Paginado/Paginado";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 
 export default function Shop() {
@@ -58,103 +59,65 @@ export default function Shop() {
   };
 
   return (
-    <main className={styles.container}>
-      {/* BANNER */}
-      <div className={styles.carouselBannerContainer}>
-        <Carousel />
-        <p>
-          CELEBRA <br></br>
-          EL DÍA 253
-        </p>
-        <button className={styles.boton}>Ver Coleccion</button>
-      </div>
-
-      {/* Nuevos Agregados */}
-      <div className={styles.ContainerCenter}>
-        <div className={styles.tituloCardsNuevas}>
-          <h4>Nuevos Agregados</h4>
-          <p>Consulta nuestras novedades</p>
-        </div>
-        <div>
-          {/* aca van las card recien agregadas*/}
-          <button className={styles.button}>Ver mas</button>
-        </div>
-      </div>
-
-      {/* OFERTAS */}
-      <div className={styles.ContainerBanner}>
-        {/* Titulo */}
-        <div className={styles.Banner}>
+    <div className={style.container}>
+    
+      <div className={style.ContainerBanner}>
+        <div className={style.Banner}>
           <h2>
-            Ofertas fuera <br></br>de orbita
+            Henry <br></br>
+            Banner
           </h2>
         </div>
-
-        {/* Prductos descuento */}
-        <div className={styles.ContainerCenter}>
-          {/* aca van las card con descuento*/}
-
-          <button className={styles.button}>Ver más</button>
-        </div>
       </div>
 
-          <button className={styles.button}>Ver más</button>
-    
-
-
-      {/*Categorias */}
-      <div className={styles.ContainerCenter}>
-          <h4>Categorias</h4>
-          <p>Encuentra lo que deseas</p>
-
-            {/* Cards */}
-          <div className={styles.cardscategories}>
-            {categories && categories.length > 0 ? (
-              categories.map((e) => (
-                <Link to={`/Shop/${e.id}`} key={e.id}>
-                  <h4>{e.title}</h4>
-                </Link>
-              ))
-            ) : (
-              <h2>No hay categorias disponibles.</h2>
-            )}
+      {/* Barra de filtado por orden de agregados */}
+      <div className={style.navbarContainer}>
+        <div className={style.navBar}>
+          <div className={style.navItem}>
+            <button className={style.button}>Limpiar busqueda</button>
           </div>
 
-          <button className={styles.button}>Ver más</button>
+          <div className={style.navItem}>
+            <label>Ordenar por:</label>
+            <select className={style.navItem}>
+              <option value="ascendenteAlf">A-Z ⬆</option>
+              <option value="descendenteAlf">Z-A ⬇</option>
+              <option value="ascendenteHS">Score ⬆</option>
+              <option value="descendenteHS">Score ⬇</option>
+            </select>
+          </div>
+
+          <div className={style.navItem}>
+            <SearchBar />
+          </div>
+
+          <div className={style.navItem}>
+            <label style={{ fontWeight: "bold",  fontSize: "18px"}}>52</label>
+            <label>resultados encontrados</label>
+          </div>
+        </div>
       </div>
 
+      <aside className={style.containerhome}>
+        {/* Filtros */}
+        <div className={style.leftSide}>
+          <label className={style.label}>Filtro 1</label>
+          {/* Escribir por debajo de esta liena de codigo  */}
 
-      {/*Los mas buscados */}
-      <div className={styles.ContainerBanner}>
-        {/* Titulo */}
-        <div className={styles.Banner}>
-          <h2>
-            Lo más buscado <br></br>de la galaxia
-          </h2>
+          <label className={style.label}>Filtro 2</label>
+          {/* Escribir por debajo de esta liena de codigo  */}
+
+          <label className={style.label}>Filtro 3</label>
+          {/* Escribir por debajo de esta liena de codigo  */}
         </div>
-        </div>
+      </aside>
 
+      <article className={style.article}>
+        {/* Escribir por debajo de esta liena de codigo  */}
+        
+      </article>
 
-        <div className={styles.ContainerCenter}>
-          {/* aca van las card con lo mas buscado*/}
-
-          <button className={styles.button}>Ver más</button>
-        </div>
-
-
-
-      <div className={styles.ContainerCenter}>
-        {catalog && catalog.length > 0 ? (
-          catalog.map((e) => (
-            <Link to={`/Shop/${e.id}`} key={e.id}>
-              <h3>{e.title}</h3>
-            </Link>
-          ))
-        ) : (
-          <h6>No hay productos disponibles.</h6>
-        )}
-      </div>
-
-    </main>
+      {/* Escribir por debajo de esta liena de codigo  */}
+    </div>
   );
 }
