@@ -1,495 +1,59 @@
-/* Estilos generales */
-.containerhome {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  color: #333;
-}
-
-.leftSide {
-  background-color: white;
-  background-size: cover;
-  position: fixed;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 40px;
-  padding-bottom: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 5;
-}
-
-label {
-  display: flex;
-  color: #333;
-  margin: 2px;
-  align-items: center;
-}
-
-select {
-  margin: 10px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  transition: 0.3s ease-in-out;
-  text-transform: initial;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  font-size: 16px;
-  color: #000000d5;
-  font-weight: 600;
-  cursor: pointer;
-  align-items: center;
+.Banner {
+    position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/Currcula-Henry.png'); /* Reemplaza con la ruta de tu imagen */
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 5%; /* Agregamos un poco de espacio alrededor del contenido */
+  }
   
-}
-
-.select:focus {
-  margin: 10px;
-  cursor: pointer;
-  transform: scale(1.04);
-}
-
-.select option {
-  border: solid 2px #333;
-  background-color: #548039;
+  /* background-image: url('../../images/Banner.jpg'); Reemplaza con la ruta de tu imagen */
   
-}
-
-.article {
-  display: flex;
-  margin-left: 250px;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.errorContainer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  z-index: 9999;
-}
-
-.errorText {
-  font-size: 24px;
+  .Banner h1 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .Banner p {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .ContainerBanner {
+    width: 100%;
+    background-color: #fff;
+    text-align: center;
+    flex-direction: column;
+    align-items: first baseline;
+    }
+    /* Estilos para el contenedor de filtros */
+.filter {
   margin-bottom: 20px;
 }
 
-.reloadButton {
-  color: white;
-  background-color: #80bd5b;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding: 0.7rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  margin-right: 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  animation: pulse 1s infinite;
-}
-
-.reloadButton:hover {
-  background-color: #385624;
-}
-
-.buttoncontainer {
-  padding: 20px;
-  background: linear-gradient(to right, #96c244, #b0dc5e);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  margin-top: 50px;
-  text-decoration: none;
-}
-
-.text {
-  text-align: left;
-  font-size: 15px;
-  font-weight: 100;
-  margin-top: 10px;
-  color: #ffffff;
-}
-
-.title {
-  text-align: left;
-  font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* Botón azul */
-.buttonblue {
-  color: white;
-  background-color: #35a3dc;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding: 0.7rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  margin-right: 0.5rem;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  animation: pulse 1s infinite;
-}
-
-.buttonblue:hover {
-  background-color: #1f546d;
-}
-
-.controlImg {
-  margin-top: -90px;
-  margin-bottom: -30px;
-  padding: 5px;
-  width: 150px;
-  height: 150px;
-}
-
-
-
-.Banner {
-  position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/Currcula-Henry.png'); /* Reemplaza con la ruta de tu imagen */
-  background-size: cover;
-  background-position: center;
-  color: #fff;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  padding: 2%; /* Agregamos un poco de espacio alrededor del contenido */
-}
-
-
-
-
-
-
-.Banner h2 {
-  font-size: 50px;
-  font-weight: bold;
+/* Estilos para el título "Ordenar por Precio" */
+.filter h3 {
   margin-bottom: 10px;
-  text-transform: uppercase;
+  font-size: 1.2rem;
 }
 
-.Banner p {
-  font-size: 18px;
-  margin: 0;
-}
-
-.ContainerBanner {
+/* Estilos para el elemento select */
+.select {
   width: 100%;
-  background-color: #fff;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Estilos para el mensaje "No hay productos disponibles." */
+.products h6 {
+  margin-top: 20px;
   text-align: center;
-  flex-direction: column;
-  align-items: first baseline;
-
+  font-size: 1.2rem;
 }
-
-
-
-
-/* Contenedor del logo */
-.logoContainer {
-  display: flex;
-  align-items: center;
-  margin: 20px;
-}
-
-.logoImage {
-  margin-right: 10px;
-  object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.messageBox {
-  margin-top: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100px;
-  background-color: #f2f2f2;
-  border-radius: 10px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.messageBox p {
-  margin: 10px;
-  font-size: 18px;
-  color: #333;
-  font-weight: 400;
-}
-
-/* Estilos para el footer fijo */
-.footer {
-  background-color: #ffffff48;
-  color: #fff;
-  padding: 10px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  align-items: center;
-  z-index: 3;
-}
-
-
-
-
-.filterbar {
-  position: relative;
-background-color: #f2f2f2;
-  background-size: cover;
-  background-position: center;
-  color: #000000;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  gap: 3rem;
-  padding: 2%; /* Agregamos un poco de espacio alrededor del contenido */
-}
-
-/* Media query para movil */
-@media screen and (max-width: 768px) {
-  .containerhome {
-    grid-template-columns: 1fr;
-  }
-
-  .leftSide {
-    position: relative;
-    width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-  }
-
-  .article {
-    margin-left: 0;
-  }
-}
-
-/* Media query pantalla grande */
-@media screen and (min-width: 1200px) {
-  .containerhome {
-    grid-template-columns: 250px 1fr;
-  }
-
-  .leftSide {
-    position: fixed;
-  }
-
-  .article {
-    margin-left: 250px;
-  }
-}
-
-
-
-/* navabar */
-.button {
-  color: rgb(255, 255, 255);
-  background-color: rgb(13, 181, 27);
-  border-radius: 20rem;
-  padding: 10px 2rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-
-}
-
-
-.buttonBorder {
-  color: rgba(0, 0, 0, 0.417);
-  /* background-color: rgba(98, 98, 98, 0.404); */
-  border-radius: 0.5rem;
-  padding: 0.7rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border:  rgba(0, 0, 0, 0.417);
-  border-width: 2px;
-  border-style: solid;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-
-
-.buttonBorder:hover {
-  color: rgb(71, 71, 66);
-  background-color: #45454563;
-  border-radius: 0.5rem;
-  padding: 0.7rem 2rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border-width: 2px;
-  border-style: solid;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.button:hover {
-  color: rgb(71, 71, 66);
-  background-color: #c8cb07;
-}
-
-
-.button svg {
-  display: inline;
-  width: 1.3rem;
-  height: 1.3rem;
-  margin-right: 5rem;
-  color: white;
-}
-
-.buttonblack:focus svg {
-  animation: spin 0.5s linear;
-}
-
-
-.navLink {
-  color: rgba(73, 73, 73, 0.628);
-   
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.navLink:hover {
-  color: #000000;
-
-
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.navbarContainer {
-  background-color: white;
-  display: flex;
-  width: 100%;
-  background-size: cover;
-  position: sticky;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  top: 0;
-  z-index: 100;
-}
-
-/* Estilos para la barra de navegación */
-.navBar {
-  margin: auto auto; /* Añadido 'auto' para centrar horizontalmente */
-  display: flex;
-  justify-content: center; /* Centra horizontalmente los elementos hijos */
-  gap: 3rem;
-}
-
-.navtool {
-  margin: 5px 20px ; /* Añadido 'auto' para centrar horizontalmente */
-  display: flex;
-  justify-content: flex-end; /* Centra horizontalmente los elementos hijos */
-  gap: 20px;
-}
-
-/* Estilos para los elementos del navbar */
-.navItem {
-  display: flex;
-  text-decoration: none;
-  align-items: center;
-}
-
-.navItem svg {
-  margin: 5px;
-}
-
-
-
-
-
-
-/* Contenedor del logo */
-.logoContainer {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  padding: 0 10px 0 0;
-}
-
-.logoImage {
-  margin-right: 10px;
-  object-fit: contain;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-/* Media query para movil */
-@media screen and (max-width: 480px) {
-  .navbarContainer {
-    padding: 20px;
-  }
-
-  .navBar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .navItem {
-    margin: 0px;
-  }
-}
-
-/* Media query para movil */
-@media screen and (max-width: 480px) {
-  .buttonblack {
-    align-items: center;
-    font-size: 0.9rem;
-    padding: 0.5rem 6rem;
-    margin-top: 10px;
-  }
-}
-

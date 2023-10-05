@@ -4,8 +4,6 @@ import {
   getCategories,
   addProduct,
   getProductByName,
-  filteredByCategory,
-  orderByPrice,
   setCurrentPageGlobal,
 } from "../../redux/actions";
 import Carousel from "../../components/Carrousel/Carrousel";
@@ -14,9 +12,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "../../components/Card/Card";
-import style from "../Store/Store.module.css";
+import styles from "../Store/Store.module.css";
 import Paginado from "../../components/Paginado/Paginado";
-import SearchBar from "../../components/SearchBar/SearchBar";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 
 export default function Shop() {
@@ -27,6 +24,8 @@ export default function Shop() {
   const search = useSelector((state) => state.search);
   const [orden, setOrden] = useState("");
   const [productPerPage] = useState(6);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sortedProducts, setSortedProducts] = useState([]);
 
   // Cálculo de índices para paginación
   const indexLastProduct = currentPage * productPerPage;
@@ -36,7 +35,8 @@ export default function Shop() {
   const paginado = (pageNumber) => {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
-  //cargar recetas según la búsqueda
+
+  // Cargar recetas según la búsqueda
   useEffect(() => {
     if (search) {
       dispatch(getProductByName(search));
@@ -46,10 +46,28 @@ export default function Shop() {
     }
   }, [dispatch, search]);
 
-  const handleRefreshRecipes = (e) => {
-    e.preventDefault();
-    dispatch(addProduct());
+  // Función para filtrar por categoría
+  const filteredByCategory = (categoryId) => {
+    if (categoryId === "all") {
+      setFilteredProducts(catalog);
+    } else {
+      const filtered = catalog.filter((product) => product.categoryId === categoryId);
+      setFilteredProducts(filtered);
+    }
   };
+
+  // Función para ordenar por precio
+  const orderByPrice = (order) => {
+    const sorted = [...filteredProducts].sort((a, b) => {
+      if (order === "asc") {
+        return a.price - b.price;
+      } else {
+        return b.price - a.price;
+      }
+    });
+    setSortedProducts(sorted);
+  };
+
   const settings = {
     dots: false,
     infinite: true,
@@ -58,66 +76,150 @@ export default function Shop() {
     slidesToScroll: 1,
   };
 
+
   return (
-    <div className={style.container}>
-    
-      <div className={style.ContainerBanner}>
-        <div className={style.Banner}>
-          <h2>
-            Henry <br></br>
-            Banner
-          </h2>
+    <div className={styles.container}>
+      {/* BANNER */}
+      <div className={styles.carouselBannerContainer}>
+        <Carousel />
+        <p>
+          CELEBRA <br></br>
+          EL DÍA 253
+        </p>
+        <button className={styles.boton}>Ver Colección</button>
+      </div>
+
+      {/* Nuevos Agregados */}
+      <div className={styles.ContainerCenter}>
+        <div className={styles.tituloCardsNuevas}>
+          <h4>Nuevos Agregados</h4>
+          <p>Consulta nuestras novedades</p>
+        </div>
+        <div>
+          {/* Aquí van las card recién agregadas */}
+          <button className={styles.button}>Ver más</button>
         </div>
       </div>
 
-      {/* Barra de filtado por orden de agregados */}
-      <div className={style.navbarContainer}>
-        <div className={style.navBar}>
-          <div className={style.navItem}>
-            <button className={style.button}>Limpiar busqueda</button>
-          </div>
+      {/* OFERTAS */}
+      <div className={styles.ContainerBanner}>
+        {/* Título */}
+        <div className={styles.Banner}>
+          <h2>
+            Ofertas fuera <br></br>de órbita
+          </h2>
+        </div>
 
-          <div className={style.navItem}>
-            <label>Ordenar por:</label>
-            <select className={style.navItem}>
-              <option value="ascendenteAlf">A-Z ⬆</option>
-              <option value="descendenteAlf">Z-A ⬇</option>
-              <option value="ascendenteHS">Score ⬆</option>
-              <option value="descendenteHS">Score ⬇</option>
+        {/* Productos descuento */}
+        <div className={styles.ContainerCenter}>
+          {/* Aquí van las card con descuento */}
+          <button className={styles.button}>Ver más</button>
+        </div>
+      </div>
+
+      {/* Filtros en la barra lateral izquierda */}
+      <aside className={styles.sidebar}>
+        {/* Filtros */}
+        <div className={styles.filters}>
+          {/* Filtro por Categoría */}
+          <div className={styles.filter}>
+            <h3>Filtrar por Categoría:</h3>
+            <select
+              className={styles.select}
+              onChange={(e) => filteredByCategory(e.target.value)}
+            >
+              <option value="all">Todas las categorías</option>
+              {categories && categories.length > 0
+                ? categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.title}
+                    </option>
+                  ))
+                : null}
             </select>
           </div>
 
-          <div className={style.navItem}>
-            <SearchBar />
+          {/* Filtro por Orden de Precio */}
+          <div className={styles.filter}>
+            <h3>Ordenar por Precio:</h3>
+            <select
+              className={styles.select}
+              onChange={(e) => orderByPrice(e.target.value)}
+            >
+              <option value="asc">Menor a Mayor</option>
+              <option value="desc">Mayor a Menor</option>
+            </select>
           </div>
-
-          <div className={style.navItem}>
-            <label style={{ fontWeight: "bold",  fontSize: "18px"}}>52</label>
-            <label>resultados encontrados</label>
-          </div>
-        </div>
-      </div>
-
-      <aside className={style.containerhome}>
-        {/* Filtros */}
-        <div className={style.leftSide}>
-          <label className={style.label}>Filtro 1</label>
-          {/* Escribir por debajo de esta liena de codigo  */}
-
-          <label className={style.label}>Filtro 2</label>
-          {/* Escribir por debajo de esta liena de codigo  */}
-
-          <label className={style.label}>Filtro 3</label>
-          {/* Escribir por debajo de esta liena de codigo  */}
         </div>
       </aside>
 
-      <article className={style.article}>
-        {/* Escribir por debajo de esta liena de codigo  */}
-        
-      </article>
+      {/* Contenido principal */}
+      <main className={styles.mainContent}>
+        <div className={styles.products}>
+          {/* Renderizar productos aquí */}
+          {sortedProducts && sortedProducts.length > 0
+            ? sortedProducts
+                .slice(indexFirstProduct, indexLastProduct)
+                .map((product) => <Card key={product.id} product={product} />)
+            : filteredProducts && filteredProducts.length > 0
+            ? filteredProducts
+                .slice(indexFirstProduct, indexLastProduct)
+                .map((product) => <Card key={product.id} product={product} />)
+            : catalog && catalog.length > 0
+            ? catalog
+                .slice(indexFirstProduct, indexLastProduct)
+                .map((product) => <Card key={product.id} product={product} />)
+            : <h6>No hay productos disponibles.</h6>}
+        </div>
 
-      {/* Escribir por debajo de esta liena de codigo  */}
+        {/* Categorías */}
+        <div className={styles.ContainerCenter}>
+          <h4>Categorías</h4>
+          <p>Encuentra lo que deseas</p>
+
+          {/* Cards de categorías */}
+          <div className={styles.cardscategories}>
+            {categories && categories.length > 0 ? (
+              categories.map((e) => (
+                <Link to={`/Shop/${e.id}`} key={e.id}>
+                  <h4>{e.title}</h4>
+                </Link>
+              ))
+            ) : (
+              <h2>No hay categorías disponibles.</h2>
+            )}
+          </div>
+
+          <button className={styles.button}>Ver más</button>
+        </div>
+
+        {/* Los más buscados */}
+        <div className={styles.ContainerBanner}>
+          {/* Título */}
+          <div className={styles.Banner}>
+            <h2>
+              Lo más buscado <br></br>de la galaxia
+            </h2>
+          </div>
+        </div>
+
+        <div className={styles.ContainerCenter}>
+          {/* Aquí van las card con lo más buscado */}
+          <button className={styles.button}>Ver más</button>
+        </div>
+
+        <div className={styles.ContainerCenter}>
+          {catalog && catalog.length > 0 ? (
+            catalog.map((e) => (
+              <Link to={`/Shop/${e.id}`} key={e.id}>
+                <h3>{e.title}</h3>
+              </Link>
+            ))
+          ) : (
+            <h6>No hay productos disponibles.</h6>
+          )}
+        </div>
+      </main>
     </div>
   );
 }
