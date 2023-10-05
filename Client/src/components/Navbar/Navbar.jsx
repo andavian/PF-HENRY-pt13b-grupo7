@@ -96,7 +96,7 @@ const NavBar = ({ setCurrentPage }) => {
         {/* carrito */}
         <div className={style.navItem}>
           <Link
-            to="/*"
+            to="/cart"
             className={style.navLink}
             onClick={() => setCurrentPage("shop")}
           >
