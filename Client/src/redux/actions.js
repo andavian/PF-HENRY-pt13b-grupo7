@@ -54,6 +54,28 @@ export const getProductById = createAsyncThunk(
   }
 );
 
+
+
+
+
+export const getProductsCategories = createAsyncThunk(
+  "reducerProducts/getProductsCategories",
+  async (name) => {
+    try {
+      // Codifica el nombre de la categoría antes de agregarlo a la URL
+      const encodedName = encodeURIComponent(name);
+      
+      // Utiliza el nombre codificado en la URL
+      const response = await axios('https://fakestoreapi.com/products/category/jewelery');
+      console.log("ejecutando", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
+  }
+);
+
+
 //GET PRODUCT BY NAME
 export const getProductByName = (name) => {
   return async function (dispatch) {
