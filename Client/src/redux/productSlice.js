@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById } from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -92,7 +92,7 @@ export const productSlice = createSlice({
       if (selectedCategory === "All") {
         return {
           ...state,
-          catalog: allProducts,
+          catalog: allProducts, // Corregir la asignación aquí
         };
       } else {
         const filteredProducts = allProducts.filter(
@@ -104,6 +104,7 @@ export const productSlice = createSlice({
         };
       }
     },
+    
     setPage: (state, action) => {
       return {
         ...state,
@@ -128,6 +129,7 @@ export const productSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         // Realiza lo que necesitas hacer con addProduct.fulfilled
         state.totalproducts = payload;
+        state.catalog = payload
       })
       .addCase(getProductById.fulfilled, (state, { payload }) => {
         // Realiza lo que necesitas hacer con getProductById.fulfilled
@@ -135,7 +137,8 @@ export const productSlice = createSlice({
       })
       .addCase(getCategories.fulfilled,(state, { payload })=> {
         state.categories = payload;
-      });
+      })
+     
   },
 });
 //createasyncthunk redux toolkit

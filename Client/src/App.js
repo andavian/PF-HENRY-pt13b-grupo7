@@ -9,6 +9,8 @@ import Footer from "./components/Footer/Footer";
 import Footerbar from "./components/FooterBar/FooterBar";
 import Construccion from "./pages/Construcion/Construcion";
 import Store from "./pages/Store/Store";
+import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
+import Profile from "./components/ProfileUser/ProfileUser";
 
 function App() {
   return (
