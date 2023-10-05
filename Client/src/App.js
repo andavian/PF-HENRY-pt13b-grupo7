@@ -18,15 +18,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="mensaje" element={<Construccion />} />
-        <Route path="/home" element={<Home />} />
-        {/* <Route path="/store" element={<Store />} /> */}
-        <Route path="/products/:name" element={<CategoriesViews/>}/>
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/cart" element={<Construccion />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="home" element={<Home />} />
+        <Route path="store" element={<Store />} /> 
+        <Route path="detail/:id" element={<Detail />} />
+        <Route path="cart" element={<Construccion />} />
+        <Route path="admin" element={<Admin />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
       <Footerbar />
     </div>
   );
