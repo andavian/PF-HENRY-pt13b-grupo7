@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const CardCategory = ({product}) => {
   return (
     <div className="card text-bg-dark">
-        <Link to={`/product/${product.id}`}>
+        <Link to={`/products/${product.name}`}>
       <img src={product.thumbnail} className="card-img" alt="slice" />
       <div className="card-img-overlay">
         <h5 className="card-title">{product.name}</h5>
