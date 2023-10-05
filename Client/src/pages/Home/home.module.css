@@ -6,7 +6,10 @@
 }
 
 
-
+h2{
+  text-align: left;
+  font-size: 60px
+}
 
 .carouselBannerContainer {
   width: 100%;
