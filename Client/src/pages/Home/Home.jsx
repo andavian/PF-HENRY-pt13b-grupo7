@@ -21,6 +21,8 @@ import Paginado from "../../components/Paginado/Paginado";
 import CardCarousel from "../../components/crouselflecha/CardCarousel";
 import CardCategory from "../../components/Card-Category/Cardcategory";
 
+
+
 export default function Shop() {
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.reducer.catalog);
@@ -38,11 +40,13 @@ export default function Shop() {
   const paginado = (pageNumber) => {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
+  
 
   //cargar recetas según la búsqueda
   useEffect(() => {
     dispatch(addProduct());
     dispatch(getCategories());
+    
   }, [dispatch]);
 
   const settings = {
@@ -127,7 +131,9 @@ export default function Shop() {
           <CardCarousel products={catalog} />
           <button className={styles.button}>Ver más</button>
         </div>
+      
       </div>
     </main>
+     
   );
 }

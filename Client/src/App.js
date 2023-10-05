@@ -10,6 +10,7 @@ import Footerbar from "./components/FooterBar/FooterBar";
 import Construccion from "./pages/Construcion/Construcion";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
+import Profile from "./components/ProfileUser/ProfileUser";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/cart" element={<Construccion />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/profile" element={<Profile/>}/>
       </Routes>
       <Footer />
       <Footerbar />
