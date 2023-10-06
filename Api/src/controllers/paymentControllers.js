@@ -23,8 +23,8 @@ const createOrder = async (req, res) => {
       locale: "en-US",
       landing_page: "LOGIN",
       user_action: "PAY_NOW",
-      return_url: "https://localhost:3000/payment/capture-order",
-      cancel_url: "https://localhost:3000/payment/cancel-order",
+      return_url: "http://localhost:3001/payment/capture-order",
+      cancel_url: "https://localhost:3001/payment/cancel-order",
     },
   };
 
@@ -54,15 +54,28 @@ const createOrder = async (req, res) => {
     },
   });
   console.log(response.data);
-  res.send("creating an order");
+  res.json(response.data);
 };
 
-const captureOrder = (req, res) => {
-  res.send("capturing order");
+const captureOrder = async (req, res) => {
+  const { token, PayerID } = req.query;
+
+  const response = await axios.post(
+    `${PAYPAL_API}/v2/checkout/orders/${token}/capture`,
+    {},
+    {
+      auth: {
+        username: PAYPAL_API_CLIENT,
+        password: PAYPAL_API_SECRET,
+      },
+    }
+  );
+  console.log(response.data);
+  res.redirect("/thanks");
 };
 
 const cancelOrder = (req, res) => {
-  res.send("canceling an order");
+  res.redirect("/");
 };
 
 module.exports = { createOrder, captureOrder, cancelOrder };

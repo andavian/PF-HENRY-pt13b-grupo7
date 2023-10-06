@@ -8,7 +8,7 @@ const {
 
 const paymentRoutes = Router();
 
-paymentRoutes.get("/create-order", createOrder);
+paymentRoutes.post("/create-order", createOrder);
 
 paymentRoutes.get("/capture-order", captureOrder);
 
