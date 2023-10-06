@@ -5,6 +5,7 @@ import {
   addProduct,
   getProductByName,
   setCurrentPageGlobal,
+  orderByPrice
 } from "../../redux/actions";
 
 import Card from "../../components/Card/Card";
@@ -15,24 +16,22 @@ import Cardcategory from "../../components/Card-Category/Cardcategory";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.reducer.totalproducts);
-  const categories = useSelector((state) => state.categories);
-  const currentPage = useSelector((state) => state.currentPage);
-  const search = useSelector((state) => state.search);
+  const catalog = useSelector((state) => state.reducer.catalog);
+  const categories = useSelector((state) => state.reducer.categories);
+  const currentPage = useSelector((state) => state.reducer.currentPage);
+  const search = useSelector((state) => state.reducer.search);
   const [orden, setOrden] = useState("");
-  const [productPerPage] = useState(6);
+  const [productPerPage] = useState(10); // Cambiado a 10 productos por página
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState([]);
+ // Cálculo de índices para paginación
+ const indexLastProduct = currentPage * productPerPage;
+ const indexFirstProduct = indexLastProduct - productPerPage;
 
-  // Cálculo de índices para paginación
-  const indexLastProduct = currentPage * productPerPage;
-  const indexFirstProduct = indexLastProduct - productPerPage;
-
-  // Función para cambiar de página
-  const paginado = (pageNumber) => {
-    dispatch(setCurrentPageGlobal(pageNumber));
-  };
-
+ // Función para cambiar de página
+ const handlePageChange = (pageNumber) => {
+   dispatch(setCurrentPageGlobal(pageNumber));
+ };
   // Cargar recetas según la búsqueda
   useEffect(() => {
     if (search) {
@@ -40,6 +39,8 @@ export default function Shop() {
       dispatch(getCategories());
     } else {
       dispatch(addProduct());
+      dispatch(getCategories());
+      console.log("acaa", catalog);
     }
   }, [dispatch, search]);
 
@@ -67,7 +68,7 @@ export default function Shop() {
   const orderByPrice = (order) => {
     const sorted = [...filteredProducts].sort((a, b) => {
       if (order === "asc") {
-        return a.price - b.price;
+        dispatch( orderByPrice)
       } else {
         return b.price - a.price;
       }
@@ -82,6 +83,15 @@ export default function Shop() {
     slidesToShow: 6, // Ajusta la cantidad de tarjetas mostradas
     slidesToScroll: 1,
   };
+
+  // Calcula la cantidad total de páginas
+  const totalPages = Math.ceil(catalog.length / productPerPage);
+
+  // Obtiene los productos correspondientes a la página actual
+  const currentProducts = catalog.slice(
+    indexFirstProduct,
+    indexLastProduct
+  );
 
   return (
     <div className={style.container}>
@@ -136,7 +146,7 @@ export default function Shop() {
               {categories && categories.length > 0
                 ? categories.map((category) => (
                     <option key={category.id} value={category.id}>
-                      {category.title}
+                      {category.name}
                     </option>
                   ))
                 : null}
@@ -156,15 +166,22 @@ export default function Shop() {
           </div>
         </div>
       </aside>
-
-
-
+      <Paginado
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
       <article className={style.article}>
-{/* AQUI VA EL CATALGO */}
-     
+        {currentProducts && currentProducts.length ? (
+          currentProducts.map((product) => (
+            <Card key={product.id} product={product} />
+          ))
+        ) : (
+          <h3 align="center">No hay resultados para esta búsqueda.</h3>
+        )}
       </article>
-
- 
+    
+      
     </div>
   );
 }

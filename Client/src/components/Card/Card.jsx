@@ -1,6 +1,5 @@
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { addProductToCart, removeProductFromCart } from "../../redux/actions";
 import styles from "./card.module.css";
 import { useState } from "react";
 
@@ -32,7 +31,7 @@ export default function Card({ product }) {
 
   return (
     <article className={styles.card}>
-      <img src={product.image} alt={product.title} className={styles.image} />
+      <img src={product.primaryimage} alt={product.title} className={styles.image} />
 
       <p className={styles.heading}>{truncatedTitle}</p>
 
