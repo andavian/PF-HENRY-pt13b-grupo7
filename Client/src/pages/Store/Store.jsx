@@ -55,7 +55,6 @@ export default function Shop() {
       setFilteredProducts(filtered);
     }
   };
-
   // Función para ordenar por precio
   const orderByPrice = (order) => {
     const sorted = [...filteredProducts].sort((a, b) => {
