@@ -4,8 +4,11 @@ import {
   getCategories,
   addProduct,
   getProductByName,
+  filteredByCategory,
+  orderByPrice,
   setCurrentPageGlobal,
 } from "../../redux/actions";
+
 
 import Card from "../../components/Card/Card";
 import style from "../Store/Store.module.css";
@@ -13,16 +16,16 @@ import Paginado from "../../components/Paginado/Paginado";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 
+
+
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.reducer.totalproducts);
+  const catalog = useSelector((state) => state.totalproducts);
   const categories = useSelector((state) => state.categories);
   const currentPage = useSelector((state) => state.currentPage);
   const search = useSelector((state) => state.search);
   const [orden, setOrden] = useState("");
   const [productPerPage] = useState(6);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState([]);
 
   // Cálculo de índices para paginación
   const indexLastProduct = currentPage * productPerPage;
@@ -33,7 +36,8 @@ export default function Shop() {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
 
-  // Cargar recetas según la búsqueda
+
+  //cargar recetas según la búsqueda
   useEffect(() => {
     if (search) {
       dispatch(getProductByName(search));
@@ -49,30 +53,6 @@ export default function Shop() {
 
   const handleApplyOrder = () => {
     dispatch(orderByPrice(orden));
-  };
-
-  // Función para filtrar por categoría
-  const filteredByCategory = (categoryId) => {
-    if (categoryId === "all") {
-      setFilteredProducts(catalog);
-    } else {
-      const filtered = catalog.filter(
-        (product) => product.categoryId === categoryId
-      );
-      setFilteredProducts(filtered);
-    }
-  };
-
-  // Función para ordenar por precio
-  const orderByPrice = (order) => {
-    const sorted = [...filteredProducts].sort((a, b) => {
-      if (order === "asc") {
-        return a.price - b.price;
-      } else {
-        return b.price - a.price;
-      }
-    });
-    setSortedProducts(sorted);
   };
 
   const settings = {
@@ -107,9 +87,7 @@ export default function Shop() {
               <option value="asc">Precio ascendente</option>
               <option value="desc">Precio descendente</option>
             </select>
-            <button className={style.buttonapply} onClick={handleApplyOrder}>
-              Aplicar
-            </button>
+            <button className={style.buttonapply} onClick={handleApplyOrder}>Aplicar</button>
           </div>
 
           <div className={style.navItem}>
@@ -124,47 +102,27 @@ export default function Shop() {
       </div>
 
       <aside className={style.containerhome}>
-        <div className={style.filters}>
-          {/* Filtro por Categoría */}
-          <div className={style.filter}>
-            <label>Filtrar por Categoría:</label>
-            <select
-              className={style.select}
-              onChange={(e) => filteredByCategory(e.target.value)}
-            >
-              <option value="all">Todas las categorías</option>
-              {categories && categories.length > 0
-                ? categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.title}
-                    </option>
-                  ))
-                : null}
-            </select>
-          </div>
+      
+        {/* Filtros */}
+        <div className={style.leftSide}>
+          <label className={style.label}>Filtro 1</label>
+          {/* Escribir por debajo de esta liena de codigo  */}
 
-          {/* Filtro por Orden de Precio */}
-          <div className={style.filter}>
-            <label>Ordenar por Precio:</label>
-            <select
-              className={style.select}
-              onChange={(e) => orderByPrice(e.target.value)}
-            >
-              <option value="asc">Menor a Mayor</option>
-              <option value="desc">Mayor a Menor</option>
-            </select>
-          </div>
+          <label className={style.label}>Filtro 2</label>
+          {/* Escribir por debajo de esta liena de codigo  */}
+
+          <label className={style.label}>Filtro 3</label>
+          {/* Escribir por debajo de esta liena de codigo  */}
         </div>
       </aside>
 
-
-
       <article className={style.article}>
-{/* AQUI VA EL CATALGO */}
-     
+      <h2>cards</h2>
+        {/* Escribir por debajo de esta liena de codigo  */}
+        <card/>
       </article>
 
- 
+      {/* Escribir por debajo de esta liena de codigo  */}
     </div>
   );
 }
