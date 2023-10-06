@@ -52,6 +52,7 @@ export default function Detail({ product, onClose }) {
       setQuantity(quantity - 1);
     }
   };
+  const images = [detailState.primaryimage]
 
   return (
     <div>
@@ -59,7 +60,7 @@ export default function Detail({ product, onClose }) {
         <div className={styles['modal']}>
           
           <div className={styles.productImage}>
-            <Carousel images={detailState.primaryimage}/>
+            <Carousel images={images}/>
           </div>
           <div className={styles.detailsContainer}>
           <div>

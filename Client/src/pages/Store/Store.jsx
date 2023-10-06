@@ -5,7 +5,8 @@ import {
   addProduct,
   getProductByName,
   setCurrentPageGlobal,
-  orderByPrice
+  orderByPrice,
+  filteredByCategory
 } from "../../redux/actions";
 
 import Card from "../../components/Card/Card";
@@ -20,10 +21,9 @@ export default function Shop() {
   const categories = useSelector((state) => state.reducer.categories);
   const currentPage = useSelector((state) => state.reducer.currentPage);
   const search = useSelector((state) => state.reducer.search);
-  const [orden, setOrden] = useState("");
   const [productPerPage] = useState(10); // Cambiado a 10 productos por página
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState([]);
+  
+  
  // Cálculo de índices para paginación
  const indexLastProduct = currentPage * productPerPage;
  const indexFirstProduct = indexLastProduct - productPerPage;
@@ -43,38 +43,19 @@ export default function Shop() {
       console.log("acaa", catalog);
     }
   }, [dispatch, search]);
-
+  //ordenar por precio
   const handleOrderChange = (e) => {
-    setOrden(e.target.value);
+     dispatch(orderByPrice(e.target.value))
   };
-
-  const handleApplyOrder = () => {
-    dispatch(orderByPrice(orden));
-  };
-
   // Función para filtrar por categoría
-  const filteredByCategory = (categoryId) => {
-    if (categoryId === "all") {
-      setFilteredProducts(catalog);
-    } else {
-      const filtered = catalog.filter(
-        (product) => product.categoryId === categoryId
-      );
-      setFilteredProducts(filtered);
-    }
+  const filtercategory = (e) => {
+   dispatch(filteredByCategory(e)) 
   };
+  const handleReseat =()=>{
+    dispatch(addProduct())
+  }
 
-  // Función para ordenar por precio
-  const orderByPrice = (order) => {
-    const sorted = [...filteredProducts].sort((a, b) => {
-      if (order === "asc") {
-        dispatch( orderByPrice)
-      } else {
-        return b.price - a.price;
-      }
-    });
-    setSortedProducts(sorted);
-  };
+  
 
   const settings = {
     dots: false,
@@ -108,18 +89,15 @@ export default function Shop() {
       <div className={style.navbarContainer}>
         <div className={style.navBar}>
           <div className={style.navItem}>
-            <button className={style.button}>Limpiar busqueda</button>
+            <button onClick={handleReseat} className={style.button}>Limpiar busqueda</button>
           </div>
 
           <div className={style.navItem}>
             <label>Ordenar por:</label>
             <select onChange={handleOrderChange}>
-              <option value="asc">Precio ascendente</option>
-              <option value="desc">Precio descendente</option>
+              <option value="asc">Menor-Mayor Precio</option>
+              <option value="desc">Mayor-Menor Precio</option>
             </select>
-            <button className={style.buttonapply} onClick={handleApplyOrder}>
-              Aplicar
-            </button>
           </div>
 
           <div className={style.navItem}>
@@ -140,12 +118,12 @@ export default function Shop() {
             <label>Filtrar por Categoría:</label>
             <select
               className={style.select}
-              onChange={(e) => filteredByCategory(e.target.value)}
+              onChange={(e) => filtercategory(e.target.value)}
             >
               <option value="all">Todas las categorías</option>
               {categories && categories.length > 0
                 ? categories.map((category) => (
-                    <option key={category.id} value={category.id}>
+                    <option key={category.id} value={category.name}>
                       {category.name}
                     </option>
                   ))
@@ -158,7 +136,7 @@ export default function Shop() {
             <label>Ordenar por Precio:</label>
             <select
               className={style.select}
-              onChange={(e) => orderByPrice(e.target.value)}
+              onChange={handleOrderChange}
             >
               <option value="asc">Menor a Mayor</option>
               <option value="desc">Mayor a Menor</option>

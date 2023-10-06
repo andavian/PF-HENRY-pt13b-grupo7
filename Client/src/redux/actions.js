@@ -98,6 +98,7 @@ export const orderByPrice = (payload) => {
 //FILTERED PRODUCTS BY CATEGORY
 export const filteredByCategory = (category) => {
   return (dispatch) => {
+    console.log(category);
     dispatch(filteredCategory(category));
   };
 };
