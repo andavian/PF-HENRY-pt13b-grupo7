@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "./SearchBar.module.css";
 import { useDispatch } from "react-redux";
+import { setSearchGlobal } from "../../redux/actions";
 
 const SearchBar = ({ setCurrentPage }) => {
   const dispatch = useDispatch();
@@ -12,21 +13,19 @@ const SearchBar = ({ setCurrentPage }) => {
     setCurrentPage(1);
   };
 
-  // Realizar la búsqueda cuando el usuario deja de escribir durante 00 ms
+  // Realizar la búsqueda cuando el usuario deja de escribir durante 500 ms
   useEffect(() => {
     const searchTimeout = setTimeout(() => {
-      dispatch(searchRecipe(search));
+      dispatch(setSearchGlobal(search));
     }, 500);
     return () => clearTimeout(searchTimeout);
   }, [search, dispatch]);
 
   return (
     <div className={style.search}>
-     
-
       <input
         type="text"
-        placeholder=" Buscar"
+        placeholder="Busca una receta"
         value={search}
         onChange={handleChange}
         className={style.searchinput}
