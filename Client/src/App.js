@@ -11,6 +11,7 @@ import Construccion from "./pages/Construcion/Construcion";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
 import Profile from "./components/ProfileUser/ProfileUser";
+import Favorites from "./pages/favorites/favorites";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path="cart" element={<Cart/>} />
         <Route path="admin" element={<Admin />} />
+        <Route path="favorites" element={<Favorites/>}/>
       </Routes>
       {/* <Footer /> */}
       <Footerbar />

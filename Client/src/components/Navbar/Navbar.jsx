@@ -75,7 +75,7 @@ const NavBar = ({ setCurrentPage }) => {
 
         <div className={style.navItem}>
           <Link
-            to="/*"
+            to="/favorites"
             className={style.navLink}
             onClick={() => setCurrentPage("shop")}
           >
