@@ -5,7 +5,7 @@ const CardCart = ({ product }) => {
     <div className="card mb-3" style={{ maxWidth: '540px' }}>
       <div className="row g-0">
         <div className="col-md-4">
-          <img src={product.image} className="img-fluid rounded-start" alt={product.title} />
+          <img src={product.primaryimage} className="img-fluid rounded-start" alt={product.title} />
         </div>
         <div className="col-md-8">
           <div className="card-body">
