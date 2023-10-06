@@ -27,25 +27,24 @@
 label {
   display: flex;
   color: #333;
-  margin: 2px;
+  margin: 5px;
   align-items: center;
 }
 
 select {
   margin: 10px;
-  padding: 5px 10px;
-  border-radius: 5px;
+  padding: 5px 5px;
   transition: 0.3s ease-in-out;
   text-transform: initial;
+  border-radius: 5px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   font-size: 16px;
-  color: #000000d5;
+  color: #535353d5;
   font-weight: 600;
   cursor: pointer;
   align-items: center;
-  
 }
 
 .select:focus {
@@ -56,8 +55,7 @@ select {
 
 .select option {
   border: solid 2px #333;
-  background-color: #548039;
-  
+  background-color: #cdcdcd;
 }
 
 .article {
@@ -170,11 +168,10 @@ select {
   height: 150px;
 }
 
-
-
 .Banner {
   position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../images/Currcula-Henry.png'); /* Reemplaza con la ruta de tu imagen */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../images/Currcula-Henry.png"); /* Reemplaza con la ruta de tu imagen */
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -184,11 +181,6 @@ select {
   justify-content: left;
   padding: 2%; /* Agregamos un poco de espacio alrededor del contenido */
 }
-
-
-
-
-
 
 .Banner h2 {
   font-size: 50px;
@@ -208,11 +200,7 @@ select {
   text-align: center;
   flex-direction: column;
   align-items: first baseline;
-
 }
-
-
-
 
 /* Contenedor del logo */
 .logoContainer {
@@ -260,12 +248,9 @@ select {
   z-index: 3;
 }
 
-
-
-
 .filterbar {
   position: relative;
-background-color: #f2f2f2;
+  background-color: #f2f2f2;
   background-size: cover;
   background-position: center;
   color: #000000;
@@ -275,6 +260,13 @@ background-color: #f2f2f2;
   justify-content: left;
   gap: 3rem;
   padding: 2%; /* Agregamos un poco de espacio alrededor del contenido */
+}
+
+
+.filters{
+  
+
+
 }
 
 /* Media query para movil */
@@ -310,24 +302,36 @@ background-color: #f2f2f2;
   }
 }
 
-
-
 /* navabar */
 .button {
   color: rgb(255, 255, 255);
   background-color: rgb(13, 181, 27);
   border-radius: 20rem;
-  padding: 10px 2rem;
+  padding: 6px 10px;
   text-align: center;
+  font-size: small;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-
+  margin-left: 5px;
 }
 
+.buttonapply {
+  color: rgb(255, 255, 255);
+  background-color: rgb(5, 79, 153);
+  /* border-radius: 5px; */
+  padding: 8px 10px;
+  text-align: center;
+  font-size: small;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
 
 .buttonBorder {
   color: rgba(0, 0, 0, 0.417);
@@ -338,14 +342,12 @@ background-color: #f2f2f2;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
-  border:  rgba(0, 0, 0, 0.417);
+  border: rgba(0, 0, 0, 0.417);
   border-width: 2px;
   border-style: solid;
   cursor: pointer;
   font-weight: bold;
 }
-
-
 
 .buttonBorder:hover {
   color: rgb(71, 71, 66);
@@ -367,7 +369,6 @@ background-color: #f2f2f2;
   background-color: #c8cb07;
 }
 
-
 .button svg {
   display: inline;
   width: 1.3rem;
@@ -380,10 +381,9 @@ background-color: #f2f2f2;
   animation: spin 0.5s linear;
 }
 
-
 .navLink {
   color: rgba(73, 73, 73, 0.628);
-   
+
   text-align: center;
   text-decoration: none;
   display: inline-flex;
@@ -395,8 +395,6 @@ background-color: #f2f2f2;
 
 .navLink:hover {
   color: #000000;
-
-
 }
 
 @keyframes spin {
@@ -430,7 +428,7 @@ background-color: #f2f2f2;
 }
 
 .navtool {
-  margin: 5px 20px ; /* Añadido 'auto' para centrar horizontalmente */
+  margin: 5px 20px; /* Añadido 'auto' para centrar horizontalmente */
   display: flex;
   justify-content: flex-end; /* Centra horizontalmente los elementos hijos */
   gap: 20px;
@@ -446,11 +444,6 @@ background-color: #f2f2f2;
 .navItem svg {
   margin: 5px;
 }
-
-
-
-
-
 
 /* Contenedor del logo */
 .logoContainer {
@@ -492,4 +485,3 @@ background-color: #f2f2f2;
     margin-top: 10px;
   }
 }
-
