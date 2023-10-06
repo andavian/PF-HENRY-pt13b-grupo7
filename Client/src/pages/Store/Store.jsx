@@ -4,15 +4,11 @@ import {
   getCategories,
   addProduct,
   getProductByName,
-  filteredByCategory,
-  orderByPrice,
   setCurrentPageGlobal,
+  orderByPrice,
+  filteredByCategory
 } from "../../redux/actions";
-import Carousel from "../../components/Carrousel/Carrousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import Card from "../../components/Card/Card";
 import style from "../Store/Store.module.css";
 import Paginado from "../../components/Paginado/Paginado";
@@ -21,35 +17,46 @@ import Cardcategory from "../../components/Card-Category/Cardcategory";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.totalproducts);
-  const categories = useSelector((state) => state.categories);
-  const currentPage = useSelector((state) => state.currentPage);
-  const search = useSelector((state) => state.search);
-  const [orden, setOrden] = useState("");
-  const [productPerPage] = useState(6);
+  const catalog = useSelector((state) => state.reducer.catalog);
+  const categories = useSelector((state) => state.reducer.categories);
+  const currentPage = useSelector((state) => state.reducer.currentPage);
+  const search = useSelector((state) => state.reducer.search);
+  const [productPerPage] = useState(10); // Cambiado a 10 productos por página
+  
+  
+ // Cálculo de índices para paginación
+ const indexLastProduct = currentPage * productPerPage;
+ const indexFirstProduct = indexLastProduct - productPerPage;
 
-  // Cálculo de índices para paginación
-  const indexLastProduct = currentPage * productPerPage;
-  const indexFirstProduct = indexLastProduct - productPerPage;
-
-  // Función para cambiar de página
-  const paginado = (pageNumber) => {
-    dispatch(setCurrentPageGlobal(pageNumber));
-  };
-  //cargar recetas según la búsqueda
+ // Función para cambiar de página
+ const handlePageChange = (pageNumber) => {
+   dispatch(setCurrentPageGlobal(pageNumber));
+ };
+  // Cargar recetas según la búsqueda
   useEffect(() => {
     if (search) {
       dispatch(getProductByName(search));
       dispatch(getCategories());
     } else {
       dispatch(addProduct());
+      dispatch(getCategories());
+      console.log("acaa", catalog);
     }
   }, [dispatch, search]);
-
-  const handleRefreshRecipes = (e) => {
-    e.preventDefault();
-    dispatch(addProduct());
+  //ordenar por precio
+  const handleOrderChange = (e) => {
+     dispatch(orderByPrice(e.target.value))
   };
+  // Función para filtrar por categoría
+  const filtercategory = (e) => {
+   dispatch(filteredByCategory(e)) 
+  };
+  const handleReseat =()=>{
+    dispatch(addProduct())
+  }
+
+  
+
   const settings = {
     dots: false,
     infinite: true,
@@ -58,9 +65,17 @@ export default function Shop() {
     slidesToScroll: 1,
   };
 
+  // Calcula la cantidad total de páginas
+  const totalPages = Math.ceil(catalog.length / productPerPage);
+
+  // Obtiene los productos correspondientes a la página actual
+  const currentProducts = catalog.slice(
+    indexFirstProduct,
+    indexLastProduct
+  );
+
   return (
     <div className={style.container}>
-    
       <div className={style.ContainerBanner}>
         <div className={style.Banner}>
           <h2>
@@ -74,16 +89,14 @@ export default function Shop() {
       <div className={style.navbarContainer}>
         <div className={style.navBar}>
           <div className={style.navItem}>
-            <button className={style.button}>Limpiar busqueda</button>
+            <button onClick={handleReseat} className={style.button}>Limpiar busqueda</button>
           </div>
 
           <div className={style.navItem}>
             <label>Ordenar por:</label>
-            <select className={style.navItem}>
-              <option value="ascendenteAlf">A-Z ⬆</option>
-              <option value="descendenteAlf">Z-A ⬇</option>
-              <option value="ascendenteHS">Score ⬆</option>
-              <option value="descendenteHS">Score ⬇</option>
+            <select onChange={handleOrderChange}>
+              <option value="asc">Menor-Mayor Precio</option>
+              <option value="desc">Mayor-Menor Precio</option>
             </select>
           </div>
 
@@ -92,32 +105,61 @@ export default function Shop() {
           </div>
 
           <div className={style.navItem}>
-            <label style={{ fontWeight: "bold",  fontSize: "18px"}}>52</label>
+            <label style={{ fontWeight: "bold", fontSize: "18px" }}>52</label>
             <label>resultados encontrados</label>
           </div>
         </div>
       </div>
 
       <aside className={style.containerhome}>
-        {/* Filtros */}
-        <div className={style.leftSide}>
-          <label className={style.label}>Filtro 1</label>
-          {/* Escribir por debajo de esta liena de codigo  */}
+        <div className={style.filters}>
+          {/* Filtro por Categoría */}
+          <div className={style.filter}>
+            <label>Filtrar por Categoría:</label>
+            <select
+              className={style.select}
+              onChange={(e) => filtercategory(e.target.value)}
+            >
+              <option value="all">Todas las categorías</option>
+              {categories && categories.length > 0
+                ? categories.map((category) => (
+                    <option key={category.id} value={category.name}>
+                      {category.name}
+                    </option>
+                  ))
+                : null}
+            </select>
+          </div>
 
-          <label className={style.label}>Filtro 2</label>
-          {/* Escribir por debajo de esta liena de codigo  */}
-
-          <label className={style.label}>Filtro 3</label>
-          {/* Escribir por debajo de esta liena de codigo  */}
+          {/* Filtro por Orden de Precio */}
+          <div className={style.filter}>
+            <label>Ordenar por Precio:</label>
+            <select
+              className={style.select}
+              onChange={handleOrderChange}
+            >
+              <option value="asc">Menor a Mayor</option>
+              <option value="desc">Mayor a Menor</option>
+            </select>
+          </div>
         </div>
       </aside>
-
+      <Paginado
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
       <article className={style.article}>
-        {/* Escribir por debajo de esta liena de codigo  */}
-        
+        {currentProducts && currentProducts.length ? (
+          currentProducts.map((product) => (
+            <Card key={product.id} product={product} />
+          ))
+        ) : (
+          <h3 align="center">No hay resultados para esta búsqueda.</h3>
+        )}
       </article>
-
-      {/* Escribir por debajo de esta liena de codigo  */}
+    
+      
     </div>
   );
 }
