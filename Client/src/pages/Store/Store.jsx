@@ -75,8 +75,6 @@ export default function Shop() {
     slidesToShow: 6, // Ajusta la cantidad de tarjetas mostradas
     slidesToScroll: 1,
   };
-
-
   return (
     <div className={styles.container}>
       {/* BANNER */}
