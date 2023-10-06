@@ -5,7 +5,7 @@ const {
   PAYPAL_API_SECRET,
 } = require("../utils/envConfig");
 
-const createOrder = (req, res) => {
+const createOrder = async (req, res) => {
   const order = {
     intent: "CAPTURE",
     purchase_units: [
@@ -18,26 +18,22 @@ const createOrder = (req, res) => {
         description: "teclado",
       },
     ],
-    payment_source: {
-      paypal: {
-        experience_context: {
-          payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED",
-          brand_name: "EXAMPLE INC",
-          locale: "en-US",
-          landing_page: "LOGIN",
-          shipping_preference: "SET_PROVIDED_ADDRESS",
-          user_action: "PAY_NOW",
-          return_url: "https://localhost:3000/payment/capture-order",
-          cancel_url: "https://localhost:3000/payment/cancel-order",
-        },
-      },
+    application_context: {
+      brand_name: "Henry Shop",
+      locale: "en-US",
+      landing_page: "LOGIN",
+      user_action: "PAY_NOW",
+      return_url: "https://localhost:3000/payment/capture-order",
+      cancel_url: "https://localhost:3000/payment/cancel-order",
     },
   };
 
   const params = new URLSearchParams();
   params.append("grant_type", "client_credentials");
 
-  const { data } = axios.post(
+  const {
+    data: { access_token },
+  } = await axios.post(
     "https://api-m.sandbox.paypal.com/v1/oauth2/token",
     params,
     {
@@ -50,13 +46,14 @@ const createOrder = (req, res) => {
       },
     }
   );
-  console.log(data);
+  console.log(access_token);
 
-  // const response = axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
-  //   headers: {
-  //     Authorization:
-  //   }
-  // });
+  const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
+    headers: {
+      Authorization: `Bearer ${access_token}`,
+    },
+  });
+  console.log(response.data);
   res.send("creating an order");
 };
 
