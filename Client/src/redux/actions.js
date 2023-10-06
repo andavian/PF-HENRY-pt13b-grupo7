@@ -18,7 +18,7 @@ export const addProduct = createAsyncThunk(
   "reducerProducts/addProduct",
   async () => {
     try {
-      const response = await axios("https://fakestoreapi.com/products");
+      const response = await axios("http://localhost:3001/products");
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -26,26 +26,12 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
-//ADD PRODUCT TO CART
-
-export const addProductToCart = (id, quantity) => {
-  return (dispatch) => {
-    dispatch(addProdToCart({ id, quantity }));
-  };
-};
-
-//DELETE PRODUCT FROM CART
-export const removeProductFromCart = (id) => {
-  return (dispatch) => {
-    dispatch(removeProdFromCart(id));
-  };
-};
 // GET PRODUCT BY ID
 export const getProductById = createAsyncThunk(
   "reducerProducts/getProductById",
   async (id) => {
     try {
-      const response = await axios(`https://fakestoreapi.com/products/${id}`);
+      const response = await axios(`http://localhost:3001/products/${id}`);
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -53,11 +39,7 @@ export const getProductById = createAsyncThunk(
     }
   }
 );
-
-
-
-
-
+// GET PRODUCTS BY CATEGORIES
 export const getProductsCategories = createAsyncThunk(
   "reducerProducts/getProductsCategories",
   async (name) => {
@@ -74,31 +56,23 @@ export const getProductsCategories = createAsyncThunk(
     }
   }
 );
-
-
-//GET PRODUCT BY NAME
-export const getProductByName = (name) => {
-  return async function (dispatch) {
+//GET PRODUCTS BY NAME
+export const getProductByName = createAsyncThunk(
+  "reducerProducts/getProductByName",
+  async (name) => {
     try {
-      const response = await axios(`http://localhost:3001/?name=${name}`);
-      dispatch(getProdByName(response.data));
+      // Codifica el nombre de la categoría antes de agregarlo a la URL
+      const encodedName = encodeURIComponent(name);
+      
+      // Utiliza el nombre codificado en la URL
+      const response = await axios(`http://localhost:3001/products/search?name=${encodedName}`);
+      console.log("ejecutando search", response.data);
+      return response.data;
     } catch (error) {
-      console.log(error.message);
+      return [];
     }
-  };
-};
-// ORDER PRODUCTS BY PRICE
-export const orderByPrice = (payload) => {
-  return (dispatch) => {
-    dispatch(orderPrice(payload));
-  };
-};
-//FILTERED PRODUCTS BY CATEGORY
-export const filteredByCategory = (category) => {
-  return (dispatch) => {
-    dispatch(filteredCategory(category));
-  };
-};
+  }
+);
 //GET CATEGORIES
 export const getCategories = createAsyncThunk(
   "reducerProducts/getCategories",
@@ -112,6 +86,22 @@ export const getCategories = createAsyncThunk(
     }
   }
 );
+
+
+
+// ORDER PRODUCTS BY PRICE
+export const orderByPrice = (payload) => {
+  return (dispatch) => {
+    dispatch(orderPrice(payload));
+  };
+};
+//FILTERED PRODUCTS BY CATEGORY
+export const filteredByCategory = (category) => {
+  return (dispatch) => {
+    dispatch(filteredCategory(category));
+  };
+};
+
 
 //CURRENT PAGE
 export const setCurrentPageGlobal = (num) => {

@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories } from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -138,7 +138,9 @@ export const productSlice = createSlice({
       .addCase(getCategories.fulfilled,(state, { payload })=> {
         state.categories = payload;
       })
-     
+      .addCase(getProductByName.fulfilled,(state, { payload })=> {
+        state.catalog = payload;
+      })
   },
 });
 //createasyncthunk redux toolkit

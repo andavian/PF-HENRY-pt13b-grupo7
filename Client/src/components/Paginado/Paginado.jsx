@@ -1,38 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styles from "./Paginado.module.css";
 
-export default function Paginado({
-  productPerPage,
-  catalog,
-  paginado,
-  currentPage,
-  setCurrentPage,
-}) {
+const Paginado = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
-  for (let i = 0; i < Math.ceil(catalog / productPerPage); i++) {
-    pageNumbers.push(i + 1);
+
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
   }
 
   return (
     <nav>
       <ul className={styles.ul}>
-        {pageNumbers.map((n) => (
-          <li key={n}>
-            <Link
-              className={`${styles.container} ${
-                currentPage === n ? styles.highlighted : ""
-              }`}
-              onClick={() => {
-                paginado(n);
-                setCurrentPage(n); // Actualiza la página actual al hacer clic
-              }}
+        {pageNumbers.map((page) => (
+          <li
+            key={page}
+            className={`page-item ${currentPage === page ? styles.highlighted : ""}`}
+          >
+            <button
+              className={styles.container}
+              onClick={() => onPageChange(page)}
             >
-              {n}
-            </Link>
+              {page}
+            </button>
           </li>
         ))}
       </ul>
     </nav>
   );
-}
+};
+
+export default Paginado;
+

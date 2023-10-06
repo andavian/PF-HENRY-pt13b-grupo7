@@ -59,7 +59,7 @@ export default function Detail({ product, onClose }) {
         <div className={styles['modal']}>
           
           <div className={styles.productImage}>
-            <Carousel images={detailState.image}/>
+            <Carousel images={detailState.primaryimage}/>
           </div>
           <div className={styles.detailsContainer}>
           <div>
