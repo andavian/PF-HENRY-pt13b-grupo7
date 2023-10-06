@@ -11,7 +11,34 @@ export default function Detail({ product, onClose }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   
-
+  const addToCart = (product, quantity) => {
+    // Obtener el carrito actual desde Local Storage o inicializarlo como un array vacío
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+  
+    // Buscar si el producto ya está en el carrito
+    const existingProductIndex = currentCart.findIndex(
+      (cartItem) => cartItem.reviewProduct.id === product.id
+    );
+  
+    if (existingProductIndex !== -1) {
+      // Si el producto ya está en el carrito, sumar la cantidad
+      currentCart[existingProductIndex].reviewProduct.quantity += quantity;
+    } else {
+      // Si el producto no está en el carrito, agregarlo con la cantidad proporcionada
+      const reviewProduct = { ...product, quantity };
+      currentCart.push({ reviewProduct });
+    }
+  
+    // Guardar el carrito actualizado en Local Storage
+    localStorage.setItem('cart', JSON.stringify(currentCart));
+  
+    // Opcional: Mostrar un mensaje de éxito o realizar cualquier otra acción necesaria
+    alert('Producto agregado al carrito con éxito.');
+  
+    // Cerrar el detalle del producto o realizar cualquier otra acción necesaria
+    onClose();
+  };
+  
   useEffect(() => {
     dispatch(getProductById(product.id));
   }, [dispatch, id]);
@@ -55,7 +82,7 @@ export default function Detail({ product, onClose }) {
             <button
               className={styles.buttonContainer}
               onClick={() =>
-                dispatch(addProductToCart({ id: detailState.id, quantity }))
+                addToCart(detailState,quantity)
               }
               disabled={detailState.stock === 0}
             >
