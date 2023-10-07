@@ -6,7 +6,7 @@ import {
   getProductByName,
   setCurrentPageGlobal,
   orderByPrice,
-  filteredByCategory
+  filteredByCategory,
 } from "../../redux/actions";
 
 import Card from "../../components/Card/Card";
@@ -14,6 +14,8 @@ import style from "../Store/Store.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
+import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -21,17 +23,16 @@ export default function Shop() {
   const categories = useSelector((state) => state.reducer.categories);
   const currentPage = useSelector((state) => state.reducer.currentPage);
   const search = useSelector((state) => state.reducer.search);
-  const [productPerPage] = useState(10); // Cambiado a 10 productos por página
-  
-  
- // Cálculo de índices para paginación
- const indexLastProduct = currentPage * productPerPage;
- const indexFirstProduct = indexLastProduct - productPerPage;
+  const [productPerPage] = useState(8); // Cambiado a 10 productos por página
 
- // Función para cambiar de página
- const handlePageChange = (pageNumber) => {
-   dispatch(setCurrentPageGlobal(pageNumber));
- };
+  // Cálculo de índices para paginación
+  const indexLastProduct = currentPage * productPerPage;
+  const indexFirstProduct = indexLastProduct - productPerPage;
+
+  // Función para cambiar de página
+  const handlePageChange = (pageNumber) => {
+    dispatch(setCurrentPageGlobal(pageNumber));
+  };
   // Cargar recetas según la búsqueda
   useEffect(() => {
     if (search) {
@@ -45,34 +46,21 @@ export default function Shop() {
   }, [dispatch, search]);
   //ordenar por precio
   const handleOrderChange = (e) => {
-     dispatch(orderByPrice(e.target.value))
+    dispatch(orderByPrice(e.target.value));
   };
   // Función para filtrar por categoría
   const filtercategory = (e) => {
-   dispatch(filteredByCategory(e)) 
+    dispatch(filteredByCategory(e));
   };
-  const handleReseat =()=>{
-    dispatch(addProduct())
-  }
-
-  
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6, // Ajusta la cantidad de tarjetas mostradas
-    slidesToScroll: 1,
+  const handleReload = () => {
+    window.location.href = "/store";
   };
 
   // Calcula la cantidad total de páginas
   const totalPages = Math.ceil(catalog.length / productPerPage);
 
   // Obtiene los productos correspondientes a la página actual
-  const currentProducts = catalog.slice(
-    indexFirstProduct,
-    indexLastProduct
-  );
+  const currentProducts = catalog.slice(indexFirstProduct, indexLastProduct);
 
   return (
     <div className={style.container}>
@@ -84,38 +72,22 @@ export default function Shop() {
           </h2>
         </div>
       </div>
-
       {/* Barra de filtado por orden de agregados */}
       <div className={style.navbarContainer}>
         <div className={style.navBar}>
-          <div className={style.navItem}>
-            <button onClick={handleReseat} className={style.button}>Limpiar busqueda</button>
-          </div>
 
           <div className={style.navItem}>
-            <label>Ordenar por:</label>
-            <select onChange={handleOrderChange}>
-              <option value="asc">Menor-Mayor Precio</option>
-              <option value="desc">Mayor-Menor Precio</option>
-            </select>
+            <button onClick={handleReload} className={style.button}>
+              Limpiar busqueda
+            </button>
           </div>
 
           <div className={style.navItem}>
             <SearchBar />
           </div>
 
-          <div className={style.navItem}>
-            <label style={{ fontWeight: "bold", fontSize: "18px" }}>52</label>
-            <label>resultados encontrados</label>
-          </div>
-        </div>
-      </div>
 
-      <aside className={style.containerhome}>
-        <div className={style.filters}>
-          {/* Filtro por Categoría */}
-          <div className={style.filter}>
-            <label>Filtrar por Categoría:</label>
+          <div className={style.navItem}>
             <select
               className={style.select}
               onChange={(e) => filtercategory(e.target.value)}
@@ -131,35 +103,93 @@ export default function Shop() {
             </select>
           </div>
 
-          {/* Filtro por Orden de Precio */}
-          <div className={style.filter}>
-            <label>Ordenar por Precio:</label>
-            <select
-              className={style.select}
-              onChange={handleOrderChange}
-            >
+          <div className={style.navItem}>
+            <select className={style.select} onChange={handleOrderChange}>
               <option value="asc">Menor a Mayor</option>
               <option value="desc">Mayor a Menor</option>
             </select>
           </div>
+
+          {/* <div className={style.navItem}>
+            <label style={{ fontWeight: "bold", fontSize: "18px" }}>52</label>
+            <label>resultados encontrados</label>
+          </div> */}
+
+          <div className={style.navtool}>
+
+          <div className={style.navItem}>
+
+              {/* Fav */}
+              <div className={style.navItem}>
+                <Link
+                  to="/favorites"
+                  className={style.navLink}
+                  onClick={() => setCurrentPage("shop")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-heart-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                    />
+                  </svg>
+                </Link>
+              </div>
+
+              {/* carrito */}
+              <div className={style.navItem}>
+                <Link
+                  to="/cart"
+                  className={style.navLink}
+                  onClick={() => setCurrentPage("shop")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-cart-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                  </svg>
+                </Link>
+              </div>
+
+            </div>
+          </div>
         </div>
-      </aside>
-      <Paginado
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      </div>
       <article className={style.article}>
         {currentProducts && currentProducts.length ? (
           currentProducts.map((product) => (
             <Card key={product.id} product={product} />
           ))
         ) : (
-          <h3 align="center">No hay resultados para esta búsqueda.</h3>
+          <div className={style.messageBox}>
+            {/* <img src={plato} alt="img" className={style} /> */}
+
+            <h3>
+              {" "}
+              <span>Ouch!</span> <br></br>
+              Buscamos, pero no encontramos nada.
+            </h3>
+          </div>
         )}
       </article>
-    
-      
+
+
+      <Paginado
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
