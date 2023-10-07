@@ -1,56 +1,164 @@
 /* detail.module.css */
 
 .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    max-width: 80%;
-    max-height: 80%;
-    overflow-y: auto;
-    width: 1320px;
-    height: 600px;
-    flex-shrink: 0;
-    display: grid; /* Usamos CSS Grid para el diseño */
-    grid-template-columns: 50% auto; /* Divide el espacio en dos columnas: 50% y el resto */
-  }
-  
-  .productImage {
-    width: 556px;
-    height: 556px;
-    flex-shrink: 0;
-    padding-right: 20px;
-    flex-shrink: 0;
-  }
-  .detailsContainer{
-    display: inline-flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 24px;
-  }
-  .detailsContainer1{
-    display: flex;
-flex-direction: column;
-align-items: flex-start;
-gap: 20px;
-  }
-  .productDescription p{
-    width: 568px;
-    color: var(--gray-scale-gray-500, #808080);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  width: 800px;
+  height: 400px;
+  flex-shrink: 0;
+  display: grid; /* Usamos CSS Grid para el diseño */
+  grid-template-columns: 50% auto; /* Divide el espacio en dos columnas: 50% y el resto */
+}
 
-/* Body Small/Body Small, 400 */
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: 150%; /* 21px */
+.productImage {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  object-fit: cover; /* Ajusta la imagen manteniendo las proporciones y cubriendo el contenedor */
+  border-radius: 8px; /* Agrega bordes redondeados para una apariencia más suave */
+
+}
+
+.detailsContainer {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 20px;
+}
+
+/* Otras reglas de estilo... */
+
+.buttonClose {
+  color: rgb(255, 0, 0);
+  border: none;
+  background-color: #80808000;
+  position: fixed;
+  right: 0;
+  top: 0px;
+  z-index: 1;
+}
+
+.title {
+  text-decoration: none;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 1px;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+.price {
+  text-decoration: none;
+  font-size: 30px;
+  color: #000;
+}
+
+.description {
+  font-size: 15px;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.quantityContainer {
+  background-color: #ffffff00;
+  font-size: 12px;
+}
+
+.button {
+  font-size: 12px;
+  color: #000000;
+  text-decoration: none;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  background-color: #f5e20c;
+  padding: 1em 1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-weight: bolder;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 120%;
+  background-color: #b7b7b78a;
+  top: 50%;
+  transform: skewX(30deg) translate(-150%, -50%);
+  transition: all 0.5s;
+}
+
+.button:hover {
+  background-color: #f5e20c;
+  color: #353535;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.noButton {
+  display: none;
+}
+
+.fav {
+  border: none;
+  background-color: #35a4dc00;
+  font-size: x-large;
+  position: fixed;
+  right: 60px;
+  top: 40px;
+}
+
+/* Botón azul */
+.buttonBlue {
+  color: white;
+  background-color: #35a3dc;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  padding: 0.7rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  animation: pulse 1s infinite;
+}
+
+.buttonblue:hover {
+  background-color: #1f546d;
+}
+
+@media screen and (max-width: 800px) {
+  .button {
+    font-size: 10px;
+    padding: 0.5em 1em;
   }
-  
-  /* Otras reglas de estilo... */
-  
-  
+}
+
+@media screen and (max-width: 600px) {
+  .button {
+    font-size: 8px;
+    padding: 0.5em 1em;
+  }
+}

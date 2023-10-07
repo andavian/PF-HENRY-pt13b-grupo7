@@ -5,7 +5,6 @@
 }
 
 .card {
-
   position: relative;
   width: 260px;
   height: 300px;
@@ -23,9 +22,7 @@
   align-content: normal;
   color: rgb(0, 0, 0);
   padding: 10px;
-  padding-bottom: 20px
-
-
+  padding-bottom: 20px;
 }
 
 .card img {
@@ -52,8 +49,9 @@
 
 .description {
   font-size: 12px;
-
-
+  padding: 10px;
+  text-align: left;
+  text-transform: capitalize;
 }
 
 .details {

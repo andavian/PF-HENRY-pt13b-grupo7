@@ -14,7 +14,8 @@ export default function Detail({ product, onClose }) {
 
   // Agregar un efecto para reiniciar el estado isFav al cambiar de producto
   useEffect(() => {
-    const currentFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const currentFavorites =
+      JSON.parse(localStorage.getItem("favorites")) || [];
     const isProductInFavorites = currentFavorites.some(
       (favoriteProduct) => favoriteProduct.id === product.id
     );
@@ -97,33 +98,76 @@ export default function Detail({ product, onClose }) {
 
   return (
     <div>
+
       {detailState ? (
-        <div className={styles["modal"]}>
+        <div className={styles.modal}>
           <div className={styles.productImage}>
             <Carousel images={images} />
           </div>
+
+
+          <button className={styles.buttonClose} onClick={onClose}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          fill="currentColor"
+          class="bi bi-x-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+        </svg>
+      </button>
           <div className={styles.detailsContainer}>
-            <div>
-              <button onClick={onClose}>Cerrar</button>
+
+            {/* <button className={styles.buttonClose} onClick={onClose}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                class="bi bi-x-circle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+              </svg>
+            </button> */}
+
+            <div className={styles.detailsContainer}>
+              <h2 className={styles.title}>{detailState.title}</h2>
+              <p className={styles.price}>${detailState.price}</p>
+
+              <p className={styles.description}>{detailState.description}</p>
+              <div className={styles.fav}>
+                <button
+                  className={styles.fav}
+                  onClick={() =>
+                    isFav
+                      ? addToFavorites(detailState)
+                      : addToFavorites(detailState)
+                  }
+                >
+                  {isFav ? "❤️" : "🤍"}
+                </button>
+              </div>
             </div>
-            <div className={styles.detailsContainer1}>
-              <h2>{detailState.title}</h2>
-              <p className={styles.productPrice}>${detailState.price}</p>
-            </div>
-            <p className={styles.productDescription}>
-              {detailState.description}
-            </p>
+
             {quantity > 0 ? (
               <div className={styles.quantityContainer}>
-                <button onClick={decreaseQuantity}>-</button>
+                <button className={styles.button} onClick={decreaseQuantity}>
+                  -
+                </button>
                 <span>{quantity}</span>
-                <button onClick={increaseQuantity}>+</button>
+
+                <button className={styles.button} onClick={increaseQuantity}>
+                  +
+                </button>
               </div>
             ) : (
               <p>Producto agotado</p>
             )}
             <button
-              className={styles.buttonContainer}
+              className={styles.buttonBlue}
               onClick={() => addToCart(detailState, quantity)}
               disabled={detailState.stock === 0}
             >
@@ -145,18 +189,11 @@ export default function Detail({ product, onClose }) {
               </svg>
             </button>
 
-            <div className={styles.healthContainer}>
-              {isFav ? (
-                <button onClick={()=>{addToFavorites(detailState)}}>❤️</button>
-              ) : (
-                <button onClick={()=>{addToFavorites(detailState)}}>🤍</button>
-              )}
-            </div>
-           {detailState ? (
-             <span>{`Categorías: ${detailState.Category}`}</span>
-           ):(
-            <p>Indefinida</p>
-           )}
+            {detailState ? (
+              <span>{`Categorías: ${detailState.Category}`}</span>
+            ) : (
+              <p>Indefinida</p>
+            )}
           </div>
         </div>
       ) : (
