@@ -11,8 +11,14 @@
   padding-bottom: 80px;
   padding-top: 20px;
   padding-left: 20px;
-  padding-r: 20px;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+
 }
+
+
+
 
 /* Estilos para las imágenes en la columna izquierda */
 .footer-images {

@@ -26,7 +26,7 @@ function App() {
         <Route path="admin" element={<Admin />} />
         <Route path="favorites" element={<Favorites/>}/>
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
       <Footerbar />
     </div>
   );

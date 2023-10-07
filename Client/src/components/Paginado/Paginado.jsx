@@ -1,33 +1,56 @@
 import React from "react";
-import styles from "./Paginado.module.css";
+import style from "./Paginado.module.css";
+import Button from "../Paginado/Button/Button";
 
-const Paginado = ({ currentPage, totalPages, onPageChange }) => {
-  const pageNumbers = [];
+const Paginado = ({ 
+currentPage, 
+totalPages, 
+onPageChange 
+}) => {
+  const pages = [];
 
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
+  for (let i = 1; i <= Math.ceil(totalPages); i++) {
+    pages.push(i);
   }
 
+  const handleNext = () => {
+    if (currentPage < pages.length) {
+      onPageChange(currentPage + 1);
+    } else {
+      alert("¡Oh, parece que hemos agotado todas las busquedas disponibles!");
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    } else {
+      alert("¡Oh, parece que hemos agotado todas las busquedas disponibles!");
+    }
+  };
+
+  const onSpecificPage = (n) => {
+    onPageChange(n);
+  };
+
   return (
-    <nav>
-      <ul className={styles.ul}>
-        {pageNumbers.map((page) => (
-          <li
-            key={page}
-            className={`page-item ${currentPage === page ? styles.highlighted : ""}`}
-          >
+    <div className={style.container}>
+      <Button display={true} text="<" onClick={handlePrevious} />
+      <ul className={style.list}>
+        {pages.map((nPage) => (
+          <li key={nPage}>
             <button
-              className={styles.container}
-              onClick={() => onPageChange(page)}
+              onClick={() => onSpecificPage(nPage)}
+              className={currentPage === nPage ? style.isActive : style.noActive}
             >
-              {page}
+              {nPage}
             </button>
           </li>
         ))}
       </ul>
-    </nav>
+      <Button display={true} text=">" onClick={handleNext} />
+    </div>
   );
 };
 
 export default Paginado;
-
