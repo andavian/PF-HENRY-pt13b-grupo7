@@ -38,7 +38,7 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
-const { Category, Client, Option, Product, Sale } = sequelize.models;
+const { Category, Client, Option, Product, Sale, Favorite } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Option.belongsToMany(Product, { through: "Produc_Color" });
@@ -48,6 +48,10 @@ const { Category, Client, Option, Product, Sale } = sequelize.models;
 
 Category.hasMany(Product, { foreignKey: "categoryId" });
 Product.belongsTo(Category, { foreignKey: "categoryId" });
+
+Client.hasMany(Favorite, { foreignKey: "clientId" });
+Favorite.belongsTo(Client, {  foreignKey: "clientId" });
+
 
 // Sale.hasMany(Client);
 // Client.belongsTo(Sale);

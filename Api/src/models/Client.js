@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   sequelize.define('Client', {
-    id: {
+    clientId: {
         type:DataTypes.UUID,
         defaultValue:DataTypes.UUIDV4,
         allowNull: false,
@@ -15,20 +15,16 @@ module.exports = (sequelize) => {
         type : DataTypes.STRING,
         allowNull:false
     },
-    password:{
-        type : DataTypes.TEXT,
-        allowNull:false
-    },
     billingaddress:{
         type : DataTypes.TEXT,
     },
     country:{
-        type : DataTypes.INTEGER,
+        type : DataTypes.STRING,
     },
     locality:{
         type : DataTypes.STRING,
     },
     mobilenumber:{
-        type : DataTypes.INTEGER,
+        type : DataTypes.BIGINT,
     }
   },{freezeTableName: true,timestamps:false})}

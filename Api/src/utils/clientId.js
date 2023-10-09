@@ -10,7 +10,7 @@ const clientId = async (clientName) => {
     });
 
     if (client) {
-      return client.id;
+      return client.clientId;
     } else {
       throw new Error("Cliente no encontrada");
     }
