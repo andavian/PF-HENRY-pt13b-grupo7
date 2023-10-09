@@ -12,11 +12,13 @@ import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
 import Profile from "./components/ProfileUser/ProfileUser";
 import Favorites from "./pages/favorites/favorites";
+import CartButton from "./components/Cart-Button/CartButton";
 
 function App() {
   return (
     <div>
       <Navbar />
+      <CartButton/>
       <Routes>
         <Route path="mensaje" element={<Construccion />} />
         <Route path="home" element={<Home />} />
