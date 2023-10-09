@@ -2,11 +2,11 @@
 const { Router } = require("express");
 const productsRoutes = Router();
 
-const getProducts = require("../controllers/getProducts");
-const getProductByName = require("../controllers/getProductByName");
-const getProductsById = require("../controllers/getProductsById");
+const getProducts = require("../controllers/product - controllers/getProducts");
+const getProductByName = require("../controllers/product - controllers/getProductByName");
+const getProductsById = require("../controllers/product - controllers/getProductsById");
 
-const postProducts = require("../controllers/postProducts");
+const postProducts = require("../controllers/product - controllers/postProducts");
 
 productsRoutes.get("/search", async (req, res) => {
   try {

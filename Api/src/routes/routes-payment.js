@@ -4,7 +4,7 @@ const {
   createOrder,
   cancelOrder,
   captureOrder,
-} = require("../controllers/paymentControllers");
+} = require("../controllers/payments-controllers/paymentControllers");
 
 const paymentRoutes = Router();
 
