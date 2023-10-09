@@ -70,6 +70,18 @@ const captureOrder = async (req, res) => {
       },
     }
   );
+
+  if (
+    response.data.transaction["related_resources"[0]].sale.state === "completed"
+  ) {
+    const newOrder = await Order.create({
+      id: titleLowerCase,
+      price,
+      description: descriptionLowerCase,
+      primaryimage,
+      categoryId,
+    });
+  }
   console.log(response.data);
   res.redirect("/thanks");
 };
