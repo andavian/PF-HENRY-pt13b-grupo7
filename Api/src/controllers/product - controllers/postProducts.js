@@ -1,6 +1,6 @@
 //Post Products
-const { Product } = require("../db");
-const categoryID = require("../utils/categoryId");
+const { Product } = require("../../db");
+const categoryID = require("../../utils/categoryId");
 
 const postProducts = async ({
   title,

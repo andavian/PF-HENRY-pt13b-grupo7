@@ -59,7 +59,7 @@ const createOrder = async (req, res) => {
 const captureOrder = async (req, res) => {
   const { token, PayerID } = req.query;
 
-  const response = await axios.post(
+  const { data } = await axios.post(
     `${PAYPAL_API}/v2/checkout/orders/${token}/capture`,
     {},
     {
@@ -70,23 +70,23 @@ const captureOrder = async (req, res) => {
     }
   );
 
-  if (
-    response.data.transaction["related_resources"[0]].sale.state === "completed"
-  ) {
-    const newOrder = await Order.create({
-      id: titleLowerCase,
-      price,
-      description: descriptionLowerCase,
-      primaryimage,
-      categoryId,
-    });
-  }
-  console.log(response.data);
-  res.redirect("/thanks");
+  // if (
+  //   data.status === "COMPLETED"
+  // ) {
+  //   const newOrder = await Order.create({
+  //     id: titleLowerCase,
+  //     price,
+  //     description: descriptionLowerCase,
+  //     primaryimage,
+  //     categoryId,
+  //   });
+  // }
+  console.log(data);
+  res.redirect("http://localhost:3000/store");
 };
 
 const cancelOrder = (req, res) => {
-  res.redirect("/");
+  res.redirect("http://localhost:3000/cart");
 };
 
 module.exports = { createOrder, captureOrder, cancelOrder };

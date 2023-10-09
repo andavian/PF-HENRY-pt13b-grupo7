@@ -1,6 +1,6 @@
 //Get Products By Name
 const { Op } = require("sequelize");
-const { Product, Category } = require("../db");
+const { Product, Category } = require("../../db");
 
 const getProductByName = async (title) => {
   const titleLowerCase = title.toLowerCase();

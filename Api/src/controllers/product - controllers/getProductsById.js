@@ -1,5 +1,5 @@
 //Get Product Por ID
-const { Product, Category } = require("../db");
+const { Product, Category } = require("../../db");
 
 const getProductsById = async (id) => {
   const productIdBD = await Product.findOne({

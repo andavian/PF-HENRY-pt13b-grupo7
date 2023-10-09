@@ -1,5 +1,5 @@
 //Post Categorias, No permite repetir nombre de categorias, indistintamente se escriban Mayus. y Minus.
-const { Category } = require("../db");
+const { Category } = require("../../db");
 
 const postCategories = async ({ name, thumbnail }) => {
   if (!name || !thumbnail) throw Error("Faltan datos");

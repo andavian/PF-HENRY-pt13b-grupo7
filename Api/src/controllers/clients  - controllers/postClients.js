@@ -1,5 +1,5 @@
 //Post Client
-const { Client } = require("../db");
+const { Client } = require("../../db");
 
 const postClients = async ({
   name,
@@ -8,12 +8,20 @@ const postClients = async ({
   billingaddress,
   country,
   locality,
-  mobilenumber
+  mobilenumber,
 }) => {
   const nameLowerCase = name.toLowerCase();
   const emailLowerCase = email.toLowerCase();
-  
-  if (!name || !email || !password || !billingaddress || !country || !locality || !mobilenumber)
+
+  if (
+    !name ||
+    !email ||
+    !password ||
+    !billingaddress ||
+    !country ||
+    !locality ||
+    !mobilenumber
+  )
     throw Error("Faltan datos");
 
   const checkExistClient = await Client.findAll({
@@ -30,7 +38,7 @@ const postClients = async ({
     billingaddress,
     country,
     locality,
-    mobilenumber
+    mobilenumber,
   });
 
   return newClient;

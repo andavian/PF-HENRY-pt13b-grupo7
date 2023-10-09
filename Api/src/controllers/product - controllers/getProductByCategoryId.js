@@ -1,6 +1,6 @@
 //Get Products By Name
 
-const { Product, Category } = require("../db");
+const { Product, Category } = require("../../db");
 
 const getProductByCategoryId = async (categoryId) => {
   const product = await Product.findAll({
