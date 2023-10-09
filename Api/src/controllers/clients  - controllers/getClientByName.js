@@ -1,6 +1,6 @@
 //Get Client By Name
 const { Op } = require("sequelize");
-const { Client } = require("../db");
+const { Client } = require("../../db");
 
 const getClientByName = async (name) => {
   const nameLowerCase = name.toLowerCase();

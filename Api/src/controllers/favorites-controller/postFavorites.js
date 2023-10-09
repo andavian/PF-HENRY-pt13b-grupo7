@@ -1,12 +1,9 @@
 //Post Favoritos, No permite repetir nombre de categorias, indistintamente se escriban Mayus. y Minus.
-const { Favorite } = require("../db");
-const clientID = require ("../utils/clientId");
-const prodID = require ("../utils/prodId")
+const { Favorite } = require("../../db");
+const clientID = require("../../utils/clientId");
+const prodID = require("../../utils/prodId");
 
-const postFavorites = async ({ 
-    nameProd,
-    nameClient,
-}) => {
+const postFavorites = async ({ nameProd, nameClient }) => {
   if (!nameProd || !nameClient) throw Error("Faltan datos");
 
   const nameLowerCaseProd = nameProd.toLowerCase();
@@ -15,7 +12,6 @@ const postFavorites = async ({
   const prodId = await prodID(nameProd);
 
   const nameFav = nameLowerCaseProd.concat(nameLowerCaseClient);
-
 
   const checkExistFavorite = await Favorite.findAll({
     where: {

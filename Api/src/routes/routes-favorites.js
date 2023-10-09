@@ -2,9 +2,9 @@
 const { Router } = require("express");
 const favoritesRoutes = Router();
 
-const getFavorites = require("../controllers/getFavorites");
-const postFavorites = require("../controllers/postFavorites");
-const deleteFavorites = require("../controllers/deleteFavorites");
+const getFavorites = require("../controllers/favorites-controller/getFavorites");
+const postFavorites = require("../controllers/favorites-controller/postFavorites");
+const deleteFavorites = require("../controllers/favorites-controller/deleteFavorites");
 
 favoritesRoutes.get("/", async (req, res) => {
   try {

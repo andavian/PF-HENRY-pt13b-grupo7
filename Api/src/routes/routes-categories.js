@@ -2,11 +2,11 @@
 const { Router } = require("express");
 const categoriesRoutes = Router();
 
-const getCategories = require("../controllers/getCategories");
+const getCategories = require("../controllers/categories - controllers/getCategories");
 //const getCategoriesById = require("../controllers/getCategoriesById");
-const postCategories = require("../controllers/postCategories");
-const getProductByCategoryId = require("../controllers/getProductByCategoryId");
-const deleteCategories = require("../controllers/deleteCategories");
+const postCategories = require("../controllers/categories - controllers/postCategories");
+const getProductByCategoryId = require("../controllers/categories - controllers/getCategoriesById");
+const deleteCategories = require("../controllers/categories - controllers/deleteCategories");
 
 categoriesRoutes.get("/:id", async (req, res) => {
   try {
