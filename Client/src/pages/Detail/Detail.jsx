@@ -135,9 +135,6 @@ export default function Detail({ product, onClose }) {
 
             <div className={styles.detailsContainer}>
               <h2 className={styles.title}>{detailState.title}</h2>
-              <p className={styles.price}>${detailState.price}</p>
-
-              <p className={styles.description}>{detailState.description}</p>
               <div className={styles.fav}>
                 <button
                   className={styles.fav}
@@ -150,9 +147,14 @@ export default function Detail({ product, onClose }) {
                   {isFav ? "❤️" : "🤍"}
                 </button>
               </div>
+              <p className={styles.price}>${detailState.price}</p>
+
+              <p className={styles.description}>{detailState.description}</p>
+              
             </div>
 
             {quantity > 0 ? (
+              
               <div className={styles.quantityContainer}>
                 <button className={styles.button} onClick={decreaseQuantity}>
                   -
@@ -163,6 +165,7 @@ export default function Detail({ product, onClose }) {
                   +
                 </button>
               </div>
+
             ) : (
               <p>Producto agotado</p>
             )}
