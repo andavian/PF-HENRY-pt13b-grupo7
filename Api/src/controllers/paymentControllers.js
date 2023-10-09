@@ -1,13 +1,12 @@
+require("dotenv").config();
 const axios = require("axios");
-const {
-  PAYPAL_API,
-  PAYPAL_API_CLIENT,
-  PAYPAL_API_SECRET,
-} = require("../utils/envConfig");
+const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET } = process.env;
 
 const createOrder = async (req, res) => {
+  //const { purchase_units } = req.body;
   const order = {
     intent: "CAPTURE",
+    //purchase_units,
     purchase_units: [
       {
         reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
@@ -53,7 +52,7 @@ const createOrder = async (req, res) => {
       Authorization: `Bearer ${access_token}`,
     },
   });
-  console.log(response.data);
+  //console.log(response.data);
   res.json(response.data);
 };
 
@@ -70,8 +69,8 @@ const captureOrder = async (req, res) => {
       },
     }
   );
-  console.log(response.data);
-  res.redirect("/thanks");
+  console.log("capture data", response.data);
+  res.redirect("http://localhost:3000/shop");
 };
 
 const cancelOrder = (req, res) => {
