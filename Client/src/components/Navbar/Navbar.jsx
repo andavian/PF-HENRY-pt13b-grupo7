@@ -73,7 +73,6 @@ const NavBar = ({ setCurrentPage }) => {
         </div>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
 
-
         {/* <div className={style.navItem}>
           <Link
             to="/favorites"
@@ -115,7 +114,6 @@ const NavBar = ({ setCurrentPage }) => {
             </svg>
           </Link>
         </div> */}
-
       </div>
 
       {/* <div className={style.navBar}>

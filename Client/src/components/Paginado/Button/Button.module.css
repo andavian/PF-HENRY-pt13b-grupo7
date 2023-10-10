@@ -10,8 +10,8 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  font-weight: bolder;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 2px;
 }
 
 .button:before {
@@ -26,7 +26,8 @@
 }
 
 .button:hover {
-  background-color: #f5e20c;
+  transform: scale(1.1);
+  background: linear-gradient(to right, #ffea00, #f6ff00);
   color: #353535;
 }
 

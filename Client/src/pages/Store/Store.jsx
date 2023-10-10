@@ -23,7 +23,7 @@ export default function Shop() {
   const categories = useSelector((state) => state.reducer.categories);
   const currentPage = useSelector((state) => state.reducer.currentPage);
   const search = useSelector((state) => state.reducer.search);
-  const [productPerPage] = useState(8); // Cambiado a 10 productos por página
+  const [productPerPage] = useState(10); // Cambiado a 10 productos por página
 
   // Cálculo de índices para paginación
   const indexLastProduct = currentPage * productPerPage;
@@ -72,10 +72,10 @@ export default function Shop() {
           </h2>
         </div>
       </div>
+      
       {/* Barra de filtado por orden de agregados */}
       <div className={style.navbarContainer}>
         <div className={style.navBar}>
-
           <div className={style.navItem}>
             <button onClick={handleReload} className={style.button}>
               Limpiar busqueda
@@ -85,7 +85,6 @@ export default function Shop() {
           <div className={style.navItem}>
             <SearchBar />
           </div>
-
 
           <div className={style.navItem}>
             <select
@@ -116,9 +115,7 @@ export default function Shop() {
           </div> */}
 
           <div className={style.navtool}>
-
-          <div className={style.navItem}>
-
+            <div className={style.navItem}>
               {/* Fav */}
               <div className={style.navItem}>
                 <Link
@@ -161,11 +158,11 @@ export default function Shop() {
                   </svg>
                 </Link>
               </div>
-
             </div>
           </div>
         </div>
       </div>
+
       <article className={style.article}>
         {currentProducts && currentProducts.length ? (
           currentProducts.map((product) => (
@@ -183,7 +180,6 @@ export default function Shop() {
           </div>
         )}
       </article>
-
 
       <Paginado
         currentPage={currentPage}
