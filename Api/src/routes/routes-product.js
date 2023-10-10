@@ -45,7 +45,9 @@ productsRoutes.get("/", async (req, res) => {
 productsRoutes.post("/", async (req, res) => {
   try {
     const response = req.body;
+    console.log(response);
     const productPost = await postProducts(response);
+    
     res.status(201).json(productPost);
   } catch (error) {
     res.status(500).json({ error: error.message });
