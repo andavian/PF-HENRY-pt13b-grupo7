@@ -26,7 +26,7 @@ const accessToken = async () => {
 };
 
 const createOrder = async (req, res) => {
-  //const { purchase_units } = req.body;
+  const { value } = req.body;
   const order = {
     intent: "CAPTURE",
     //purchase_units,
@@ -35,9 +35,9 @@ const createOrder = async (req, res) => {
         reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
         amount: {
           currency_code: "USD",
-          value: "100.00",
+          value,
         },
-        description: "teclado",
+        //items,
       },
     ],
     application_context: {
@@ -46,7 +46,7 @@ const createOrder = async (req, res) => {
       landing_page: "LOGIN",
       user_action: "PAY_NOW",
       return_url: "http://localhost:3001/payment/capture-order",
-      cancel_url: "https://localhost:3001/payment/cancel-order",
+      cancel_url: "http://localhost:3000/store",
     },
   };
 
@@ -84,10 +84,11 @@ const captureOrder = async (req, res) => {
   //   });
   // }
   console.log(data);
-  res.redirect("http://localhost:3000/store");
+  res.redirect("http://localhost:3000/confirmacion");
 };
 
 const cancelOrder = (req, res) => {
+  const { token, PayerID } = req.query;
   res.redirect("http://localhost:3000/cart");
 };
 

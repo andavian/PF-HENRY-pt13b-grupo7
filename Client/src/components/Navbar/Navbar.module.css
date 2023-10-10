@@ -90,22 +90,22 @@
   align-items: center;
   padding: 15px 30px;
   top: 0;
-  z-index: 100;
+  z-index: 2;
 }
 
 /* Estilos para la barra de navegación */
 .navBar {
-  margin: auto auto; /* Añadido 'auto' para centrar horizontalmente */
+  margin: 5px 20px;/* Añadido 'auto' para centrar horizontalmente */
   display: flex;
   justify-content: center; /* Centra horizontalmente los elementos hijos */
   gap: 3rem;
 }
 
 .navtool {
-  margin: 5px 20px; /* Añadido 'auto' para centrar horizontalmente */
+  margin: 5px 20px;/* Añadido 'auto' para centrar horizontalmente */
   display: flex;
-  justify-content: flex-end; /* Centra horizontalmente los elementos hijos */
-  gap: 20px;
+  justify-content: center; /* Centra horizontalmente los elementos hijos */
+  gap: 3rem;
 }
 
 /* Estilos para los elementos del navbar */
@@ -159,3 +159,4 @@
     margin-top: 10px;
   }
 }
+
