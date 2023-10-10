@@ -2,6 +2,29 @@ require("dotenv").config();
 const axios = require("axios");
 const { PAYPAL_API, PAYPAL_API_CLIENT, PAYPAL_API_SECRET } = process.env;
 
+const accessToken = async () => {
+  const params = new URLSearchParams();
+  params.append("grant_type", "client_credentials");
+
+  const {
+    data: { access_token },
+  } = await axios.post(
+    "https://api-m.sandbox.paypal.com/v1/oauth2/token",
+    params,
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      auth: {
+        username: PAYPAL_API_CLIENT,
+        password: PAYPAL_API_SECRET,
+      },
+    }
+  );
+  console.log(access_token);
+  return access_token;
+};
+
 const createOrder = async (req, res) => {
   //const { purchase_units } = req.body;
   const order = {
@@ -27,32 +50,12 @@ const createOrder = async (req, res) => {
     },
   };
 
-  const params = new URLSearchParams();
-  params.append("grant_type", "client_credentials");
-
-  const {
-    data: { access_token },
-  } = await axios.post(
-    "https://api-m.sandbox.paypal.com/v1/oauth2/token",
-    params,
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      auth: {
-        username: PAYPAL_API_CLIENT,
-        password: PAYPAL_API_SECRET,
-      },
-    }
-  );
-  console.log(access_token);
-
   const response = await axios.post(`${PAYPAL_API}/v2/checkout/orders`, order, {
     headers: {
-      Authorization: `Bearer ${access_token}`,
+      Authorization: `Bearer ${await accessToken()}`,
     },
   });
-  //console.log(response.data);
+
   res.json(response.data);
 };
 
@@ -63,9 +66,8 @@ const captureOrder = async (req, res) => {
     `${PAYPAL_API}/v2/checkout/orders/${token}/capture`,
     {},
     {
-      auth: {
-        username: PAYPAL_API_CLIENT,
-        password: PAYPAL_API_SECRET,
+      headers: {
+        Authorization: `Bearer ${await accessToken()}`,
       },
     }
   );

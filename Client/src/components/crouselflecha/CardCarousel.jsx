@@ -15,6 +15,7 @@ const ProductCarousel = ({ products }) => {
       prevStartIndex === 0 ? products.length - 1 : prevStartIndex - 1
     );
   };
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -37,9 +38,11 @@ const ProductCarousel = ({ products }) => {
 
   return (
     <div className={styles["carousel-container"]}>
+
       <button onClick={prevProduct} className={styles["arrow-button"]}>
         &#9664;
       </button>
+
       <div className={styles["card-container"]}>
         {visibleCards.map((product, index) => (
           <div
@@ -55,6 +58,7 @@ const ProductCarousel = ({ products }) => {
           </div>
         ))}
       </div>
+
       <button onClick={nextProduct} className={styles["arrow-button"]}>
         &#9654;
       </button>
