@@ -10,11 +10,10 @@
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
-  max-width: 80%;
-  max-height: 80%;
+  max-width: 100%;
+  max-height: 100%;
   overflow-y: auto;
-  width: 800px;
-  height: 400px;
+  width: 900px;
   flex-shrink: 0;
   display: grid; /* Usamos CSS Grid para el diseño */
   grid-template-columns: 50% auto; /* Divide el espacio en dos columnas: 50% y el resto */
@@ -70,10 +69,11 @@
   text-transform: capitalize;
 }
 
-.quantityContainer {
-  background-color: #ffffff00;
-  font-size: 12px;
-}
+
+ .quantityContainer {
+    display: flex;
+    align-items: center;
+  }
 
 .button {
   font-size: 12px;
@@ -92,20 +92,20 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.button:before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 120%;
-  background-color: #b7b7b78a;
-  top: 50%;
-  transform: skewX(30deg) translate(-150%, -50%);
-  transition: all 0.5s;
+/* Estilos específicos para el botón de disminuir cantidad */
+.button:first-child {
+  background-color: #e74c3c;
 }
 
-.button:hover {
-  background-color: #f5e20c;
-  color: #353535;
+/* Estilos específicos para el botón de aumentar cantidad */
+.button:last-child {
+  background-color: #2ecc71;
+}
+
+/* Estilos para el span que muestra la cantidad */
+span {
+  font-size: 18px;
+  margin: 0 8px;
 }
 
 .button:active {
@@ -121,8 +121,8 @@
   background-color: #35a4dc00;
   font-size: x-large;
   position: fixed;
-  right: 60px;
-  top: 40px;
+  right: 50px;
+  top: 60px;
 }
 
 /* Botón azul */
@@ -147,18 +147,4 @@
 
 .buttonblue:hover {
   background-color: #1f546d;
-}
-
-@media screen and (max-width: 800px) {
-  .button {
-    font-size: 10px;
-    padding: 0.5em 1em;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .button {
-    font-size: 8px;
-    padding: 0.5em 1em;
-  }
 }

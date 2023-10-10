@@ -1,9 +1,25 @@
 .button {
   color: rgb(0, 0, 0);
-  background-color: rgb(255, 251, 0);
+  background-color: rgb(255, 225, 0);
   border-radius: 0.5rem;
-  padding: 5px 10px;
-  font-size: small;
+  padding: 10px 10px;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-color: #000000;;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buttonBorder {
+  color: rgba(0, 0, 0, 0.417);
+  background-color: rgba(98, 98, 98, 0.404);
+  border-radius: 0.5rem;
+  padding: 10px 10px;
+  font-size: 16px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -14,41 +30,17 @@
 }
 
 
-.buttonBorder {
-  color: rgba(0, 0, 0, 0.417);
-  /* background-color: rgba(98, 98, 98, 0.404); */
-  border-radius: 0.5rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border:  rgba(0, 0, 0, 0.417);
-  border-width: 2px;
-  border-style: solid;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-
-
-.buttonBorder:hover {
-  color: rgb(71, 71, 66);
-  background-color: #45454563;
-  border-radius: 0.5rem;
-  text-align: center;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border-width: 2px;
-  border-style: solid;
-  cursor: pointer;
-  font-weight: bold;
-}
-
 .button:hover {
   color: rgb(71, 71, 66);
   background-color: #c8cb07;
 }
+
+.buttonBorder:hover {
+  color: rgb(71, 71, 66);
+  background-color: #45454563;
+
+}
+
 
 
 .button svg {
@@ -63,10 +55,9 @@
   animation: spin 0.5s linear;
 }
 
-
 .navLink {
   color: rgba(73, 73, 73, 0.628);
-   
+
   text-align: center;
   text-decoration: none;
   display: inline-flex;
@@ -78,8 +69,6 @@
 
 .navLink:hover {
   color: #000000;
-
-
 }
 
 @keyframes spin {
@@ -113,7 +102,7 @@
 }
 
 .navtool {
-  margin: 5px 20px ; /* Añadido 'auto' para centrar horizontalmente */
+  margin: 5px 20px; /* Añadido 'auto' para centrar horizontalmente */
   display: flex;
   justify-content: flex-end; /* Centra horizontalmente los elementos hijos */
   gap: 20px;
@@ -129,8 +118,6 @@
 .navItem svg {
   margin: 5px;
 }
-
-
 
 /* Contenedor del logo */
 .logoContainer {

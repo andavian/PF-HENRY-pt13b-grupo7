@@ -3,9 +3,9 @@ import style from "./Paginado.module.css";
 import Button from "../Paginado/Button/Button";
 
 const Paginado = ({ 
-currentPage, 
-totalPages, 
-onPageChange 
+  currentPage, 
+  totalPages, 
+  onPageChange 
 }) => {
   const pages = [];
 
@@ -13,11 +13,17 @@ onPageChange
     pages.push(i);
   }
 
+  const pagesPerBlock = 5;
+  const currentBlock = Math.ceil(currentPage / pagesPerBlock);
+
+  const startPage = (currentBlock - 1) * pagesPerBlock + 1;
+  const endPage = Math.min(currentBlock * pagesPerBlock, pages.length);
+
   const handleNext = () => {
     if (currentPage < pages.length) {
       onPageChange(currentPage + 1);
     } else {
-      alert("¡Oh, parece que hemos agotado todas las busquedas disponibles!");
+      alert("¡Oh, parece que hemos agotado todas las búsquedas disponibles!");
     }
   };
 
@@ -25,8 +31,16 @@ onPageChange
     if (currentPage > 1) {
       onPageChange(currentPage - 1);
     } else {
-      alert("¡Oh, parece que hemos agotado todas las busquedas disponibles!");
+      alert("¡Oh, parece que hemos agotado todas las búsquedas disponibles!");
     }
+  };
+
+  const handleGoToStart = () => {
+    onPageChange(1);
+  };
+
+  const handleGoToEnd = () => {
+    onPageChange(pages.length);
   };
 
   const onSpecificPage = (n) => {
@@ -35,9 +49,15 @@ onPageChange
 
   return (
     <div className={style.container}>
-      <Button display={true} text="<" onClick={handlePrevious} />
+      {currentPage > 1 && (
+        <>
+          <Button display={true} text="<<" onClick={handleGoToStart} />
+          <Button display={true} text="< anterior" onClick={handlePrevious} />
+        </>
+      )}
+      
       <ul className={style.list}>
-        {pages.map((nPage) => (
+        {pages.slice(startPage - 1, endPage).map((nPage) => (
           <li key={nPage}>
             <button
               onClick={() => onSpecificPage(nPage)}
@@ -47,8 +67,17 @@ onPageChange
             </button>
           </li>
         ))}
+        {endPage < pages.length && (
+          <li>
+            <span>...</span>
+          </li>
+        )}
       </ul>
-      <Button display={true} text=">" onClick={handleNext} />
+
+      <Button display={true} text=" siguente >" onClick={handleNext} />
+      {currentPage < pages.length && (
+        <Button display={true} text=">>|" onClick={handleGoToEnd} />
+      )}
     </div>
   );
 };

@@ -13,32 +13,35 @@
   list-style: none;
   display: flex;
   padding: 5px;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .noActive {
   cursor: pointer;
   text-align: center;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   display: grid;
   border-radius: 5px;
   padding: 0.2em;
   margin: 2px;
   color: rgb(0, 0, 0);
-  background: #ffffff;
+  background: linear-gradient(to right, #f7f7f7, rgb(251, 251, 251));
   transition: all 0.5s;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border: none;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 .isActive {
   cursor: pointer;
-  text-align: center;
   width: 30px;
   height: 30px;
   display: grid;
@@ -46,8 +49,12 @@
   padding: 0.4em;
   margin: 2px;
   color: #000000;
+  transition: all 0.5s;
   background-color: #f5e20c;
   border: none;
+  font-size: small;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .isActive:hover {
@@ -57,9 +64,11 @@
 }
 
 .noActive:hover {
+
   border-radius: 100px;
   color: rgb(0, 0, 0);
-  background-color: #f5e20c;
+  transform: scale(1.5);
+  background: linear-gradient(to right, #ffea00, #f6ff00);
 }
 
 .li {
@@ -70,7 +79,7 @@
 
 /* BOTON PAGINADO */
 .button {
-  font-size: px;
+  font-size: 14px;
   color: #ffffff;
   text-decoration: none;
   border: none;
@@ -89,16 +98,16 @@
   position: absolute;
   width: 100px;
   height: 120%;
-  background-color: white; 
+  background-color: white;
   top: 50%;
   transform: skewX(30deg) translate(-150%, -50%);
   transition: all 0.5s;
 }
 
 .button:hover {
-  background-color: #f5e20c;
-  color: white;}
-
+  background: linear-gradient(to right, #ffea00, #f6ff00);
+  color: white;
+}
 
 .button:active {
   transform: scale(0.9);
