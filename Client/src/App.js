@@ -18,9 +18,12 @@ import CartButton from "./components/Cart-Button/CartButton";
 function App() {
   return (
     <div>
+
+   
       <Navbar />
       <CartButton/>
       <Routes>
+      <Route path="Confirmacion" element={<Confirmacion/>}/>
         <Route path="mensaje" element={<Construccion />} />
         <Route path="home" element={<Home />} />
         <Route path="store" element={<Store />} /> 
@@ -28,7 +31,7 @@ function App() {
         <Route path="cart" element={<Cart/>} />
         <Route path="admin" element={<Admin />} />
         <Route path="favorites" element={<Favorites/>}/>
-        <Route path="Confirmacion" element={<Confirmacion/>}/>
+    
       </Routes>
       <Footer />
       <Footerbar />
