@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import validateForm from "./validation.js";
 import FormCloudinary from "./FormCloudinary.jsx";
+import { postProduct } from "../../redux/actions.js";
 
 import styles from "./form.module.css";
 
@@ -14,10 +15,10 @@ const FormProducts = () => {
   const [image, setImage] = useState("");
   const [productData, setProductData] = useState({
     title: "",
-    image: "",
+    primaryimage: "",
     price: "",
     description: "",
-    category: "",
+    categoryName: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -32,7 +33,7 @@ const FormProducts = () => {
     );
   };
 
-  productData.image = image;
+  productData.primaryimage = image;
 
   //const categoriesOption = console.log(categories);
   // categories.length !== 0 ? (
@@ -47,31 +48,32 @@ const FormProducts = () => {
   //   <option>Crear categoría</option>
   // );
   //Crear un producto
-  const create = async (productData) => {
-    try {
-      const URL = "http://localhost:3001/products";
-      await axios.post(URL, productData);
-      dispatch(createCategory(productData));
-      alert("Product successfully created");
-    } catch (error) {
-      console.error(error);
-      alert(error.response.data.message);
-    }
-  };
+  // const create = async (productData) => {
+  //   try {
+  //     const URL = "http://localhost:3001/products";
+  //     await axios.post(URL, productData);
+  //     dispatch(createCategory(productData));
+  //     alert("Product successfully created");
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert(error.response.data.message);
+  //   }
+  // };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     // Checka erores antes de enviar
     if (Object.keys(errors).length === 0) {
-      await create(productData);
+      dispatch(postProduct(productData));
       setProductData({
         title: "",
-        image: "",
+        primaryimage: "",
         price: "",
         description: "",
-        category: "",
+        categoryName: "",
       });
+      alert("Product successfully created");
     } else {
       alert("Please fill in all the fields correctly");
     }
@@ -86,7 +88,7 @@ const FormProducts = () => {
           <div className={styles.containerGrid}>
             <div className={styles.inputLabel}>
               <select
-                name="category"
+                name="categoryName"
                 className={styles.input}
                 onChange={handleChange}
               >
@@ -113,11 +115,11 @@ const FormProducts = () => {
             </div>
             <div className={styles.inputLabel}>
               <input
-                name="image"
+                name="primaryimage"
                 type="text"
                 placeholder="URL Imagen"
                 className={styles.input}
-                value={productData.image}
+                value={productData.primaryimage}
                 onChange={handleChange}
               />
               <FormCloudinary image={image} setImage={setImage} />
@@ -149,7 +151,7 @@ const FormProducts = () => {
             {Object.keys(errors).length === 0 && productData.title ? (
               <button className={styles.btn}>Submit</button>
             ) : (
-              <div></div>
+              <div>{console.log(errors)}</div>
             )}
           </div>
         </form>

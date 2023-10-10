@@ -2,8 +2,8 @@ export default function validateForm(productData) {
   const errors = {};
 
   // validación de Categoría
-  if (!productData.category) {
-    errors.category = "La categoría es requerida.";
+  if (!productData.categoryName) {
+    errors.categoryName = "La categoría es requerida.";
   }
   // Validación de Titulo
   if (!productData.title) {
@@ -15,14 +15,14 @@ export default function validateForm(productData) {
   }
 
   // Validación de imagen
-  if (!productData.image) {
-    errors.image = "La imagen es requerida.";
+  if (!productData.primaryimage) {
+    errors.primaryimage = "La imagen es requerida.";
   } else if (
     !/^(https?:\/\/)?(www\.)?[\w-]+(\.[a-z]+)+([/?].*)?\.(jpg|jpeg|png|gif|svg)$/i.test(
-      productData.image
+      productData.primaryimage
     )
   ) {
-    errors.image =
+    errors.primaryimage =
       "La url de la imagen debe ser una URL válida y dene tener la extension correcta";
   }
 

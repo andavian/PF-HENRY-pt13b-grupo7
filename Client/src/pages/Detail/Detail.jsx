@@ -190,7 +190,7 @@ export default function Detail({ product, onClose }) {
             </button>
 
             {detailState ? (
-              <span>{`Categorías: ${detailState.Category}`}</span>
+              <span>{`Categorías: ${detailState.Category?.name }`}</span>
             ) : (
               <p>Indefinida</p>
             )}

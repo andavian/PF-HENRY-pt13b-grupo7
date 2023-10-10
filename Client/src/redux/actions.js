@@ -122,3 +122,19 @@ export const createCategory = (payload) => {
     dispatch(addCategory(payload));
   };
 };
+// POST PRODUCT
+export const postProduct = createAsyncThunk(
+  "reducerProducts/postProduct",
+  async (product) => {
+    try {
+      const response = await axios.post("http://localhost:3001/products", product); // Pasa el producto como segundo argumento
+      console.log(response.data);
+       return response.data
+       
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+
