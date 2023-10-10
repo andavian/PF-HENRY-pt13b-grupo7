@@ -45,7 +45,6 @@ export default function Card({ product }) {
 
   return (
     <div className={styles.container}>
-
       <div className={styles.card}>
         <img
           src={product.primaryimage}
@@ -83,26 +82,24 @@ export default function Card({ product }) {
               Agregar
             </>
           )}
-        </button
+        </button>
 
+        <div className={styles.cardinfo}>
+          <div className={styles.price}>$ {product.price}</div>
 
-          <div className={styles.cardinfo}>
-            <div className={styles.price}>$ {product.price}</div>
+          <Link className={styles.link}>
+            <div className={styles.title} onClick={() => openModal(product)}>
+              {truncatedTitle}
+            </div>
+          </Link>
 
-            <Link className={styles.link}>
-              <div className={styles.title} onClick={() => openModal(product)}>
-                {truncatedTitle}
-              </div>
-            </Link>
+          {modalOpen && selectedProduct && (
+            <div className={styles["modal-overlay"]}>
+              <Detail product={selectedProduct} onClose={closeModal} />
+            </div>
+          )}
 
-            {modalOpen && selectedProduct && (
-              <div className={styles["modal-overlay"]}>
-                <Detail product={selectedProduct} onClose={closeModal} />
-              </div>
-            )}
-
-            <div className={styles.description}>{product.description}</div>
-          </div>
+          <div className={styles.description}>{product.description}</div>
         </div>
       </div>
     </div>
