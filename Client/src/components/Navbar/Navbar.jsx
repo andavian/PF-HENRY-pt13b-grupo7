@@ -6,6 +6,8 @@ import logo from "../../images/logoshop.svg";
 import LoginButton from "../LoginButton/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../LogoutButton/LogoutButton";
+import Profile from "../Profile/Profile";
+
 const NavBar = ({ setCurrentPage }) => {
   const { isAuthenticated } = useAuth0();
   const handleReload = () => {
@@ -72,7 +74,7 @@ const NavBar = ({ setCurrentPage }) => {
           </Link>
         </div>
         {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-
+        
         {/* <div className={style.navItem}>
           <Link
             to="/favorites"
@@ -115,7 +117,7 @@ const NavBar = ({ setCurrentPage }) => {
           </Link>
         </div> */}
       </div>
-
+      <Profile/>
       {/* <div className={style.navBar}>
         <div className={style.navItem}>
           <SearchBar setCurrentPage={setCurrentPage} />
