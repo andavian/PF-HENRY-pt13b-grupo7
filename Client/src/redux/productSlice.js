@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName } from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -94,6 +94,9 @@ export const productSlice = createSlice({
       })
       .addCase(getProductByName.fulfilled,(state, { payload })=> {
         state.catalog = payload;
+      })
+      .addCase(postProduct.fulfilled, (state, { payload }) => {
+        state.catalog.unshift(payload);
       })
   },
 });
