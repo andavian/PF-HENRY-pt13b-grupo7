@@ -27,6 +27,7 @@ function App() {
         <Route path="cart" element={<Cart/>} />
         <Route path="admin" element={<Admin />} />
         <Route path="favorites" element={<Favorites/>}/>
+        <Route path="store/:category" element={<Store/>} />
       </Routes>
       <Footer />
       <Footerbar />

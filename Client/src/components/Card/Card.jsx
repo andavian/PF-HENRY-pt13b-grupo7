@@ -103,6 +103,6 @@ export default function Card({ product }) {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
