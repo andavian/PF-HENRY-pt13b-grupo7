@@ -1,0 +1,104 @@
+/* Profile.css */
+
+.profilecontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+  }
+  
+  .profilepicture {
+    
+    border: 1.5px solid #000000;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 5px; 
+    
+   
+  }
+  
+  .profilename {
+    font-size: 15px;
+    margin-bottom: 1px;
+  }
+  
+  .profileemail {
+    color: #555;
+    font-size: 12px;
+    margin-bottom: 1px;
+  }
+  
+
+
+
+.logoutbutton {
+    background-color: #dc3545; /* Rojo de Bootstrap, puedes cambiarlo según tus preferencias */
+    color: #fff;
+    border: none;
+    padding: 1px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .logoutbutton:hover {
+    background-color: #bd2130; /* Cambio de color al pasar el ratón sobre el botón */
+  }
+
+
+
+/* Profile.css */
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .profile-dropdown img {
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    padding: 10px;
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 20px;
+    border: 1px solid #e0e0e1;
+  
+    
+  }
+  
+  .profile-dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .separtador{
+    border-bottom: 1px solid #e0e0e1;
+    margin: 0 0 15px;
+    padding: 0 0 15px;
+  }
+
+
+  .conteinerList{
+    margin: 0 0 5px;
+    padding: 0 0 0px;
+
+  }
+  
