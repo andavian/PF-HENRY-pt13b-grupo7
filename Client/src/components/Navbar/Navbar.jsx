@@ -7,7 +7,6 @@ import LoginButton from "../LoginButton/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutButton from "../LogoutButton/LogoutButton";
 import Profile from "../Profile/Profile";
-
 const NavBar = ({ setCurrentPage }) => {
   const { isAuthenticated } = useAuth0();
   const handleReload = () => {
