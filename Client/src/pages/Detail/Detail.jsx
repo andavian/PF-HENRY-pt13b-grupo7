@@ -98,41 +98,26 @@ export default function Detail({ product, onClose }) {
 
   return (
     <div>
-
       {detailState ? (
         <div className={styles.modal}>
           <div className={styles.productImage}>
             <Carousel images={images} />
           </div>
 
-
           <button className={styles.buttonClose} onClick={onClose}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
-          fill="currentColor"
-          className="bi bi-x-circle-fill"
-          viewBox="0 0 16 16"
-        >
-          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-        </svg>
-      </button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="30"
+              height="30"
+              fill="currentColor"
+              className="bi bi-x-circle-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
+            </svg>
+          </button>
+
           <div className={styles.detailsContainer}>
-
-            {/* <button className={styles.buttonClose} onClick={onClose}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30"
-                height="30"
-                fill="currentColor"
-                class="bi bi-x-circle-fill"
-                viewBox="0 0 16 16"
-              >
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
-              </svg>
-            </button> */}
-
             <div className={styles.detailsContainer}>
               <h2 className={styles.title}>{detailState.title}</h2>
               <div className={styles.fav}>
@@ -150,11 +135,9 @@ export default function Detail({ product, onClose }) {
               <p className={styles.price}>${detailState.price}</p>
 
               <p className={styles.description}>{detailState.description}</p>
-              
             </div>
 
             {quantity > 0 ? (
-              
               <div className={styles.quantityContainer}>
                 <button className={styles.button} onClick={decreaseQuantity}>
                   -
@@ -165,10 +148,10 @@ export default function Detail({ product, onClose }) {
                   +
                 </button>
               </div>
-
             ) : (
               <p>Producto agotado</p>
             )}
+
             <button
               className={styles.buttonBlue}
               onClick={() => addToCart(detailState, quantity)}
@@ -193,11 +176,12 @@ export default function Detail({ product, onClose }) {
             </button>
 
             {detailState ? (
-              <span>{`Categorías: ${detailState.Category?.name }`}</span>
+              <span>{`Categorías: ${detailState.Category?.name}`}</span>
             ) : (
               <p>Indefinida</p>
             )}
           </div>
+          
         </div>
       ) : (
         <p>Producto no encontrado</p>
