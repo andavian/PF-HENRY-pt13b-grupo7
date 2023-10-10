@@ -50,10 +50,24 @@ const Cart = () => {
     }, 0);
   };
 
+  // const items = cart.map((product) => {
+  //   return {
+  //     name: product.reviewProduct.title,
+  //     quantity: product.reviewProduct.quantity,
+  //     description: product.reviewProduct.description,
+  //     category: product.reviewProduct.category,
+  //   };
+  // });
+
   const handlePay = async () => {
     try {
+      const order = {
+        value: calculateTotal(),
+        //items,
+      };
       const { data } = await axios.post(
-        "http://localhost:3001/payment/create-order"
+        "http://localhost:3001/payment/create-order",
+        order
       );
       console.log("datos", data);
       return data.links[1];

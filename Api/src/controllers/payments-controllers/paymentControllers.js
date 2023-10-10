@@ -26,7 +26,7 @@ const accessToken = async () => {
 };
 
 const createOrder = async (req, res) => {
-  //const { purchase_units } = req.body;
+  const { value } = req.body;
   const order = {
     intent: "CAPTURE",
     //purchase_units,
@@ -35,9 +35,9 @@ const createOrder = async (req, res) => {
         reference_id: "d9f80740-38f0-11e8-b467-0ed5f89f718b",
         amount: {
           currency_code: "USD",
-          value: "100.00",
+          value,
         },
-        description: "teclado",
+        //items,
       },
     ],
     application_context: {
