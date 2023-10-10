@@ -11,11 +11,18 @@ const Cart = () => {
   // Actualiza localStorage cada vez que cambie el estado del carrito
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart);
   }, [cart]);
 
   const removeFromCart = (id) => {
     // Filtra el carrito para eliminar el producto con el ID proporcionado
-    const updatedCart = cart.filter((product) => product.reviewProduct.id !== id);
+    const updatedCart = cart.filter((product) => {
+      if (product.reviewProduct) {
+        return product.reviewProduct.id !== id;
+      } else {
+        return product.id !== id;
+      }
+    });
     
     // Actualiza el estado del carrito
     setCart(updatedCart);
@@ -23,15 +30,22 @@ const Cart = () => {
 
   // Calcula el total de la compra monetario
   const calculateTotal = () => {
-    return cart.reduce(
-      (total, product) => total + product.reviewProduct.price * product.reviewProduct.quantity,
-      0
-    );
+    return cart.reduce((total, product) => {
+      const productToUse = product.reviewProduct || product;
+      const price = productToUse.price || 0;
+      const quantity = productToUse.quantity || 1;
+      return total + price * quantity;
+    }, 0);
   };
+  
 
   // Calcula el total de la cantidad de productos en el carrito
   const calculateTotalQuantity = () => {
-    return cart.reduce((total, product) => total + product.reviewProduct.quantity, 0);
+    return cart.reduce((total, product) => {
+      const productToUse = product.reviewProduct || product;
+      const quantity = productToUse.quantity || 1;
+      return total + quantity;
+    }, 0);
   };
 
   return (
@@ -42,9 +56,9 @@ const Cart = () => {
       ) : (
         <ul>
           {cart.map((product) => (
-            <li key={product.reviewProduct.id}>
-              <CardCart product={product.reviewProduct} />
-              <button onClick={() => removeFromCart(product.reviewProduct.id)}>Eliminar</button>
+            <li key={product.reviewProduct ? product.reviewProduct.id : product.id}>
+              <CardCart product={product.reviewProduct || product} />
+              <button onClick={() => removeFromCart(product.reviewProduct ? product.reviewProduct.id : product.id)}>Eliminar</button>
             </li>
           ))}
         </ul>
