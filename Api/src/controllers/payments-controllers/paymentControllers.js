@@ -67,7 +67,9 @@ const captureOrder = async (req, res) => {
     {},
     {
       headers: {
+        "Content-Type": "application/json",
         Authorization: `Bearer ${await accessToken()}`,
+        Prefer: "return=representation",
       },
     }
   );
@@ -83,7 +85,7 @@ const captureOrder = async (req, res) => {
   //     categoryId,
   //   });
   // }
-  console.log(data);
+  console.log(data.purchase_units);
   res.redirect("http://localhost:3000/confirmacion");
 };
 
