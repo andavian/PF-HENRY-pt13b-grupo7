@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CardCart from "../../components/CardCart/CardCart";
+import CardCart from "../../components/CardCart/CardCart"; // Importa el componente CardCart
 import { useNavigate } from "react-router-dom";
+import style from "./cart.module.css";
 
 const Cart = () => {
-  const navigate = useNavigate();
-  // Inicializa el estado del carrito desde localStorage o un array vacío
   const [cart, setCart] = useState(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
   });
 
-  // Actualiza localStorage cada vez que cambie el estado del carrito
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
-    console.log(cart);
   }, [cart]);
 
   const removeFromCart = (id) => {
-    // Filtra el carrito para eliminar el producto con el ID proporcionado
     const updatedCart = cart.filter((product) => {
       if (product.reviewProduct) {
         return product.reviewProduct.id !== id;
@@ -26,12 +22,41 @@ const Cart = () => {
         return product.id !== id;
       }
     });
-
-    // Actualiza el estado del carrito
     setCart(updatedCart);
   };
 
-  // Calcula el total de la compra monetario
+  const increaseQuantity = (id) => {
+    const updatedCart = cart.map((product) => {
+      if (
+        (product.reviewProduct && product.reviewProduct.id === id) ||
+        product.id === id
+      ) {
+        return {
+          ...product,
+          quantity: (product.quantity || 1) + 1,
+        };
+      }
+      return product;
+    });
+    setCart(updatedCart);
+  };
+
+  const decreaseQuantity = (id) => {
+    const updatedCart = cart.map((product) => {
+      if (
+        (product.reviewProduct && product.reviewProduct.id === id) ||
+        product.id === id
+      ) {
+        return {
+          ...product,
+          quantity: Math.max((product.quantity || 1) - 1, 1),
+        };
+      }
+      return product;
+    });
+    setCart(updatedCart);
+  };
+
   const calculateTotal = () => {
     return cart.reduce((total, product) => {
       const productToUse = product.reviewProduct || product;
@@ -41,7 +66,6 @@ const Cart = () => {
     }, 0);
   };
 
-  // Calcula el total de la cantidad de productos en el carrito
   const calculateTotalQuantity = () => {
     return cart.reduce((total, product) => {
       const productToUse = product.reviewProduct || product;
@@ -50,20 +74,10 @@ const Cart = () => {
     }, 0);
   };
 
-  // const items = cart.map((product) => {
-  //   return {
-  //     name: product.reviewProduct.title,
-  //     quantity: product.reviewProduct.quantity,
-  //     description: product.reviewProduct.description,
-  //     category: product.reviewProduct.category,
-  //   };
-  // });
-
   const handlePay = async () => {
     try {
       const order = {
         value: calculateTotal(),
-        //items,
       };
       const { data } = await axios.post(
         "http://localhost:3001/payment/create-order",
@@ -79,11 +93,9 @@ const Cart = () => {
 
   const startPay = async () => {
     try {
-      const linkPayPal = await handlePay(); // Llama a handlePay para obtener el objeto de enlace de PayPal
+      const linkPayPal = await handlePay();
       console.log("Link de PayPal:", linkPayPal);
-
-      // Realiza la redirección a la URL de PayPal
-      window.location.href = linkPayPal.href; // Utiliza window.location.href para redirigir
+      window.location.href = linkPayPal.href;
       setCart([]);
     } catch (error) {
       alert("Error al iniciar el pago:", error);
@@ -91,38 +103,61 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h2>Carrito de Compras</h2>
-      {cart.length === 0 ? (
-        <p>El carrito está vacío.</p>
-      ) : (
-        <ul>
-          {cart.map((product) => (
-            <li
-              key={
-                product.reviewProduct ? product.reviewProduct.id : product.id
-              }
-            >
-              <CardCart product={product.reviewProduct || product} />
-              <button
-                onClick={() =>
-                  removeFromCart(
-                    product.reviewProduct
-                      ? product.reviewProduct.id
-                      : product.id
-                  )
-                }
+    <div className={style.container}>
+      <div className={style.productContainer}>
+        <h2>Carrito de Compras</h2>
+        {cart.length === 0 ? (
+          <p>El carrito está vacío.</p>
+        ) : (
+          <ul className={style.productList}>
+            {cart.map((product) => (
+              <li
+                key={product.id || product.reviewProduct.id}
+                className={style.productItem}
               >
-                Eliminar
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-      <p>Total de productos: {calculateTotalQuantity()}</p>
-      <p>Total monetario: ${calculateTotal()}</p>
-      <button onClick={() => setCart([])}>Vaciar Carrito</button>
-      <button onClick={startPay}>Pagar</button>
+                {/* Utiliza el componente CardCart aquí */}
+                <CardCart
+                  product={product.reviewProduct || product}
+                  quantity={product.quantity}
+                />
+                <div className={style.quantityContainer}>
+                  <button
+                    className={style.button}
+                    onClick={() =>
+                      decreaseQuantity(product.id || product.reviewProduct.id)
+                    }
+                  >
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    className={style.quantityInput}
+                    value={product.quantity || 1}
+                    readOnly
+                  />
+                  <button
+                    className={style.button}
+                    onClick={() =>
+                      increaseQuantity(product.id || product.reviewProduct.id)
+                    }
+                  >
+                    +
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div className={style.infoContainer}>
+        <h2>Total de productos: {calculateTotalQuantity()}</h2>
+        <h3>Total monetario: ${calculateTotal()}</h3>
+        
+        <button onClick={startPay}>Pagar</button>
+        <br></br>
+        <button onClick={() => setCart([])}>Vaciar Carrito</button>
+  
+      </div>
     </div>
   );
 };
