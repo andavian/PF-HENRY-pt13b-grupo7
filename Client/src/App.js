@@ -32,6 +32,7 @@ function App() {
         <Route path="admin" element={<Admin />} />
         <Route path="favorites" element={<Favorites/>}/>
         <Route path="store/:category" element={<Store/>} />
+        <Route path="/profile"  element={<Profile/>}/>
       </Routes>
       <Footer />
       <Footerbar />
