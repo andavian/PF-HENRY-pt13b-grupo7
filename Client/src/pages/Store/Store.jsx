@@ -15,7 +15,7 @@ import Paginado from "../../components/Paginado/Paginado";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -28,22 +28,30 @@ export default function Shop() {
   // Cálculo de índices para paginación
   const indexLastProduct = currentPage * productPerPage;
   const indexFirstProduct = indexLastProduct - productPerPage;
+  
+   // Obtén el valor de la categoría de los parámetros de la URL
+   const { category } = useParams();
 
+   // Cargar recetas según la búsqueda y la categoría
+   useEffect(() => {
+     if (search) {
+       dispatch(getProductByName(search));
+       dispatch(getCategories());
+     } else if (category) {
+       // Si hay un parámetro de categoría en la URL, aplicar el filtro de categoría
+       dispatch(filteredByCategory(category));
+     } else {
+       dispatch(addProduct());
+       dispatch(getCategories());
+       console.log("acaa", catalog);
+     }
+   }, [dispatch, search, category]);
+ 
   // Función para cambiar de página
   const handlePageChange = (pageNumber) => {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
-  // Cargar recetas según la búsqueda
-  useEffect(() => {
-    if (search) {
-      dispatch(getProductByName(search));
-      dispatch(getCategories());
-    } else {
-      dispatch(addProduct());
-      dispatch(getCategories());
-      console.log("acaa", catalog);
-    }
-  }, [dispatch, search]);
+  
   //ordenar por precio
   const handleOrderChange = (e) => {
     dispatch(orderByPrice(e.target.value));

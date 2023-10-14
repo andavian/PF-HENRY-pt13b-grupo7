@@ -39,6 +39,11 @@ const Profile = () => {
                     Admin Panel
                   </Link>
                 </li>
+                <li>
+                  <Link to="/profile">
+                  Perfil
+                  </Link>
+                </li>
               </ul>
 
               <ul class="conteinerList">

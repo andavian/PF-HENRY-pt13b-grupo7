@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getProductById, addProductToCart } from "../../redux/actions";
 import Carousel from "../../components/Carrousel/Carrousel";
 import styles from "./detail.module.css";
+import ProductReview from "../../components/ProductReview/ProductReview";
 
 export default function Detail({ product, onClose }) {
   const detailState = useSelector((state) => state.reducer.details);
@@ -132,6 +133,7 @@ export default function Detail({ product, onClose }) {
                   {isFav ? "❤️" : "🤍"}
                 </button>
               </div>
+              <ProductReview/>
               <p className={styles.price}>${detailState.price}</p>
 
               <p className={styles.description}>{detailState.description}</p>
@@ -186,6 +188,8 @@ export default function Detail({ product, onClose }) {
       ) : (
         <p>Producto no encontrado</p>
       )}
+     
+
     </div>
   );
 }

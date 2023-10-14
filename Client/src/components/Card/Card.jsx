@@ -102,6 +102,6 @@ export default function Card({ product }) {
           <div className={styles.description}>{product.description}</div>
         </div>
       </div>
-    </div>
+      </div>
   );
 }

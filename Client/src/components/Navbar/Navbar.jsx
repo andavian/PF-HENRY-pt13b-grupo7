@@ -76,7 +76,7 @@ const NavBar = ({ setCurrentPage }) => {
         {!isAuthenticated && <LoginButton />}
 
         <div className={style.navItem}>
-          <Profile />
+         <Profile /> 
         </div>
       </div>
 

@@ -1,0 +1,12 @@
+.inputContainer {
+    display: flex;
+  }
+  
+  .icon {
+    cursor: pointer;
+    transition: color 200ms;
+    margin-right: 5px; /* Añade margen a la derecha para separar los iconos */
+  }
+  input[type="radio"] {
+    display: none;
+  }  
