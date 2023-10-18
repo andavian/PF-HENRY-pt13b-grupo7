@@ -46,9 +46,11 @@ export const getProductsCategories = createAsyncThunk(
     try {
       // Codifica el nombre de la categoría antes de agregarlo a la URL
       const encodedName = encodeURIComponent(name);
-      
+
       // Utiliza el nombre codificado en la URL
-      const response = await axios('https://fakestoreapi.com/products/category/jewelery');
+      const response = await axios(
+        "https://fakestoreapi.com/products/category/jewelery"
+      );
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -63,9 +65,11 @@ export const getProductByName = createAsyncThunk(
     try {
       // Codifica el nombre de la categoría antes de agregarlo a la URL
       const encodedName = encodeURIComponent(name);
-      
+
       // Utiliza el nombre codificado en la URL
-      const response = await axios(`http://localhost:3001/products/search?name=${encodedName}`);
+      const response = await axios(
+        `http://localhost:3001/products/search?name=${encodedName}`
+      );
       console.log("ejecutando search", response.data);
       return response.data;
     } catch (error) {
@@ -87,8 +91,6 @@ export const getCategories = createAsyncThunk(
   }
 );
 
-
-
 // ORDER PRODUCTS BY PRICE
 export const orderByPrice = (payload) => {
   return (dispatch) => {
@@ -102,7 +104,6 @@ export const filteredByCategory = (category) => {
     dispatch(filteredCategory(category));
   };
 };
-
 
 //CURRENT PAGE
 export const setCurrentPageGlobal = (num) => {
@@ -127,14 +128,15 @@ export const postProduct = createAsyncThunk(
   "reducerProducts/postProduct",
   async (product) => {
     try {
-      const response = await axios.post("http://localhost:3001/products", product); // Pasa el producto como segundo argumento
+      const response = await axios.post(
+        "http://localhost:3001/products",
+        product
+      ); // Pasa el producto como segundo argumento
       console.log(response.data);
-       return response.data
-       
+      return response.data;
     } catch (error) {
       console.log(error);
       return {};
     }
   }
 );
-

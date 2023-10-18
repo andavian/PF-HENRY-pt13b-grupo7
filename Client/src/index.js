@@ -7,6 +7,10 @@ import App from "./App";
 import store from "./redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+
+
+
 import { Auth0Provider } from "@auth0/auth0-react";
 const { REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENTID } = process.env;
 
