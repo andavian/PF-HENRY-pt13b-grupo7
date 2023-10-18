@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logoshop.svg";
 import LoginButton from "../LoginButton/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../LogoutButton/LogoutButton";
+// import LogoutButton from "../LogoutButton/LogoutButton";
 import Profile from "../Profile/Profile";
 const NavBar = ({ setCurrentPage }) => {
   const { isAuthenticated } = useAuth0();
@@ -64,59 +64,22 @@ const NavBar = ({ setCurrentPage }) => {
       </div>
 
       <div className={style.navtool}>
-      
         <div className={style.navItem}>
-          <Link to="https://dev-rcyibz4rmsr34pyn.us.auth0.com/u/signup?state=hKFo2SBXSUlYWkJndkQ5RmZ4cG5CazRmMjBlcnNIMzlRUldzV6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIDJBT2lVYjl3WmhXNVU3RFNVNnR4VXBVNXVjajR0ZWpuo2NpZNkgemwxMXBNVnYxSmRyMTdodnM4OVMwSVNSTlRpOHA2c3o">
-          <button className={style.button} >
-            Crea una cuenta
-          </button>
-          </Link>
+          {/* Oculta el botón "Crea una cuenta" cuando el usuario está autenticado */}
+          {!isAuthenticated && (
+            <Link to="https://dev-rcyibz4rmsr34pyn.us.auth0.com/u/signup?state=hKFo2SBXSUlYWkJndkQ5RmZ4cG5CazRmMjBlcnNIMzlRUldzV6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIDJBT2lVYjl3WmhXNVU3RFNVNnR4VXBVNXVjajR0ZWpuo2NpZNkgemwxMXBNVnYxSmRyMTdodnM4OVMwSVNSTlRpOHA2c3o">
+              <button className={style.button}>Crea una cuenta</button>
+            </Link>
+          )}
         </div>
-        {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-        
-        {/* <div className={style.navItem}>
-          <Link
-            to="/favorites"
-            className={style.navLink}
-            onClick={() => setCurrentPage("shop")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              className="bi bi-heart-fill"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-              />
-            </svg>
-          </Link>
-        </div> */}
 
-        {/* carrito */}
-        {/* <div className={style.navItem}>
-          <Link
-            to="/cart"
-            className={style.navLink}
-            onClick={() => setCurrentPage("shop")}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-cart-fill"
-              viewBox="0 0 16 16"
-            >
-              <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-            </svg>
-          </Link>
-        </div> */}
+        {!isAuthenticated && <LoginButton />}
+
+        <div className={style.navItem}>
+          <Profile />
+        </div>
       </div>
-      <Profile/>
+
       {/* <div className={style.navBar}>
         <div className={style.navItem}>
           <SearchBar setCurrentPage={setCurrentPage} />
