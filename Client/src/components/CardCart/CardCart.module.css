@@ -1,22 +1,60 @@
 /* CardCart.module.css */
 
 .cardContainer {
-    display: flex;
-    margin-bottom: 5px;
-  }
-  
-  .imageContainer {
-    margin: 10px;
-  }
-  
-  .imgFluid {
-    width: 50%;
-    border-radius: 8px 0 0 8px;
-    align-content: center;
-  }
-  
-  .textContainer {
-    flex:100%;
-    padding: 15px;
-  }
-  
+  display: flex;
+  padding: 15px;
+  align-items: center; /* Alinea verticalmente al centro */
+  justify-content: space-between; /* Alinea horizontalmente al espacio entre ellos */
+}
+
+.imageContainer {
+  margin: 10px;
+  width: 100px;
+}
+
+.imgFluid {
+  width: 100%;
+  height: auto;
+}
+
+.textContainer {
+  flex: 3;
+  margin: 10px;
+  align-items: center; /* Alinea verticalmente al centro */
+  justify-content: space-between; /* Alinea horizontalmente al espacio entre ellos */
+}
+
+h5 {
+  font-size: 16px;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+
+h2 {
+  font-size: 6px;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+.price {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 12px;
+  margin-bottom: 0rem;
+}
+
+/* Add more styling as needed */
+.actionButtons {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.actionButtons button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}

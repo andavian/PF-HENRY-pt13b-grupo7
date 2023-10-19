@@ -12,7 +12,7 @@ import Confirmacion from "./pages/ConfirmacionCompra/ConfirmacionCompra";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
 import Profile from "./components/ProfileUser/ProfileUser";
-import Favorites from "./pages/favorites/favorites";
+import Favorites from "./pages/Favorites/Favorites";
 import CartButton from "./components/Cart-Button/CartButton";
 
 function App() {
