@@ -18,7 +18,7 @@ export const addProduct = createAsyncThunk(
   "reducerProducts/addProduct",
   async () => {
     try {
-      const response = await axios("http://localhost:3001/products");
+      const response = await axios("/products");
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -31,7 +31,7 @@ export const getProductById = createAsyncThunk(
   "reducerProducts/getProductById",
   async (id) => {
     try {
-      const response = await axios(`http://localhost:3001/products/${id}`);
+      const response = await axios(`/products/${id}`);
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -48,9 +48,7 @@ export const getProductsCategories = createAsyncThunk(
       const encodedName = encodeURIComponent(name);
 
       // Utiliza el nombre codificado en la URL
-      const response = await axios(
-        "https://fakestoreapi.com/products/category/jewelery"
-      );
+      const response = await axios("/categories");
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -67,9 +65,7 @@ export const getProductByName = createAsyncThunk(
       const encodedName = encodeURIComponent(name);
 
       // Utiliza el nombre codificado en la URL
-      const response = await axios(
-        `http://localhost:3001/products/search?name=${encodedName}`
-      );
+      const response = await axios(`/products/search?name=${encodedName}`);
       console.log("ejecutando search", response.data);
       return response.data;
     } catch (error) {
@@ -82,7 +78,7 @@ export const getCategories = createAsyncThunk(
   "reducerProducts/getCategories",
   async (id) => {
     try {
-      const response = await axios("http://localhost:3001/categories");
+      const response = await axios("/categories");
       console.log("categories", response.data);
       return response.data;
     } catch (error) {
@@ -128,10 +124,7 @@ export const postProduct = createAsyncThunk(
   "reducerProducts/postProduct",
   async (product) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3001/products",
-        product
-      ); // Pasa el producto como segundo argumento
+      const response = await axios.post("/products", product); // Pasa el producto como segundo argumento
       console.log(response.data);
       return response.data;
     } catch (error) {
