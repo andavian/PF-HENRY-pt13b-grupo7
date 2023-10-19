@@ -8,12 +8,13 @@ import store from "./redux/store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-
-
-
 import { Auth0Provider } from "@auth0/auth0-react";
-const { REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENTID } = process.env;
+// const { REACT_APP_AUTH0_DOMAIN, REACT_APP_AUTH0_CLIENTID } = process.env;
 
+import axios from "axios";
+
+//axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://pf-henry-pt13b-grupo7.1.us-1.fl0.io";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,7 +23,7 @@ root.render(
       domain="dev-orpbhzhtmugpavo5.us.auth0.com"
       clientId="PZisiBC1hTF8zg2B4Lf2QNOlAwNAdHDW"
       authorizationParams={{
-        redirect_uri: window.location.origin
+        redirect_uri: window.location.origin,
       }}
     >
       <BrowserRouter>
@@ -31,4 +32,3 @@ root.render(
     </Auth0Provider>
   </Provider>
 );
-
