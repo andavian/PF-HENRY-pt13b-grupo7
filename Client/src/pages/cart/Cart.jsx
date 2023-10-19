@@ -117,9 +117,9 @@ const Cart = () => {
           <div className={`${style.productContainer}  ${style.centeredContainer}`}>
           <h3 className={style.emptyCartMessage}>Tu carrito está vacío.</h3>
 
-          <button className={style.button} to="/saved">
+          <button className={style.button} to="/store">
               Descubre nuestros productos
-            </button>
+          </button>
 
        
 
