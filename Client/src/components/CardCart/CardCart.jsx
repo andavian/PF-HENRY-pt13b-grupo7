@@ -1,11 +1,6 @@
-// CardCart.js
-
 import React from "react";
 import styles from "./CardCart.module.css";
 // import ReviewForm from "../ReviewFrom/ReviewForm";
-
-
-
 
 const CardCart = ({ product, quantity }) => {
   const calculateTotal = () => {
@@ -23,17 +18,14 @@ const CardCart = ({ product, quantity }) => {
       </div>
 
       <div className={styles.textContainer}>
-        <div>
-          <h5>{product.title}</h5>
-          <p>{product.description}</p>
-          <p>
-            Price: ${product.price.toFixed(2)} - Quantity: {quantity} - Total: $
-            {calculateTotal().toFixed(2)}
-          </p>
-        </div>
+        <h5>{product.title}</h5>
+        <p>{product.description}</p>
+        <p>
+          Price: ${product.price.toFixed(2)} - Quantity: {quantity} - Total: $
+          {calculateTotal().toFixed(2)}
+        </p>
       </div>
       {/* <ReviewForm/> */}
-      
     </div>
   );
 };
