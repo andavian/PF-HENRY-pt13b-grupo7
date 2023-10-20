@@ -1,11 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "./Profile.css";
 
 const Profile = () => {
-  const { user, isAuthenticated, logout } = useAuth0();
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading && isAuthenticated && user) {
+      // El usuario está autenticado, user está disponible y la carga ha terminado
+      sendUserDataToBackend(user);
+    }
+  }, [isLoading, isAuthenticated, user]);
+
+  console.log("usuario", user); // Deberías ver los datos del usuario aquí
+  const sendUserDataToBackend = async (userData) => {
+    try {
+      const response = await axios.post("/users", userData);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      alert("Error al enviar los datos al servidor:", error);
+    }
+  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -40,9 +59,7 @@ const Profile = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/profile">
-                  Perfil
-                  </Link>
+                  <Link to="/profile">Perfil</Link>
                 </li>
               </ul>
 
