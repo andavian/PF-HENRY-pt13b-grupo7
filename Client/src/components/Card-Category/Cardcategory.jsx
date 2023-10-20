@@ -6,16 +6,14 @@ import { Link } from "react-router-dom";
 const CardCategory = ({ product }) => {
   return (
     <Link to={`/store/${product.name}`} className={styles.link}>
-      <div className="card text-bg-dark">
-        <img src={product.thumbnail} className="card-img" alt="slice" />
-        <div className="card-img-overlay">
-          <h5 className="card-title">{product.name}</h5>
+      <div className={styles.card}>
+        <img src={product.thumbnail} className={styles.cardImg} alt="slice" />
+        <div className={styles.cardImgOverlay}>
+          <h5 className={styles.cardTitle}>{product.name}</h5>
         </div>
       </div>
     </Link>
   );
 };
 
-
 export default CardCategory;
-
