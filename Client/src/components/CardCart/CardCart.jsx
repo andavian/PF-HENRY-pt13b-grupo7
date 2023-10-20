@@ -2,7 +2,7 @@
 
 import React from "react";
 import styles from "./CardCart.module.css";
-import ReviewForm from "../ReviewFrom/ReviewForm";
+// import ReviewForm from "../ReviewFrom/ReviewForm";
 
 
 
@@ -32,7 +32,7 @@ const CardCart = ({ product, quantity }) => {
           </p>
         </div>
       </div>
-      <ReviewForm/>
+      {/* <ReviewForm/> */}
       
     </div>
   );

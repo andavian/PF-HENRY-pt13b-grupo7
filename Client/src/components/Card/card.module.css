@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  
 }
 
 .card {
@@ -56,19 +55,19 @@
 }
 
 .details {
-  background-color: #f4f5f7; /* Color de fondo para la sección de detalles */
-  height: 33%; /* Establecemos la altura al 33% */
+  background-color: #f4f5f7; 
+  height: 33%; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 10px; /* Añadimos un poco de espacio interior */
+  padding: 10px; 
 }
 
 .heading {
-  font-size: 16px; /* Reducimos el tamaño de la fuente para el título */
-  color: #000000; /* Cambiamos el color del título */
-  text-align: center; /* Centramos el texto del título */
+  font-size: 16px; 
+  color: #000000; 
+  text-align: center; 
 }
 
 .price {
@@ -137,4 +136,3 @@
 svg {
   margin: 5px;
 }
-/* Resto de tus estilos... */
