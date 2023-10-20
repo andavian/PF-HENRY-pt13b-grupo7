@@ -25,6 +25,19 @@
   flex: 0 0 40%;
 }
 
+.fixedContainer {
+  position: fixed;
+  top: 0; /* Ajusta según sea necesario para la posición vertical */
+  left: 0; /* Ajusta según sea necesario para la posición horizontal */
+  width: 100%; /* O ajusta según sea necesario */
+  background-color: #fff; /* Cambia según sea necesario */
+  z-index: 1000; /* Ajusta según sea necesario para la superposición */
+}
+
+.infoContainer p {
+  margin-bottom: 10px;
+}
+
 .productList {
   list-style: none;
   padding: 0;
@@ -45,14 +58,8 @@
   background-color: rgb(255, 255, 255);
   border: 1px solid #ddd;
   padding: 20px;
-  justify-content: space-between;
   border-radius: 20px;
-
-  overflow: auto; /* Añadir scroll si el contenido es más largo que la pantalla */
-}
-
-.infoContainer p {
-  margin-bottom: 10px;
+  position: sticky;/* Añadir scroll si el contenido es más largo que la pantalla */
 }
 
 .buttonCompra {
@@ -61,6 +68,9 @@
   text-decoration: none;
   margin-top: 30px;
   margin-bottom: 10px;
+  margin-left: auto; /* Alinea a la derecha */
+  margin-right: auto; /* Alinea a la izquierda */
+  display: block; /* Hace que el botón sea un bloque para aplicar márgenes automáticos */
   border: none;
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
@@ -70,6 +80,7 @@
   overflow: hidden;
   font-weight: 600;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Centra horizontalmente el texto dentro del botón */
 }
 
 .buttonCompra:hover {

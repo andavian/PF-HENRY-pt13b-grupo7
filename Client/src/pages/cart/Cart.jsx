@@ -109,24 +109,18 @@ const Cart = () => {
       <div className={style.productContainer}>
         <h5>Carrito de Compras</h5>
       </div>
-      <div className={`${style.productContainer}  ${style.centeredContainer}`}>
       
+      <div className={`${style.productContainer}`}>
         {cart.length === 0 ? (
+          <div className={`${style.productContainer}`}>
+            <div className={style.centeredContainer}>
+              <h3 className={style.emptyCartMessage}>Tu carrito está vacío.</h3>
 
-       
-          <div className={`${style.productContainer}  ${style.centeredContainer}`}>
-          <h3 className={style.emptyCartMessage}>Tu carrito está vacío.</h3>
-
-          <button className={style.button} to="/store">
-              Descubre nuestros productos
-          </button>
-
-       
-
-
+              <Link className={style.button} to="/store">
+                Descubre nuestros productos
+              </Link>
+            </div>
           </div>
-
-          
         ) : (
           <ul className={style.productList}>
             {cart.map((product) => (
@@ -301,6 +295,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+
     </div>
   );
 };
