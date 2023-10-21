@@ -101,7 +101,7 @@ export default function Shop() {
       {/*Categorias */}
       <div className={styles.ContainerCenter}>
         <h4>Categorias</h4>
-        <p>Lorem ipsum dolor sit amet consectetur ad</p>
+    
 
         {/* Cards */}
         <div className={styles.cardscategories}>
