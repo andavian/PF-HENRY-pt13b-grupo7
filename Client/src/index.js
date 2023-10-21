@@ -13,8 +13,8 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3001";
-//axios.defaults.baseURL = "https://pf-henry-pt13b-grupo7.1.us-1.fl0.io";
+ axios.defaults.baseURL = "http://localhost:3001";
+// axios.defaults.baseURL = "https://pf-henry-pt13b-grupo7.1.us-1.fl0.io";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

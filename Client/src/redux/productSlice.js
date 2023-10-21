@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct } from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -21,6 +21,8 @@ export const productSlice = createSlice({
     currentPage: 1,
     search: "",
     users: [],
+    clients:[],
+    registration:"",
   },
   reducers: {
     orderPrice: (state, action) => {
@@ -97,6 +99,12 @@ export const productSlice = createSlice({
       })
       .addCase(postProduct.fulfilled, (state, { payload }) => {
         state.catalog.unshift(payload);
+      })
+      .addCase(getClients.fulfilled, (state, { payload }) => {
+        state.clients = payload;
+      })
+      .addCase(postClient.fulfilled, (state, { payload }) => {
+        state.registration = payload;
       })
   },
 });
