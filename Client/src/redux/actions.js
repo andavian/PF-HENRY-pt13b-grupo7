@@ -133,3 +133,33 @@ export const postProduct = createAsyncThunk(
     }
   }
 );
+
+// GET CLIENTS
+export const getClients = createAsyncThunk(
+  "reducerProducts/getClients",
+  async () => {
+    try {
+      const response = await axios("/clients");
+      console.log("clients", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
+  }
+);
+// POST CLIENT
+export const postClient = createAsyncThunk(
+  "reducerProducts/postClient",
+  async (client) => {
+    try {
+      console.log("Contenido de 'client' en postClient:", client); // Agrega este console.log
+
+      const response = await axios.post("/clients", client);
+      console.log("Respuesta del servidor:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error en postClient:", error);
+      return [];
+    }
+  }
+);

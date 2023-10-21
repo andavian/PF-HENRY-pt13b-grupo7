@@ -67,7 +67,7 @@ const NavBar = ({ setCurrentPage }) => {
         <div className={style.navItem}>
           {/* Oculta el botón "Crea una cuenta" cuando el usuario está autenticado */}
           {!isAuthenticated && (
-            <Link to="https://dev-rcyibz4rmsr34pyn.us.auth0.com/u/signup?state=hKFo2SBXSUlYWkJndkQ5RmZ4cG5CazRmMjBlcnNIMzlRUldzV6Fur3VuaXZlcnNhbC1sb2dpbqN0aWTZIDJBT2lVYjl3WmhXNVU3RFNVNnR4VXBVNXVjajR0ZWpuo2NpZNkgemwxMXBNVnYxSmRyMTdodnM4OVMwSVNSTlRpOHA2c3o">
+            <Link to="/registration">
               <button className={style.button}>Crea una cuenta</button>
             </Link>
           )}
