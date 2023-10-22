@@ -22,8 +22,8 @@ const Profile = () => {
           <div>
             <h2 className="profilename">{user.name}</h2>
             <p className="profileemail">{user.email}</p>
-            <p className="profilecontact">Dirección de envío: 123 Main St, City</p> {/* Agrega más información de contacto si es necesario */}
-            <button>Ver Favoritos 👩‍🚀</button>
+            <p className="profileaddress">{user.billingaddress}</p>
+            {/* <button>Ver Favoritos 👩‍🚀</button> */}
           </div>
         </div>
       </div>
