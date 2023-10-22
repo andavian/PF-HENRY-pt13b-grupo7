@@ -49,8 +49,8 @@ const { Category, Client, Option, Product, Sale } = sequelize.models;
 Category.hasMany(Product, { foreignKey: "categoryId" });
 Product.belongsTo(Category, { foreignKey: "categoryId" });
 
-// Sale.hasMany(Client);
-// Client.belongsTo(Sale);
+Client.hasMany(Client, { foreingnKey: "clientId" });
+Sale.belongsTo(Sale, { foreingnKey: "clientId" });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

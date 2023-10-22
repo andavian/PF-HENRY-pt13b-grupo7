@@ -159,7 +159,8 @@ h2{
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 2rem; /* Ajusta el margen superior */
+  margin-top: 2rem;
+  border: none; /* Ajusta el margen superior */
 }
 
 .cardsOfertasContainer button {
@@ -345,7 +346,6 @@ h2{
 .cardscategories {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start; /* Cambia a "flex-start" para que las tarjetas estén ordenadas desde la izquierda */
   gap: 20px; /* Añade espacio entre las tarjetas */
 }
 

@@ -89,6 +89,7 @@ const Profile = () => {
           <h2 className="profilename">{user.name}</h2>
           <p className="profileemail">{user.email}</p>
           <p className="profileaddress">{user.billingaddress}</p>
+
         </div>
       </div>
     )

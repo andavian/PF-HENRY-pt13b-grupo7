@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./ProductCarousel.module.css"; // Importa los estilos CSS Modules aquí
 import Card from "../Card/Card"; // Asegúrate de importar tu componente Card
 import Detail from "../../pages/Detail/Detail";
+import Button from "../Paginado/Button/Button";
 
 const ProductCarousel = ({ products }) => {
   const [startIndex, setStartIndex] = useState(0);
@@ -15,6 +16,7 @@ const ProductCarousel = ({ products }) => {
       prevStartIndex === 0 ? products.length - 1 : prevStartIndex - 1
     );
   };
+
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
@@ -30,16 +32,24 @@ const ProductCarousel = ({ products }) => {
 
   // Calcula las tarjetas visibles en el carrusel
   const visibleCards = [];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 5; i++) {
     const index = (startIndex + i) % products.length;
     visibleCards.push(products[index]);
   }
 
   return (
     <div className={styles["carousel-container"]}>
-      <button onClick={prevProduct} className={styles["arrow-button"]}>
-        &#9664;
-      </button>
+
+    
+
+
+
+
+      <Button display={true} text="<" onClick={prevProduct} />
+    
+
+    
+
       <div className={styles["card-container"]}>
         {visibleCards.map((product, index) => (
           <div
@@ -55,9 +65,10 @@ const ProductCarousel = ({ products }) => {
           </div>
         ))}
       </div>
-      <button onClick={nextProduct} className={styles["arrow-button"]}>
-        &#9654;
-      </button>
+
+     
+
+      <Button display={true} text=">" onClick={nextProduct}  />
 
       {modalOpen && selectedProduct && (
         <div className={styles["modal-overlay"]}>

@@ -2,11 +2,11 @@
 const { Router } = require("express");
 const productsRoutes = Router();
 
-const getProducts = require("../controllers/getProducts");
-const getProductByName = require("../controllers/getProductByName");
-const getProductsById = require("../controllers/getProductsById");
+const getProducts = require("../controllers/product - controllers/getProducts");
+const getProductByName = require("../controllers/product - controllers/getProductByName");
+const getProductsById = require("../controllers/product - controllers/getProductsById");
 
-const postProducts = require("../controllers/postProducts");
+const postProducts = require("../controllers/product - controllers/postProducts");
 
 productsRoutes.get("/search", async (req, res) => {
   try {
@@ -45,7 +45,9 @@ productsRoutes.get("/", async (req, res) => {
 productsRoutes.post("/", async (req, res) => {
   try {
     const response = req.body;
+    console.log(response);
     const productPost = await postProducts(response);
+    
     res.status(201).json(productPost);
   } catch (error) {
     res.status(500).json({ error: error.message });

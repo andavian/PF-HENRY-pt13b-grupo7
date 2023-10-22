@@ -5,221 +5,203 @@ import {
   addProduct,
   getProductByName,
   setCurrentPageGlobal,
+  orderByPrice,
+  filteredByCategory,
 } from "../../redux/actions";
-import Carousel from "../../components/Carrousel/Carrousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import Card from "../../components/Card/Card";
 import styles from "../Store/Store.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
+import Footer from "../../components/Footer/Footer";
+import { Link, useParams } from "react-router-dom";
 
 export default function Shop() {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.totalproducts);
-  const categories = useSelector((state) => state.categories);
-  const currentPage = useSelector((state) => state.currentPage);
-  const search = useSelector((state) => state.search);
-  const [orden, setOrden] = useState("");
-  const [productPerPage] = useState(6);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState([]);
+
+  const catalog = useSelector((state) => state.reducer.catalog);
+  const categories = useSelector((state) => state.reducer.categories);
+  const currentPage = useSelector((state) => state.reducer.currentPage);
+  const search = useSelector((state) => state.reducer.search);
+  const [productPerPage] = useState(10); // Cambiado a 10 productos por página
+
 
   // Cálculo de índices para paginación
   const indexLastProduct = currentPage * productPerPage;
   const indexFirstProduct = indexLastProduct - productPerPage;
+  
+   // Obtén el valor de la categoría de los parámetros de la URL
+   const { category } = useParams();
 
+   // Cargar recetas según la búsqueda y la categoría
+   useEffect(() => {
+     if (search) {
+       dispatch(getProductByName(search));
+       dispatch(getCategories());
+     } else if (category) {
+       // Si hay un parámetro de categoría en la URL, aplicar el filtro de categoría
+       dispatch(filteredByCategory(category));
+     } else {
+       dispatch(addProduct());
+       dispatch(getCategories());
+       console.log("acaa", catalog);
+     }
+   }, [dispatch, search, category]);
+ 
   // Función para cambiar de página
-  const paginado = (pageNumber) => {
+  const handlePageChange = (pageNumber) => {
     dispatch(setCurrentPageGlobal(pageNumber));
   };
 
-  // Cargar recetas según la búsqueda
-  useEffect(() => {
-    if (search) {
-      dispatch(getProductByName(search));
-      dispatch(getCategories());
-    } else {
-      dispatch(addProduct());
-    }
-  }, [dispatch, search]);
-
+  
+  //ordenar por precio
+  const handleOrderChange = (e) => {
+    dispatch(orderByPrice(e.target.value));
+  };
   // Función para filtrar por categoría
-  const filteredByCategory = (categoryId) => {
-    if (categoryId === "all") {
-      setFilteredProducts(catalog);
-    } else {
-      const filtered = catalog.filter((product) => product.categoryId === categoryId);
-      setFilteredProducts(filtered);
-    }
+  const filtercategory = (e) => {
+    dispatch(filteredByCategory(e));
+  };
+  const handleReload = () => {
+    window.location.href = "/store";
   };
 
-  // Función para ordenar por precio
-  const orderByPrice = (order) => {
-    const sorted = [...filteredProducts].sort((a, b) => {
-      if (order === "asc") {
-        return a.price - b.price;
-      } else {
-        return b.price - a.price;
-      }
-    });
-    setSortedProducts(sorted);
-  };
+  // Calcula la cantidad total de páginas
+  const totalPages = Math.ceil(catalog.length / productPerPage);
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6, // Ajusta la cantidad de tarjetas mostradas
-    slidesToScroll: 1,
-  };
-
+  // Obtiene los productos correspondientes a la página actual
+  const currentProducts = catalog.slice(indexFirstProduct, indexLastProduct);
 
   return (
-    <div className={styles.container}>
-      {/* BANNER */}
-      <div className={styles.carouselBannerContainer}>
-        <Carousel />
-        <p>
-          CELEBRA <br></br>
-          EL DÍA 253
-        </p>
-        <button className={styles.boton}>Ver Colección</button>
-      </div>
+    <div className={style.container}>
+      <div className={style.ContainerBanner}>
+        <div className={style.Banner}>
 
-      {/* Nuevos Agregados */}
-      <div className={styles.ContainerCenter}>
-        <div className={styles.tituloCardsNuevas}>
-          <h4>Nuevos Agregados</h4>
-          <p>Consulta nuestras novedades</p>
-        </div>
-        <div>
-          {/* Aquí van las card recién agregadas */}
-          <button className={styles.button}>Ver más</button>
-        </div>
-      </div>
-
-      {/* OFERTAS */}
-      <div className={styles.ContainerBanner}>
-        {/* Título */}
-        <div className={styles.Banner}>
           <h2>
             Ofertas fuera <br></br>de órbita
           </h2>
         </div>
 
-        {/* Productos descuento */}
-        <div className={styles.ContainerCenter}>
-          {/* Aquí van las card con descuento */}
-          <button className={styles.button}>Ver más</button>
-        </div>
       </div>
+      
+      {/* Barra de filtado por orden de agregados */}
+      <div className={style.navbarContainer}>
+        <div className={style.navBar}>
+          <div className={style.navItem}>
+            <button onClick={handleReload} className={style.button}>
+              Limpiar busqueda
+            </button>
+          </div>
 
-      {/* Filtros en la barra lateral izquierda */}
-      <aside className={styles.sidebar}>
-        {/* Filtros */}
-        <div className={styles.filters}>
-          {/* Filtro por Categoría */}
-          <div className={styles.filter}>
-            <h3>Filtrar por Categoría:</h3>
+          <div className={style.navItem}>
+            <SearchBar />
+          </div>
+
+          <div className={style.navItem}>
             <select
-              className={styles.select}
-              onChange={(e) => filteredByCategory(e.target.value)}
+              className={style.select}
+              onChange={(e) => filtercategory(e.target.value)}
             >
               <option value="all">Todas las categorías</option>
               {categories && categories.length > 0
                 ? categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.title}
+                    <option key={category.id} value={category.name}>
+                      {category.name}
                     </option>
                   ))
                 : null}
-            </select>
-          </div>
 
-          {/* Filtro por Orden de Precio */}
-          <div className={styles.filter}>
-            <h3>Ordenar por Precio:</h3>
-            <select
-              className={styles.select}
-              onChange={(e) => orderByPrice(e.target.value)}
-            >
-              <option value="asc">Menor a Mayor</option>
-              <option value="desc">Mayor a Menor</option>
             </select>
           </div>
         </div>
       </aside>
 
-      {/* Contenido principal */}
-      <main className={styles.mainContent}>
-        <div className={styles.products}>
-          {/* Renderizar productos aquí */}
-          {sortedProducts && sortedProducts.length > 0
-            ? sortedProducts
-                .slice(indexFirstProduct, indexLastProduct)
-                .map((product) => <Card key={product.id} product={product} />)
-            : filteredProducts && filteredProducts.length > 0
-            ? filteredProducts
-                .slice(indexFirstProduct, indexLastProduct)
-                .map((product) => <Card key={product.id} product={product} />)
-            : catalog && catalog.length > 0
-            ? catalog
-                .slice(indexFirstProduct, indexLastProduct)
-                .map((product) => <Card key={product.id} product={product} />)
-            : <h6>No hay productos disponibles.</h6>}
-        </div>
 
-        {/* Categorías */}
-        <div className={styles.ContainerCenter}>
-          <h4>Categorías</h4>
-          <p>Encuentra lo que deseas</p>
+          <div className={style.navItem}>
+            <select className={style.select} onChange={handleOrderChange}>
+              <option value="asc">Menor a Mayor</option>
+              <option value="desc">Mayor a Menor</option>
+            </select>
+          </div>
 
-          {/* Cards de categorías */}
-          <div className={styles.cardscategories}>
-            {categories && categories.length > 0 ? (
-              categories.map((e) => (
-                <Link to={`/Shop/${e.id}`} key={e.id}>
-                  <h4>{e.title}</h4>
+          {/* <div className={style.navItem}>
+            <label style={{ fontWeight: "bold", fontSize: "18px" }}>52</label>
+            <label>resultados encontrados</label>
+          </div> */}
+
+          <div className={style.navtool}>
+            <div className={style.navItem}>
+              {/* Fav */}
+              <div className={style.navItem}>
+                <Link
+                  to="/favorites"
+                  className={style.navLink}
+                  onClick={() => setCurrentPage("shop")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-heart-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                    />
+                  </svg>
                 </Link>
-              ))
-            ) : (
-              <h2>No hay categorías disponibles.</h2>
-            )}
+              </div>
+
+              {/* carrito */}
+              <div className={style.navItem}>
+                <Link
+                  to="/cart"
+                  className={style.navLink}
+                  onClick={() => setCurrentPage("shop")}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-cart-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </div>
-
-          <button className={styles.button}>Ver más</button>
         </div>
+      </div>
 
-        {/* Los más buscados */}
-        <div className={styles.ContainerBanner}>
-          {/* Título */}
-          <div className={styles.Banner}>
-            <h2>
-              Lo más buscado <br></br>de la galaxia
-            </h2>
+      <article className={style.article}>
+        {currentProducts && currentProducts.length ? (
+          currentProducts.map((product) => (
+            <Card key={product.id} product={product} />
+          ))
+        ) : (
+          <div className={style.messageBox}>
+            {/* <img src={plato} alt="img" className={style} /> */}
+
+            <h3>
+              {" "}
+              <span>Ouch!</span> <br></br>
+              Buscamos, pero no encontramos nada.
+            </h3>
           </div>
-        </div>
+        )}
+      </article>
 
-        <div className={styles.ContainerCenter}>
-          {/* Aquí van las card con lo más buscado */}
-          <button className={styles.button}>Ver más</button>
-        </div>
+      <Paginado
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
 
-        <div className={styles.ContainerCenter}>
-          {catalog && catalog.length > 0 ? (
-            catalog.map((e) => (
-              <Link to={`/Shop/${e.id}`} key={e.id}>
-                <h3>{e.title}</h3>
-              </Link>
-            ))
-          ) : (
-            <h6>No hay productos disponibles.</h6>
-          )}
-        </div>
-      </main>
     </div>
   );
 }

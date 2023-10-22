@@ -1,38 +1,85 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./Paginado.module.css";
+import style from "./Paginado.module.css";
+import Button from "../Paginado/Button/Button";
 
-export default function Paginado({
-  productPerPage,
-  catalog,
-  paginado,
-  currentPage,
-  setCurrentPage,
-}) {
-  const pageNumbers = [];
-  for (let i = 0; i < Math.ceil(catalog / productPerPage); i++) {
-    pageNumbers.push(i + 1);
+const Paginado = ({ 
+  currentPage, 
+  totalPages, 
+  onPageChange 
+}) => {
+  const pages = [];
+
+  for (let i = 1; i <= Math.ceil(totalPages); i++) {
+    pages.push(i);
   }
 
+  const pagesPerBlock = 5;
+  const currentBlock = Math.ceil(currentPage / pagesPerBlock);
+
+  const startPage = (currentBlock - 1) * pagesPerBlock + 1;
+  const endPage = Math.min(currentBlock * pagesPerBlock, pages.length);
+
+  const handleNext = () => {
+    if (currentPage < pages.length) {
+      onPageChange(currentPage + 1);
+    } else {
+      alert("¡Oh, parece que hemos agotado todas las búsquedas disponibles!");
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    } else {
+      alert("¡Oh, parece que hemos agotado todas las búsquedas disponibles!");
+    }
+  };
+
+  const handleGoToStart = () => {
+    onPageChange(1);
+  };
+
+  const handleGoToEnd = () => {
+    onPageChange(pages.length);
+  };
+
+  const onSpecificPage = (n) => {
+    onPageChange(n);
+  };
+
   return (
-    <nav>
-      <ul className={styles.ul}>
-        {pageNumbers.map((n) => (
-          <li key={n}>
-            <Link
-              className={`${styles.container} ${
-                currentPage === n ? styles.highlighted : ""
-              }`}
-              onClick={() => {
-                paginado(n);
-                setCurrentPage(n); // Actualiza la página actual al hacer clic
-              }}
+    <div className={style.container}>
+      {currentPage > 1 && (
+        <>
+          <Button display={true} text="<<" onClick={handleGoToStart} />
+          <Button display={true} text="< anterior" onClick={handlePrevious} />
+        </>
+      )}
+      
+      <ul className={style.list}>
+        {pages.slice(startPage - 1, endPage).map((nPage) => (
+          <li key={nPage}>
+            <button
+              onClick={() => onSpecificPage(nPage)}
+              className={currentPage === nPage ? style.isActive : style.noActive}
             >
-              {n}
-            </Link>
+              {nPage}
+            </button>
           </li>
         ))}
+        {endPage < pages.length && (
+          <li>
+            <span>...</span>
+          </li>
+        )}
       </ul>
-    </nav>
+
+      <Button display={true} text=" siguente >" onClick={handleNext} />
+      {currentPage < pages.length && (
+        <Button display={true} text=">>|" onClick={handleGoToEnd} />
+      )}
+    </div>
   );
-}
+};
+
+export default Paginado;

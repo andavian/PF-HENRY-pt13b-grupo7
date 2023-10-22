@@ -1,0 +1,41 @@
+/* RegistrationForm.module.css */
+.formcontainer {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .formcontainer h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .formcontainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .formcontainer input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .formcontainer button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .formcontainer button:hover {
+    background-color: #0056b3;
+  }
+  

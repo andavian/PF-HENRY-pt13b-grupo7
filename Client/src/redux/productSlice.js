@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories } from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient } from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -21,82 +21,38 @@ export const productSlice = createSlice({
     currentPage: 1,
     search: "",
     users: [],
+    clients:[],
+    registration:"",
   },
   reducers: {
-    addProdToCart: (state, action) => {
-      const { id, quantity } = action.payload;
-      const product = state.catalog.find((prod) => prod.id === id);
-
-      // Verifica si el producto ya está en el carrito
-      const existingProductIndex = state.cart.findIndex(
-        (prod) => prod.id === id
-      );
-
-      if (existingProductIndex !== -1) {
-        // Si el producto ya está en el carrito, actualiza la cantidad
-        const updatedCart = [...state.cart];
-        updatedCart[existingProductIndex].quantity += quantity;
-
-        return {
-          ...state,
-          cart: updatedCart,
-        };
-      } else {
-        // Si el producto no está en el carrito, agrégalo con la cantidad
-        product.quantity = quantity;
-        return {
-          ...state,
-          cart: [...state.cart, product],
-        };
-      }
-    },
-
-    removeProdFromCart: (state, action) => {
-      const id = action.payload;
-      console.log(state.cart);
-
-      return {
-        ...state,
-        cart: state.cart.filter((prod) => prod.id !== id),
-      };
-    },
-
-    getProdByName: (state, action) => {
-      if (typeof action.payload === "string") {
-        return {
-          ...state,
-          errors: action.payload,
-        };
-      } else {
-        return {
-          ...state,
-          catalog: action.payload,
-        };
-      }
-    },
     orderPrice: (state, action) => {
-      let order =
-        action.payload === "asc"
-          ? state.catalog.sort((a, b) => a.price - b.price)
-          : state.catalog.sort((a, b) => b.price - a.price);
-
+      const { payload } = action;
+      const catalogCopy = [...state.catalog]; // Crear una copia del catálogo
+    
+      if (payload === "asc") {
+        catalogCopy.sort((a, b) => a.price - b.price);
+      } else {
+        catalogCopy.sort((a, b) => b.price - a.price);
+      }
+    
       return {
         ...state,
-        catalog: order,
+        catalog: catalogCopy,
       };
     },
+    
 
     filteredCategory: (state, action) => {
       const allProducts = state.totalproducts;
       const selectedCategory = action.payload;
-      if (selectedCategory === "All") {
+      if (selectedCategory === "all") {
         return {
           ...state,
           catalog: allProducts, // Corregir la asignación aquí
         };
       } else {
         const filteredProducts = allProducts.filter(
-          (product) => product.category === selectedCategory
+          (product) => product.Category.name === selectedCategory
         );
         return {
           ...state,
@@ -138,7 +94,18 @@ export const productSlice = createSlice({
       .addCase(getCategories.fulfilled,(state, { payload })=> {
         state.categories = payload;
       })
-     
+      .addCase(getProductByName.fulfilled,(state, { payload })=> {
+        state.catalog = payload;
+      })
+      .addCase(postProduct.fulfilled, (state, { payload }) => {
+        state.catalog.unshift(payload);
+      })
+      .addCase(getClients.fulfilled, (state, { payload }) => {
+        state.clients = payload;
+      })
+      .addCase(postClient.fulfilled, (state, { payload }) => {
+        state.registration = payload;
+      })
   },
 });
 //createasyncthunk redux toolkit

@@ -1,9 +1,16 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .card {
   position: relative;
   width: 260px;
-  height: 375px;
-  padding: 20px;
-  background: #F4F5F7;
+  height: 300px;
+  margin: 20px;
+  padding-bottom: 30px;
+  background: #f4f5f7;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -11,34 +18,63 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.image {
-  width: 100%; /* Cambiamos el ancho a 100% para ocupar el 100% del contenedor */
-  height: 66%; /* Establecemos la altura al 66% */
-  object-fit: cover; /* Ajustamos la imagen para cubrir el espacio disponible */
+.cardinfo {
+  align-content: normal;
+  color: rgb(0, 0, 0);
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.card img {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: #000000;
+  font-size: 42px;
+}
+
+.title {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 1px;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+.description {
+  font-size: 12px;
+  padding: 10px;
+  text-align: left;
+  text-transform: capitalize;
 }
 
 .details {
-  background-color: #f4f5f7; /* Color de fondo para la sección de detalles */
-  height: 33%; /* Establecemos la altura al 33% */
+  background-color: #f4f5f7; 
+  height: 33%; 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 10px; /* Añadimos un poco de espacio interior */
+  padding: 10px; 
 }
 
 .heading {
-  font-size: 16px; /* Reducimos el tamaño de la fuente para el título */
-  font-weight: 700;
-  color: #000000; /* Cambiamos el color del título */
-  text-align: center; /* Centramos el texto del título */
+  font-size: 16px; 
+  color: #000000; 
+  text-align: center; 
 }
 
-.para {
-  text-align: center;
-  color: #000000; /* Cambiamos el color del texto */
-  opacity: 0.7;
-  line-height: 1.4;
+.price {
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
 }
 .overlay {
   position: absolute;
@@ -46,50 +82,39 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.card:hover .overlay {
-  opacity: 1;
-  pointer-events: auto;
+  background-image: linear-gradient(to bottom, rgba(92, 107, 192, 0.1), #000);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 2;
 }
 
 .card .cardBtn {
   position: absolute;
   left: 50%;
   font-weight: 600;
+  margin-top: 150px;
   padding: 10px 20px;
   font-size: 16px;
   transform: translate(-50%, -50%);
-  background-color: #ffffff;
+  background-color: #f5e20c;
   border-radius: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 999;
+  z-index: 1;
   border: none;
   opacity: 0;
   scale: 0;
   transform-origin: 0 0;
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.15);
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover .cardBtn {
   opacity: 1;
   scale: 1;
-}
-
-.card .cardBtn:hover {
-  box-shadow: 0 0 0px 5px rgba(0, 0, 0, 0.3);
-}
-
-.card .cardBtn:active {
-  scale: 0.95;
 }
 
 .overlay::after {
@@ -100,12 +125,14 @@
   transform: translate(-50%, -50%) scale(0);
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(-45deg, #e0d6526b 0%, rgba(255, 255, 0, 0.445) 100%);
+  /* background-image: linear-gradient(-45deg, #e0d6526b 0%, rgba(255, 255, 0, 0.445) 100%); */
   transition: transform 0.5s ease;
 }
 
 .card:hover .overlay::after {
   transform: translate(-50%, -50%) scale(2);
 }
-/* Resto de tus estilos... */
 
+svg {
+  margin: 5px;
+}

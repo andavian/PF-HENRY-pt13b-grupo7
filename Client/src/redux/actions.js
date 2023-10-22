@@ -18,7 +18,7 @@ export const addProduct = createAsyncThunk(
   "reducerProducts/addProduct",
   async () => {
     try {
-      const response = await axios("https://fakestoreapi.com/products");
+      const response = await axios("/products");
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -26,26 +26,12 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
-//ADD PRODUCT TO CART
-
-export const addProductToCart = (id, quantity) => {
-  return (dispatch) => {
-    dispatch(addProdToCart({ id, quantity }));
-  };
-};
-
-//DELETE PRODUCT FROM CART
-export const removeProductFromCart = (id) => {
-  return (dispatch) => {
-    dispatch(removeProdFromCart(id));
-  };
-};
 // GET PRODUCT BY ID
 export const getProductById = createAsyncThunk(
   "reducerProducts/getProductById",
   async (id) => {
     try {
-      const response = await axios(`https://fakestoreapi.com/products/${id}`);
+      const response = await axios(`/products/${id}`);
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -53,20 +39,16 @@ export const getProductById = createAsyncThunk(
     }
   }
 );
-
-
-
-
-
+// GET PRODUCTS BY CATEGORIES
 export const getProductsCategories = createAsyncThunk(
   "reducerProducts/getProductsCategories",
   async (name) => {
     try {
       // Codifica el nombre de la categoría antes de agregarlo a la URL
       const encodedName = encodeURIComponent(name);
-      
+
       // Utiliza el nombre codificado en la URL
-      const response = await axios('https://fakestoreapi.com/products/category/jewelery');
+      const response = await axios("/categories");
       console.log("ejecutando", response.data);
       return response.data;
     } catch (error) {
@@ -74,19 +56,37 @@ export const getProductsCategories = createAsyncThunk(
     }
   }
 );
-
-
-//GET PRODUCT BY NAME
-export const getProductByName = (name) => {
-  return async function (dispatch) {
+//GET PRODUCTS BY NAME
+export const getProductByName = createAsyncThunk(
+  "reducerProducts/getProductByName",
+  async (name) => {
     try {
-      const response = await axios(`http://localhost:3001/?name=${name}`);
-      dispatch(getProdByName(response.data));
+      // Codifica el nombre de la categoría antes de agregarlo a la URL
+      const encodedName = encodeURIComponent(name);
+
+      // Utiliza el nombre codificado en la URL
+      const response = await axios(`/products/search?name=${encodedName}`);
+      console.log("ejecutando search", response.data);
+      return response.data;
     } catch (error) {
-      console.log(error.message);
+      return [];
     }
-  };
-};
+  }
+);
+//GET CATEGORIES
+export const getCategories = createAsyncThunk(
+  "reducerProducts/getCategories",
+  async (id) => {
+    try {
+      const response = await axios("/categories");
+      console.log("categories", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
+  }
+);
+
 // ORDER PRODUCTS BY PRICE
 export const orderByPrice = (payload) => {
   return (dispatch) => {
@@ -96,22 +96,10 @@ export const orderByPrice = (payload) => {
 //FILTERED PRODUCTS BY CATEGORY
 export const filteredByCategory = (category) => {
   return (dispatch) => {
+    console.log(category);
     dispatch(filteredCategory(category));
   };
 };
-//GET CATEGORIES
-export const getCategories = createAsyncThunk(
-  "reducerProducts/getCategories",
-  async (id) => {
-    try {
-      const response = await axios("http://localhost:3001/categories");
-      console.log("categories", response.data);
-      return response.data;
-    } catch (error) {
-      return [];
-    }
-  }
-);
 
 //CURRENT PAGE
 export const setCurrentPageGlobal = (num) => {
@@ -131,3 +119,47 @@ export const createCategory = (payload) => {
     dispatch(addCategory(payload));
   };
 };
+// POST PRODUCT
+export const postProduct = createAsyncThunk(
+  "reducerProducts/postProduct",
+  async (product) => {
+    try {
+      const response = await axios.post("/products", product); // Pasa el producto como segundo argumento
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+
+// GET CLIENTS
+export const getClients = createAsyncThunk(
+  "reducerProducts/getClients",
+  async () => {
+    try {
+      const response = await axios("/clients");
+      console.log("clients", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
+  }
+);
+// POST CLIENT
+export const postClient = createAsyncThunk(
+  "reducerProducts/postClient",
+  async (client) => {
+    try {
+      console.log("Contenido de 'client' en postClient:", client); // Agrega este console.log
+
+      const response = await axios.post("/clients", client);
+      console.log("Respuesta del servidor:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error en postClient:", error);
+      return [];
+    }
+  }
+);
