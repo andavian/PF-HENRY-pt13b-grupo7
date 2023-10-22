@@ -1,7 +1,7 @@
 import React from "react";
 // import SearchBar from "../SearchBar/SearchBar";
 import style from "../Navbar/Navbar.module.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../images/logoshop.svg";
 import LoginButton from "../LoginButton/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -16,67 +16,62 @@ const NavBar = ({ setCurrentPage }) => {
   return (
     <nav className={style.navbarContainer}>
       <div className={style.navItemLogo}>
-        <Link to="/home" className={style.logoContainer}>
+        <NavLink to="/home" className={style.logoContainer}>
           <img src={logo} alt="Logo" className={style.logoImage} />
-        </Link>
+        </NavLink>
       </div>
 
       <div className={style.navBar}>
         <div className={style.navItem}>
-          <Link
+          <NavLink
             to="/home"
-            className={style.navLink}
-            onClick={() => setCurrentPage("Home")}
+            className={({ isActive }) =>
+              isActive ? style.navLinkActive : style.navLink
+            }
           >
             Home
-          </Link>
+          </NavLink>
         </div>
 
         <div className={style.navItem}>
-          <Link
+          <NavLink
             to="/store"
-            className={style.navLink}
-            onClick={() => setCurrentPage("shop")}
+            className={({ isActive }) =>
+              isActive ? style.navLinkActive : style.navLink
+            }
           >
             Tienda
-          </Link>
+          </NavLink>
         </div>
 
         <div className={style.navItem}>
-          <Link
-            to="/mensaje"
-            className={style.navLink}
-            onClick={() => setCurrentPage("mensaje")}
+          <NavLink
+            to="/diseño"
+            className={({ isActive }) =>
+              isActive ? style.navLinkActive : style.navLink
+            }
           >
             Diseños
-          </Link>
+          </NavLink>
         </div>
 
         <div className={style.navItem}>
-          <Link
-            to="/mensaje"
-            className={style.navLink}
-            onClick={() => setCurrentPage("mensaje")}
+          <NavLink
+            to="/contacto"
+            className={({ isActive }) =>
+              isActive ? style.navLinkActive : style.navLink
+            }
           >
             Contacto
-          </Link>
+          </NavLink>
         </div>
       </div>
 
       <div className={style.navtool}>
-        <div className={style.navItem}>
-          {/* Oculta el botón "Crea una cuenta" cuando el usuario está autenticado */}
-          {!isAuthenticated && (
-            <Link to="/registration">
-              <button className={style.button}>Crea una cuenta</button>
-            </Link>
-          )}
-        </div>
-
         {!isAuthenticated && <LoginButton />}
 
         <div className={style.navItem}>
-         <Profile /> 
+          <Profile />
         </div>
       </div>
 

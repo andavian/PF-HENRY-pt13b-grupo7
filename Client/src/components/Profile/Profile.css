@@ -30,7 +30,11 @@
     margin-bottom: 1px;
   }
   
-
+.profileaddress{
+  color: #555;
+  font-size: 12px;
+  margin-bottom: 1px;
+}
 
 
 .logoutbutton {
