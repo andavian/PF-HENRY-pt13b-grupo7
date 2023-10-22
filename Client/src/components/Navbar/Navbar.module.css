@@ -8,7 +8,7 @@
   display: inline-flex;
   align-items: center;
   border: none;
-  border-color: #000000;;
+  border-color: #000000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   font-weight: bold;
@@ -29,7 +29,6 @@
   font-weight: bold;
 }
 
-
 .button:hover {
   color: rgb(71, 71, 66);
   background-color: #c8cb07;
@@ -38,10 +37,7 @@
 .buttonBorder:hover {
   color: rgb(71, 71, 66);
   background-color: #45454563;
-
 }
-
-
 
 .button svg {
   display: inline;
@@ -71,6 +67,18 @@
   color: #000000;
 }
 
+.navLinkActive {
+  color: rgba(73, 73, 73, 0.628);
+  background-color: #c8cb07;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  border: solid 2px #c8cb07;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -95,14 +103,14 @@
 
 /* Estilos para la barra de navegación */
 .navBar {
-  margin: 5px 20px;/* Añadido 'auto' para centrar horizontalmente */
+  margin: 5px 20px; /* Añadido 'auto' para centrar horizontalmente */
   display: flex;
   justify-content: center; /* Centra horizontalmente los elementos hijos */
   gap: 3rem;
 }
 
 .navtool {
-  margin: 5px 20px;/* Añadido 'auto' para centrar horizontalmente */
+  margin: 5px 20px; /* Añadido 'auto' para centrar horizontalmente */
   display: flex;
   justify-content: center; /* Centra horizontalmente los elementos hijos */
   gap: 3rem;
@@ -159,7 +167,7 @@
     margin-top: 10px;
   }
 }
-.menulink{
+.menulink {
   text-decoration: none;
   color: inherit;
 }
