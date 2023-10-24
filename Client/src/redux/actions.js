@@ -86,6 +86,37 @@ export const getCategories = createAsyncThunk(
     }
   }
 );
+// DELETE PRODUCT
+export const deleteProduct = createAsyncThunk(
+  "reducerProducts/deleteProduct",
+  async (id) => {
+    try {
+      console.log("iddelete",id);
+      const response = await axios.delete(`/products/${id}`);
+      console.log("deleteproduct", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error en deleteProduct:", error);
+      return [];
+    }
+  }
+);
+// UPDATE PRODUCT
+export const updateProduct = createAsyncThunk(
+  "reducerProducts/updateProduct",
+  async ({ id, product }) => {
+    try {
+      console.log("updateProduct", id, product);
+      const response = await axios.patch(`/products/${id}`, product);
+      console.log("updateProduct", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error en updateProduct:", error);
+      return [];
+    }
+  }
+);
+
 
 // ORDER PRODUCTS BY PRICE
 export const orderByPrice = (payload) => {
@@ -100,6 +131,35 @@ export const filteredByCategory = (category) => {
     dispatch(filteredCategory(category));
   };
 };
+//POST CATEGORY
+export const postCategory = createAsyncThunk(
+  "reducerProducts/postCategory",
+  async (category) => {
+    try {
+      const response = await axios.post("/categories", category); 
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+//DELETE CATEGORY
+export const deleteCategory = createAsyncThunk(
+  "reducerProducts/deleteCategory",
+  async (name) => {
+    try {
+      const response = await axios.delete(`/categories/delete?name=${name}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error en deleteCategory:", error);
+      return {};
+    }
+  }
+);
+
 
 //CURRENT PAGE
 export const setCurrentPageGlobal = (num) => {
@@ -114,11 +174,7 @@ export const setSearchGlobal = (payload) => {
   };
 };
 
-export const createCategory = (payload) => {
-  return (dispatch) => {
-    dispatch(addCategory(payload));
-  };
-};
+
 // POST PRODUCT
 export const postProduct = createAsyncThunk(
   "reducerProducts/postProduct",
@@ -139,7 +195,7 @@ export const getClients = createAsyncThunk(
   "reducerProducts/getClients",
   async () => {
     try {
-      const response = await axios("/clients");
+      const response = await axios("/users");
       console.log("clients", response.data);
       return response.data;
     } catch (error) {
@@ -154,7 +210,7 @@ export const postClient = createAsyncThunk(
     try {
       console.log("Contenido de 'client' en postClient:", client); // Agrega este console.log
 
-      const response = await axios.post("/clients", client);
+      const response = await axios.post("/users", client);
       console.log("Respuesta del servidor:", response.data);
       return response.data;
     } catch (error) {
@@ -163,3 +219,18 @@ export const postClient = createAsyncThunk(
     }
   }
 );
+//DELETE CLIENT
+export const deleteClient = createAsyncThunk("reducerClients/deleteClient", async (clientId) => {
+  try {
+    console.log("Contenido de 'clientId' en deleteClient:", clientId);
+
+    const response = await axios.delete(`/users/${clientId}`);
+    console.log("Respuesta del servidor:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error en deleteClient:", error);
+    return [];
+  }
+});
+
+

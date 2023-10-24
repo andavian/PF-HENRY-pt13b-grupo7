@@ -1,10 +1,12 @@
 /* form.module.css */
 
 .supraContainer {
-  margin: 20px;
+  margin-left: 18rem; 
+  margin-right: auto;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  max-width: 100%; /* Se adapta al ancho del contenedor */
 }
 
 h1 {
@@ -18,9 +20,7 @@ h1 {
   grid-gap: 10px;
 }
 
-.containerUp {
-  /* Styles for the "update" form if needed */
-}
+
 
 .inputLabel {
   margin-bottom: 10px;

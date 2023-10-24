@@ -12,13 +12,17 @@ import Confirmacion from "./pages/ConfirmacionCompra/ConfirmacionCompra";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
 import Profile from "./components/ProfileUser/ProfileUser";
-import Favorites from "./pages/Favorites/Favorites";
+import favorites from "./pages/favorites/favorites"
 import CartButton from "./components/Cart-Button/CartButton";
 import DashHome from "./Dashboard/DashViews/DashHome/DashHome";
 import DashPage from "./Dashboard/DashComponent/DashPage/DashPage";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import DashProducts from "./Dashboard/DashComponent/DashProducts/DashProducts";
 import FormProducts from "./components/FormProducts/FormProducts";
+import DashClients from "./Dashboard/DashComponent/DashClientes/DashClients";
+import DashEdit from "./Dashboard/DashComponent/DashEdit/DashEdit";
+import DashCategory from "./Dashboard/DashComponent/DashCategory/DashCategory";
+import FormCategories from "./components/FormCategories/FormCategories";
 function App() {
   return (
     <div>
@@ -33,7 +37,7 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path="cart" element={<Cart />} />
         <Route path="admin" element={<Admin />} />
-        <Route path="favorites" element={<Favorites />} />
+        <Route path="favorites" element={<favorites />} />
         <Route path="registration" element={<RegistrationForm />} />
         <Route path="store/:category" element={<Store />} />
         <Route path="/profile" element={<Profile />} />
@@ -61,6 +65,42 @@ function App() {
             <div>
               <DashHome />
               <DashProducts />
+            </div>
+          }
+        />
+        <Route
+          path="/dashclients"
+          element={
+            <div>
+              <DashHome />
+              <DashClients />
+            </div>
+          }
+        />
+         <Route
+          path="dashedit/:id"
+          element={
+            <div>
+              <DashHome />
+              <DashEdit />
+            </div>
+          }
+        />
+        <Route
+          path="/dashcategories"
+          element={
+            <div>
+              <DashHome />
+              <DashCategory />
+            </div>
+          }
+        />
+        <Route
+          path="/dashaddcategory"
+          element={
+            <div>
+              <DashHome />
+              <FormCategories />
             </div>
           }
         />

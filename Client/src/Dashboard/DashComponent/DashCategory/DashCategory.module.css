@@ -1,0 +1,64 @@
+
+.dashClients {
+    margin-left: 18rem; /* Mover la tabla hacia la derecha */
+    margin-right: auto;
+    width: 80%; /* La tabla se ajustará al ancho disponible */
+    border-collapse: collapse;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .clientTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .clientTable th,
+  .clientTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .clientTable th {
+    background-color: #f2f2f2;
+  }
+  .button {
+    display: inline-flex;
+    height: 3rem; /* Ajusta la altura del botón */
+    
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    border-radius: 20px;
+    background: #ff0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  
+  .button:hover {
+    background-color: #9f9d9d87;
+  }
+  
+  .boton {
+    display: inline-flex;
+    height: 3rem; /* Ajusta la altura del botón */
+    justify-content: center;
+    
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 20px;
+    background: #ff0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 50%;
+    left: 20%;
+  }
+  
+  .boton:hover {
+    background-color: #9f9d9d87;
+  }
