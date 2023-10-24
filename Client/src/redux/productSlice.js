@@ -23,6 +23,7 @@ export const productSlice = createSlice({
     users: [],
     clients:[],
     registration:"",
+    infoSend: null,
   },
   reducers: {
     orderPrice: (state, action) => {
@@ -59,6 +60,14 @@ export const productSlice = createSlice({
           catalog: filteredProducts,
         };
       }
+    },
+
+    //SEND MAIL
+    sendMail: (state, action) => {
+      return {
+        ...state,
+        infoSend: action.payload,
+      };
     },
     
     setPage: (state, action) => {
@@ -120,6 +129,7 @@ export const {
   addCategory,
   setPage,
   setSearch,
+  sendMail,
 } = productSlice.actions;
 
 export default productSlice.reducer;

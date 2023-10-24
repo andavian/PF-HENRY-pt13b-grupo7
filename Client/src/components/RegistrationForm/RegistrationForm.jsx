@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 import styles from './RegistrationForm.module.css'; // Importa el módulo CSS
 import { useDispatch, useSelector } from 'react-redux';
-import { postClient } from '../../redux/actions';
+import { postClient, sendMailReg } from '../../redux/actions';
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
@@ -19,21 +19,30 @@ const RegistrationForm = () => {
     locality: '',
     mobilenumber: '',
   });
+  const [formMail, setFormMail] = useState({
+    name:'',
+    email:'',
+  });
 
   const handleInputChange = (e) => {
 
     const { name, value } = e.target;
     console.log(value);
     setFormData({ ...formData, [name]: value });
+    //setFormMail({ ...formMail, name: formData.name , email: formData.email });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    let mailer = {
+      email: formData.email,
+    }
     try {
       console.log("Contenido de formData antes de enviar:", formData); // Agrega este console.log
-  
+      console.log("Contenido de mailer antes de enviar:", mailer);
+      dispatch(sendMailReg(mailer));
       dispatch(postClient(formData));
+
   
       if (registration !== undefined) {
         console.log("Valor de registration:", registration);
