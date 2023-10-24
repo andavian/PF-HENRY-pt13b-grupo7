@@ -164,7 +164,9 @@ export default function DashPage() {
         <label htmlFor="busqueda">
           <FcSearch />
         </label>
-        <input name="busqueda" type="text" placeholder="Buscar..." />
+        <input  className={styles.input}
+        
+        name="busqueda" type="text" placeholder="Buscar..." />
       </div>
       <div>
         <select name="categoryName">
