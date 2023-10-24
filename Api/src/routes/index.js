@@ -10,7 +10,8 @@ const favoritesRoutes = require("./routes-favorites");
 const productsRoutes = require("./routes-product.js")
 const salesRoutes = require("./routes-sales")
 const paymentRoutes = require("./routes-payment");
-
+//Ruta para Nodemailer
+const mailerRoutes = require("./routeMail");
 
 const router = Router();
 
@@ -21,5 +22,7 @@ router.use("/favorites", favoritesRoutes);
 router.use("/products", productsRoutes);
 //router.use("/sales", salesRoutes);
 router.use("/payment", paymentRoutes);
+//Ruta para Nodemailer
+router.use("/mail", mailerRoutes);
 
 module.exports = router;

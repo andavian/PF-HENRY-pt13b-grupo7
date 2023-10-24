@@ -10,6 +10,7 @@ import {
   addCategory,
   setPage,
   setSearch,
+  sendMail,
 } from "./productSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -160,6 +161,21 @@ export const postClient = createAsyncThunk(
     } catch (error) {
       console.error("Error en postClient:", error);
       return [];
+    }
+  }
+);
+
+//SEND MAIL AFTER REGISTRATION
+export const sendMailReg = createAsyncThunk(
+  "reducerProducts/sendMail",
+  async (data) => {
+    try {
+      const response = await axios.post("http://localhost:3001/mail", data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
     }
   }
 );
