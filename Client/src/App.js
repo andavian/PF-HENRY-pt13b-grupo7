@@ -12,7 +12,7 @@ import Confirmacion from "./pages/ConfirmacionCompra/ConfirmacionCompra";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
 import Profile from "./components/ProfileUser/ProfileUser";
-import favorites from "./pages/favorites/favorites"
+import Favorites from "./pages/favorites/favorites";
 import CartButton from "./components/Cart-Button/CartButton";
 import DashHome from "./Dashboard/DashViews/DashHome/DashHome";
 import DashPage from "./Dashboard/DashComponent/DashPage/DashPage";
@@ -37,7 +37,7 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path="cart" element={<Cart />} />
         <Route path="admin" element={<Admin />} />
-        <Route path="favorites" element={<favorites />} />
+        <Route path="Favorites" element={<Favorites />} />
         <Route path="registration" element={<RegistrationForm />} />
         <Route path="store/:category" element={<Store />} />
         <Route path="/profile" element={<Profile />} />

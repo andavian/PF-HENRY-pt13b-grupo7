@@ -10,6 +10,7 @@ import {
   addCategory,
   setPage,
   setSearch,
+  sendMail,
 } from "./productSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
@@ -232,5 +233,3 @@ export const deleteClient = createAsyncThunk("reducerClients/deleteClient", asyn
     return [];
   }
 });
-
-

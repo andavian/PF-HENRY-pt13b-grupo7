@@ -7,7 +7,6 @@ import {BsFillClipboard2PlusFill} from "react-icons/bs";
 import logo from "../../../images/logoshop.svg";
 import styles from "./DashHome.module.css";
 
-
 export default function DashHome() {
   return (
     <nav>
@@ -61,5 +60,3 @@ export default function DashHome() {
     </nav>
   );
 }
-
-

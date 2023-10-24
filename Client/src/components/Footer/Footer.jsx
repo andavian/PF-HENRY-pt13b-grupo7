@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Footer.module.css"; // Importa los estilos CSS Module
 import { Link } from "react-router-dom";
+import logo from "../../images/logoshop.svg";
+import style from "../Navbar/Navbar.module.css";
 
 const Footer = () => {
   return (
@@ -8,10 +10,9 @@ const Footer = () => {
       <div className={styles["footer-columns"]}>
         <div className={styles["logocontainer"]}>
           <div className={styles["footer-images"]}>
-            <img
-              src="https://s3-alpha-sig.figma.com/img/a0e8/20d0/02be4957346ee0fe8c92067e25f47eae?Expires=1696809600&Signature=PJs28yDNhFRw82ytaTbsKqJmw9MW5xExGZu6GNHEAUMip1qYZ~R1wuhfhZBuyPu69xEIUzzwA0p52elkPLamlefc~OiTkBEI1GZSkVpn2DHD4AN6FkFkXSH-0nJxhyEyq2UK-Sy72vFOgN3cohLwkn086mEfuJox0UjXazKPMfF-fRdlWaQcGjk11PboJOHrphoqEP252J9SRgaEVcVMqncOjnSdiPJ~yNxUm0huODeez7wfeg79Vo9a-j1YE~no-tbkhzRB8yg7z0vX3Xz6GhKqAKnWCM5YBPmP6MxSJ8Tmjhh-1K3MWl5TfpS9O8-Dp5jm6oKi1JMneYEzWTNoHA__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4"
-              alt="Imagen 1"
-            />
+          <Link to="/home" className={style.logoContainer}>
+          <img src={logo} alt="Logo" className={style.logoImage} />
+        </Link>
 
             <div className={styles["redes"]}>
               <a
