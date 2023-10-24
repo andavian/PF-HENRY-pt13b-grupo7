@@ -88,6 +88,8 @@ const Profile = () => {
         <div>
           <h2 className="profilename">{user.name}</h2>
           <p className="profileemail">{user.email}</p>
+          
+
         </div>
       </div>
     )
