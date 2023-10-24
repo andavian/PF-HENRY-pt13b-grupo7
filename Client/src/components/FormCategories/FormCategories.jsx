@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import validateForm from "./validation.js";
 import styles from "./form.module.css";
+import { postCategory } from "../../redux/actions.js";
 
 //import { createCategory } from "../../redux/actions";
 
@@ -27,22 +28,11 @@ const FormCategories = () => {
   };
 
   //Crear una categoria
-  const create = async (categoryData) => {
-    try {
-      const URL = "http://localhost:3001/categories";
-      await axios.post(URL, categoryData);
-      dispatch(createCategory(categoryData));
-      alert("Category successfully created");
-    } catch (error) {
-      console.error(error);
-      alert(error.response.data.message);
-    }
-  };
-
-  const handleSubmit = async (event) => {
+  
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    await create(categoryData);
+    dispatch(postCategory(categoryData));
 
     setCategoryData({
       name: "",
@@ -73,7 +63,7 @@ const FormCategories = () => {
               <input
                 name="thumbnail"
                 type="text"
-                placeholder="Thumbnail"
+                placeholder="Image"
                 className={styles.input}
                 value={categoryData.thumbnail}
                 onChange={handleChange}
