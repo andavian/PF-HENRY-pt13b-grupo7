@@ -85,13 +85,15 @@ export default function Card({ product }) {
         </button>
 
         <div className={styles.cardinfo}>
-          <div className={styles.price}>$ {product.price}</div>
-
           <Link className={styles.link}>
             <div className={styles.title} onClick={() => openModal(product)}>
               {truncatedTitle}
             </div>
           </Link>
+
+          <div className={styles.price}>$ {product.price}.00</div>
+
+          <label className={styles.envio}>Envío gratis </label>
 
           {modalOpen && selectedProduct && (
             <div className={styles["modal-overlay"]}>
@@ -99,9 +101,9 @@ export default function Card({ product }) {
             </div>
           )}
 
-          <div className={styles.description}>{product.description}</div>
+          {/* <div className={styles.description}>{product.description}</div> */}
         </div>
       </div>
-      </div>
+    </div>
   );
 }

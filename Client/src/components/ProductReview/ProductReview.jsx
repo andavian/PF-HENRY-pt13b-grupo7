@@ -2,15 +2,28 @@ import React, { useState, useEffect } from "react";
 import { BsFillRocketTakeoffFill } from "react-icons/bs";
 import styles from "./ProductReview.module.css";
 
-const ProductReview = ({ product }) => {
+const ProductReview = ({ onAddReview }) => {
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
+  const [reviewText, setReviewText] = useState("");
+
+  const handleAddReview = () => {
+    if (onAddReview && rating != null) {
+      const review = {
+        rating: rating,
+        reviewText: reviewText,
+        // Otros campos de la reseña, como comentario, usuario, etc.
+      };
+
+      onAddReview(review);
+      setRating(null);
+      setReviewText(""); // Limpiar el campo de texto después de enviar la reseña
+    }
+  };
 
   useEffect(() => {
-    if (product && product.rating) {
-      setRating(product.rating); // Si existe un rating en el producto, establece el valor de rating
-    }
-  }, [product]);
+    // Puedes realizar acciones adicionales cuando cambia la puntuación si es necesario
+  }, [rating]);
 
   return (
     <div>
@@ -42,8 +55,18 @@ const ProductReview = ({ product }) => {
           );
         })}
       </div>
+
+      <textarea
+        className={styles.reviewTextarea}
+        placeholder="Escribe tu reseña..."
+        value={reviewText}
+        onChange={(e) => setReviewText(e.target.value)}
+      />
+
       {rating != null && (
-        <p className={styles.ratingText}>Puntuación: {rating}</p>
+        <button className={styles.submitButton} onClick={handleAddReview}>
+          Enviar reseña
+        </button>
       )}
     </div>
   );

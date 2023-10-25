@@ -7,9 +7,7 @@
 .card {
   position: relative;
   width: 260px;
-  height: 300px;
   margin: 20px;
-  padding-bottom: 30px;
   background: #f4f5f7;
   border-radius: 10px;
   display: flex;
@@ -19,15 +17,17 @@
 }
 
 .cardinfo {
-  align-content: normal;
+  align-content: center;
   color: rgb(0, 0, 0);
-  padding: 10px;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-decoration: none;
 }
 
 .card img {
-  width: 100%;
-  height: 60%;
+  height: 70%;
   object-fit: cover;
   border-radius: 20px;
 }
@@ -40,11 +40,23 @@
 
 .title {
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
   margin-bottom: 1px;
   color: #000000;
   text-transform: capitalize;
+}
+
+.envio {
+  text-decoration: none;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(25, 128, 85);
+  text-transform: capitalize;
+  background-color: rgba(13, 255, 69, 0.143);
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 50px;
 }
 
 .description {
@@ -55,24 +67,24 @@
 }
 
 .details {
-  background-color: #f4f5f7; 
-  height: 33%; 
+  background-color: #f4f5f7;
+  height: 33%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 10px; 
+  padding: 10px;
 }
 
 .heading {
-  font-size: 16px; 
-  color: #000000; 
-  text-align: center; 
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
 }
 
 .price {
   text-decoration: none;
-  font-size: 22px;
+  font-size: 25px;
   font-weight: bold;
   color: #000;
 }

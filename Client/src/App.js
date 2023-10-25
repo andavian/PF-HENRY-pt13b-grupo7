@@ -19,6 +19,8 @@ import DashPage from "./Dashboard/DashComponent/DashPage/DashPage";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import DashProducts from "./Dashboard/DashComponent/DashProducts/DashProducts";
 import FormProducts from "./components/FormProducts/FormProducts";
+
+
 function App() {
   return (
     <div>
@@ -33,7 +35,7 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path="cart" element={<Cart />} />
         <Route path="admin" element={<Admin />} />
-        <Route path="Favorites" element={<Favorites />} />
+        <Route path="favorites" element={<Favorites />} />
         <Route path="registration" element={<RegistrationForm />} />
         <Route path="store/:category" element={<Store />} />
         <Route path="/profile" element={<Profile />} />
