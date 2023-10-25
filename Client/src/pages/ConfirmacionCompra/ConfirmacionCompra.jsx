@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./ConfirmacionCompra.module.css";
 import check from "../../images/green-checkmark-transparent-17.png";
+import { sendMailPay } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const Confirmacion = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [seconds, setSeconds] = useState(10);
 
@@ -19,6 +22,10 @@ const Confirmacion = () => {
   // Redirigir a la página de inicio cuando el contador llega a cero
   useEffect(() => {
     if (seconds === 0) {
+      let mailer = {
+        email: "tripkefm@gmail.com",
+      }
+      dispatch(sendMailPay(mailer));
       navigate("/home");
     }
   }, [seconds, navigate]);
