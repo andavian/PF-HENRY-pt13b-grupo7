@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { addProductAdmin,deleteProduct } from '../../../redux/actions';
+import { addProductAdmin,deleteProduct,getProductByName,orderByPrice } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from "./DashProducts.module.css"
 import {FiEdit} from "react-icons/fi";
 import {MdDeleteForever} from "react-icons/md";
 import { Link } from 'react-router-dom';
+import SearchBar from '../../../components/SearchBar/SearchBar';
 
 
 
@@ -12,12 +13,20 @@ import { Link } from 'react-router-dom';
 function DashProducts() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.reducer.admincatalog);
+  const search = useSelector((state) => state.reducer.search)
   const [editedProducts, setEditedProducts] = useState([...products]);
 
   useEffect(() => {
-    dispatch(addProductAdmin());
-  }, [dispatch]);
-
+    if(search){
+      dispatch(getProductByName(search))
+    }else{
+      dispatch(addProductAdmin());
+    }
+    
+  }, [dispatch,search]);
+  const handleOrderChange = (e) => {
+    dispatch(orderByPrice(e.target.value));
+  };
   const handleEdit = (index, property, value) => {
     const updatedProducts = [...editedProducts];
     updatedProducts[index][property] = value;
@@ -35,7 +44,21 @@ function DashProducts() {
   };
 
   return (
+    <div className={styles.productTable}>
+      <div className={styles.navbarContainer}>
+        <div className={styles.navBar}>
+          <SearchBar/>
+          <br></br>
+          <div className={styles.navItem}>
+            <select className={styles.select} onChange={handleOrderChange}>
+              <option value="asc">Menor a Mayor</option>
+              <option value="desc">Mayor a Menor</option>
+            </select>
+          </div>
+        </div>
+      </div>
     <table className={styles.productTable}>
+    
       <thead>
         <tr>
           <th>Image</th>
@@ -75,6 +98,7 @@ function DashProducts() {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 

@@ -29,17 +29,21 @@ export const productSlice = createSlice({
   reducers: {
     orderPrice: (state, action) => {
       const { payload } = action;
-      const catalogCopy = [...state.catalog]; // Crear una copia del catálogo
+      const catalogCopy = [...state.catalog];
+      const adminCopy =[...state.admincatalog] // Crear una copia del catálogo
     
       if (payload === "asc") {
         catalogCopy.sort((a, b) => a.price - b.price);
+        adminCopy.sort((a, b) => a.price - b.price);
       } else {
         catalogCopy.sort((a, b) => b.price - a.price);
+        adminCopy.sort((a, b) => b.price - a.price);
       }
     
       return {
         ...state,
         catalog: catalogCopy,
+        admincatalog : adminCopy,
       };
     },
     
@@ -106,6 +110,7 @@ export const productSlice = createSlice({
       })
       .addCase(getProductByName.fulfilled,(state, { payload })=> {
         state.catalog = payload;
+        state.admincatalog = payload;
       })
       .addCase(postProduct.fulfilled, (state, { payload }) => {
         state.catalog.unshift(payload);
