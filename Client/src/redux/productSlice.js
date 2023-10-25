@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient ,deleteProduct} from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient ,deleteProduct,addProductAdmin} from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -12,6 +12,7 @@ import { addProduct, getCategories, getProductById,getProductsCategories,getProd
 export const productSlice = createSlice({
   name: "reducerProducts",
   initialState: {
+    admincatalog:[],
     totalproducts: [],
     catalog: [],
     cart: [],
@@ -28,17 +29,21 @@ export const productSlice = createSlice({
   reducers: {
     orderPrice: (state, action) => {
       const { payload } = action;
-      const catalogCopy = [...state.catalog]; // Crear una copia del catálogo
+      const catalogCopy = [...state.catalog];
+      const adminCopy =[...state.admincatalog] // Crear una copia del catálogo
     
       if (payload === "asc") {
         catalogCopy.sort((a, b) => a.price - b.price);
+        adminCopy.sort((a, b) => a.price - b.price);
       } else {
         catalogCopy.sort((a, b) => b.price - a.price);
+        adminCopy.sort((a, b) => b.price - a.price);
       }
     
       return {
         ...state,
         catalog: catalogCopy,
+        admincatalog : adminCopy,
       };
     },
     
@@ -105,6 +110,7 @@ export const productSlice = createSlice({
       })
       .addCase(getProductByName.fulfilled,(state, { payload })=> {
         state.catalog = payload;
+        state.admincatalog = payload;
       })
       .addCase(postProduct.fulfilled, (state, { payload }) => {
         state.catalog.unshift(payload);
@@ -118,6 +124,9 @@ export const productSlice = createSlice({
       .addCase(deleteProduct.fulfilled, (state, action) => {
      console.log("hola");
       })
+      .addCase(addProductAdmin.fulfilled, (state, { payload }) => {
+        state.admincatalog = payload;
+         })
   },
 });
 //createasyncthunk redux toolkit
