@@ -27,6 +27,19 @@ export const addProduct = createAsyncThunk(
     }
   }
 );
+// GET PRODUCTS ADMIN
+export const addProductAdmin = createAsyncThunk(
+  "reducerProducts/addProductAdmin",
+  async () => {
+    try {
+      const response = await axios("/admin");
+      console.log("ejecutando", response.data);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
+  }
+);
 // GET PRODUCT BY ID
 export const getProductById = createAsyncThunk(
   "reducerProducts/getProductById",

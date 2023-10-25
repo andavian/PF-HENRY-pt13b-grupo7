@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addProduct,deleteProduct } from '../../../redux/actions';
+import { addProductAdmin,deleteProduct } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from "./DashProducts.module.css"
 import {FiEdit} from "react-icons/fi";
@@ -11,11 +11,11 @@ import { Link } from 'react-router-dom';
 
 function DashProducts() {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.reducer.catalog);
+  const products = useSelector((state) => state.reducer.admincatalog);
   const [editedProducts, setEditedProducts] = useState([...products]);
 
   useEffect(() => {
-    dispatch(addProduct());
+    dispatch(addProductAdmin());
   }, [dispatch]);
 
   const handleEdit = (index, property, value) => {
@@ -55,7 +55,7 @@ function DashProducts() {
             </td>
             <td>{product.price}</td>
             <td>{product.title}</td>
-            <td>{product.Category.name}</td>
+            <td>{product.Category.name ? product.Category.name : "no hay categoria" }</td>
             <td>{product.description}</td>
             <td>{product.price}</td>
             <td>
