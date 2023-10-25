@@ -234,4 +234,31 @@ export const deleteClient = createAsyncThunk("reducerClients/deleteClient", asyn
   }
 });
 
-export const sendMailReg = []
+//SEND MAIL AFTER REGISTRATION - PAYMENT
+export const sendMailReg = createAsyncThunk(
+  "reducerProducts/sendMail",
+  async (data) => {
+    try {
+      const response = await axios.post("http://localhost:3001/mail", data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+
+export const sendMailPay = createAsyncThunk(
+  "reducerProducts/sendMail",
+  async (data) => {
+    try {
+      const response = await axios.post("http://localhost:3001/mailpay", data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);

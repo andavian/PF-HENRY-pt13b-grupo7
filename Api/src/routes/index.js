@@ -12,6 +12,7 @@ const salesRoutes = require("./routes-sales")
 const paymentRoutes = require("./routes-payment");
 //Ruta para Nodemailer
 const mailerRoutes = require("./routeMail");
+const mailerRoutesPay = require("./routeMailPay");
 
 const router = Router();
 
@@ -24,5 +25,6 @@ router.use("/products", productsRoutes);
 router.use("/payment", paymentRoutes);
 //Ruta para Nodemailer
 router.use("/mail", mailerRoutes);
+router.use("/mailpay", mailerRoutesPay);
 
 module.exports = router;
