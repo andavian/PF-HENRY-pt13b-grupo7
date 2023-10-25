@@ -12,14 +12,14 @@ import Confirmacion from "./pages/ConfirmacionCompra/ConfirmacionCompra";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
 import Profile from "./components/ProfileUser/ProfileUser";
-import Favorites from "./pages/favorites/Favorites";
+//import Favorites from "./pages/Favorites/Favorites";
 import CartButton from "./components/Cart-Button/CartButton";
 import DashHome from "./Dashboard/DashViews/DashHome/DashHome";
 import DashPage from "./Dashboard/DashComponent/DashPage/DashPage";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import DashProducts from "./Dashboard/DashComponent/DashProducts/DashProducts";
 import FormProducts from "./components/FormProducts/FormProducts";
-import DashClients from "./Dashboard/DashComponent/DashClientes/DashClients"
+import DashClients from "./Dashboard/DashComponent/DashClientes/DashClients";
 import FormCategories from "./components/FormCategories/FormCategories";
 import DashCategory from "./Dashboard/DashComponent/DashCategory/DashCategory";
 
@@ -37,7 +37,7 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path="cart" element={<Cart />} />
         <Route path="admin" element={<Admin />} />
-        <Route path="favorites" element={<Favorites />} />
+        {/* <Route path="favorites" element={<Favorites />} /> */}
         <Route path="registration" element={<RegistrationForm />} />
         <Route path="store/:category" element={<Store />} />
         <Route path="/profile" element={<Profile />} />
@@ -77,7 +77,7 @@ function App() {
             </div>
           }
         />
-         <Route
+        <Route
           path="/dashaddcategory"
           element={
             <div>
@@ -86,7 +86,7 @@ function App() {
             </div>
           }
         />
-         <Route
+        <Route
           path="/dashcategories"
           element={
             <div>
