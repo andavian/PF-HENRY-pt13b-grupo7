@@ -11,7 +11,7 @@ import styles from "./form.module.css";
 
 const FormProducts = () => {
   const dispatch = useDispatch();
-  const categories = useSelector((state)=> state.reducer.categories)
+  const categories = useSelector((state) => state.reducer.categories);
   const [image, setImage] = useState("");
   const [productData, setProductData] = useState({
     title: "",
@@ -19,13 +19,13 @@ const FormProducts = () => {
     price: "",
     description: "",
     categoryName: "",
-    stock:""
+    stock: "",
   });
   const [errors, setErrors] = useState({});
 
-  useEffect(()=>{
-    dispatch(getCategories())
-  },[dispatch])
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -77,7 +77,7 @@ const FormProducts = () => {
         price: "",
         description: "",
         categoryName: "",
-        stock:""
+        stock: "",
       });
       alert("Product successfully created");
     } else {
@@ -99,13 +99,17 @@ const FormProducts = () => {
                 onChange={handleChange}
               >
                 <option>Selecciona una categoría</option>
-                {categories && categories.map((category)=>{
-                  return(<option key={category._id} value={category.name}>{category.name}</option>)
-                })}
-                
+                {categories &&
+                  categories.map((category) => {
+                    return (
+                      <option key={category._id} value={category.name}>
+                        {category.name}
+                      </option>
+                    );
+                  })}
               </select>
 
-              <span>{errors.name}</span>
+              <span>{errors.categoryName}</span>
             </div>
             <div className={styles.inputLabel}>
               <input
