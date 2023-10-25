@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient } from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient ,deleteProduct} from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -23,6 +23,7 @@ export const productSlice = createSlice({
     users: [],
     clients:[],
     registration:"",
+    infoSend: null,
   },
   reducers: {
     orderPrice: (state, action) => {
@@ -59,6 +60,14 @@ export const productSlice = createSlice({
           catalog: filteredProducts,
         };
       }
+    },
+
+    //SEND MAIL
+    sendMail: (state, action) => {
+      return {
+        ...state,
+        infoSend: action.payload,
+      };
     },
     
     setPage: (state, action) => {
@@ -106,6 +115,9 @@ export const productSlice = createSlice({
       .addCase(postClient.fulfilled, (state, { payload }) => {
         state.registration = payload;
       })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+     console.log("hola");
+      })
   },
 });
 //createasyncthunk redux toolkit
@@ -120,6 +132,7 @@ export const {
   addCategory,
   setPage,
   setSearch,
+  sendMail,
 } = productSlice.actions;
 
 export default productSlice.reducer;

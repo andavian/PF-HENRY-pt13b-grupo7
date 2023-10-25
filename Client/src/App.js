@@ -19,8 +19,10 @@ import DashPage from "./Dashboard/DashComponent/DashPage/DashPage";
 import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import DashProducts from "./Dashboard/DashComponent/DashProducts/DashProducts";
 import FormProducts from "./components/FormProducts/FormProducts";
-
-
+import DashClients from "./Dashboard/DashComponent/DashClientes/DashClients";
+import DashEdit from "./Dashboard/DashComponent/DashEdit/DashEdit";
+import DashCategory from "./Dashboard/DashComponent/DashCategory/DashCategory";
+import FormCategories from "./components/FormCategories/FormCategories";
 function App() {
   return (
     <div>
@@ -63,6 +65,42 @@ function App() {
             <div>
               <DashHome />
               <DashProducts />
+            </div>
+          }
+        />
+        <Route
+          path="/dashclients"
+          element={
+            <div>
+              <DashHome />
+              <DashClients />
+            </div>
+          }
+        />
+         <Route
+          path="dashedit/:id"
+          element={
+            <div>
+              <DashHome />
+              <DashEdit />
+            </div>
+          }
+        />
+        <Route
+          path="/dashcategories"
+          element={
+            <div>
+              <DashHome />
+              <DashCategory />
+            </div>
+          }
+        />
+        <Route
+          path="/dashaddcategory"
+          element={
+            <div>
+              <DashHome />
+              <FormCategories />
             </div>
           }
         />

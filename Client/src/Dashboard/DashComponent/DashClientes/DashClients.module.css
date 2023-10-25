@@ -1,0 +1,31 @@
+/* DashClients.module.css */
+
+.dashClients {
+    margin-left: 18rem; /* Mover la tabla hacia la derecha */
+    margin-right: auto;
+    width: 80%; /* La tabla se ajustará al ancho disponible */
+    border-collapse: collapse;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .clientTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .clientTable th,
+  .clientTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .clientTable th {
+    background-color: #f2f2f2;
+  }
+  

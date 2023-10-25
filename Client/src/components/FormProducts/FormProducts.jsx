@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import validateForm from "./validation.js";
 import FormCloudinary from "./FormCloudinary.jsx";
-import { postProduct } from "../../redux/actions.js";
+import { postProduct, getCategories } from "../../redux/actions.js";
 
 import styles from "./form.module.css";
 
@@ -11,7 +11,7 @@ import styles from "./form.module.css";
 
 const FormProducts = () => {
   const dispatch = useDispatch();
-
+  const categories = useSelector((state)=> state.reducer.categories)
   const [image, setImage] = useState("");
   const [productData, setProductData] = useState({
     title: "",
@@ -19,8 +19,13 @@ const FormProducts = () => {
     price: "",
     description: "",
     categoryName: "",
+    stock:""
   });
   const [errors, setErrors] = useState({});
+
+  useEffect(()=>{
+    dispatch(getCategories())
+  },[dispatch])
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -72,6 +77,7 @@ const FormProducts = () => {
         price: "",
         description: "",
         categoryName: "",
+        stock:""
       });
       alert("Product successfully created");
     } else {
@@ -93,10 +99,10 @@ const FormProducts = () => {
                 onChange={handleChange}
               >
                 <option>Selecciona una categoría</option>
-                <option value="electronics">Electronicos</option>
-                <option value="jewelery">Joyería</option>
-                <option value="women's clothing">Ropa de Mujer</option>
-                <option value="men's clothing">Ropa de Hombre</option>
+                {categories && categories.map((category)=>{
+                  return(<option key={category._id} value={category.name}>{category.name}</option>)
+                })}
+                
               </select>
 
               <span>{errors.name}</span>
@@ -135,6 +141,18 @@ const FormProducts = () => {
                 onChange={handleChange}
               />
               <span>{errors.price}</span>
+            </div>
+            <div className={styles.inputLabel}>
+              <input
+                name="stock"
+                type="text"
+                placeholder="Stock"
+                className={styles.input}
+                value={productData.stock}
+                onChange={handleChange}
+              />
+
+              <span>{errors.name}</span>
             </div>
             <div className={styles.inputLabel}>
               <textarea
