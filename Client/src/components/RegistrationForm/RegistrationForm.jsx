@@ -9,14 +9,16 @@ import { postClient, sendMailReg } from "../../redux/actions";
 const RegistrationForm = () => {
   const dispatch = useDispatch();
   const registration = useSelector((state) => state.reducer.registration);
-  const { user } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
     billingaddress: "",
     country: "",
     locality: "",
     mobilenumber: "",
-    image: "",
   });
 
   const handleInputChange = (e) => {
@@ -26,6 +28,20 @@ const RegistrationForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
+
+    if (!formData.name) {
+      newErrors.name = "Nombre es obligatorio";
+    }
+
+    if (!formData.email) {
+      newErrors.email = "Correo Electrónico es obligatorio";
+    } else if (!isValidEmail(formData.email)) {
+      newErrors.email = "Correo Electrónico no es válido";
+    }
+
+    if (!formData.password) {
+      newErrors.password = "Contraseña es obligatoria";
+    }
 
     if (!formData.billingaddress) {
       newErrors.billingaddress = "Dirección de Facturación es obligatoria";
@@ -39,13 +55,20 @@ const RegistrationForm = () => {
       newErrors.locality = "Localidad es obligatoria";
     }
 
-    if (!isValidPhoneNumber(formData.mobilenumber)) {
+    if (!formData.mobilenumber) {
+      newErrors.mobilenumber = "Número de Teléfono Móvil es obligatorio";
+    } else if (!isValidPhoneNumber(formData.mobilenumber)) {
       newErrors.mobilenumber = "Número de Teléfono Móvil no es válido";
     }
 
     setErrors(newErrors);
 
     return Object.keys(newErrors).length === 0;
+  };
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email);
   };
 
   const isValidPhoneNumber = (phoneNumber) => {
