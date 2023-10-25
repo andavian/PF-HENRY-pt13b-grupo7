@@ -13,6 +13,8 @@ export default function DashPage() {
   const clients = useSelector((state) => state.reducer.clients);
   const [productData, setProductData] = useState({ baratos: 0, intermedios: 0, caros: 0 });
   const [categoryData, setCategoryData] = useState({});
+  const bannedClientsCount = clients.filter((client) => client.banned).length;
+  const activeClientsCount = clients.length - bannedClientsCount;
   // Registra la escala "category" en Chart.js
   CategoryScale.id = 'category';
   CategoryScale.defaults = {};
@@ -25,10 +27,10 @@ export default function DashPage() {
     if (!dataFetched) {
       console.log('Fetching product data...');
       dispatch(addProduct());
-      //   dispatch(getClients())
+      dispatch(getClients())
       setDataFetched(true);
     }
-    // Resto del código...
+    
     const priceRanges = categorizarProductosPorPrecio(products);
     console.log('Price Ranges:', priceRanges);
     setProductData(priceRanges);
@@ -76,7 +78,24 @@ export default function DashPage() {
 
     return categorias;
   };
-
+  const clientStatusData = {
+    labels: ['Baneados', 'Activos'],
+    datasets: [
+      {
+        label: 'Clientes por Estado',
+        data: [bannedClientsCount, activeClientsCount],
+        backgroundColor: [
+          'rgba(245, 74, 85, 0.6)', // Rojo para clientes baneados
+          'rgba(29, 196, 193, 0.6)', // Verde para clientes activos
+        ],
+        borderColor: [
+          'rgba(245, 74, 85, 1)',
+          'rgba(29, 196, 193, 1)',
+        ],
+        borderWidth: 2,
+      },
+    ],
+  };
   // Configura los datos para el nuevo gráfico de categorías
   const categoryChartData = {
     labels: Object.keys(categoryData),
@@ -159,7 +178,14 @@ export default function DashPage() {
             <p>No hay datos de categorías disponibles.</p>
           )}
         </div>
+        <div className={styles.chart}>
+          <div>
+            <h2>Clientes</h2>
+            <Bar data={clientStatusData} />
+          </div>
+        </div>
       </div>
+      
       <div>
         <label htmlFor="busqueda">
           <FcSearch />
@@ -180,3 +206,8 @@ export default function DashPage() {
     </div>
   );
 }
+
+
+
+
+

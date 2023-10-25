@@ -107,8 +107,8 @@ export const updateProduct = createAsyncThunk(
   "reducerProducts/updateProduct",
   async ({ id, product }) => {
     try {
-      console.log("updateProduct", id, product);
-      const response = await axios.patch(`/products/${id}`, product);
+      console.log("updateProduct", product);
+      const response = await axios.patch(`/products/${id}`,product);
       console.log("updateProduct", response.data);
       return response.data;
     } catch (error) {
@@ -233,3 +233,5 @@ export const deleteClient = createAsyncThunk("reducerClients/deleteClient", asyn
     return [];
   }
 });
+
+export const sendMailReg = []
