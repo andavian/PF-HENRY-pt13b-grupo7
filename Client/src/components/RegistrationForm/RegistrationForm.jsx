@@ -12,14 +12,12 @@ const RegistrationForm = () => {
   const { loginWithRedirect } = useAuth0();
   const [errors, setErrors] = useState({})
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
     billingaddress: '',
     country: '',
     locality: '',
     mobilenumber: '',
   });
+  const { user } = useAuth0();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -29,7 +27,7 @@ const RegistrationForm = () => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.name) {
+    /*if (!formData.name) {
       newErrors.name = 'Nombre es obligatorio';
     }
 
@@ -41,7 +39,7 @@ const RegistrationForm = () => {
 
     if (!formData.password) {
       newErrors.password = 'Contraseña es obligatoria';
-    }
+    }*/
 
     if (!formData.billingaddress) {
       newErrors.billingaddress = 'Dirección de Facturación es obligatoria';
@@ -79,9 +77,15 @@ const RegistrationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let mailer = {
+      email: user.email,
+    }
     if (validateForm()) {
       try {
-        dispatch(postClient(formData))
+        console.log("Contenido de mailer antes de enviar:", mailer);
+        dispatch(sendMailReg(mailer));
+        dispatch(postClient(formData));
         
         // Realiza acciones adicionales después de guardar los datos
 
@@ -113,30 +117,7 @@ const RegistrationForm = () => {
     <div className={styles.formcontainer}>
       <h1>Registro de Cuenta</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          value={formData.name}
-          onChange={handleInputChange}
-        />
-        {errors.name && <span className={styles.error}>{errors.name}</span>}
-        <input
-          type="email"
-          name="email"
-          placeholder="Correo Electrónico"
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        {errors.email && <span className={styles.error}>{errors.email}</span>}
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        {errors.password && <span className={styles.error}>{errors.password}</span>}
+
         <input
           type="text"
           name="billingaddress"
@@ -176,3 +157,32 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
+
+/* NO SE NECESITA CARGAR LOS CAMPOS DE NOMBRE, MAIL Y PASSWORD
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Nombre"
+          value={formData.name}
+          onChange={handleInputChange}
+        />
+        {errors.name && <span className={styles.error}>{errors.name}</span>}
+        <input
+          type="email"
+          name="email"
+          placeholder="Correo Electrónico"
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+        {errors.email && <span className={styles.error}>{errors.email}</span>}
+        <input
+          type="password"
+          name="password"
+          placeholder="Contraseña"
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+        {errors.password && <span className={styles.error}>{errors.password}</span>}
+  
+*/

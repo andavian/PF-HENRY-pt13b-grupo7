@@ -5,12 +5,17 @@ import { useNavigate } from "react-router-dom";
 import style from "./cart.module.css";
 import { Link } from "react-router-dom";
 import Pago from "../../assets/iconos/pago-paypal-seguro.png";
+import { useAuth0 } from '@auth0/auth0-react';
+import { sendMailPay } from '../../redux/actions';
+import { useDispatch } from 'react-redux';
 
 const Cart = () => {
   const [cart, setCart] = useState(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
   });
+  const dispatch = useDispatch();
+  const { user } = useAuth0();
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -87,6 +92,7 @@ const Cart = () => {
       );
       console.log("datos", data);
       return data.links[1];
+
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
       throw error;
@@ -94,6 +100,12 @@ const Cart = () => {
   };
 
   const startPay = async () => {
+    let mailer = {
+      email: user.email,
+    }
+    console.log("Contenido de mailer antes de enviar:", mailer);
+    dispatch(sendMailPay(mailer));
+    
     try {
       const linkPayPal = await handlePay();
       console.log("Link de PayPal:", linkPayPal);
