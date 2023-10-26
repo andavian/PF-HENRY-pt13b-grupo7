@@ -83,10 +83,7 @@ const Cart = () => {
         const order = {
           value: calculateTotal(),
         };
-        const { data } = await axios.post(
-          "http://localhost:3001/payment/create-order",
-          order
-        );
+        const { data } = await axios.post("/payment/create-order", order);
         console.log("datos", data);
         return data.links[1];
       } else {
