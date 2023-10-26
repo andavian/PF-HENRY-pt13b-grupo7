@@ -12,11 +12,10 @@ const RegistrationForm = () => {
   const { loginWithRedirect } = useAuth0();
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
-
-    billingaddress: '',
-    country: '',
-    locality: '',
-    mobilenumber: '',
+    billingaddress: "",
+    country: "",
+    locality: "",
+    mobilenumber: "",
   });
   const { user } = useAuth0();
 
@@ -27,7 +26,6 @@ const RegistrationForm = () => {
 
   const validateForm = () => {
     const newErrors = {};
-
 
     /*if (!formData.name) {
       newErrors.name = 'Nombre es obligatorio';
@@ -44,7 +42,6 @@ const RegistrationForm = () => {
 
       newErrors.password = 'Contraseña es obligatoria';
     }*/
-
 
     if (!formData.billingaddress) {
       newErrors.billingaddress = "Dirección de Facturación es obligatoria";
@@ -85,14 +82,12 @@ const RegistrationForm = () => {
 
     let mailer = {
       email: user.email,
-    }
+    };
     if (validateForm()) {
       try {
-
         console.log("Contenido de mailer antes de enviar:", mailer);
         dispatch(sendMailReg(mailer));
         dispatch(postClient(formData));
-        
 
         // Realiza acciones adicionales después de guardar los datos
 
@@ -121,52 +116,56 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className={styles.formcontainer}>
-      <h1>Registro de Cuenta</h1>
-      <form onSubmit={handleSubmit}>
-
-        <input
-          type="text"
-          name="billingaddress"
-          placeholder="Dirección de Facturación"
-          value={formData.billingaddress}
-          onChange={handleInputChange}
-        />
-        {errors.billingaddress && (
-          <span className={styles.error}>{errors.billingaddress}</span>
-        )}
-        <input
-          type="text"
-          name="country"
-          placeholder="País"
-          value={formData.country}
-          onChange={handleInputChange}
-        />
-        {errors.country && (
-          <span className={styles.error}>{errors.country}</span>
-        )}
-        <input
-          type="text"
-          name="locality"
-          placeholder="Localidad"
-          value={formData.locality}
-          onChange={handleInputChange}
-        />
-        {errors.locality && (
-          <span className={styles.error}>{errors.locality}</span>
-        )}
-        <input
-          type="text"
-          name="mobilenumber"
-          placeholder="Número de Teléfono Móvil"
-          value={formData.mobilenumber}
-          onChange={handleInputChange}
-        />
-        {errors.mobilenumber && (
-          <span className={styles.error}>{errors.mobilenumber}</span>
-        )}
-        <button type="submit">Registrarse</button>
-      </form>
+    <div className={styles.container}>
+      <div className={styles.formcontainer}>
+        <h1 className={styles.title}>Completa los datos para crear tu cuenta</h1>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="billingaddress"
+            placeholder="Dirección de Facturación"
+            value={formData.billingaddress}
+            onChange={handleInputChange}
+          />
+          {errors.billingaddress && (
+            <span className={styles.error}>{errors.billingaddress}</span>
+          )}
+          <input
+            type="text"
+            name="country"
+            placeholder="País"
+            value={formData.country}
+            onChange={handleInputChange}
+          />
+          {errors.country && (
+            <span className={styles.error}>{errors.country}</span>
+          )}
+          <input
+            type="text"
+            name="locality"
+            placeholder="Localidad"
+            value={formData.locality}
+            onChange={handleInputChange}
+          />
+          {errors.locality && (
+            <span className={styles.error}>{errors.locality}</span>
+          )}
+          <input
+            type="text"
+            name="mobilenumber"
+            placeholder="Número de Teléfono Móvil"
+            value={formData.mobilenumber}
+            onChange={handleInputChange}
+          />
+          {errors.mobilenumber && (
+            <span className={styles.error}>{errors.mobilenumber}</span>
+          )}
+          <button type="submit">Registrarse</button>
+        </form>
+        <p className={styles.complementaryText}>
+      ¡Completa los campos anteriores para crear tu cuenta!
+    </p>
+      </div>
     </div>
   );
 };
