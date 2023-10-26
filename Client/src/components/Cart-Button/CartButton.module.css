@@ -1,52 +1,50 @@
-
 .cart-button {
   background-color: #f5e20c;
 
-    color: black;
-    border: none;
-    border-radius: 50%;
-    width: 60px; /* Ajusta el tamaño inicial */
-    height: 60px; /* Ajusta el tamaño inicial */
-    cursor: pointer;
-    transition: transform 0.2s, background-color 0.2s, width 0.2s, height 0.2s, animation 1s infinite; /* Agregamos la animación de latido */
-    z-index: 800;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .cart-button:hover {
-    background: linear-gradient(to right, #ffea00, #f6ff00);
-    width: 60px; /* Ajusta el tamaño inicial */
-    height: 60px;/* Ajusta el tamaño al pasar el mouse */
-    transition: transform 0.2s, background-color 0.2s, width 0.2s, height 0.2s;
-    animation: none; /* Detiene la animación cuando se pasa el mouse */
-  }
-  
-  /* Animación de latido */
-  @keyframes heartbeat {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .cart-button {
-    animation: heartbeat 1.5s infinite; /* Agrega la animación de latido */
-  }
-  
-  .cart-button.fixed {
-    position: fixed;
-    bottom: 90px;
-    right: 20px;
-  }
-  
-  .links{
-    text-decoration: none; /* Quitar subrayado del enlace */
-    color: inherit; /* Usar el color heredado del texto */
-  }
+  color: black;
+  border: none;
+  border-radius: 50%;
+  width: 60px; /* Ajusta el tamaño inicial */
+  height: 60px; /* Ajusta el tamaño inicial */
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s, width 0.2s, height 0.2s,
+    animation 1s infinite; /* Agregamos la animación de latido */
+  z-index: 800;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
- 
+.cart-button:hover {
+  background: linear-gradient(to right, #ffea00, #f6ff00);
+  width: 60px; /* Ajusta el tamaño inicial */
+  height: 60px; /* Ajusta el tamaño al pasar el mouse */
+  transition: transform 0.2s, background-color 0.2s, width 0.2s, height 0.2s;
+  animation: none; /* Detiene la animación cuando se pasa el mouse */
+}
+
+/* Animación de latido */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-button {
+  animation: heartbeat 1.5s infinite; /* Agrega la animación de latido */
+}
+
+.cart-button.fixed {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+}
+
+.links {
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit; /* Usar el color heredado del texto */
+}

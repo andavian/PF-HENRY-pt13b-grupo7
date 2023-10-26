@@ -1,6 +1,6 @@
 .button {
   font-size: 14px;
-  color: #000000; 
+  color: #000000;
   text-decoration: none;
   border: none;
   border-radius: 5px;
@@ -19,7 +19,7 @@
   position: absolute;
   width: 100px;
   height: 120%;
-  background-color: #b7b7b78a; 
+  background-color: #b7b7b78a;
   top: 50%;
   transform: skewX(30deg) translate(-150%, -50%);
   transition: all 0.5s;
@@ -30,7 +30,6 @@
   background: linear-gradient(to right, #ffea00, #f6ff00);
   color: #353535;
 }
-
 
 .button:active {
   transform: scale(0.9);
