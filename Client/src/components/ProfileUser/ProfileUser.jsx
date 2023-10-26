@@ -17,10 +17,7 @@ const Profile = () => {
        
        <h3 className={styles.profilename}>¡Hola, {user.name}!</h3>
         <img
-          className={styles.profilepicture}
-          src={user.picture}
-          alt={user.name}
-        />
+          className={styles.profilepicture}  />
         
         <p className={styles.text}>
           Nos alegra tenerte con nosotros. Queremos asegurarnos de que tu
