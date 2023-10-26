@@ -105,7 +105,7 @@ export const deleteProduct = createAsyncThunk(
   "reducerProducts/deleteProduct",
   async (id) => {
     try {
-      console.log("iddelete",id);
+      console.log("iddelete", id);
       const response = await axios.delete(`/products/${id}`);
       console.log("deleteproduct", response.data);
       return response.data;
@@ -121,7 +121,7 @@ export const updateProduct = createAsyncThunk(
   async ({ id, product }) => {
     try {
       console.log("updateProduct", product);
-      const response = await axios.patch(`/products/${id}`,product);
+      const response = await axios.patch(`/products/${id}`, product);
       console.log("updateProduct", response.data);
       return response.data;
     } catch (error) {
@@ -130,7 +130,6 @@ export const updateProduct = createAsyncThunk(
     }
   }
 );
-
 
 // ORDER PRODUCTS BY PRICE
 export const orderByPrice = (payload) => {
@@ -150,7 +149,7 @@ export const postCategory = createAsyncThunk(
   "reducerProducts/postCategory",
   async (category) => {
     try {
-      const response = await axios.post("/categories", category); 
+      const response = await axios.post("/categories", category);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -174,7 +173,6 @@ export const deleteCategory = createAsyncThunk(
   }
 );
 
-
 //CURRENT PAGE
 export const setCurrentPageGlobal = (num) => {
   return (dispatch) => {
@@ -187,7 +185,6 @@ export const setSearchGlobal = (payload) => {
     dispatch(setSearch(payload));
   };
 };
-
 
 // POST PRODUCT
 export const postProduct = createAsyncThunk(
@@ -234,25 +231,28 @@ export const postClient = createAsyncThunk(
   }
 );
 //DELETE CLIENT
-export const deleteClient = createAsyncThunk("reducerClients/deleteClient", async (clientId) => {
-  try {
-    console.log("Contenido de 'clientId' en deleteClient:", clientId);
+export const deleteClient = createAsyncThunk(
+  "reducerClients/deleteClient",
+  async (clientId) => {
+    try {
+      console.log("Contenido de 'clientId' en deleteClient:", clientId);
 
-    const response = await axios.delete(`/users/${clientId}`);
-    console.log("Respuesta del servidor:", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("Error en deleteClient:", error);
-    return [];
+      const response = await axios.delete(`/users/${clientId}`);
+      console.log("Respuesta del servidor:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error en deleteClient:", error);
+      return [];
+    }
   }
-});
+);
 
 //SEND MAIL AFTER REGISTRATION - PAYMENT
 export const sendMailReg = createAsyncThunk(
   "reducerProducts/sendMail",
   async (data) => {
     try {
-      const response = await axios.post("http://localhost:3001/mail", data);
+      const response = await axios.post("/mail", data);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -266,7 +266,7 @@ export const sendMailPay = createAsyncThunk(
   "reducerProducts/sendMail",
   async (data) => {
     try {
-      const response = await axios.post("http://localhost:3001/mailpay", data);
+      const response = await axios.post("/mailpay", data);
       console.log(response.data);
       return response.data;
     } catch (error) {
