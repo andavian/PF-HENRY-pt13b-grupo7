@@ -81,8 +81,14 @@ const Cart = () => {
   };
 
   const handlePay = async () => {
+    let mailer = {
+      email: user.email,
+    };
+    console.log("Contenido de mailer antes de enviar:", mailer);
+
     try {
       if (isAuthenticated) {
+        dispatch(sendMailPay(mailer));
         const order = {
           value: calculateTotal(),
         };
@@ -95,23 +101,6 @@ const Cart = () => {
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
       throw error;
-    }
-  };
-
-  const startPay = async () => {
-    let mailer = {
-      email: user.email,
-    };
-    console.log("Contenido de mailer antes de enviar:", mailer);
-    dispatch(sendMailPay(mailer));
-
-    try {
-      const linkPayPal = await handlePay();
-
-      window.location.href = linkPayPal.href;
-      setCart([]);
-    } catch (error) {
-      alert("Error al iniciar el pago:", error);
     }
   };
 
@@ -207,7 +196,7 @@ const Cart = () => {
               </tbody>
             </table>
 
-            <button className={style.buttonCompra} onClick={startPay}>
+            <button className={style.buttonCompra} onClick={handlePay}>
               Continuar compra
             </button>
 
