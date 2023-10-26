@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
-import { MyRoutes } from "./routers/routes";
 import CartButton from "./components/Cart-Button/CartButton";
 import Footer from "./components/Footer/Footer";
 import Footerbar from "./components/FooterBar/FooterBar";
