@@ -41,46 +41,40 @@
 }
 
 /* Estilos para el botón azul*/
-.buttonblue {
-  color: white;
-  background: linear-gradient(to right,#96c244,#b0dc5e);
-  color: #ffffffd5;
-  font-weight: 500;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding: 0.7rem 2rem;
-  text-decoration: none;
-  margin-right: 0.5rem;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  animation: pulse 1s infinite;
-
-}
-
-.buttonblue:hover {
-  background-color: #1f546d;
-}
-
-
 .button {
-  color: white;
-  background: linear-gradient(to right,#96c244,#b0dc5e);
-  font-weight: 500;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 225, 0);
   border-radius: 0.5rem;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding: 0.7rem 2rem;
+  padding: 10px 10px;
+  font-size: 16px;
   text-decoration: none;
-  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  border-color: #000000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buttonBorder {
+  color: rgba(0, 0, 0, 0.417);
+  background-color: rgba(98, 98, 98, 0.404);
+  border-radius: 0.5rem;
+  padding: 10px 10px;
+  font-size: 16px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
   border: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  font-weight: bold;
+}
 
-
-
-
+.button:hover {
+  color: rgb(71, 71, 66);
+  background-color: #e9ed0a;
 }
 
 .buttonblue:hover {
