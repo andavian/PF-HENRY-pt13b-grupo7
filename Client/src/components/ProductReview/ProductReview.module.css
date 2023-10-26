@@ -1,0 +1,34 @@
+/* ProductReview.module.css */
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  display: none; /* Ocultar los botones de radio nativos */
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.reviewTextarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  resize: vertical;
+}
+
+.submitButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}

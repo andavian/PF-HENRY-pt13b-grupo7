@@ -1,0 +1,28 @@
+/* Footer2.module.css */
+
+/* Estilos para el contenedor principal */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000; /* Fondo negro */
+  color: #fff; /* Texto blanco */
+  padding: 20px;
+  width: 100%; /* Ocupa todo el ancho horizontal */
+  position: fixed; /* Fija el pie de página en la parte inferior */
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+
+/* Estilos para los elementos dentro del contenedor */
+.footer-item {
+  margin-right: 20px; /* Espacio entre los elementos */
+  text-decoration: none; /* Quitar subrayado de los enlaces */
+  color: inherit; /* Usar el color heredado del texto */
+}
+
+/* Estilos para el párrafo */
+.footer-item p {
+  margin: 0;
+}

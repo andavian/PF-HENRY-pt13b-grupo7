@@ -1,4 +1,19 @@
-.App {
+@font-face {
+  font-family: "Montserrat-Regular";
+  src: url(../src/assets/font/Montserrat-Regular.ttf);
+}
+
+body {
+  font-family: "Montserrat-Regular";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  font-size: 15px;
+  background-color: #f4f6fa;
+  max-width: 500%;
+  color: #000000;
   text-align: center;
 }
+
+
 

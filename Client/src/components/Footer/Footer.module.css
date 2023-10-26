@@ -1,0 +1,103 @@
+/* Footer.module.css */
+
+/* Estilos para el contenedor principal del pie de página */
+.footer-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap; /* Para manejar el ajuste de columnas en pantallas pequeñas */
+  justify-content: space-between; /* Espacio entre las imágenes y las columnas */
+  align-items: flex-start; /* Alinea las imágenes en la parte superior */
+  z-index: 1;
+  padding-bottom: 80px;
+  padding-top: 20px;
+  padding-left: 20px;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+}
+
+/* Estilos para las imágenes en la columna izquierda */
+.footer-images {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea las imágenes a la izquierda */
+  margin-right: 20px; /* Agrega un margen derecho para separarlas de las columnas */
+  align-content: center;
+}
+
+.footer-images img {
+  max-height: 20%;
+}
+
+/* Estilos para las columnas en el lado derecho */
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap; /* Para manejar el ajuste de columnas en pantallas pequeñas */
+  justify-content: 2rem; /* Espacio entre las columnas */
+
+  margin-top: 20px;
+  margin-right: 100px;
+}
+
+.footer-column {
+  flex: 1;
+  margin-right: 10rem;
+  align-content: center;
+}
+
+.footer-column h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 5px;
+}
+.links {
+  text-decoration: none; /* Quitar subrayado del enlace */
+  color: inherit; /* Usar el color heredado del texto */
+}
+
+.logocontainer {
+  justify-content: center;
+  margin-top: 5%;
+  padding: 20px;
+}
+
+/* Estilos para el contenedor de íconos de redes sociales */
+.redes {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center; /* Centra los íconos horizontalmente */
+  align-items: center; /* Centra los íconos verticalmente */
+}
+
+/* Estilos para los íconos individuales */
+.redes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Ajusta el ancho según sea necesario */
+  height: 40px; /* Ajusta la altura según sea necesario */
+  margin-right: 10px; /* Espaciado entre los íconos */
+  border-radius: 50%; /* Hace que los íconos tengan bordes redondeados */
+  background-color: yellow; /* Fondo amarillo */
+  overflow: hidden; /* Asegura que el contenido no se desborde del círculo */
+}
+
+/* Estilo para el ícono SVG dentro del círculo */
+.redes a svg {
+  fill: black; /* Color del ícono */
+  width: 60%; /* Ajusta el tamaño del ícono según sea necesario */
+  height: auto;
+}
+
+/* Opcional: Ajusta el espacio entre los íconos para el último ícono */
+.redes a:last-child {
+  margin-right: 0;
+}

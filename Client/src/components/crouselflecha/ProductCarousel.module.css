@@ -1,0 +1,32 @@
+/* ProductCarousel.module.css */
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px;
+  /* Oculta el contenido que se desborda */
+}
+
+.card-container {
+  display: flex; /* Muestra las tarjetas en una fila */
+  transition: transform 0.3s ease-in-out; /* Agrega una transición suave */
+}
+
+.card {
+  flex: 0 0 auto; /* Evita que las tarjetas cambien de tamaño */
+  margin-right: 20px; /* Espacio entre las tarjetas */
+  text-align: center;
+  /* Otros estilos para tus tarjetas */
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo oscurecido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}

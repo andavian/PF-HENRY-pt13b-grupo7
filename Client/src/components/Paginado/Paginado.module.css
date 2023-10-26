@@ -1,0 +1,131 @@
+.container {
+  margin-left: 100px;
+  padding: 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  position: relative;
+  z-index: 5;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.noActive {
+  cursor: pointer;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  border-radius: 5px;
+  padding: 0.2em;
+  margin: 2px;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(to right, #f7f7f7, rgb(251, 251, 251));
+  transition: all 0.5s;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.isActive {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  border-radius: 100px;
+  padding: 0.4em;
+  margin: 2px;
+  color: #000000;
+  transition: all 0.5s;
+  background-color: #f5e20c;
+  border: none;
+  font-size: small;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.isActive:hover {
+  border: none;
+  transform: scale(1);
+  transition-delay: 0.5s;
+}
+
+.noActive:hover {
+  border-radius: 100px;
+  color: rgb(0, 0, 0);
+  transform: scale(1.5);
+  background: linear-gradient(to right, #ffea00, #f6ff00);
+}
+
+.li {
+  padding: 0.5rem 0.5rem;
+  color: #fff;
+  border-radius: 20px;
+}
+
+/* BOTON PAGINADO */
+.button {
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+  background: #ffffff;
+  padding: 1em 1em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  font-weight: bolder;
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 120%;
+  background-color: white;
+  top: 50%;
+  transform: skewX(30deg) translate(-150%, -50%);
+  transition: all 0.5s;
+}
+
+.button:hover {
+  background: linear-gradient(to right, #ffea00, #f6ff00);
+  color: white;
+}
+
+.button:active {
+  transform: scale(0.9);
+}
+
+.noButton {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .button {
+    font-size: 10px;
+    padding: 0.5em 1em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .button {
+    font-size: 8px;
+    padding: 0.5em 1em;
+  }
+}

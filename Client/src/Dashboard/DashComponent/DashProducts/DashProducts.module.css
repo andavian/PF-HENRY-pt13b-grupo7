@@ -1,0 +1,77 @@
+.productTable {
+    margin-left: 18rem; /* Mover la tabla hacia la derecha */
+    margin-right: auto;
+    width: 80%; /* La tabla se ajustará al ancho disponible */
+    border-collapse: collapse;
+  }
+  
+  .productTable th, .productTable td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center; /* Alinea el contenido en el centro de las celdas */
+  }
+  
+  .productTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .productTable img {
+    max-width: 100px;
+    display: block; /* Permite el uso de márgenes automáticos para centrar */
+    margin: 0 auto; /* Centra horizontalmente la imagen */
+  }
+  
+  .productTable td:nth-child(2) {
+    display: none;
+  }
+  .select {
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    transition: 0.3s ease-in-out;
+    text-transform: initial;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .select:focus {
+    margin: 10px;
+    cursor: pointer;
+    transform: scale(1.04);
+  }
+  
+  .select option {
+    border: solid 2px #333;
+    background-color: #f9f9f9;
+  }
+  .navbarContainer {
+    background-color: white;
+    display: flex;
+    width: 100%;
+    background-size: cover;
+    position: sticky;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    top: 0;
+    z-index: 100;
+  }
+  
+  /* Estilos para la barra de navegación */
+  .navBar {
+    margin: auto auto; /* Añadido 'auto' para centrar horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente los elementos hijos */
+    gap: 3rem;
+  }
+  .navItem {
+    display: flex;
+    text-decoration: none;
+    align-items: center;
+  }
+  
