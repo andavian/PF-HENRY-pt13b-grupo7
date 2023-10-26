@@ -29,7 +29,7 @@
 
 .searchbutton[type="submit"]:hover {
   color: rgb(255, 255, 255);
-  background: linear-gradient(to right#96c244, #b0dc5e);
+  background-color: #b0dc5e;
 }
 
 /* Media query para movil */

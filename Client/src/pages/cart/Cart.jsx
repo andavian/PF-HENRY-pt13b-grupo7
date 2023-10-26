@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardCart from "../../components/CardCart/CardCart"; // Importa el componente CardCart
-import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import style from "./cart.module.css";
 import { Link } from "react-router-dom";
 import Pago from "../../assets/iconos/pago-paypal-seguro.png";
@@ -10,6 +10,7 @@ import { sendMailPay } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 
 const Cart = () => {
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const [cart, setCart] = useState(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
@@ -83,15 +84,20 @@ const Cart = () => {
 
   const handlePay = async () => {
     try {
-      const order = {
-        value: calculateTotal(),
-      };
-      const { data } = await axios.post(
-        "http://localhost:3001/payment/create-order",
-        order
-      );
-      console.log("datos", data);
-      return data.links[1];
+
+      if (isAuthenticated) {
+        const order = {
+          value: calculateTotal(),
+        };
+        const { data } = await axios.post(
+          "/payment/create-order",
+          order
+        );
+        console.log("datos", data);
+        return data.links[1];
+      } else {
+        loginWithRedirect();
+      }
 
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
@@ -108,7 +114,7 @@ const Cart = () => {
     
     try {
       const linkPayPal = await handlePay();
-      console.log("Link de PayPal:", linkPayPal);
+
       window.location.href = linkPayPal.href;
       setCart([]);
     } catch (error) {
@@ -121,7 +127,7 @@ const Cart = () => {
       <div className={style.productContainer}>
         <h5>Carrito de Compras</h5>
       </div>
-      
+
       <div className={`${style.productContainer}`}>
         {cart.length === 0 ? (
           <div className={`${style.productContainer}`}>
@@ -307,7 +313,6 @@ const Cart = () => {
           </div>
         </div>
       </div>
-
     </div>
   );
 };

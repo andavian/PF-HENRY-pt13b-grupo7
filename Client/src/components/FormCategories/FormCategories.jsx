@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import validateForm from "./validation.js";
-import styles from "./form.module.css";
+import styles from "./formCategories.module.css";
 import { postCategory } from "../../redux/actions.js";
 
 //import { createCategory } from "../../redux/actions";
@@ -28,7 +28,7 @@ const FormCategories = () => {
   };
 
   //Crear una categoria
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
