@@ -15,7 +15,7 @@ export default function DashHome() {
       <ul>
         <li className={styles.linkItem}>
           <Link to="/dashpage">
-            <FcBiohazard className={styles.icon} />
+      
             <span>Dashboard</span>
           </Link>
         </li>
