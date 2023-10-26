@@ -17,6 +17,7 @@ const Profile = () => {
         <h2 className="profile-name">{user.name}</h2>
         <p className="profile-email">{user.email}</p>
         <p className="profile-billing-address">{user.billingaddress}</p>
+        <a href="http://localhost:3000/registration"> Click aquí para completar tu perfil </a>
       </div>
     )
   );

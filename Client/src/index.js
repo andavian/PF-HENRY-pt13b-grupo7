@@ -23,7 +23,7 @@ root.render(
       domain="dev-orpbhzhtmugpavo5.us.auth0.com"
       clientId="PZisiBC1hTF8zg2B4Lf2QNOlAwNAdHDW"
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: "http://localhost:3000/profile",
       }}
     >
       <BrowserRouter>
