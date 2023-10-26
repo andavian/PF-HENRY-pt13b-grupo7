@@ -51,7 +51,8 @@
   animation: spin 0.5s linear;
 }
 
-.navLink, .navLinkActive {
+.navLink,
+.navLinkActive {
   text-align: center;
   text-decoration: none;
   display: inline-flex;

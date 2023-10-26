@@ -1,68 +1,65 @@
-
-
 /* Carousel container */
 #carouselExampleIndicators {
-    width: 100%;
-    max-width: 100%; /* Occupy the full width of the viewport */
-    margin: 0;
-    overflow: hidden;
-    position: relative;
-  }
-  
-  /* Control buttons */
-  .carousel-control-prev,
-  .carousel-control-next {
-    color: black;
-    font-size: 20px;
-    background-color: transparent;
-    border: none;
-    font-weight: bold;
-  }
-  
-  /* Dot container at the bottom of the carousel */
-  .carousel-indicators {
-    position: absolute;
-    bottom: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Individual dot button */
-  .carousel-indicators button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: yellow;
-    border: none;
-    margin: 0 5px;
-    cursor: pointer;
-  }
-  
-  /* Active dot button */
-  .carousel-indicators button.active {
-    background-color: orange; /* You can change the color for the active state */
-  }
-  
-  /* Carousel item */
-  .carousel-item {
-    position: relative;
-  }
-  
-  /* Image inside carousel item */
-  .carousel-item img {
-    max-height: 1000px;
-    object-fit: cover;
-    width: 100%; /* Make sure the image takes up the full width */
-  }
-  
-  /* Active carousel item */
-  .carousel-item.active {
-    display: block;
-  }
-  
-  /* Hide inactive carousel items */
-  .carousel-item:not(.active) {
-    display: none;
-  }
-  
+  width: 100%;
+  max-width: 100%; /* Occupy the full width of the viewport */
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Control buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  color: black;
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+}
+
+/* Dot container at the bottom of the carousel */
+.carousel-indicators {
+  position: absolute;
+  bottom: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Individual dot button */
+.carousel-indicators button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: yellow;
+  border: none;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+/* Active dot button */
+.carousel-indicators button.active {
+  background-color: orange; /* You can change the color for the active state */
+}
+
+/* Carousel item */
+.carousel-item {
+  position: relative;
+}
+
+/* Image inside carousel item */
+.carousel-item img {
+  max-height: 1000px;
+  object-fit: cover;
+  width: 100%; /* Make sure the image takes up the full width */
+}
+
+/* Active carousel item */
+.carousel-item.active {
+  display: block;
+}
+
+/* Hide inactive carousel items */
+.carousel-item:not(.active) {
+  display: none;
+}
