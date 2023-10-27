@@ -32,8 +32,8 @@ export const addProductAdmin = createAsyncThunk(
   "reducerProducts/addProductAdmin",
   async () => {
     try {
-      const response = await axios("/admin");
-      console.log("ejecutando", response.data);
+      const response = await axios("/products/admin");
+      console.log("ejecutandoadmin", response.data);
       return response.data;
     } catch (error) {
       return [];
@@ -222,8 +222,8 @@ export const postClient = createAsyncThunk(
       console.log("Contenido de 'client' en postClient:", client); // Agrega este console.log
 
       const response = await axios.post("/users", client);
-      console.log("Respuesta del servidor:", response.data);
-      return response.data;
+      console.log("Respuesta del servidor postClient:", response.status);
+      return response.status;
     } catch (error) {
       console.error("Error en postClient:", error);
       return [];
@@ -253,10 +253,10 @@ export const sendMailReg = createAsyncThunk(
   async (data) => {
     try {
       const response = await axios.post("/mail", data);
-      console.log(response.data);
+      console.log("mail",response.data);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.log(error.data);
       return {};
     }
   }
@@ -267,6 +267,67 @@ export const sendMailPay = createAsyncThunk(
   async (data) => {
     try {
       const response = await axios.post("/mailpay", data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+
+// POST PROFILE 
+export const postProfile = createAsyncThunk(
+  "reducerProducts/postProfile",
+  async (data) => {
+    try {
+      const response = await axios.post("/profiles", data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+
+//POST REVIEW
+export const postReview = createAsyncThunk(
+  "reducerProducts/postReview",
+  async (data) => {
+    try {
+      console.log("llega a post",data);
+      const response = await axios.post(`/reviews?productId=${data.productId}`, data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+// DELETE REVIEW
+export const deleteReview = createAsyncThunk(
+  "reducerProducts/deleteReview",
+  async (id) => {
+    try {
+      console.log("llega a post",data);
+      const response = await axios.delete(`/reviews?id=${id}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+// GET USER BY EMAIL
+export const getUserByEmail = createAsyncThunk(
+  "reducerProducts/getUserByEmail",
+  async (mail) => {
+    try {
+      console.log("llega a byemail",mail);
+      const response = await axios(`/reviews/search?email=${mail}`);
       console.log(response.data);
       return response.data;
     } catch (error) {

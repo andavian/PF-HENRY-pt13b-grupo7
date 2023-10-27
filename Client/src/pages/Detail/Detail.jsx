@@ -1,57 +1,86 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductById, addProductToCart } from "../../redux/actions";
+import { getProductById, addProductToCart,postReview, getUserByEmail } from "../../redux/actions";
 import Carousel from "../../components/Carrousel/Carrousel";
 import styles from "./detail.module.css";
 import ProductReview from "../../components/ProductReview/ProductReview";
+import { useAuth0 } from "@auth0/auth0-react"
 
 export default function Detail({ product, onClose }) {
   const detailState = useSelector((state) => state.reducer.details);
   const [isFav, setIsFav] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [reviews, setReviews] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
+  const [showAllReviews, setShowAllReviews] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const userStorage = JSON.parse(localStorage.getItem("userData"));
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const profile = useSelector((state)=>state.reducer.registration)
 
   // Agregar un efecto para reiniciar el estado isFav al cambiar de producto
+  // useEffect(() => {
+  //   const currentFavorites =
+  //     JSON.parse(localStorage.getItem("favorites")) || [];
+  //   const isProductInFavorites = currentFavorites.some(
+  //     (favoriteProduct) => favoriteProduct.id === product.id
+  //   );
+  //   setIsFav(isProductInFavorites);
+  //   dispatch(getProductById(product.id));
+  // }, [dispatch, id, product.id]);
+
+  // const addToFavorites = (product) => {
+  //   // Recupera la lista de favoritos del localStorage
+  //   const currentFavorites =
+  //     JSON.parse(localStorage.getItem("favorites")) || [];
+
+  //   // Verifica si el producto ya está en la lista de favoritos
+  //   const isProductInFavorites = currentFavorites.some(
+  //     (favoriteProduct) => favoriteProduct.id === product.id
+  //   );
+
+  //   if (!isProductInFavorites) {
+  //     // Si el producto no está en la lista, agrégalo
+  //     currentFavorites.push(product);
+
+  //     // Guarda la lista actualizada en el localStorage
+  //     localStorage.setItem("favorites", JSON.stringify(currentFavorites));
+  //     setIsFav(true); // Actualiza el estado para reflejar que el producto está en favoritos
+  //   } else {
+  //     // Si el producto ya está en favoritos, quítalo de la lista
+  //     const updatedFavorites = currentFavorites.filter(
+  //       (favoriteProduct) => favoriteProduct.id !== product.id
+  //     );
+
+  //     // Guarda la lista actualizada en el localStorage
+  //     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  //     setIsFav(false); // Actualiza el estado para reflejar que el producto ya no está en favoritos
+  //   }
+  // };
+
   useEffect(() => {
-    const currentFavorites =
-      JSON.parse(localStorage.getItem("favorites")) || [];
-    const isProductInFavorites = currentFavorites.some(
-      (favoriteProduct) => favoriteProduct.id === product.id
-    );
-    setIsFav(isProductInFavorites);
-    dispatch(getProductById(product.id));
-  }, [dispatch, id, product.id]);
+    dispatch(getProductById(product.id))
+    dispatch(getUserByEmail(userStorage.email))
+    fetch(`http://localhost:3001/reviews?productId=${product.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // Verifica si el objeto de respuesta contiene el promedio de reseñas
+        if (data.averageRating !== undefined) {
+          // Almacena el promedio de reseñas en el estado local
+          console.log("acaa",data.averageRating);
+          setAverageRating(data.averageRating);
+        }
+        console.log("reviews",data.reviews);
+        // Almacena las reseñas en el estado local
+        setReviews(data.reviews);
+      })
+      .catch((error) => {
+        console.error("Error al obtener reseñas:", error);
+      });
+  }, [product.id]);
 
-  const addToFavorites = (product) => {
-    // Recupera la lista de favoritos del localStorage
-    const currentFavorites =
-      JSON.parse(localStorage.getItem("favorites")) || [];
-
-    // Verifica si el producto ya está en la lista de favoritos
-    const isProductInFavorites = currentFavorites.some(
-      (favoriteProduct) => favoriteProduct.id === product.id
-    );
-
-    if (!isProductInFavorites) {
-      // Si el producto no está en la lista, agrégalo
-      currentFavorites.push(product);
-
-      // Guarda la lista actualizada en el localStorage
-      localStorage.setItem("favorites", JSON.stringify(currentFavorites));
-      setIsFav(true); // Actualiza el estado para reflejar que el producto está en favoritos
-    } else {
-      // Si el producto ya está en favoritos, quítalo de la lista
-      const updatedFavorites = currentFavorites.filter(
-        (favoriteProduct) => favoriteProduct.id !== product.id
-      );
-
-      // Guarda la lista actualizada en el localStorage
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      setIsFav(false); // Actualiza el estado para reflejar que el producto ya no está en favoritos
-    }
-  };
   const addToCart = (product, quantity) => {
     // Obtener el carrito actual desde Local Storage o inicializarlo como un array vacío
     const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -79,12 +108,22 @@ export default function Detail({ product, onClose }) {
     // Cerrar el detalle del producto o realizar cualquier otra acción necesaria
     onClose();
   };
+const deleteReviewHandler =()=>{
 
-  useEffect(() => {
-    console.log("isFav:", isFav);
-    console.log("detailState:", detailState);
-    dispatch(getProductById(product.id));
-  }, [dispatch, id]);
+}
+
+
+ const onAddReview = (reviewText,rating)=>{
+  const reviewdata ={
+    productId: product.id,
+    email: userStorage.email, 
+    description: reviewText.reviewText,
+    rating: reviewText.rating
+  }
+  console.log("storage",profile);
+dispatch(postReview(reviewdata))
+
+ }
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -133,7 +172,7 @@ export default function Detail({ product, onClose }) {
                   {isFav ? "❤️" : "🤍"}
                 </button>
               </div>
-              <ProductReview/>
+
               <p className={styles.price}>${detailState.price}</p>
 
               <p className={styles.description}>{detailState.description}</p>
@@ -183,13 +222,24 @@ export default function Detail({ product, onClose }) {
               <p>Indefinida</p>
             )}
           </div>
-          
+          <ProductReview onAddReview={onAddReview} />
+          <div>
+        <h2>Reseñas de Productos</h2>      
+       {reviews && reviews.map((review) => (
+        <div className={styles.review}>
+        <h4>Rating: {review.rating}</h4>
+        <p>Description: {review.description}</p>
+        <p>Created At: {review.createdAt}</p>
+        {userStorage.id === review.UserId ?
+        <button onClick={()=>deleteReviewHandler(review.Id)}>Eliminar reseña</button>:null }
+      </div>
+      ))}
+      </div>
         </div>
       ) : (
         <p>Producto no encontrado</p>
       )}
-     
-
+      
     </div>
   );
 }

@@ -1,0 +1,98 @@
+/* Landing.module.css */
+
+.container {
+  display: flexbox;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.containertext {
+  margin-left: 300px;
+  margin-right: 300px;
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+
+.introText {
+  text-align: center;
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-left: 400px;
+  margin-right: 400px;
+  line-height: 1.5;
+}
+
+.containertext {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.card img {
+  width: 100px; /* Ajusta el tamaño según tus necesidades */
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover; /* Ajusta la forma en que la imagen se ajusta al contenedor */
+  margin-bottom: 10px;
+}
+
+
+.flag{
+margin-top: -40px;
+margin-left: 60px;
+
+}
+
+/* 
+p{
+  font-weight: bold;
+} */
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 28px;
+  text-transform: none;
+
+}
+
+
+.link{
+  text-decoration:none;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.enterButton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.enterButton:hover {
+  background-color: #0056b3;
+}

@@ -2,7 +2,6 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "./card.module.css";
 import { useState } from "react";
-import Detail from "../../pages/Detail/Detail";
 
 export default function Card({ product }) {
   const { pathname } = useLocation();
@@ -85,21 +84,25 @@ export default function Card({ product }) {
         </button>
 
         <div className={styles.cardinfo}>
-          <Link className={styles.link}>
+          {/* <Link className={styles.link}>
             <div className={styles.title} onClick={() => openModal(product)}>
               {truncatedTitle}
             </div>
+          </Link>   */}
+
+          <Link to={`/${product.id}`} className={styles.link}>
+            <div className={styles.title}>{truncatedTitle}</div>
           </Link>
 
           <div className={styles.price}>$ {product.price}.00</div>
 
           <label className={styles.envio}>Envío gratis </label>
 
-          {modalOpen && selectedProduct && (
+          {/* {modalOpen && selectedProduct && (
             <div className={styles["modal-overlay"]}>
               <Detail product={selectedProduct} onClose={closeModal} />
             </div>
-          )}
+          )} */}
 
           {/* <div className={styles.description}>{product.description}</div> */}
         </div>

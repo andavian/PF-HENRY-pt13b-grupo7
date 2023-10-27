@@ -35,7 +35,7 @@ export default function DashCategory() {
                <tr key={category.id}>
                 <td>{category.name}</td>
                 <td>
-              <button
+              <button className={styles.boton}
                 onClick={() => handleDeleteClick(category.name)}
                 
               >
