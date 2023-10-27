@@ -1,12 +1,11 @@
 // RegistrationForm.js
 import React, { useEffect, useState } from "react";
-import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import FormCloudinary from "../FormProducts/FormCloudinary";
 import styles from "./RegistrationForm.module.css"; // Importa el módulo CSS
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/actions";
-import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/actions";
+
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
