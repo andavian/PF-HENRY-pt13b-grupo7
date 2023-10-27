@@ -18,6 +18,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   
   useEffect(() => {
+    console.log(userStorage);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 

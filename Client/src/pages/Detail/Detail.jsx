@@ -80,11 +80,7 @@ export default function Detail({ product, onClose }) {
     onClose();
   };
 
-  useEffect(() => {
-    console.log("isFav:", isFav);
-    console.log("detailState:", detailState);
-    dispatch(getProductById(product.id));
-  }, [dispatch, id]);
+ 
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
