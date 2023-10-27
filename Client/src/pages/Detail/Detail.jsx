@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductById, addProductToCart } from "../../redux/actions";
+import { getProductById, addProductToCart,postReview, getUserByEmail } from "../../redux/actions";
 import Carousel from "../../components/Carrousel/Carrousel";
 import styles from "./detail.module.css";
 import ProductReview from "../../components/ProductReview/ProductReview";
+import { useAuth0 } from "@auth0/auth0-react"
 
 export default function Detail({ product, onClose }) {
   const detailState = useSelector((state) => state.reducer.details);
@@ -15,6 +16,9 @@ export default function Detail({ product, onClose }) {
   const [showAllReviews, setShowAllReviews] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const userStorage = JSON.parse(localStorage.getItem("userData"));
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
+  const profile = useSelector((state)=>state.reducer.registration)
 
   // Agregar un efecto para reiniciar el estado isFav al cambiar de producto
   // useEffect(() => {
@@ -57,16 +61,18 @@ export default function Detail({ product, onClose }) {
   // };
 
   useEffect(() => {
-    // Realiza una solicitud a la API para obtener los datos de reseñas, reemplaza 'apiEndpoint' con la URL correcta.
-    fetch(`/reviews/${product.id}`)
+    dispatch(getProductById(product.id))
+    dispatch(getUserByEmail(userStorage.email))
+    fetch(`http://localhost:3001/reviews?productId=${product.id}`)
       .then((response) => response.json())
       .then((data) => {
         // Verifica si el objeto de respuesta contiene el promedio de reseñas
         if (data.averageRating !== undefined) {
           // Almacena el promedio de reseñas en el estado local
+          console.log("acaa",data.averageRating);
           setAverageRating(data.averageRating);
         }
-
+        console.log("reviews",data.reviews);
         // Almacena las reseñas en el estado local
         setReviews(data.reviews);
       })
@@ -102,8 +108,22 @@ export default function Detail({ product, onClose }) {
     // Cerrar el detalle del producto o realizar cualquier otra acción necesaria
     onClose();
   };
+const deleteReviewHandler =()=>{
+
+}
 
 
+ const onAddReview = (reviewText,rating)=>{
+  const reviewdata ={
+    productId: product.id,
+    email: userStorage.email, 
+    description: reviewText.reviewText,
+    rating: reviewText.rating
+  }
+  console.log("storage",profile);
+dispatch(postReview(reviewdata))
+
+ }
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -202,11 +222,24 @@ export default function Detail({ product, onClose }) {
               <p>Indefinida</p>
             )}
           </div>
-          <ProductReview />
+          <ProductReview onAddReview={onAddReview} />
+          <div>
+        <h2>Reseñas de Productos</h2>      
+       {reviews && reviews.map((review) => (
+        <div className={styles.review}>
+        <h4>Rating: {review.rating}</h4>
+        <p>Description: {review.description}</p>
+        <p>Created At: {review.createdAt}</p>
+        {userStorage.id === review.UserId ?
+        <button onClick={()=>deleteReviewHandler(review.Id)}>Eliminar reseña</button>:null }
+      </div>
+      ))}
+      </div>
         </div>
       ) : (
         <p>Producto no encontrado</p>
       )}
+      
     </div>
   );
 }

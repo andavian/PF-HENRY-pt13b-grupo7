@@ -6,13 +6,14 @@ import styles from "./RegistrationForm.module.css"; // Importa el módulo CSS
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/actions";
 
+
 const RegistrationForm = () => {
   const dispatch = useDispatch();
-
   const profileGlobal = useSelector((state)=> state.reducer.profile)
   const registration = useSelector((state) => state.reducer.registration);
   const { loginWithRedirect } = useAuth0();
-
+  const { user } = useAuth0();
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     billingaddress: "",
@@ -90,19 +91,14 @@ const RegistrationForm = () => {
           ...formData,
           name: user.name,
           email: user.email,
-
         }
         console.log("Contenido de mailer antes de enviar:", mailer);
-        dispatch(postClient(userData));
+        dispatch(postClient(userData))
         dispatch(postProfile(userData))
         dispatch(sendMailReg(mailer));
         localStorage.setItem("userData", JSON.stringify(userData));
       } catch (error) {
         alert("Hubo un error al crear la cuenta");
-        console.log("Error:", error);
-        alert("Hubo un error al crear el perfil");
-
-
       }
     }
   };
