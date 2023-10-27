@@ -6,7 +6,6 @@ import styles from "./ProfileUser.module.css";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const userStorage = JSON.parse(localStorage.getItem("userData"))
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -14,7 +13,6 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-
       <div className={styles.container}>
         <div className={styles.profilecontainer}>
           <h3 className={styles.profilename}>¡Hola, {user.name}!</h3>
@@ -29,16 +27,15 @@ const Profile = () => {
           <p className={styles.text}>Correo electrónico:</p>
 
           <h3 className={styles.profileemail}>{user.email}</h3>
-          <p className="profile-billing-address">{user.billingaddress}</p>
-        
-      {!userStorage.billingaddress ?
+          <p className={styles.text}>
+            Para que tu perfil esté totalmente configurado y disfrutes al máximo
+            de nuestros productos, te invitamos a hacer clic en el siguiente
+            enlace:
+          </p>
           <Link to={"/registration"} className={styles.button}>
             Click aquí para completar tu perfil
-          </Link> : (<Link to={"/home"} className={styles.button}>
-            Sigue navegando tu perfil esta completo
-          </Link>) }
+          </Link>
         </div>
-
       </div>
     )
   );
