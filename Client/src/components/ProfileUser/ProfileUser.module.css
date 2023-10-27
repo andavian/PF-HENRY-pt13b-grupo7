@@ -15,6 +15,9 @@
   margin-left: 500px;
   margin-right: 500px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  margin-left: 200px;
+  margin-right: 200px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 
   /* Añadí margen exterior para separar del contenido cercano */
 }
