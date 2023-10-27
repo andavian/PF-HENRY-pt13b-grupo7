@@ -1,62 +1,70 @@
+.container {
+  background-color: rgb(240, 240, 240);
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../images/Currcula-Henry.png"); Reemplaza con la ruta de tu imagen */
+  padding: 100px;
+  background-size: cover; /* Ajusta el tamaño de la imagen de fondo para cubrir todo el contenedor */
+}
+
 .profilecontainer {
-  display: flex;
-  align-items: center;
-  background-color: #333; /* Cambia el color de fondo a tu preferencia */
-  padding: 10px;
-  border-radius: 5px;
-}
+  text-align: center;
+  border: solid none; /* Agregué el grosor y el tipo de borde */
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-left: 500px;
+  margin-right: 500px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+  margin-left: 200px;
+  margin-right: 200px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 
-.profile-dropdown {
-  position: relative;
-}
-
-.profilepicture {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff; /* Cambia el color de fondo a tu preferencia */
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-.dropdown-content ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.dropdown-content ul li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-.separtador {
-  border-bottom: 1px solid #ddd;
-}
-
-.conteinerList li:last-child {
-  border-bottom: none;
+  /* Añadí margen exterior para separar del contenido cercano */
 }
 
 .profilename {
-  font-size: 18px;
-  color: #fff; /* Cambia el color de texto a tu preferencia */
-  margin: 0;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.profilepicture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  /* background-image: url('../../images/th.jpg'); */
+  background-size: cover;
+  align-items: center;
+}
+.text {
+  margin-bottom: 15px;
 }
 
 .profileemail {
-  font-size: 14px;
-  color: #aaa; /* Cambia el color de texto a tu preferencia */
-  margin: 0;
+  margin-bottom: 15px;
+}
+
+/* Botón azul */
+.button {
+  color: white;
+  background-color: #007bff;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  padding: 0.7rem 2rem;
+  text-align: center;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  animation: pulse 1s infinite;
+}
+
+.button:hover {
+  background-color: #0056b3;
 }
