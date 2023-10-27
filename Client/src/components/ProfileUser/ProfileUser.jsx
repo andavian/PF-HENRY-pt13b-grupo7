@@ -6,7 +6,6 @@ import styles from "./ProfileUser.module.css";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const userStorage = JSON.parse(localStorage.getItem("userData"))
 
   if (isLoading) {
     return <div>Loading ...</div>;

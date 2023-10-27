@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from "./DashProducts.module.css"
 import {FiEdit} from "react-icons/fi";
 import {MdDeleteForever} from "react-icons/md";
-import {BsFillPlusSquareFill} from "react-icons/bs";
-
 import { Link } from 'react-router-dom';
 import SearchBar from '../../../components/SearchBar/SearchBar';
 
@@ -43,12 +41,7 @@ function DashProducts() {
   const handleDeleteClick = (productId) => {
     // Aquí debes implementar la lógica para eliminar el producto con el ID proporcionado
     dispatch(deleteProduct(productId))
-    .then(() => {
-      dispatch(addProductAdmin());
-
-    });
   };
-  
 
   return (
     <div className={styles.productTable}>
@@ -94,12 +87,11 @@ function DashProducts() {
               </Link>
             </td>
             <td>
-              <button 
-              className={`${styles.banButton} ${product.hidden ? styles.unbanButton : ''}`}
-              onClick={() => handleDeleteClick(product.id)}
-              >
-                {product.hidden ? <BsFillPlusSquareFill/> : <MdDeleteForever />}
+              <button
+                onClick={() => handleDeleteClick(product.id)}
                 
+              >
+                <MdDeleteForever />
               </button>
             </td>
           </tr>
@@ -111,5 +103,3 @@ function DashProducts() {
 }
 
 export default DashProducts;
-
-

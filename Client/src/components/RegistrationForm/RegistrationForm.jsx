@@ -11,6 +11,8 @@ const RegistrationForm = () => {
   const profileGlobal = useSelector((state)=> state.reducer.profile)
   const registration = useSelector((state) => state.reducer.registration);
   const { loginWithRedirect } = useAuth0();
+  const { user } = useAuth0();
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     billingaddress: "",
@@ -19,8 +21,6 @@ const RegistrationForm = () => {
     mobilenumber: "",
     image: "",
   });
-
- 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -89,14 +89,12 @@ const RegistrationForm = () => {
           email: user.email,
         }
         console.log("Contenido de mailer antes de enviar:", mailer);
-        dispatch(postClient(userData));
+        dispatch(postClient(userData))
         dispatch(postProfile(userData))
         dispatch(sendMailReg(mailer));
         localStorage.setItem("userData", JSON.stringify(userData));
       } catch (error) {
         alert("Hubo un error al crear la cuenta");
-        console.log("Error:", error);
-        alert("Hubo un error al crear el perfil");
       }
     }
   };
@@ -107,7 +105,7 @@ const RegistrationForm = () => {
         <h1 className={styles.title}>Completa tu perfil</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            Imagen
+            Seleciona una foto de perfil
             <input
               type="text"
               name="image"
