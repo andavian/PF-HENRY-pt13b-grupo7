@@ -1,87 +1,37 @@
-.h2{
-  font-size: 20px;
-}
+/* Landing.module.css */
 
 .container {
-  /* background: url("../../assets/backhome.jpg") no-repeat center center; */
-  background-color: rgb(240, 240, 240);
-  backdrop-filter: blur(300px);
-  background-size: cover;
-  padding: 100px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
 .containertext {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
   padding: 20px;
-  border-radius: 16px;
-  max-width: 600px;
+  width: 200px;
+  text-align: center;
 }
 
-.box {
-  margin-bottom: 20px;
-}
-
-.title {
-  color: #333;
-  font-size: 55px;
+.card h2 {
   margin-bottom: 10px;
-  text-align: left;
-  
 }
 
-.text {
-  color: #333;
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-/* Estilos para el botón azul*/
-.button {
-  color: rgb(0, 0, 0);
-  background-color: rgb(255, 225, 0);
-  border-radius: 0.5rem;
-  padding: 10px 10px;
-  font-size: 16px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  border-color: #000000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.buttonBorder {
-  color: rgba(0, 0, 0, 0.417);
-  background-color: rgba(98, 98, 98, 0.404);
-  border-radius: 0.5rem;
-  padding: 10px 10px;
-  font-size: 16px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.button:hover {
-  color: rgb(71, 71, 66);
-  background-color: #e9ed0a;
-}
-
-.buttonblue:hover {
-  background-color: #1f546d;
-}
-
-a{
-  align-content: flex-start;
-  
+.card img {
+  width: 100px; /* Ajusta el tamaño según tus necesidades */
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover; /* Ajusta la forma en que la imagen se ajusta al contenedor */
+  margin-bottom: 10px;
 }
