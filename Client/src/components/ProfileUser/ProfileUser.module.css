@@ -1,4 +1,3 @@
-
 .container {
   background-color: rgb(240, 240, 240);
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -13,13 +12,15 @@
   background: #ffffff;
   border-radius: 10px;
   padding: 20px;
+  margin-left: 500px;
+  margin-right: 500px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   margin-left: 200px;
   margin-right: 200px;
-  box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 
-/* Añadí margen exterior para separar del contenido cercano */
+  /* Añadí margen exterior para separar del contenido cercano */
 }
-
 
 .profilename {
   font-size: 1.5em;
@@ -32,7 +33,7 @@
   height: 150px;
   border-radius: 50%;
   margin-bottom: 20px;
-  background-image: url('../../images/th.jpg');
+  /* background-image: url('../../images/th.jpg'); */
   background-size: cover;
   align-items: center;
 }

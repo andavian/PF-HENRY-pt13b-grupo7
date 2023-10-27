@@ -1,23 +1,25 @@
 // RegistrationForm.js
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
+import FormCloudinary from "../FormProducts/FormCloudinary";
 import styles from "./RegistrationForm.module.css"; // Importa el módulo CSS
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, sendMailReg } from "../../redux/actions";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
-  const registration = useSelector((state) => state.reducer.registration);
-  const { loginWithRedirect } = useAuth0();
+  const { user } = useAuth0();
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     billingaddress: "",
     country: "",
     locality: "",
     mobilenumber: "",
+    image: "",
   });
-  const { user } = useAuth0();
+
+  formData.image = image;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -66,11 +68,6 @@ const RegistrationForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const isValidEmail = (email) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
-
   const isValidPhoneNumber = (phoneNumber) => {
     // Puedes implementar una validación específica para números de teléfono aquí
     // Este ejemplo verifica que el número tenga al menos 10 dígitos
@@ -85,32 +82,13 @@ const RegistrationForm = () => {
     };
     if (validateForm()) {
       try {
-        console.log("Contenido de mailer antes de enviar:", mailer);
         dispatch(sendMailReg(mailer));
         dispatch(postClient(formData));
 
         // Realiza acciones adicionales después de guardar los datos
-
-        if (registration !== undefined) {
-          console.log("Valor de registration:", registration);
-
-          if (registration === 200) {
-            loginWithRedirect({
-              screen_hint: "signup",
-              login_hint: formData.email,
-              email: formData.email,
-              password: formData.password,
-            });
-          } else {
-            alert("Hubo un error al crear la cuenta");
-          }
-        } else {
-          console.log("registration es undefined o null");
-          alert("Hubo un error al crear la cuenta");
-        }
       } catch (error) {
         console.log("Error:", error);
-        alert("Hubo un error al crear la cuenta");
+        alert("Hubo un error al crear el perfil");
       }
     }
   };
@@ -118,8 +96,19 @@ const RegistrationForm = () => {
   return (
     <div className={styles.container}>
       <div className={styles.formcontainer}>
-        <h1 className={styles.title}>Completa los datos para crear tu cuenta</h1>
+        <h1 className={styles.title}>Completa tu perfil</h1>
         <form onSubmit={handleSubmit}>
+          <label>
+            Imagen
+            <input
+              type="text"
+              name="image"
+              value={formData.image}
+              className={styles.inputImage}
+            />
+            <FormCloudinary image={image} setImage={setImage} />
+          </label>
+
           <input
             type="text"
             name="billingaddress"
@@ -163,8 +152,8 @@ const RegistrationForm = () => {
           <button type="submit">Registrarse</button>
         </form>
         <p className={styles.complementaryText}>
-      ¡Completa los campos anteriores para crear tu cuenta!
-    </p>
+          ¡Completa los campos anteriores para crear tu cuenta!
+        </p>
       </div>
     </div>
   );
