@@ -8,6 +8,10 @@ import { postClient, sendMailReg } from "../../redux/actions";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+
+  const profileGlobal = useSelector((state) => state.reducer.profile);
+  const registration = useSelector((state) => state.reducer.registration);
+
   const { user } = useAuth0();
   const [image, setImage] = useState("");
   const [errors, setErrors] = useState({});
@@ -20,6 +24,10 @@ const RegistrationForm = () => {
   });
 
   formData.image = image;
+
+  useEffect(() => {
+    console.log("regis", user);
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -82,13 +90,18 @@ const RegistrationForm = () => {
     };
     if (validateForm()) {
       try {
+        const userData = {
+          ...formData,
+          name: user.name,
+          email: user.email,
+        };
+        console.log("Contenido de mailer antes de enviar:", mailer);
+        dispatch(postClient(userData));
+        dispatch(postProfile(userData));
         dispatch(sendMailReg(mailer));
-        dispatch(postClient(formData));
-
-        // Realiza acciones adicionales después de guardar los datos
+        localStorage.setItem("userData", JSON.stringify(userData));
       } catch (error) {
-        console.log("Error:", error);
-        alert("Hubo un error al crear el perfil");
+        alert("Hubo un error al crear la perfil");
       }
     }
   };

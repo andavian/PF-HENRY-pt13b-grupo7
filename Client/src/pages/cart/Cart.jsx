@@ -14,6 +14,7 @@ const Cart = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
   });
+  // const userStorage = JSON.parse(localStorage.getItem("userData"));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -81,26 +82,31 @@ const Cart = () => {
   };
 
   const handlePay = async () => {
-    let mailer = {
-      email: user.email,
-    };
-    console.log("Contenido de mailer antes de enviar:", mailer);
-
     try {
-      if (isAuthenticated) {
-        dispatch(sendMailPay(mailer));
-        const order = {
-          value: calculateTotal(),
-        };
-        const { data } = await axios.post("/payment/create-order", order);
-        console.log("datos", data);
-        return data.links[1];
-      } else {
-        loginWithRedirect();
-      }
+      const order = {
+        value: calculateTotal(),
+      };
+      const { data } = await axios.post("/payment/create-order", order);
+      console.log("datos", data);
+      return data.links[1];
     } catch (error) {
       console.error("Error al realizar la solicitud:", error);
       throw error;
+    }
+  };
+
+  const startPay = async () => {
+    try {
+      if (!isAuthenticated) {
+        loginWithRedirect();
+      }
+
+      const linkPayPal = await handlePay();
+
+      window.location.href = linkPayPal.href;
+      setCart([]);
+    } catch (error) {
+      alert("Error al iniciar el pago:", error);
     }
   };
 
@@ -196,7 +202,7 @@ const Cart = () => {
               </tbody>
             </table>
 
-            <button className={style.buttonCompra} onClick={handlePay}>
+            <button className={style.buttonCompra} onClick={startPay}>
               Continuar compra
             </button>
 
