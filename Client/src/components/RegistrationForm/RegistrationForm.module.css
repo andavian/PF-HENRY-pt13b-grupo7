@@ -74,3 +74,15 @@
   color: #007bff;
   margin-top: 20px;
 }
+
+
+.titleLabel{
+  text-align: left;
+  margin: 10px;
+  color: black;
+}
+
+label{
+  color: black;
+  text-align: left;
+}
