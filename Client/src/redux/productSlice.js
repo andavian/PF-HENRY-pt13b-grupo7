@@ -1,5 +1,5 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient ,deleteProduct,addProductAdmin} from "./actions";
+import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient ,deleteProduct,addProductAdmin,getUserByEmail} from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -127,6 +127,9 @@ export const productSlice = createSlice({
       .addCase(addProductAdmin.fulfilled, (state, { payload }) => {
         state.admincatalog = payload;
          })
+      .addCase(getUserByEmail.fulfilled, (state, { payload }) => {
+        state.registration = payload;
+      })
   },
 });
 //createasyncthunk redux toolkit

@@ -14,7 +14,7 @@ const Cart = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
   });
-  // const userStorage = JSON.parse(localStorage.getItem("userData"));
+  const userStorage = JSON.parse(localStorage.getItem("userData"));
   const dispatch = useDispatch();
 
   useEffect(() => {

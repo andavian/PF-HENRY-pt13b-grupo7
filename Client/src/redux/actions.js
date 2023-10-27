@@ -275,3 +275,64 @@ export const sendMailPay = createAsyncThunk(
     }
   }
 );
+
+// POST PROFILE 
+export const postProfile = createAsyncThunk(
+  "reducerProducts/postProfile",
+  async (data) => {
+    try {
+      const response = await axios.post("/profiles", data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+
+//POST REVIEW
+export const postReview = createAsyncThunk(
+  "reducerProducts/postReview",
+  async (data) => {
+    try {
+      console.log("llega a post",data);
+      const response = await axios.post(`/reviews?productId=${data.productId}`, data);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+// DELETE REVIEW
+export const deleteReview = createAsyncThunk(
+  "reducerProducts/deleteReview",
+  async (id) => {
+    try {
+      console.log("llega a post",data);
+      const response = await axios.delete(`/reviews?id=${id}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
+// GET USER BY EMAIL
+export const getUserByEmail = createAsyncThunk(
+  "reducerProducts/getUserByEmail",
+  async (mail) => {
+    try {
+      console.log("llega a byemail",mail);
+      const response = await axios(`/reviews/search?email=${mail}`);
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return {};
+    }
+  }
+);
