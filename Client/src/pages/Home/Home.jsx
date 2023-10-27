@@ -22,10 +22,8 @@ import CardCarousel from "../../components/crouselflecha/CardCarousel";
 import CardCategory from "../../components/Card-Category/Cardcategory";
 
 import bannerBackground from "../../images/Banner.jpg";
-import { getProfile } from "../../redux/actions";
-import { useAuth0 } from "@auth0/auth0-react"
+
 export default function Shop() {
-  const user = useAuth0()
   const dispatch = useDispatch();
   const catalog = useSelector((state) => state.reducer.catalog);
   const categories = useSelector((state) => state.reducer.categories);
@@ -57,7 +55,6 @@ export default function Shop() {
     slidesToScroll: 1,
   };
 
-
   return (
     <main className={styles.container}>
       {/* BANNER */}
@@ -81,7 +78,7 @@ export default function Shop() {
               EL DÍA 253
             </h1>
 
-            <button className={styles.buttonBanner} >Ver mas</button>
+            <button className={styles.buttonBanner}>Ver mas</button>
           </div>
         </div>
       </div>

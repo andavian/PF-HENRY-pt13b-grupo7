@@ -47,22 +47,17 @@
   .boton {
     display: inline-flex;
     height: 3rem; /* Ajusta la altura del botón */
-    width: 3rem; /* Ajusta el ancho del botón para hacerlo cuadrado */
     justify-content: center;
+    
     align-items: center;
-    border-radius: 50%; /* Para hacer el botón redondo */
-    background: rgb(252, 49, 49);
-    box-shadow: 0px 4px 4px 0px rgba(31, 27, 27, 0.25);
-    font-size: 1.5rem; /* Ajusta el tamaño del ícono */
-    color: white; /* Color de texto para el ícono */
+    gap: 0.5rem;
+    border-radius: 20px;
+    background: #ff0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 50%;
+    left: 20%;
   }
-  
-  /* Estilo para el ícono específicamente */
-  .boton svg {
-    font-size: 1.5rem; /* Ajusta el tamaño del ícono */
-    color: white; /* Color de texto para el ícono */
-  }
-  
   
   .boton:hover {
     background-color: #9f9d9d87;
