@@ -1,5 +1,17 @@
 import { createAction, createReducer, createSlice } from "@reduxjs/toolkit";
-import { addProduct, getCategories, getProductById,getProductsCategories,getProductByName,postProduct, getClients, postClient ,deleteProduct,addProductAdmin} from "./actions";
+import {
+  addProduct,
+  getCategories,
+  getProductById,
+  getProductsCategories,
+  getProductByName,
+  postProduct,
+  getClients,
+  postClient,
+  deleteProduct,
+  addProductAdmin,
+  getUserByEmail,
+} from "./actions";
 
 //const ADD_PRODUCTS = createAction("ADD_PRODUCTS");
 //const ADD_PRODUCT_TO_CART =createAction("ADD_PRODUCT_TO_CART");
@@ -12,7 +24,7 @@ import { addProduct, getCategories, getProductById,getProductsCategories,getProd
 export const productSlice = createSlice({
   name: "reducerProducts",
   initialState: {
-    admincatalog:[],
+    admincatalog: [],
     totalproducts: [],
     catalog: [],
     cart: [],
@@ -22,17 +34,17 @@ export const productSlice = createSlice({
     currentPage: 1,
     search: "",
     users: [],
-    clients:[],
-    registration:null,
+    clients: [],
+    registration: null,
     infoSend: null,
-    profile:{},
+    profile: {},
   },
   reducers: {
     orderPrice: (state, action) => {
       const { payload } = action;
       const catalogCopy = [...state.catalog];
-      const adminCopy =[...state.admincatalog] // Crear una copia del catálogo
-    
+      const adminCopy = [...state.admincatalog]; // Crear una copia del catálogo
+
       if (payload === "asc") {
         catalogCopy.sort((a, b) => a.price - b.price);
         adminCopy.sort((a, b) => a.price - b.price);
@@ -40,14 +52,13 @@ export const productSlice = createSlice({
         catalogCopy.sort((a, b) => b.price - a.price);
         adminCopy.sort((a, b) => b.price - a.price);
       }
-    
+
       return {
         ...state,
         catalog: catalogCopy,
-        admincatalog : adminCopy,
+        admincatalog: adminCopy,
       };
     },
-    
 
     filteredCategory: (state, action) => {
       const allProducts = state.totalproducts;
@@ -75,7 +86,7 @@ export const productSlice = createSlice({
         infoSend: action.payload,
       };
     },
-    
+
     setPage: (state, action) => {
       return {
         ...state,
@@ -100,16 +111,16 @@ export const productSlice = createSlice({
       .addCase(addProduct.fulfilled, (state, { payload }) => {
         // Realiza lo que necesitas hacer con addProduct.fulfilled
         state.totalproducts = payload;
-        state.catalog = payload
+        state.catalog = payload;
       })
       .addCase(getProductById.fulfilled, (state, { payload }) => {
         // Realiza lo que necesitas hacer con getProductById.fulfilled
         state.details = payload;
       })
-      .addCase(getCategories.fulfilled,(state, { payload })=> {
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
         state.categories = payload;
       })
-      .addCase(getProductByName.fulfilled,(state, { payload })=> {
+      .addCase(getProductByName.fulfilled, (state, { payload }) => {
         state.catalog = payload;
         state.admincatalog = payload;
       })
@@ -123,14 +134,14 @@ export const productSlice = createSlice({
         state.registration = payload;
       })
       .addCase(deleteProduct.fulfilled, (state, action) => {
-     console.log("hola");
+        console.log("hola");
       })
       .addCase(addProductAdmin.fulfilled, (state, { payload }) => {
         state.admincatalog = payload;
-         })
+      })
       .addCase(getUserByEmail.fulfilled, (state, { payload }) => {
         state.registration = payload;
-      })
+      });
   },
 });
 //createasyncthunk redux toolkit
