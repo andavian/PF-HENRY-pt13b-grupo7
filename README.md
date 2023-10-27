@@ -1,10 +1,10 @@
 # PF-HENRY-pt13b-grupo7
 
-Bienvenido/a al repositorio de código de HenryFans.com, la plataforma de comercio electrónico oficial de la comunidad "Soy Henry". Este proyecto está desarrollado por el Grupo 7 del Programa de Formación de Henry (PF-HENRY) en la cohorte pt13b.
+Bienvenido/a al repositorio de código de HenryStore.com, la plataforma de comercio electrónico oficial de la comunidad "Soy Henry". Este proyecto está desarrollado por el Grupo 7 del Programa de Formación de Henry (PF-HENRY) en la cohorte pt13b.
 
 ## Descripción del Proyecto
 
-HenryFans.com es una plataforma de comercio electrónico especializada en la venta de productos con el branding "Soy Henry". Está dirigida tanto a nuestra comunidad de estudiantes, instructores y graduados, como al público en general. Nuestro objetivo es ofrecer una amplia gama de artículos promocionales de alta calidad que incluyen ropa, hardware personalizado y una variedad de productos adicionales.
+HenryStore.com es una plataforma de comercio electrónico especializada en la venta de productos con el branding "Soy Henry". Está dirigida tanto a nuestra comunidad de estudiantes, instructores y graduados, como al público en general. Nuestro objetivo es ofrecer una amplia gama de artículos promocionales de alta calidad que incluyen ropa, hardware personalizado y una variedad de productos adicionales.
 
 ## Características Principales
 
@@ -25,7 +25,7 @@ Para configurar y ejecutar este proyecto localmente, sigue estos pasos:
 
 ## Contribuciones
 
-¡Apreciamos las contribuciones de la comunidad! Si deseas contribuir al desarrollo de HenryFans.com, sigue estos pasos:
+¡Apreciamos las contribuciones de la comunidad! Si deseas contribuir al desarrollo de HenryStore.com, sigue estos pasos:
 
 1. Haz un fork del repositorio.
 2. Crea una rama para tu contribución: `git checkout -b feature/nueva-funcionalidad`.
@@ -35,6 +35,6 @@ Para configurar y ejecutar este proyecto localmente, sigue estos pasos:
 
 ## Contacto
 
-Para más información o preguntas, puedes ponerte en contacto con nosotros a través de [correo electrónico](mailto:info@henryfans.com) o visitar nuestro sitio web [HenryFans.com](https://www.henryfans.com).
+Para más información o preguntas, puedes ponerte en contacto con nosotros a través de [correo electrónico](mailto:info@henrystore.com) o visitar nuestro sitio web [HenryStore.com](https://www.henrystore.com).
 
-¡Gracias por ser parte de la comunidad "Soy Henry" y apoyar HenryFans.com!
+¡Gracias por ser parte de la comunidad "Soy Henry" y apoyar HenryStore.com!
