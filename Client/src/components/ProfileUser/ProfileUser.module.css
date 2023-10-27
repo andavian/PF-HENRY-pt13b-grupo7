@@ -13,8 +13,8 @@
   background: #ffffff;
   border-radius: 10px;
   padding: 20px;
-  margin-left: 500px;
-  margin-right: 500px;
+  margin-left: 200px;
+  margin-right: 200px;
   box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
 
 /* Añadí margen exterior para separar del contenido cercano */
@@ -32,8 +32,10 @@
   height: 150px;
   border-radius: 50%;
   margin-bottom: 20px;
+  background-image: url('../../images/th.jpg');
+  background-size: cover;
+  align-items: center;
 }
-
 .text {
   margin-bottom: 15px;
 }
