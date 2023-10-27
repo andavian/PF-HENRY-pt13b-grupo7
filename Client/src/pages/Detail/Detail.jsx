@@ -103,9 +103,7 @@ export default function Detail({ product, onClose }) {
     onClose();
   };
 
-  useEffect(() => {
-    dispatch(getProductById(product.id));
-  }, [dispatch, id]);
+
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);

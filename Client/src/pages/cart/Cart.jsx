@@ -14,10 +14,13 @@ const Cart = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
   });
-  // const userStorage = JSON.parse(localStorage.getItem("userData"));
-  const dispatch = useDispatch();
 
+  // const userStorage = JSON.parse(localStorage.getItem("userData"));
+
+  const dispatch = useDispatch();
+  
   useEffect(() => {
+    console.log(userStorage);
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
