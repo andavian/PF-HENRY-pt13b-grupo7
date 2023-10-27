@@ -25,9 +25,6 @@ const RegistrationForm = () => {
 
   formData.image = image;
 
-  useEffect(() => {
-    console.log("regis", user);
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -112,7 +109,7 @@ const RegistrationForm = () => {
         <h1 className={styles.title}>Completa tu perfil</h1>
         <form onSubmit={handleSubmit}>
           <label>
-            Imagen
+            Seleciona una foto de perfil
             <input
               type="text"
               name="image"
