@@ -1,13 +1,23 @@
 // RegistrationForm.js
 import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import FormCloudinary from "../FormProducts/FormCloudinary";
 import styles from "./RegistrationForm.module.css"; // Importa el módulo CSS
 import { useDispatch, useSelector } from "react-redux";
 import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/actions";
+import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/actions";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+<<<<<<<<< Temporary merge branch 1
+
+  const profileGlobal = useSelector((state) => state.reducer.profile);
+  const registration = useSelector((state) => state.reducer.registration);
+
+  const { user } = useAuth0();
+  const [image, setImage] = useState("");
+=========
   const profileGlobal = useSelector((state)=> state.reducer.profile)
   const registration = useSelector((state) => state.reducer.registration);
   const { loginWithRedirect } = useAuth0();
@@ -21,6 +31,9 @@ const RegistrationForm = () => {
     mobilenumber: "",
     image: "",
   });
+
+ 
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

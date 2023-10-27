@@ -16,7 +16,7 @@ const Cart = () => {
   });
   const userStorage = JSON.parse(localStorage.getItem("userData"));
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     console.log(userStorage);
     localStorage.setItem("cart", JSON.stringify(cart));
