@@ -22,12 +22,14 @@ import DashClients from "./Dashboard/DashComponent/DashClientes/DashClients";
 import FormCategories from "./components/FormCategories/FormCategories";
 import DashCategory from "./Dashboard/DashComponent/DashCategory/DashCategory";
 
+import Landing from "./pages/Landing/Landing";
 function App() {
   return (
     <div>
       <Navbar />
       <CartButton />
       <Routes>
+      <Route path="/" element={<Landing />} />
         <Route path="Confirmacion" element={<Confirmacion />} />
         <Route path="diseños" element={<Construccion />} />
         <Route path="contacto" element={<Construccion />} />
