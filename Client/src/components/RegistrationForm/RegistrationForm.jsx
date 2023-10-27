@@ -1,13 +1,14 @@
 // RegistrationForm.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import styles from "./RegistrationForm.module.css"; // Importa el módulo CSS
 import { useDispatch, useSelector } from "react-redux";
-import { postClient, sendMailReg } from "../../redux/actions";
+import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/actions";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const profileGlobal = useSelector((state)=> state.reducer.profile)
   const registration = useSelector((state) => state.reducer.registration);
   const { loginWithRedirect } = useAuth0();
   const [errors, setErrors] = useState({});
@@ -19,6 +20,10 @@ const RegistrationForm = () => {
     mobilenumber: '',
   });
   const { user } = useAuth0();
+
+  useEffect(()=>{
+   console.log("regis",user);
+  },[])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -88,33 +93,17 @@ const RegistrationForm = () => {
     }
     if (validateForm()) {
       try {
-
-        console.log("Contenido de mailer antes de enviar:", mailer);
-        dispatch(sendMailReg(mailer));
-        dispatch(postClient(formData));
-        
-
-        // Realiza acciones adicionales después de guardar los datos
-
-        if (registration !== undefined) {
-          console.log("Valor de registration:", registration);
-
-          if (registration === 200) {
-            loginWithRedirect({
-              screen_hint: "signup",
-              login_hint: formData.email,
-              email: formData.email,
-              password: formData.password,
-            });
-          } else {
-            alert("Hubo un error al crear la cuenta");
-          }
-        } else {
-          console.log("registration es undefined o null");
-          alert("Hubo un error al crear la cuenta");
+        const userData = {
+          ...formData,
+          name: user.name,
+          email: user.email,
         }
+        console.log("Contenido de mailer antes de enviar:", mailer);
+        dispatch(postClient(userData));
+        dispatch(postProfile(userData))
+        dispatch(sendMailReg(mailer));
+        localStorage.setItem("userData", JSON.stringify(userData));
       } catch (error) {
-        console.log("Error:", error);
         alert("Hubo un error al crear la cuenta");
       }
     }

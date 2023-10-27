@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-import { getClients, toggleBanned } from '../../../redux/actions'; // Asumiendo que tienes acciones para obtener clientes y cambiar el estado "banned".
+import { getClients, deleteClient } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './DashClients.module.css'; // Importa tus estilos CSS
-
-
-import Switch from '../../../components/Switch/Switch'; // Importa el componente Switch
+import styles from './DashClients.module.css';
 
 export default function DashClients() {
   const dispatch = useDispatch();
@@ -12,7 +9,14 @@ export default function DashClients() {
 
   useEffect(() => {
     dispatch(getClients());
-  }, [dispatch]);
+  }, []);
+
+  const handleToggleBanned = (clientId, isBanned) => {
+    dispatch(deleteClient(clientId))
+      .then(() => {
+        dispatch(getClients());
+      });
+  };
 
   return (
     <div className={styles.dashClients}>
@@ -31,7 +35,12 @@ export default function DashClients() {
               <td>{client.email}</td>
               <td>{client.name}</td>
               <td>
-                <Switch isOn={client.banned} userId={client.id} />
+                <button
+                  className={`${styles.banButton} ${client.banned ? styles.unbanButton : ''}`}
+                  onClick={() => handleToggleBanned(client.id, client.banned)}
+                >
+                  {client.banned ? 'Unban User' : 'Ban User'}
+                </button>
               </td>
             </tr>
           ))}
@@ -40,3 +49,5 @@ export default function DashClients() {
     </div>
   );
 }
+
+

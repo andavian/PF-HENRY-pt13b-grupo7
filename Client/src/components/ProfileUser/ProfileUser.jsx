@@ -5,6 +5,7 @@ import "./ProfileUser.module.css";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const userStorage = JSON.parse(localStorage.getItem("userData"))
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -17,7 +18,11 @@ const Profile = () => {
         <h2 className="profile-name">{user.name}</h2>
         <p className="profile-email">{user.email}</p>
         <p className="profile-billing-address">{user.billingaddress}</p>
-        <a href="http://localhost:3000/registration"> Click aquí para completar tu perfil </a>
+        {!userStorage.billingaddress ?
+        <a href="http://localhost:3000/registration"> Click aquí para completar tu perfil </a> :
+        <a href="http://localhost:3000/home"> Sigue navegando tu perfil esta completo </a>
+        }
+        
       </div>
     )
   );
