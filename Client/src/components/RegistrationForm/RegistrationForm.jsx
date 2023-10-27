@@ -10,14 +10,7 @@ import { postClient, sendMailReg ,getProfile, postProfile } from "../../redux/ac
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
-<<<<<<<<< Temporary merge branch 1
 
-  const profileGlobal = useSelector((state) => state.reducer.profile);
-  const registration = useSelector((state) => state.reducer.registration);
-
-  const { user } = useAuth0();
-  const [image, setImage] = useState("");
-=========
   const profileGlobal = useSelector((state)=> state.reducer.profile)
   const registration = useSelector((state) => state.reducer.registration);
   const { loginWithRedirect } = useAuth0();
