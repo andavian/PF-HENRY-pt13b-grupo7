@@ -10,48 +10,71 @@ export default function Detail({ product, onClose }) {
   const detailState = useSelector((state) => state.reducer.details);
   const [isFav, setIsFav] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [reviews, setReviews] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
+  const [showAllReviews, setShowAllReviews] = useState(false);
   const dispatch = useDispatch();
   const { id } = useParams();
 
   // Agregar un efecto para reiniciar el estado isFav al cambiar de producto
+  // useEffect(() => {
+  //   const currentFavorites =
+  //     JSON.parse(localStorage.getItem("favorites")) || [];
+  //   const isProductInFavorites = currentFavorites.some(
+  //     (favoriteProduct) => favoriteProduct.id === product.id
+  //   );
+  //   setIsFav(isProductInFavorites);
+  //   dispatch(getProductById(product.id));
+  // }, [dispatch, id, product.id]);
+
+  // const addToFavorites = (product) => {
+  //   // Recupera la lista de favoritos del localStorage
+  //   const currentFavorites =
+  //     JSON.parse(localStorage.getItem("favorites")) || [];
+
+  //   // Verifica si el producto ya está en la lista de favoritos
+  //   const isProductInFavorites = currentFavorites.some(
+  //     (favoriteProduct) => favoriteProduct.id === product.id
+  //   );
+
+  //   if (!isProductInFavorites) {
+  //     // Si el producto no está en la lista, agrégalo
+  //     currentFavorites.push(product);
+
+  //     // Guarda la lista actualizada en el localStorage
+  //     localStorage.setItem("favorites", JSON.stringify(currentFavorites));
+  //     setIsFav(true); // Actualiza el estado para reflejar que el producto está en favoritos
+  //   } else {
+  //     // Si el producto ya está en favoritos, quítalo de la lista
+  //     const updatedFavorites = currentFavorites.filter(
+  //       (favoriteProduct) => favoriteProduct.id !== product.id
+  //     );
+
+  //     // Guarda la lista actualizada en el localStorage
+  //     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  //     setIsFav(false); // Actualiza el estado para reflejar que el producto ya no está en favoritos
+  //   }
+  // };
+
   useEffect(() => {
-    const currentFavorites =
-      JSON.parse(localStorage.getItem("favorites")) || [];
-    const isProductInFavorites = currentFavorites.some(
-      (favoriteProduct) => favoriteProduct.id === product.id
-    );
-    setIsFav(isProductInFavorites);
-    dispatch(getProductById(product.id));
-  }, [dispatch, id, product.id]);
+    // Realiza una solicitud a la API para obtener los datos de reseñas, reemplaza 'apiEndpoint' con la URL correcta.
+    fetch(`/reviews/${product.id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // Verifica si el objeto de respuesta contiene el promedio de reseñas
+        if (data.averageRating !== undefined) {
+          // Almacena el promedio de reseñas en el estado local
+          setAverageRating(data.averageRating);
+        }
 
-  const addToFavorites = (product) => {
-    // Recupera la lista de favoritos del localStorage
-    const currentFavorites =
-      JSON.parse(localStorage.getItem("favorites")) || [];
+        // Almacena las reseñas en el estado local
+        setReviews(data.reviews);
+      })
+      .catch((error) => {
+        console.error("Error al obtener reseñas:", error);
+      });
+  }, [product.id]);
 
-    // Verifica si el producto ya está en la lista de favoritos
-    const isProductInFavorites = currentFavorites.some(
-      (favoriteProduct) => favoriteProduct.id === product.id
-    );
-
-    if (!isProductInFavorites) {
-      // Si el producto no está en la lista, agrégalo
-      currentFavorites.push(product);
-
-      // Guarda la lista actualizada en el localStorage
-      localStorage.setItem("favorites", JSON.stringify(currentFavorites));
-      setIsFav(true); // Actualiza el estado para reflejar que el producto está en favoritos
-    } else {
-      // Si el producto ya está en favoritos, quítalo de la lista
-      const updatedFavorites = currentFavorites.filter(
-        (favoriteProduct) => favoriteProduct.id !== product.id
-      );
-
-      // Guarda la lista actualizada en el localStorage
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      setIsFav(false); // Actualiza el estado para reflejar que el producto ya no está en favoritos
-    }
-  };
   const addToCart = (product, quantity) => {
     // Obtener el carrito actual desde Local Storage o inicializarlo como un array vacío
     const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -80,7 +103,7 @@ export default function Detail({ product, onClose }) {
     onClose();
   };
 
- 
+
 
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
@@ -129,7 +152,7 @@ export default function Detail({ product, onClose }) {
                   {isFav ? "❤️" : "🤍"}
                 </button>
               </div>
-              <ProductReview/>
+
               <p className={styles.price}>${detailState.price}</p>
 
               <p className={styles.description}>{detailState.description}</p>
@@ -179,13 +202,11 @@ export default function Detail({ product, onClose }) {
               <p>Indefinida</p>
             )}
           </div>
-          
+          <ProductReview />
         </div>
       ) : (
         <p>Producto no encontrado</p>
       )}
-     
-
     </div>
   );
 }

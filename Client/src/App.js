@@ -1,32 +1,25 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-
-// Components
-import Navbar from "./components/Navbar/Navbar";
-import CartButton from "./components/Cart-Button/CartButton";
-import Footer from "./components/Footer/Footer";
-import Footerbar from "./components/FooterBar/FooterBar";
-import Profile from "./components/ProfileUser/ProfileUser";
-import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
-import FormProducts from "./components/FormProducts/FormProducts";
-import FormCategories from "./components/FormCategories/FormCategories";
-
-// Pages
-import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/cart/Cart";
 import Detail from "./pages/Detail/Detail";
+import Navbar from "./components/Navbar/Navbar";
 import Admin from "./pages/admin/Admin";
+import Footer from "./components/Footer/Footer";
+import Footerbar from "./components/FooterBar/FooterBar";
 import Construccion from "./pages/Construcion/Construcion";
 import Confirmacion from "./pages/ConfirmacionCompra/ConfirmacionCompra";
 import Store from "./pages/Store/Store";
 import CategoriesViews from "./pages/CategoriesView/CategoriesViews";
-
-// Dashboard Components
+import Profile from "./components/ProfileUser/ProfileUser";
+import CartButton from "./components/Cart-Button/CartButton";
 import DashHome from "./Dashboard/DashViews/DashHome/DashHome";
 import DashPage from "./Dashboard/DashComponent/DashPage/DashPage";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import DashProducts from "./Dashboard/DashComponent/DashProducts/DashProducts";
+import FormProducts from "./components/FormProducts/FormProducts";
 import DashClients from "./Dashboard/DashComponent/DashClientes/DashClients";
+import FormCategories from "./components/FormCategories/FormCategories";
 import DashCategory from "./Dashboard/DashComponent/DashCategory/DashCategory";
 
 function App() {
@@ -35,7 +28,6 @@ function App() {
       <Navbar />
       <CartButton />
       <Routes>
-        <Route path="/" element={<Landing />} />
         <Route path="Confirmacion" element={<Confirmacion />} />
         <Route path="diseños" element={<Construccion />} />
         <Route path="contacto" element={<Construccion />} />
