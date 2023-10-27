@@ -14,8 +14,9 @@ const Cart = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     return savedCart;
   });
+  const userStorage = JSON.parse(localStorage.getItem("userData"))
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -87,7 +88,7 @@ const Cart = () => {
     console.log("Contenido de mailer antes de enviar:", mailer);
 
     try {
-      if (isAuthenticated) {
+      if (userStorage.billingaddress) {
         dispatch(sendMailPay(mailer));
         const order = {
           value: calculateTotal(),
