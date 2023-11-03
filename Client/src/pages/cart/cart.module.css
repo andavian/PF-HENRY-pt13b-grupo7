@@ -1,10 +1,10 @@
 .container {
   background: #f4f5f7;
   border-radius: 6px;
-  padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  
+
 }
 
 .centeredContainer {
@@ -44,7 +44,7 @@
 }
 
 .productItem {
-  margin-bottom: 20px;
+  margin: 20px;
   background-color: rgb(255, 255, 255);
   border: 1px solid #ddd;
   padding: 10px;
@@ -54,12 +54,13 @@
 }
 
 .productcheck {
-  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 104px;
   background-color: rgb(255, 255, 255);
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 20px;
-  position: sticky;/* Añadir scroll si el contenido es más largo que la pantalla */
 }
 
 .buttonCompra {
@@ -167,6 +168,7 @@
 }
 
 .title {
+  margin: 40px;
   text-transform: none;
 }
 
@@ -174,6 +176,7 @@
   text-transform: none;
   font-size: 16px;
   font-weight: bold;
+
 }
 .summaryTable {
   width: 100%; /* Hace que la tabla ocupe todo el ancho disponible */
@@ -219,3 +222,5 @@ h6 {
   margin-top: 0;
   margin-bottom: 0rem;
 }
+
+

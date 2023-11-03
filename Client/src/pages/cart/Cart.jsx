@@ -8,6 +8,9 @@ import Pago from "../../assets/iconos/pago-paypal-seguro.png";
 import { sendMailPay } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
+import Footerbar from "../../components/FooterBar/FooterBar";
+import Footer from "../../components/Footer/Footer";
+
 const Cart = () => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   const [cart, setCart] = useState(() => {
@@ -16,7 +19,7 @@ const Cart = () => {
   });
   const userStorage = JSON.parse(localStorage.getItem("userData"));
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     console.log(userStorage);
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -113,11 +116,8 @@ const Cart = () => {
 
   return (
     <div className={style.container}>
-      <div className={style.productContainer}>
-        <h5>Carrito de Compras</h5>
-      </div>
-
       <div className={`${style.productContainer}`}>
+        <h5 className={style.title}>Carrito de Compras</h5>
         {cart.length === 0 ? (
           <div className={`${style.productContainer}`}>
             <div className={style.centeredContainer}>
@@ -302,6 +302,9 @@ const Cart = () => {
           </div>
         </div>
       </div>
+
+      <Footer />
+      <Footerbar />
     </div>
   );
 };

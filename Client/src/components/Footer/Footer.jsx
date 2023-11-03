@@ -10,9 +10,9 @@ const Footer = () => {
       <div className={styles["footer-columns"]}>
         <div className={styles["logocontainer"]}>
           <div className={styles["footer-images"]}>
-          <Link to="/home" className={style.logoContainer}>
-          <img src={logo} alt="Logo" className={style.logoImage} />
-        </Link>
+            <Link to="/home" className={style.logoContainer}>
+              <img src={logo} alt="Logo" className={style.logoImage} />
+            </Link>
 
             <div className={styles["redes"]}>
               <a
@@ -102,8 +102,6 @@ const Footer = () => {
                 </svg>
               </a>
             </div>
-
-            
           </div>
         </div>
 
@@ -116,15 +114,11 @@ const Footer = () => {
             <li>
               <Link className={styles.links}>Tienda</Link>
             </li>
-            <li>
-              <Link className={styles.links}>Diseños</Link>
-            </li>
+          
             <li>
               <Link className={styles.links}>Sobre Henry Shop</Link>
             </li>
-            <li>
-              <Link className={styles.links}>Contacto</Link>
-            </li>
+          
           </ul>
         </div>
         <div className={styles["footer-column"]}>
@@ -132,6 +126,11 @@ const Footer = () => {
           <ul>
             <li>
               <Link className={styles.links}>Preguntas Frecuentes</Link>
+              
+            </li>
+            <li>
+          
+              <Link className={styles.links}>Contacto</Link>
             </li>
           </ul>
         </div>
@@ -158,6 +157,8 @@ const Footer = () => {
             </li>
           </ul>
         </div>
+        
+        
       </div>
     </footer>
   );
