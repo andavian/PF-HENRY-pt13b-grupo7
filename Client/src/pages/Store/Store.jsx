@@ -14,8 +14,11 @@ import style from "../Store/Store.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Cardcategory from "../../components/Card-Category/Cardcategory";
+import Footerbar from "../../components/FooterBar/FooterBar";
 import Footer from "../../components/Footer/Footer";
+import CartButton from "../../components/Cart-Button/CartButton";
 import { Link, useParams } from "react-router-dom";
+
 
 export default function Shop() {
   const dispatch = useDispatch();
@@ -194,6 +197,9 @@ export default function Shop() {
         totalPages={totalPages}
         onPageChange={handlePageChange}
       />
+            <Footer />
+      <Footerbar />
+      <CartButton />
     </div>
   );
 }

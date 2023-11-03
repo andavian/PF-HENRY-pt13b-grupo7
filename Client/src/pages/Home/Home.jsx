@@ -20,6 +20,9 @@ import styles from "./home.module.css";
 import Paginado from "../../components/Paginado/Paginado";
 import CardCarousel from "../../components/crouselflecha/CardCarousel";
 import CardCategory from "../../components/Card-Category/Cardcategory";
+import Footerbar from "../../components/FooterBar/FooterBar";
+import Footer from "../../components/Footer/Footer";
+import CartButton from "../../components/Cart-Button/CartButton";
 
 import bannerBackground from "../../images/Banner.jpg";
 import { getProfile } from "../../redux/actions";
@@ -147,7 +150,11 @@ export default function Shop() {
           <CardCarousel products={catalog} />
           <button className={styles.button}>Ver más</button>
         </div>
+      
       </div>
+      <Footer />
+      <Footerbar />
+      <CartButton />
     </main>
   );
 }

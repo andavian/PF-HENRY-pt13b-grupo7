@@ -49,12 +49,11 @@ const Landing = () => {
       <h2>Bienvenidos a Henrystore.com</h2>
 
       <p className={style.introText}>
-        Somos la plataforma de
-        comercio electrónico oficial de la comunidad "Soy Henry".<br></br> Este proyecto
-        está desarrollado por el Grupo 7 en la cohorte pt13b.
+        Somos la plataforma de comercio electrónico oficial de la comunidad "Soy
+        Henry".<br></br> Este proyecto está desarrollado por el Grupo 7 en la
+        cohorte pt13b.
       </p>
 
-      
       <div className={style.containertext}>
         {contacts.map((contact, index) => (
           <div className={style.card} key={index}>
@@ -65,10 +64,15 @@ const Landing = () => {
             />
             <h2 className={style.flag}>{contact.flag}</h2>
 
-            <h2 >{contact.name}</h2>
+            <h2>{contact.name}</h2>
             <p>
               GitHub:{" "}
-              <a className={style.link} href={`https://github.com/${contact.git}`}>{contact.git}</a>
+              <a
+                className={style.link}
+                href={`https://github.com/${contact.git}`}
+              >
+                {contact.git}
+              </a>
             </p>
             <p className={style.link}>Teléfono: {contact.telefono}</p>
           </div>
@@ -83,7 +87,12 @@ const Landing = () => {
         personalizado y una variedad de productos adicionales.
       </p>
 
-
+      <button
+        className={style.enterButton}
+        onClick={() => (window.location.href = "../Home")}
+      >
+        ¡Comienza ahora!
+      </button>
     </div>
   );
 };

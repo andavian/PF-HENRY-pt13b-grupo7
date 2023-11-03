@@ -1,20 +1,23 @@
 /* Footer.module.css */
 
-/* Estilos para el contenedor principal del pie de página */
+
 .footer-container {
   background-color: #ffffff;
-  display: flex;
-  flex-wrap: wrap; /* Para manejar el ajuste de columnas en pantallas pequeñas */
-  justify-content: space-between; /* Espacio entre las imágenes y las columnas */
-  align-items: flex-start; /* Alinea las imágenes en la parte superior */
-  z-index: 1;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 20px;
+  width: 100%;
   padding-bottom: 80px;
   padding-top: 20px;
   padding-left: 20px;
   bottom: 0;
   left: 0;
-  z-index: 5;
+
+
 }
+
+
 
 /* Estilos para las imágenes en la columna izquierda */
 .footer-images {
@@ -34,9 +37,10 @@
   display: flex;
   flex-wrap: wrap; /* Para manejar el ajuste de columnas en pantallas pequeñas */
   justify-content: 2rem; /* Espacio entre las columnas */
-
   margin-top: 20px;
-  margin-right: 100px;
+  margin-left: 30px;
+  margin-right:30px;
+  margin-bottom: 5px;
 }
 
 .footer-column {
@@ -65,7 +69,7 @@
 
 .logocontainer {
   justify-content: center;
-  margin-top: 5%;
+  margin: 30px;
   padding: 20px;
 }
 
